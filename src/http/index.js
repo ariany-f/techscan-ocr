@@ -2,11 +2,13 @@ import axios from "axios"
 import { ArmazenadorToken } from "../utils";
 
 const http = axios.create({
-    baseURL: 'https://179.228.234.15:4443'
+    baseURL: 'https://179.228.234.15:4443',
+    httpsAgent: new https.Agent({  
+        rejectUnauthorized: false
+    })
 })
 
 http.interceptors.request.use(function (config) {
-    config.rejectUnauthorized = false
     const token = ArmazenadorToken.AccessToken
     if (token) {
         config.headers.Authorization = `Bearer ${token}`
