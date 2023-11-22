@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-wrap: wrap;
+    max-width: -webkit-fill-available;
+    
+}
+.banner {
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    min-height: -webkit-fill-available;
+    @media screen and (max-width:768px) {
+        height: initial;
+    }
+}
+.logo {
+    position: absolute;
+    top: 40px;
+}
+.bottomBanner {
+    position: absolute;
+    bottom: 82px;
+    text-align: center;
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    align-items: center;
+    & .texto {
+        color: var(--astra-100);font-weight: 800;
+        font-size: 28px;
+        font-family: var(--fonte-secundaria);
+        line-height: 30px; /* 107.143% */
+    }
+}
+
+.ul {
+    display: flex;
+    gap: 24px;
+    padding-left: 0;
+    & li {
+        list-style: none;
+    }
+    & li svg *{
+        color: var(--astra-100);
+    }
+}

@@ -1,0 +1,8 @@
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 48px;
+    width: inherit;
+    flex: 1;
+}

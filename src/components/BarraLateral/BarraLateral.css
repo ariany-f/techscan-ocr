@@ -1,0 +1,22 @@
+.icon {
+    fill: var(--white);
+    box-sizing: initial;
+}
+
+.novidade {
+    color: var(--styled-white);
+    font-family: var(--fonte-primaria);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    align-items: center;
+    background: var(--primaria);
+    border-radius: 8px;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    gap: 10px;
+}
