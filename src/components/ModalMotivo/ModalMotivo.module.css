@@ -3,8 +3,9 @@
 }
 .containerBottom {
     display: flex;
+    padding: 18px;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-end;
     & button {
         width: initial;
     }

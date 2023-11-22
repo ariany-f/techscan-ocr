@@ -2,8 +2,6 @@ import http from '@http'
 import { useEffect, useState } from "react"
 import DataTablePassagens from '../../components/DataTablePassagens'
 
-
-
 function Dashboard(){
 
     const [passagens, setPassagens] = useState([])

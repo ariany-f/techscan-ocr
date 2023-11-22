@@ -126,7 +126,7 @@ textarea {
   font-family: inherit; 
   font-size: 100%; 
   line-height: 1.15; 
-  margin: 0; 
+  margin: 0;
 }
 button,
 input { 
@@ -154,6 +154,16 @@ button:-moz-focusring,
 [type="reset"]:-moz-focusring,
 [type="submit"]:-moz-focusring {
   outline: 1px dotted ButtonText;
+}
+.button {
+  border: none;
+  border-radius: 8px;
+  background-color: var(--primaria)!important;
+  color: var(--styled-white);
+  cursor: pointer;
+}
+.button:hover {
+  background-color: var(--secundaria)!important;
 }
 fieldset {
   padding: 0.35em 0.75em 0.625em;

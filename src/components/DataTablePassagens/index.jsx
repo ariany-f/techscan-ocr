@@ -1,8 +1,8 @@
 import { DataTable } from 'primereact/datatable'
-import Botao from '@components/Botao'
 import { Column } from 'primereact/column'
-import './DataTable.css'
 import { useState } from 'react'
+import Botao from '@components/Botao'
+import Texto from '@components/Texto'
 import styled from 'styled-components'
 import ModalMotivo from '../ModalMotivo'
 
@@ -93,7 +93,15 @@ function DataTablePassagens({ passagens }) {
     const rowExpansionTemplate = (data) => {
         return (
             <>
+                {data.error_reason
+                ? <>
+                    <Texto>Problemas na passagem:</Texto>
+                    {data.error_reason}
+                </>
+                : ''
+                }
                 <Botao weight="300" aoClicar={() => setModalOpened(true)} estilo="neutro">Relatar Problema na Passagem</Botao>
+
                 <div>
                     {data.images.map((item) => {
                         return <img width="240px" src={`https://179.228.234.15:4443/api/web/public/${item}`} style={{margin: '5px'}} />
@@ -102,16 +110,12 @@ function DataTablePassagens({ passagens }) {
             </>
         );
     };
-    
-    const allowExpansion = (rowData) => {
-        return rowData.images.length > 0;
-    };
 
     return (
         <>
             <DataTable value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
-                    rowExpansionTemplate={rowExpansionTemplate} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]}  style={{ maxWidth: '80vw', marginTop: '5rem' }}>
-                <Column expander={allowExpansion} style={{ width: '0.2rem' }} />
+                    rowExpansionTemplate={rowExpansionTemplate} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]}  style={{ maxWidth: '78vw', marginTop: '1rem' }}>
+                <Column expander={true} />
                 <Column body={plateBodyTemplate} header="Placa"></Column>
                 <Column body={dateBodyTemplate} header="Data/Hora"></Column>
                 <Column body={containerBodyTemplate} header="Container"></Column>
@@ -120,7 +124,7 @@ function DataTablePassagens({ passagens }) {
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens"></Column>
                 <Column body={statusBodyTemplate} header="Status"></Column>
             </DataTable>
-            <ModalMotivo aoFechar={() => setModalOpened(false)} opened={modalOpened} />
+            <ModalMotivo aoFechar={() => setModalOpened(false)} opened={modalOpened} passagem={expandedRows} />
         </>
     )
 }
