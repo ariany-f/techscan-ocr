@@ -6,6 +6,7 @@ const http = axios.create({
 })
 
 http.interceptors.request.use(function (config) {
+    config.rejectUnauthorized = false
     const token = ArmazenadorToken.AccessToken
     if (token) {
         config.headers.Authorization = `Bearer ${token}`

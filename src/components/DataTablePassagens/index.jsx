@@ -4,6 +4,7 @@ import { Column } from 'primereact/column'
 import './DataTable.css'
 import { useState } from 'react'
 import styled from 'styled-components'
+import ModalMotivo from '../ModalMotivo'
 
 const StatusLabel = styled.div`
     background-color: #FA896B;
@@ -57,6 +58,7 @@ const StatusLabel = styled.div`
 function DataTablePassagens({ passagens }) {
 
     const [expandedRows, setExpandedRows] = useState(null);
+    const [modalOpened, setModalOpened] = useState(false)
 
     const formatDate = (value) => {
         return value.toLocaleDateString('pt-BR', {
@@ -91,7 +93,7 @@ function DataTablePassagens({ passagens }) {
     const rowExpansionTemplate = (data) => {
         return (
             <>
-                <Botao estilo="neutro">Relatar Problema na Passagem</Botao>
+                <Botao weight="300" aoClicar={() => setModalOpened(true)} estilo="neutro">Relatar Problema na Passagem</Botao>
                 <div>
                     {data.images.map((item) => {
                         return <img width="240px" src={`https://179.228.234.15:4443/api/web/public/${item}`} style={{margin: '5px'}} />
@@ -118,6 +120,7 @@ function DataTablePassagens({ passagens }) {
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens"></Column>
                 <Column body={statusBodyTemplate} header="Status"></Column>
             </DataTable>
+            <ModalMotivo aoFechar={() => setModalOpened(false)} opened={modalOpened} />
         </>
     )
 }
