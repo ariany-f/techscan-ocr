@@ -12,7 +12,10 @@ function Relatorios(){
     {
         http.get('api/web/public/passagens')
         .then(response => {
-            setPassagens(response)
+            if(response)
+            {
+                setPassagens(response)
+            }
         })
         .catch(erro => {
             console.error(erro)
