@@ -1,5 +1,6 @@
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
+import { Calendar } from 'primereact/calendar';
 import { useState } from 'react'
 import Botao from '@components/Botao'
 import Texto from '@components/Texto'
@@ -59,6 +60,13 @@ function DataTablePassagens({ passagens }) {
 
     const [expandedRows, setExpandedRows] = useState(null);
     const [modalOpened, setModalOpened] = useState(false)
+    const [filters, setFilters] = useState(null);
+
+    const initFilters = () => {
+        setFilters({
+            datetime: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
+        });
+    };
 
     const formatDate = (value) => {
         return value.toLocaleDateString('pt-BR', {
@@ -111,10 +119,14 @@ function DataTablePassagens({ passagens }) {
         );
     };
 
+    const dateFilterTemplate = (options) => {
+        return <Calendar value={options.value} onChange={(e) => options.filterCallback(formatDate(e.value), options.index)} />
+    };
+
     return (
         <>
-            <DataTable value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
-                    rowExpansionTemplate={rowExpansionTemplate} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]}  style={{ maxWidth: '78vw', marginTop: '1rem' }}>
+            <DataTable filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
+                    rowExpansionTemplate={rowExpansionTemplate} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ maxWidth: '78vw', marginTop: '1rem' }}>
                 <Column expander={true} />
                 <Column body={plateBodyTemplate} header="Placa"></Column>
                 <Column body={dateBodyTemplate} header="Data/Hora"></Column>

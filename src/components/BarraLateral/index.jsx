@@ -3,10 +3,12 @@ import ItemNavegacao from "./ItemNavegacao"
 import { AiOutlineHome } from "react-icons/ai"
 import { PiUserCircleThin } from "react-icons/pi"
 import { CiSettings, CiBellOn } from 'react-icons/ci'
+import { FaUserCircle } from 'react-icons/fa'
 import "./BarraLateral.css"
 import { Link, useLocation } from "react-router-dom"
 import logo from '/imagens/logo.png'
 import { useSessaoUsuarioContext } from "../../contexts/SessaoUsuario"
+import { ArmazenadorToken } from './../../utils';
 
 const ListaEstilizada = styled.ul`
     list-style: none;
@@ -20,16 +22,20 @@ const BarraLateralEstilizada = styled.aside`
     gap: 32px;
     flex-shrink: 0;
     background: var(--gradient-gradient-1, linear-gradient(180deg, var(--primaria) 0%, var(--secundaria) 100%));
+    & nav {
+        padding: 0px;
+        width: 100%;
+    }
 `
 const NavTitulo = styled.p`
-    color: var(--white);
-    opacity: 0.5;
+    color: var(--styled-white);
     display: flex;
-    padding: 10px 30px;
+    padding: 20px 25px;
     align-items: center;
     gap: 10px;
     align-self: stretch;
-    font-weight: 300;
+    font-weight: 600;
+    background-color: var(--terciaria)
 `
 
 const ItemFimDePagina = styled.div`
@@ -87,7 +93,7 @@ function BarraLateral() {
         <BarraLateralEstilizada>
              <Logo width="250vw" src={logo} alt="Logo OCR" />
             <nav>
-                <NavTitulo>HOME</NavTitulo>
+                <NavTitulo><FaUserCircle size={35} className="icon"/> {ArmazenadorToken.UserNome}</NavTitulo>
                 <ListaEstilizada>
                     {itensMenu.map((item) => {
                         return (

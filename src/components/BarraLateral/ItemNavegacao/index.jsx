@@ -1,10 +1,10 @@
 import { styled } from "styled-components"
 
 const ItemListaEstilizado = styled.li`
-    -moz-transition: all .1s ease;
-    -o-transition: all .1s ease;
-    -webkit-transition: all .1s ease;
-    transition: all .2s ease;
+    -moz-transition: all .3s linear;
+    -o-transition: all .1s linear;
+    -webkit-transition: all .3s linear;
+    transition: all .3s linear;
     display: flex;
     cursor: pointer;
     color: ${ props => props.$ativo ? 'var(--styled-white)' : 'var(--white)' };
@@ -17,22 +17,16 @@ const ItemListaEstilizado = styled.li`
     line-height: 20px; /* 142.857% */
     gap: 12px;
     width: 100%;
-    background-color: ${ props => props.$ativo ? 'var(--terciaria)' : 'inherit' };
-
-    & .icon {
-        box-sizing: initial;
-        fill: ${ props => props.$ativo ? 'var(--styled-white)' : 'var(--white)' };
-        color: ${ props => props.$ativo ? 'var(--styled-white)' : 'var(--white)' };
-    }
-    
-    & .icon *{
-        fill: ${ props => props.$ativo ? 'var(--styled-white)' : 'var(--white)' };
-        color: ${ props => props.$ativo ? 'var(--styled-white)' : 'var(--white)' };
-    }
+    background-color: ${ props => props.$ativo ? 'var(--secundaria)' : 'inherit' };
 
     &:hover{
-        color: var(--styled-white);
-        background-color: var(--secundaria);
+        color: var(--secundaria);
+        background-color: var(--styled-white);
+        & .icon {
+            fill: 'var(--secundaria)';
+            color: 'var(--secundaria)';
+        }
+        
     }
 `
 

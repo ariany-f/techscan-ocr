@@ -1,5 +1,7 @@
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import { InputText } from 'primereact/inputtext';
 import './DataTable.css'
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -56,6 +58,11 @@ const StatusLabel = styled.div`
 function DataTableUsuarios({ usuarios }) {
 
     const[selectedUsuarios, setSelectedUsuarios] = useState(0)
+     const [filters, setFilters] = useState({
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        email: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },       
+    });
 
     function verDetalhes(value)
     {
@@ -72,23 +79,38 @@ function DataTableUsuarios({ usuarios }) {
 
     const dateBodyTemplate = (rowData) => {
         return formatDate(new Date(rowData.created_at));
-    };
-
-    const qtdImagensBodyTemplate = (rowData) => {
-        return rowData.images.length;
-    };
-
-    const statusBodyTemplate = (rowData) => {
-        return <StatusLabel className={rowData.status ? 'active' : ''}/>
     }
+
+    const onGlobalFilterChange = (event) => {
+        const value = event.target.value;
+        let _filters = { ...filters };
+
+        _filters['global'].value = value;
+
+        setFilters(_filters);
+    };
+
+    const renderHeader = () => {
+        const value = filters['global'] ? filters['global'].value : '';
+
+        return (
+            <span className="p-input-icon-left">
+                <i className="pi pi-search" />
+                <InputText type="search" value={value || ''} onChange={(e) => onGlobalFilterChange(e)} placeholder="Procurar" />
+            </span>
+        );
+    };
+
+    const header = renderHeader();
 
     return (
         <>
-            <DataTable value={usuarios} showGridlines selection={selectedUsuarios} onSelectionChange={(e) => verDetalhes(e.value)} selectionMode="single" paginator rows={6} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem', marginTop: '5rem' }}>
+            <DataTable dataKey="id" onFilter={(e) => setFilters(e.filters)} header={header} filters={filters} value={usuarios} selection={selectedUsuarios} onSelectionChange={(e) => verDetalhes(e.value)} selectionMode="single" paginator rows={6} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
                 <Column field="id" header="Id"></Column>
+                <Column field="name" header="Nome" filter filterPlaceholder="Procurar"></Column>
                 <Column field="email" header="Email"></Column>
+                <Column field="user_permissions" header="Permissão"></Column>
                 <Column body={dateBodyTemplate} header="Data de Criação"></Column>
-                
             </DataTable>
         </>
     )
