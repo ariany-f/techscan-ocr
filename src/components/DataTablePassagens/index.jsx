@@ -105,14 +105,16 @@ function DataTablePassagens({ passagens }) {
                 ? <>
                     <Texto>Problemas na passagem:</Texto>
                     {data.error_reason}
+                    &nbsp;em {formatDate(new Date(data.updated_at))}
+                    {data.updated_by ? (" por " + data.updated_by) : ''}
                 </>
                 : ''
                 }
                 <Botao weight="300" aoClicar={() => setModalOpened(true)} estilo="neutro">Relatar Problema na Passagem</Botao>
 
                 <div>
-                    {data.images.map((item) => {
-                        return <img width="240px" src={`https://179.228.234.15:4443/api/web/public/${item}`} style={{margin: '5px'}} />
+                    {data.images.map((item, index) => {
+                        return <img key={`${data.id}-${index}`} width="240px" src={`https://179.228.234.15:4443/api/web/public/${item}`} style={{margin: '5px'}} />
                     })}
                 </div>
             </>
