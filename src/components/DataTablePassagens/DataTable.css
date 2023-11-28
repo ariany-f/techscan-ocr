@@ -496,6 +496,7 @@
     }
     .p-datepicker table th {
       padding: 0.5rem;
+      border: 1px solid gray;
     }
     .p-datepicker table th > span {
       width: 2.5rem;
@@ -2674,6 +2675,8 @@
       color: #6c6c6c;
       background: #ffffff;
       transition: box-shadow 0.3s;
+      width: -moz-available;
+      border: 1px solid lightgrey;
     }
     .p-datatable .p-datatable-tfoot > tr > td {
       text-align: left;
@@ -2725,12 +2728,10 @@
     .p-datatable .p-datatable-tbody > tr {
       transition: box-shadow 0.3s;
       display: flex;
-      justify-content: space-between;
       align-items: flex-start;
     }
     .p-datatable thead > tr {
       display: flex;
-      justify-content: space-between;
       align-items: flex-start;
     }
     .p-datatable .p-datatable-tbody > tr > td {
@@ -2828,6 +2829,7 @@
     }
     .p-datatable.p-datatable-gridlines .p-datatable-header {
       border-width: 1px 1px 0 1px;
+      border: 1px solid lightgrey;
     }
     .p-datatable.p-datatable-gridlines .p-datatable-footer {
       border-width: 0 1px 1px 1px;

@@ -207,16 +207,16 @@ function DataTablePassagens() {
 
     return (
         <>
-            <DataTable header={header} scrollable onFilter={(e) => setFilters(e.filters)} scrollHeight="660px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
-                    rowExpansionTemplate={rowExpansionTemplate} paginator rows={25} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ maxWidth: '95%', marginTop: '1rem' }}>
-                <Column header="#" headerStyle={{ width: '5%', textAlign: 'center' }} expander={true} />
-                <Column body={plateBodyTemplate} field="plate" header="Placa" headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
-                <Column body={dateBodyTemplate} header="Data/Hora" headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
-                <Column body={containerBodyTemplate} field="container" header="Container" headerStyle={{ width: '5%', textAlign: 'center' }}></Column>
-                <Column field="id_gate" header="Gate" headerStyle={{ width: '4%', textAlign: 'center' }}></Column>
-                <Column field="direction" header="Direção" headerStyle={{ width: '4%', textAlign: 'center' }}></Column>
-                <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" headerStyle={{ width: '4%', textAlign: 'center'}}></Column>
-                <Column body={statusBodyTemplate} header="Status" headerStyle={{ width: '8%', textAlign: 'center' }}></Column>
+            <DataTable showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} scrollHeight="720px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
+                    rowExpansionTemplate={rowExpansionTemplate} paginator rows={25} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ maxWidth: '98%', marginTop: '1rem' }}>
+                <Column header="#" style={{ width: '5%', }} headerStyle={{ width: '5%', textAlign: 'center' }} expander={true} />
+                <Column body={plateBodyTemplate} field="plate" header="Placa" style={{ width: '15%',textAlign: 'center'}} headerStyle={{ width: '15%', textAlign: 'center' }}></Column>
+                <Column body={dateBodyTemplate} header="Data/Hora" style={{ width: '15%',textAlign: 'center'}} headerStyle={{ width: '15%', textAlign: 'center'}}></Column>
+                <Column body={containerBodyTemplate} field="container" header="Container" style={{ width: '20%',textAlign: 'center'}} headerStyle={{ width: '20%', textAlign: 'center' }}></Column>
+                <Column field="id_gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
+                <Column field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
+                <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '15%',textAlign: 'center'}} headerStyle={{ width: '15%', textAlign: 'center'}}></Column>
+                <Column body={statusBodyTemplate} header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
             </DataTable>
             <ModalMotivo aoFechar={() => setModalOpened(false)} opened={modalOpened} passagem={expandedRows} />
         </>

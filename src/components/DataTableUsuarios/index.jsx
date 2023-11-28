@@ -106,7 +106,7 @@ function DataTableUsuarios({ usuarios }) {
 
     return (
         <>
-            <DataTable dataKey="id" onFilter={(e) => setFilters(e.filters)} header={header} filters={filters} value={usuarios} selection={selectedUsuarios} onSelectionChange={(e) => verDetalhes(e.value)} selectionMode="single" paginator rows={6} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
+            <DataTable showGridlines dataKey="id" onFilter={(e) => setFilters(e.filters)} header={header} filters={filters} value={usuarios} selection={selectedUsuarios} onSelectionChange={(e) => verDetalhes(e.value)} selectionMode="single" paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
                 <Column field="id" header="Id"></Column>
                 <Column field="name" header="Nome" filter filterPlaceholder="Procurar"></Column>
                 <Column field="email" header="Email"></Column>
