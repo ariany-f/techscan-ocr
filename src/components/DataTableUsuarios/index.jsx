@@ -1,10 +1,11 @@
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { FilterMatchMode, FilterOperator } from 'primereact/api';
-import { InputText } from 'primereact/inputtext';
+import { FilterMatchMode, FilterOperator } from 'primereact/api'
+import { FaSearch } from 'react-icons/fa'
+import { InputText } from 'primereact/inputtext'
 import './DataTable.css'
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const StatusLabel = styled.div`
     background-color: #FA896B;
@@ -94,8 +95,8 @@ function DataTableUsuarios({ usuarios }) {
         const value = filters['global'] ? filters['global'].value : '';
 
         return (
-            <span className="p-input-icon-left">
-                <i className="pi pi-search" />
+            <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
+                <FaSearch />
                 <InputText type="search" value={value || ''} onChange={(e) => onGlobalFilterChange(e)} placeholder="Procurar" />
             </span>
         );

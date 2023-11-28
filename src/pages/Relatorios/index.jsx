@@ -41,7 +41,7 @@ function Relatorios(){
                 fileName={`relatorio-ocr-${new Date()}`}
                 btnClassName="button neutro filled medium 300"
             />
-            <DataTablePassagens passagens={passagens} />
+            <DataTablePassagens />
         </>
     )
 }
