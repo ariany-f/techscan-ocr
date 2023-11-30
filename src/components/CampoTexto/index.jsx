@@ -8,15 +8,14 @@ import * as Yup from 'yup'
 import { mask as masker, unMask } from "remask"
 
 const Campo = styled.input`
-    border-radius: 8px;
-    outline: .4px solid var(--neutro-200);
+    outline: .4px solid #B9B9B9;
     background: var(--background-label);
-    padding: 22px 16px;
+    padding: 10px 16px;
     border: none;
     display: flex;
     align-items: center;
     align-self: stretch;
-    font-weight: 600;
+    font-weight: 400;
     margin-top: 10px;
     width: ${ props => props.$width ?  props.$width : 'inherit' };
 
@@ -26,7 +25,7 @@ const Campo = styled.input`
 
     ~ .icon {
         box-sizing: initial;
-        bottom: 22px;
+        bottom: 10px;
         cursor: pointer;
         position: absolute;
         fill: var(--neutro-600);

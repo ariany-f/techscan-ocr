@@ -1,9 +1,12 @@
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
 import { Calendar } from 'primereact/calendar'
-import { InputText } from 'primereact/inputtext';
+import { InputText } from 'primereact/inputtext'
+import { useLocation } from 'react-router-dom'
 import { addLocale, FilterMatchMode, FilterOperator } from 'primereact/api'
+import { JsonToExcel } from "react-json-to-excel"
 import { FaSearch } from 'react-icons/fa'
+import { MdOutlineFileDownload, MdOutlineClear } from 'react-icons/md'
 import { useEffect, useState } from 'react'
 import Botao from '@components/Botao'
 import Texto from '@components/Texto'
@@ -82,8 +85,26 @@ function DataTablePassagens() {
 
     function fetchPassages()
     {
-        http.get('api/web/public/passagens')
+        const filterData = {
+
+            dataInicial: startDate ? startDate.toLocaleDateString('sv-SE', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric'
+            }) : null,
+            dataFinal: endDate ? endDate.toLocaleDateString('sv-SE', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric'
+            }) : null
+        }
+        http.post('api/web/public/passagens', filterData)
         .then(response => {
+            console.log(response)
             if(response)
             {
                 setPassagens(response)
@@ -100,7 +121,7 @@ function DataTablePassagens() {
 
         const interval = setInterval(() => {
             fetchPassages()
-          }, 15000);
+          }, 95000);
           return () => clearInterval(interval);
 
     }, [startDate, endDate])
@@ -167,19 +188,41 @@ function DataTablePassagens() {
         );
     };
 
+    const LimparDatas = () => {
+        setStartDate('')
+        setEndDate('')
+    }
+
     const renderHeader = () => {
+
         const valor = filters['global'] ? filters['global'].value : '';
         
         addLocale('pt', {
-            firstDayOfWeek: 1,
-            showMonthAfterYear: true,
-            dayNames: ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'],
-            dayNamesShort: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'],
-            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-            monthNames: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
-            monthNamesShort: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
-            today: 'Hoje',
-            clear: 'Limpar'
+            closeText: 'Fechar',
+            prevText: 'Anterior',
+            nextText: 'Próximo',
+            currentText: 'Começo',
+            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+            monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
+            dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+            dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+            dayNamesMin: ['D','S','T','Q','Q','S','S'],
+            weekHeader: 'Semana',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Só Horas',
+            timeText: 'Tempo',
+            hourText: 'Hora',
+            minuteText: 'Minuto',
+            secondText: 'Segundo',
+            currentText: 'Data Atual',
+            ampm: false,
+            month: 'Mês',
+            week: 'Semana',
+            day: 'Dia',
+            allDayText : 'Todo Dia'
         });
 
         return (
@@ -192,9 +235,12 @@ function DataTablePassagens() {
                     <Texto weight={700}>Data/Hora Final</Texto>
                     <Calendar locale="pt" dateFormat="dd/mm/yy" value={endDate} onChange={(e) => setEndDate(e.value)} showTime hourFormat="24" />
                 </div>
-                <div style={{ paddingTop: '1%', width: '40%', display: 'flex', flexDirection: 'column', alignItens: 'center' }}>
-                    <Botao estilo="vermillion">Filtrar Datas</Botao>
+
+                <div style={{ width: '20%', display: 'flex', flexDirection: 'column', alignItens: 'center' }}>
+                    <Texto weight={700}>Limpar Filtros</Texto>
+                    <Botao aoClicar={LimparDatas} estilo="vermillion"><MdOutlineClear /></Botao>
                 </div>
+
                 <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
                     <FaSearch />
                     <InputText type="search" value={valor || ''} onChange={(e) => onGlobalFilterChange(e)} placeholder="Procurar" />
@@ -205,8 +251,18 @@ function DataTablePassagens() {
 
     const header = renderHeader();
 
+    const location = useLocation();
+
+    const icone = <MdOutlineFileDownload className="icon" size={20} />
+
     return (
         <>
+            {location.pathname == '/relatorios' ?   <JsonToExcel
+                title={icone}
+                data={passagens}
+                fileName={`relatorio-ocr-${new Date()}`}
+                btnClassName="button neutro filled medium 300"
+            /> : ''}
             <DataTable showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} scrollHeight="720px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
                     rowExpansionTemplate={rowExpansionTemplate} paginator rows={25} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ maxWidth: '98%', marginTop: '1rem' }}>
                 <Column header="#" style={{ width: '5%', }} headerStyle={{ width: '5%', textAlign: 'center' }} expander={true} />

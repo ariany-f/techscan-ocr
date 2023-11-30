@@ -56,7 +56,7 @@ const StatusLabel = styled.div`
     }
 `
 
-function DataTableUsuarios({ usuarios }) {
+function DataTableUsuarios({ usuarios, aoSelecionar }) {
 
     const[selectedUsuarios, setSelectedUsuarios] = useState(0)
      const [filters, setFilters] = useState({
@@ -67,7 +67,7 @@ function DataTableUsuarios({ usuarios }) {
 
     function verDetalhes(value)
     {
-        setSelectedUsuarios(value)
+        aoSelecionar(value)
     }
 
     const formatDate = (value) => {
