@@ -30,7 +30,7 @@ function Configuracoes(){
         name: '',
         direction: 1,
         position: '',
-        representative_img_id: null
+        representative_img_id: 1
     })
     const [motivos, setMotivos] = useState([])
     const [gates, setGates] = useState([])
@@ -39,7 +39,7 @@ function Configuracoes(){
     const [selectedGate, setSelectedGate] = useState('')
     const [selectedCamera, setSelectedCamera] = useState('')
     const [selectedMotivo, setSelectedMotivo] = useState('')
-    const [selectedCaminhao, setSelectedCaminhao] = useState(null)
+    const [selectedCaminhao, setSelectedCaminhao] = useState(1)
     const [classError, setClassError] = useState([])
 
     const setDirecao = (direction) => {
@@ -73,6 +73,15 @@ function Configuracoes(){
     {
         http.get('api/web/public/cameras')
         .then(response => {
+            // Para nova camera
+            let obj = {
+                name: 'Nova',
+                direction: 1,
+                position: '',
+                representative_img_id: 1
+            }
+            setCameras((estadoAnterior) => [...estadoAnterior, obj])
+
             response.map((item) => {
                 let obj = {
                     name: item.name,
@@ -219,7 +228,9 @@ function Configuracoes(){
                             })}
                         </ContainerLadoALado>
                         <ContainerLadoALado>
-                            <Botao weight="light" size="small" estilo="cinza" aoClicar={salvarNovaCamera}><FaSave className="icon" /> SALVAR CÂMERA</Botao>
+                            {camera && camera.code &&
+                                <Botao weight="light" size="small" estilo="cinza" aoClicar={salvarNovaCamera}><FaSave className="icon" /> SALVAR CÂMERA</Botao>
+                            }
                             <Botao weight="light" size="small" estilo="azul" aoClicar={editarCamera}><FaPlus className="icon" /> ADICIONAR NOVA CÂMERA</Botao>
                         </ContainerLadoALado>
                     </div>
