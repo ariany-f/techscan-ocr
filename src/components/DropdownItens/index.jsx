@@ -123,7 +123,8 @@ function DropdownItens({ valor, setValor, options=[], placeholder, name, label, 
             : ''}
             <Select placeholder={placeholder} name={name} value={valor} onChange={(evento) => changeValor(evento)}>
                 {options.map((item, index) => {
-                    return <option key={index} value={item.code}>{item.name}</option>
+                    const disabled = (!item.code)
+                    return <option key={index} isOptionDisabled={disabled} value={item.code ?? 0}>{item.name}</option>
                 })}
             </Select>
         </div>

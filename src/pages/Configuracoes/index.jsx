@@ -2,12 +2,15 @@ import http from '@http'
 import Titulo from '@components/Titulo'
 import CampoTexto from '@components/CampoTexto'
 import Texto from '@components/Texto'
+import ModalNovoMotivo from '@components/ModalNovoMotivo'
+import ModalNovoPortao from '@components/ModalNovoPortao'
 import Frame from '@components/Frame'
 import Botao from '@components/Botao'
 import DropdownItens from '@components/DropdownItens'
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import styled from 'styled-components'
 import { FaSave, FaPlus } from "react-icons/fa"
+import { Toast } from 'primereact/toast'
 
 const ContainerLadoALado = styled.div`
     display: flex;
@@ -35,22 +38,28 @@ const Col6 = styled.div`
 
 function Configuracoes(){
 
-    const [cameras, setCameras] = useState([])
-    const [camera, setCamera] = useState({
+    const InicialCamera = {
         name: '',
         direction: 1,
         position: '',
+        code: '',
         representative_img_id: 1
-    })
+    }
+    const [cameras, setCameras] = useState([])
+    const [camera, setCamera] = useState(InicialCamera)
     const [motivos, setMotivos] = useState([])
     const [gates, setGates] = useState([])
     const [imagens, setImagens] = useState([])
     const [direcoes, setDirecoes] = useState([])
     const [selectedGate, setSelectedGate] = useState('')
-    const [selectedCamera, setSelectedCamera] = useState('')
+    const [selectedCamera, setSelectedCamera] = useState(null)
     const [selectedMotivo, setSelectedMotivo] = useState('')
     const [selectedCaminhao, setSelectedCaminhao] = useState(1)
     const [classError, setClassError] = useState([])
+    const [modalNovoMotivoOpened, setModalNovoMotivoOpened] = useState(false)
+    const [modalNovoPortaoOpened, setModalNovoPortaoOpened] = useState(false)
+    const toast = useRef(null);
+
 
     const setDirecao = (direction) => {
         setCamera(estadoAnterior => {
@@ -79,22 +88,33 @@ function Configuracoes(){
         })
     }
 
+    const setRepresentativeImgId = (representative_img_id) => {
+        setCamera(estadoAnterior => {
+            return {
+                ...estadoAnterior,
+                representative_img_id
+            }
+        })
+    }
+
     function fetchCameras()
     {
         http.get('api/web/public/cameras')
         .then(response => {
-            // Para nova camera
             let obj = {
-                name: 'Nova',
+                name: 'Selecione uma câmera para começar',
+                code: '',
                 direction: 1,
                 position: '',
+                id: null,
                 representative_img_id: 1
             }
             setCameras((estadoAnterior) => [...estadoAnterior, obj])
 
-            response.map((item) => {
+            response.map((item, index) => {
                 let obj = {
                     name: item.name,
+                    id: item.id,
                     code: item.id,
                     direction: item.direction,
                     position: item.position,
@@ -115,7 +135,7 @@ function Configuracoes(){
     {
         http.get('api/web/public/motivos')
         .then(response => {
-            response.map((item) => {
+            response.map((item, index) => {
                 let obj = {
                     name: item.label,
                     code: item.id
@@ -151,7 +171,6 @@ function Configuracoes(){
         })
     }
     
-
     function fetchImagensRepresentativas()
     {
         http.get('api/web/public/imagens-representativas')
@@ -182,6 +201,45 @@ function Configuracoes(){
             console.error(erro)
         })
     }
+    
+    const selecionarCamera = (value) => {
+        setSelectedCamera(value)
+        if(value === '')
+        {
+            setCamera(InicialCamera)
+        }
+        else{
+            const filtered = cameras.filter((item) => {
+                return parseInt(item.code) === parseInt(value)
+            })
+            setCamera(filtered[0])
+            if(filtered[0].representative_img_id)
+            {
+                setSelectedCaminhao(filtered[0].representative_img_id)
+            }
+        }
+    }
+
+    const salvarCamera = () => {
+        if(camera.id)
+        {
+            http.put('api/web/public/cameras', camera)
+            .then(response => {
+                if(response.code == 200)
+                {
+                    toast.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+                }
+            })
+            .catch(erro => {
+                console.error(erro)
+            })
+        }
+    }
+
+    const alterarRepresentativeImg = (id) => {
+        setRepresentativeImgId(id)
+        setSelectedCaminhao(id)
+    }
 
     useEffect(() => {
         fetchCameras()
@@ -190,31 +248,6 @@ function Configuracoes(){
         fetchImagensRepresentativas()
         fetchDirecoes()
     }, [])
-
-    const selecionarCamera = (value) => {
-        
-        setSelectedCamera(value)
-        const filtered = cameras.filter((item) => {
-           return parseInt(item.code) === parseInt(value)
-        })
-        setCamera(filtered[0])
-        if(filtered[0].representative_img_id)
-        {
-            setSelectedCaminhao(filtered[0].representative_img_id)
-        }
-    }
-
-    const salvarNovaCamera = () => {
-        console.log(camera)
-    }
-    
-    const editarCamera = () => {
-        console.log(camera)
-    }
-
-    const selecionarCaminhao = (id) => {
-        setSelectedCaminhao(id)
-    }
     
     return (
         <>
@@ -226,7 +259,14 @@ function Configuracoes(){
                     <div>
                         <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>CÂMERAS E DIREÇÕES</h5>
                         <div style={{display: 'flex', gap: '32px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '20px', maxWidth: '95vw'}}>
-                            <DropdownItens camposVazios={classError} setValor={selecionarCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder=""  />
+                            <DropdownItens 
+                                camposVazios={classError} 
+                                setValor={selecionarCamera} 
+                                valor={selectedCamera} 
+                                options={cameras} 
+                                name="cameras" 
+                                label="CÂMERA SELECIONADA"  
+                            />
                             <Col12 style={{border: '1px solid #B9B9B9', padding: '15px'}}>
                                 <Col6>
                                     <CampoTexto valor={camera?.name} setValor={setName} label="NOME" name="name" placeholder="" />
@@ -242,16 +282,15 @@ function Configuracoes(){
                                 </Col12>
                                 <ContainerLadoALado  style={{marginTop: '30px'}}>
                                     {imagens.map((item, index) => {
-                                        return <ImagemRepresentativa onClick={() => selecionarCaminhao(item.id)} $ativo={(parseInt(selectedCaminhao) === parseInt(item.id))} key={index} width="135px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
+                                        return <ImagemRepresentativa onClick={() => alterarRepresentativeImg(item.id)} $ativo={(parseInt(selectedCaminhao) === parseInt(item.id))} key={index} width="135px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
                                     })}
                                 </ContainerLadoALado>
                             </Col12>
                             <Col12>
                                 <ContainerLadoALado>
                                     {camera && camera.code &&
-                                        <Botao weight="light" size="small" estilo="cinza" aoClicar={salvarNovaCamera}><FaSave className="icon" /> SALVAR CÂMERA</Botao>
+                                        <Botao weight="light" size="small" estilo="cinza" aoClicar={salvarCamera}><FaSave className="icon" /> SALVAR CÂMERA</Botao>
                                     }
-                                    <Botao weight="light" size="small" estilo="azul" aoClicar={editarCamera}><FaPlus className="icon" /> ADICIONAR NOVA CÂMERA</Botao>
                                 </ContainerLadoALado>
                             </Col12>
                         </div>
@@ -263,7 +302,7 @@ function Configuracoes(){
                         <div>
                             <ContainerLadoALado>
                                 <DropdownItens camposVazios={classError} setValor={setSelectedMotivo} valor={selectedMotivo} options={motivos} name="reasons" placeholder="" />
-                                <Botao weight="light" size="small" estilo="azul">ADICIONAR MOTIVO</Botao>
+                                <Botao aoClicar={() => setModalNovoMotivoOpened(true)} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> ADICIONAR MOTIVO</Botao>
                             </ContainerLadoALado>
                         </div>
                     </div>
@@ -274,11 +313,13 @@ function Configuracoes(){
                         <div>
                             <ContainerLadoALado>
                                 <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} name="gates" placeholder="" />
-                                <Botao weight="light" size="small" estilo="azul">ADICIONAR PORTÃO</Botao>
+                                <Botao aoClicar={() =>setModalNovoPortaoOpened(true)} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> ADICIONAR PORTÃO</Botao>
                             </ContainerLadoALado>
                         </div>
                     </div>
                 </Frame>
+                <ModalNovoMotivo opened={modalNovoMotivoOpened} aoFechar={() => setModalNovoMotivoOpened(false)}/>
+                <ModalNovoPortao opened={modalNovoPortaoOpened} aoFechar={() => setModalNovoPortaoOpened(false)}/>
             </div>
         </>
     )

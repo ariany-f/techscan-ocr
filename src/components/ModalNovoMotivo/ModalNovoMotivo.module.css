@@ -1,0 +1,42 @@
+.link {
+    text-decoration: none;
+}
+.containerBottom {
+    display: flex;
+    padding: 18px;
+    width: 100%;
+    gap: 10px;
+    justify-content: flex-end;
+    & button {
+        width: initial;
+    }
+}
+.cardEmpresa {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.DadosEmpresa {
+    display: flex;
+    flex-direction: column;
+    line-height: 24px; /* 150% */
+}
+.buildingIcon {
+    box-sizing: initial;
+    padding: 13px;
+    border-radius: 8px;
+    background-color: var(--vermilion-50);
+    border: none;
+}
+.vermilion {
+    fill: var(--primaria);
+    border-color: var(--primaria);
+}
+.icon {
+    fill: var(--primaria);
+    color: var(--primaria);
+}
+
+form {
+    width: 100%;
+}
