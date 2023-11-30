@@ -23,6 +23,25 @@ const ImagemRepresentativa = styled.img`
     cursor: pointer;
 `
 
+const Col12 = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+`
+
+const Col6 = styled.div`
+    background-color: ${props => props.$bg ? props.$bg : 'initial'};
+    width: ${props => props.$width ? props.$width : '50%'};
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: ${props => props.$verticalAlign ? props.$verticalAlign : 'center'};
+    text-align: center;
+`
+
 function Configuracoes(){
 
     const [cameras, setCameras] = useState([])
@@ -212,45 +231,60 @@ function Configuracoes(){
                 <h2 style={{ fontWeight: 500, color: '#B9B9B9' }}>CONFIGURAÇÕES</h2>
             </Titulo>
             <Frame>
-                <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>CÂMERAS E DIREÇÕES</h4>
                 <div>
-                    <DropdownItens camposVazios={classError} setValor={selecionarCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder=""  />
+                    <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>CÂMERAS E DIREÇÕES</h5>
                     <div style={{display: 'flex', gap: '32px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '20px'}}>
-                        <>
-                            <CampoTexto valor={camera?.name} setValor={setName} label="NOME" name="name" placeholder="" />
-                            <CampoTexto valor={camera?.position} setValor={setPosicao} label="POSIÇÃO" name="position" placeholder="" />
-                            <DropdownItens camposVazios={classError} setValor={setDirecao} valor={camera?.direction} options={direcoes} label="DIREÇÃO" name="direction" placeholder="" />
-                        </>
+                        <DropdownItens camposVazios={classError} setValor={selecionarCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder=""  />
+                        <Col12>
+                            <Col6>
+                                <CampoTexto valor={camera?.name} setValor={setName} label="NOME" name="name" placeholder="" />
+                            </Col6>
+                            <Col6>
+                                <CampoTexto valor={camera?.position} setValor={setPosicao} label="POSIÇÃO" name="position" placeholder="" />
+                            </Col6>
+                            <Col6>
+                                <DropdownItens camposVazios={classError} setValor={setDirecao} valor={camera?.direction} options={direcoes} label="DIREÇÃO" name="direction" placeholder="" />
+                            </Col6>
+                        </Col12>
+                        <Col12>
+                            <ContainerLadoALado>
+                                <Texto>Imagem Representativa</Texto>
+                                {imagens.map((item, index) => {
+                                    return <ImagemRepresentativa onClick={() => selecionarCaminhao(item.id)} $ativo={(parseInt(selectedCaminhao) === parseInt(item.id))} key={index} width="150px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
+                                })}
+                            </ContainerLadoALado>
+                        </Col12>
+                        <Col12>
+                            <ContainerLadoALado>
+                                {camera && camera.code &&
+                                    <Botao weight="light" size="small" estilo="cinza" aoClicar={salvarNovaCamera}><FaSave className="icon" /> SALVAR CÂMERA</Botao>
+                                }
+                                <Botao weight="light" size="small" estilo="azul" aoClicar={editarCamera}><FaPlus className="icon" /> ADICIONAR NOVA CÂMERA</Botao>
+                            </ContainerLadoALado>
+                        </Col12>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>DESCRIÇÃO DE MOTIVOS DE ERROS</h5>
+                    
+                    <div>
                         <ContainerLadoALado>
-                            <Texto>Imagem Representativa</Texto>
-                            {imagens.map((item, index) => {
-                                return <ImagemRepresentativa onClick={() => selecionarCaminhao(item.id)} $ativo={(parseInt(selectedCaminhao) === parseInt(item.id))} key={index} width="150px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
-                            })}
-                        </ContainerLadoALado>
-                        <ContainerLadoALado>
-                            {camera && camera.code &&
-                                <Botao weight="light" size="small" estilo="cinza" aoClicar={salvarNovaCamera}><FaSave className="icon" /> SALVAR CÂMERA</Botao>
-                            }
-                            <Botao weight="light" size="small" estilo="azul" aoClicar={editarCamera}><FaPlus className="icon" /> ADICIONAR NOVA CÂMERA</Botao>
+                            <DropdownItens camposVazios={classError} setValor={setSelectedMotivo} valor={selectedMotivo} options={motivos} name="reasons" placeholder="" />
+                            <Botao weight="light" size="small" estilo="azul">ADICIONAR MOTIVO</Botao>
                         </ContainerLadoALado>
                     </div>
                 </div>
-                <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>DESCRIÇÃO DE MOTIVOS DE ERROS</h4>
-                
-                <div>
-                    <ContainerLadoALado>
-                        <DropdownItens camposVazios={classError} setValor={setSelectedMotivo} valor={selectedMotivo} options={motivos} name="reasons" placeholder="" />
-                        <Botao weight="light" size="small" estilo="azul">ADICIONAR MOTIVO</Botao>
-                    </ContainerLadoALado>
-                </div>
-
-                <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>PORTÕES</h4>
 
                 <div>
-                    <ContainerLadoALado>
-                        <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} name="gates" placeholder="" />
-                        <Botao weight="light" size="small" estilo="azul">ADICIONAR PORTÃO</Botao>
-                    </ContainerLadoALado>
+                    <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>PORTÕES</h5>
+
+                    <div>
+                        <ContainerLadoALado>
+                            <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} name="gates" placeholder="" />
+                            <Botao weight="light" size="small" estilo="azul">ADICIONAR PORTÃO</Botao>
+                        </ContainerLadoALado>
+                    </div>
                 </div>
             </Frame>
         </>

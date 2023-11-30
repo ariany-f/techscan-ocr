@@ -27,6 +27,7 @@ const Col6 = styled.div`
     justify-content: ${props => props.$verticalAlign ? props.$verticalAlign : 'center'};
     text-align: center;
 `
+
 const CloseDiv = styled.div`
     position: absolute;
     right: 1%;
