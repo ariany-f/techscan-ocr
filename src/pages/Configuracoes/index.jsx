@@ -287,7 +287,7 @@ function Configuracoes(){
                                 <Col12>
                                     <Texto>Imagem Representativa</Texto>
                                 </Col12>
-                                <ContainerLadoALado  style={{marginTop: '30px'}}>
+                                <ContainerLadoALado  style={{marginTop: '30px', flexWrap: 'wrap'}}>
                                     {imagens.map((item, index) => {
                                         return <ImagemRepresentativa onClick={() => alterarRepresentativeImg(item.id)} $ativo={(parseInt(selectedCaminhao) === parseInt(item.id))} key={index} width="135px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
                                     })}
