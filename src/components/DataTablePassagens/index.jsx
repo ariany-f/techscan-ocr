@@ -87,6 +87,24 @@ function DataTablePassagens() {
         container: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },       
     });
 
+    const confirmarPassagem = (id) => {
+        var sendData = {
+            id: id,
+            is_ok: 1,
+            updated_by: ArmazenadorToken.UserId
+        }
+        http.put('api/web/public/passagens', sendData)
+        .then(response => {
+            if(response.code === 200)
+            {
+                toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+            }
+        })
+        .catch(erro => {
+            console.error(erro)
+        })
+    }
+
     function fetchPassages()
     {
         const filterData = {
@@ -128,7 +146,7 @@ function DataTablePassagens() {
           }, 35000);
           return () => clearInterval(interval);
 
-    }, [startDate, endDate, modalOpened, toastConfirmarPassagem])
+    }, [startDate, endDate, modalOpened, confirmarPassagem])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
@@ -194,24 +212,6 @@ function DataTablePassagens() {
             </>
         );
     };
-
-    const confirmarPassagem = (id) => {
-        var sendData = {
-            id: id,
-            is_ok: 1,
-            updated_by: ArmazenadorToken.UserId
-        }
-        http.put('api/web/public/passagens', sendData)
-        .then(response => {
-            if(response.code === 200)
-            {
-                toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
-            }
-        })
-        .catch(erro => {
-            console.error(erro)
-        })
-    }
 
     const LimparDatas = () => {
         setStartDate('')
