@@ -1,5 +1,6 @@
 import http from '@http'
 import Titulo from '@components/Titulo'
+import CampoTexto from '@components/CampoTexto'
 import Frame from '@components/Frame'
 import Botao from '@components/Botao'
 import DropdownItens from '@components/DropdownItens'
@@ -18,26 +19,54 @@ const ContainerLadoALado = styled.div`
 function Configuracoes(){
 
     const [cameras, setCameras] = useState([])
+    const [camera, setCamera] = useState({
+        name: '',
+        direction: 1,
+        position: '',
+        representative_img_id: 1
+    })
     const [motivos, setMotivos] = useState([])
     const [gates, setGates] = useState([])
     const [imagens, setImagens] = useState([])
+    const [direcoes, setDirecoes] = useState([])
     const [selectedGate, setSelectedGate] = useState('')
     const [selectedCamera, setSelectedCamera] = useState('')
     const [selectedMotivo, setSelectedMotivo] = useState('')
     const [classError, setClassError] = useState([])
 
+    const setDirecao = (direction) => {
+        setCamera(estadoAnterior => {
+            return {
+                ...estadoAnterior,
+                direction
+            }
+        })
+    }
+
+    const setPosicao = (position) => {
+        setCamera(estadoAnterior => {
+            return {
+                ...estadoAnterior,
+                position
+            }
+        })
+    }
+
     function fetchCameras()
     {
         http.get('api/web/public/cameras')
         .then(response => {
+            console.log(response)
             response.map((item) => {
                 let obj = {
                     name: item.name,
-                    code: item.id
+                    code: item.id,
+                    direction: item.direction,
+                    position: item.position
                 }
                 if(!cameras.includes(obj))
                 {
-                    setCameras(estadoAnterior => [...estadoAnterior, obj]);
+                    setCameras((estadoAnterior) => [...estadoAnterior, obj])
                 }
             })
         })
@@ -57,7 +86,7 @@ function Configuracoes(){
                 }
                 if(!motivos.includes(obj))
                 {
-                    setMotivos(estadoAnterior => [...estadoAnterior, obj]);
+                    setMotivos(estadoAnterior => [...estadoAnterior, obj])
                 }
             })
         })
@@ -97,15 +126,43 @@ function Configuracoes(){
             console.error(erro)
         })
     }
+    
+    function fetchDirecoes()
+    {
+        http.get('api/web/public/direcoes')
+        .then(response => {
+            response.map((item) => {
+                let obj = {
+                    name: item.description,
+                    code: item.id
+                }
+                if(!direcoes.includes(obj))
+                {
+                    setDirecoes(estadoAnterior => [...estadoAnterior, obj]);
+                }
+            })
+        })
+        .catch(erro => {
+            console.error(erro)
+        })
+    }
 
     useEffect(() => {
-
         fetchCameras()
         fetchMotivos()
         fetchGates()
         fetchImagensRepresentativas()
-        
+        fetchDirecoes()
     }, [])
+
+    const SelecionarCamera = (value) => {
+        
+        setSelectedCamera(value)
+        const filtered = cameras.filter((item) => {
+           return parseInt(item.code) === parseInt(value)
+        })
+       setCamera(filtered)
+    }
     
     return (
         <>
@@ -114,12 +171,18 @@ function Configuracoes(){
             </Titulo>
             <Frame>
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>CÂMERAS E DIREÇÕES</h4>
-
-                <ContainerLadoALado>
-                    <DropdownItens camposVazios={classError} setValor={setSelectedCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder="" />
-                    <Botao weight="light" size="small" estilo="azul">ADICIONAR CÂMERA</Botao>
-                </ContainerLadoALado>
-
+                <div>
+                    <ContainerLadoALado>
+                        <DropdownItens camposVazios={classError} setValor={SelecionarCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder=""  />
+                        <Botao weight="light" size="small" estilo="azul">ADICIONAR CÂMERA</Botao>
+                    </ContainerLadoALado>
+                    {camera.position &&
+                        <CampoTexto valor={camera.position} setValor={setPosicao} label="POSIÇÃO" name="position" placeholder="" />
+                    }
+                    {camera.direction &&
+                        <DropdownItens camposVazios={classError} setValor={setDirecao} valor={camera.direction} options={direcoes} name="direction" placeholder="" />
+                    }
+                </div>
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>DESCRIÇÃO DE MOTIVOS DE ERROS</h4>
                 
                 <ContainerLadoALado>
@@ -134,8 +197,8 @@ function Configuracoes(){
                     <Botao weight="light" size="small" estilo="azul">ADICIONAR PORTÃO</Botao>
                 </ContainerLadoALado>
 
-                {imagens.map((item) => {
-                    return <img width="100px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
+                {imagens.map((item, index) => {
+                    return <img key={index} width="100px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
                 })
                 }
             </Frame>

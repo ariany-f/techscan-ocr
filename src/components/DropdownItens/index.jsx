@@ -78,7 +78,6 @@ const Select = styled.select`
 
 function DropdownItens({ valor, setValor, options=[], placeholder, name, label, camposVazios = []}) {
 
-    console.log(options)
     const [erro, setErro] = useState('')
     const classeCampoVazio = camposVazios.filter((val) => {
         return val === name
