@@ -161,7 +161,7 @@ function Configuracoes(){
            return parseInt(item.code) === parseInt(value)
         })
        setCamera(filtered)
-       console.log(camera)
+       console.log(filtered)
     }
     
     return (
