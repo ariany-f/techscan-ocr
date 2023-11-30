@@ -1,14 +1,14 @@
 import Botao from "@components/Botao"
 import Frame from "@components/Frame"
-import Texto from "@components/Texto"
+import CheckboxContainer from "@components/CheckboxContainer"
 import CampoTexto from "@components/CampoTexto"
 import Titulo from "@components/Titulo"
-import SubTitulo from "@components/SubTitulo"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styled from "styled-components"
 import http from '@http'
 import styles from './ModalNovoMotivo.module.css'
-import { Autocomplete, TextField } from "@mui/material"
+import { useRef } from "react"
+import { Toast } from 'primereact/toast'
 
 const Overlay = styled.div`
     background-color: rgba(0,0,0,0.80);
@@ -59,7 +59,7 @@ const DialogEstilizado = styled.dialog`
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
-            }
+            }   
             & b {
                 font-weight: 800;
                 font-size: 14px;
@@ -70,97 +70,48 @@ const DialogEstilizado = styled.dialog`
 
 function ModalNovoMotivo({ opened = false, aoClicar, aoFechar, passagem }) {
 
-    const [motivos, setMotivos] = useState([])
-    const [selectedMotivo, setSelectedMotivo] = useState([])
-    const [typedMotivo, setTypedMotivo] = useState('')
-    const [date, setDate] = useState(new Date())
-    const outro = {id: 0, label: 'Outro', is_ocr_error: 0}
+    const [name, setName] = useState('')
+    const [is_ocr_error, setIsOcrError] = useState(false)
+    const toast = useRef(null);
 
-    function fetchMotivos()
-    {
-        http.get('api/web/public/motivos')
-        .then(response => {
-            response.push(outro)
-            setMotivos(response)
-        })
-        .catch(erro => {
-            console.error(erro)
-        })
-    }
-
-    function updateMotivo()
+    function salvarMotivo()
     {
         var sendData = {
-            id: passagem[0].id,
-            is_ocr_error: selectedMotivo.is_ocr_error,
-            is_ok: 1,
-            preset_reason: selectedMotivo.id !== 0 ? selectedMotivo.id : null,
-            description_reason: typedMotivo,
-            updated_by: 11
+            description: name,
+            is_ocr_error: is_ocr_error,
         }
-        http.put('api/web/public/passagens', sendData)
+        http.post('api/web/public/motivos', sendData)
         .then(response => {
-            aoFechar()
+            if(response.code === 200)
+            {
+                toast.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+                aoFechar()
+            }
         })
         .catch(erro => {
             console.error(erro)
         })
     }
-    
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setDate(new Date());
-        }, 10000)
-        return () => clearInterval(intervalId);
-    }, [])
-
-    useEffect(() => {
-       fetchMotivos()
-    }, [])
-
-    function compareObjs(obj1,obj2){
-        return JSON.stringify(obj1) === JSON.stringify(obj2);
-     }
-    
-    function alterarMotivo(value){
-        setSelectedMotivo(value)
-    }
+ 
 
     return(
         <>
             {opened &&
             <Overlay>
+                
+                <Toast ref={toast} />
                 <DialogEstilizado id="modal-motivo" open={opened}>
                     <Frame>
                         <Titulo>
-                            <h6>Relatar problema na passagem</h6>
-                            <SubTitulo>
-                                <Texto>Seu registro será gravado com data e horário:&nbsp;
-                                {date.toLocaleDateString('pt-BR', {
-                                    day: '2-digit',
-                                    month: '2-digit',
-                                    year: 'numeric',
-                                    hour: 'numeric',
-                                    minute: 'numeric'
-                                })}
-                                </Texto>
-                            </SubTitulo>
+                            <h6 style={{ fontWeight: 500, color: '#B9B9B9' }}>CRIAR MOTIVO DE ERRO DE PASSAGEM</h6>
                         </Titulo>
-                        <Autocomplete
-                            onChange={(event, item) => {alterarMotivo(item)}}
-                            options={motivos}
-                            sx={{ width: '100%' }}
-                            renderInput={(params) => <TextField {...params} label="Descrição do problema" />}
-                        />
-                        {compareObjs(selectedMotivo, outro)
-                            ? <CampoTexto valor={typedMotivo} setValor={setTypedMotivo} label="Descrição" placeholder="Digite o motivo do erro de passagem"/>
-                            : ''
-                        }
+                        <CampoTexto valor={name} setValor={setName} label="DESCRIÇÃO" placeholder="Digite o motivo do erro de passagem"/>
+                        <CheckboxContainer name="is_ocr_error" valor={is_ocr_error} setValor={setIsOcrError} label="Erro de OCR?" />
                     </Frame>
                     <form method="dialog">
                         <div className={styles.containerBottom}>
-                            <Botao aoClicar={aoFechar} estilo="cinza" formMethod="dialog" size="medium" filled>Cancelar</Botao>
-                            <Botao aoClicar={updateMotivo} estilo="azul" size="medium" filled>Relatar</Botao>
+                            <Botao aoClicar={aoFechar} weight="light" estilo="cinza" formMethod="dialog" size="medium" filled>CANCELAR</Botao>
+                            <Botao aoClicar={salvarMotivo} weight="light" estilo="azul" size="medium" filled>SALVAR</Botao>
                         </div>
                     </form>
                 </DialogEstilizado>

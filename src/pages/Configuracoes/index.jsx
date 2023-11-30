@@ -241,6 +241,11 @@ function Configuracoes(){
         setSelectedCaminhao(id)
     }
 
+    
+    useEffect(() => {
+        fetchMotivos()
+    }, [modalNovoMotivoOpened])
+
     useEffect(() => {
         fetchCameras()
         fetchMotivos()

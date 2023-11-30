@@ -49,7 +49,7 @@ const Campo = styled.input`
         font-family: var(--font-secondaria);
         font-size: 14px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 20px; /* 142.857% */
     }
     
@@ -59,7 +59,7 @@ const Campo = styled.input`
         font-family: var(--font-secondaria);
         font-size: 14px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 20px; /* 142.857% */
     }
 

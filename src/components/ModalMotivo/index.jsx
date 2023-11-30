@@ -159,8 +159,8 @@ function ModalMotivo({ opened = false, aoClicar, aoFechar, passagem }) {
                     </Frame>
                     <form method="dialog">
                         <div className={styles.containerBottom}>
-                            <Botao aoClicar={aoFechar} estilo="cinza" formMethod="dialog" size="medium" filled>Cancelar</Botao>
-                            <Botao aoClicar={updateMotivo} estilo="azul" size="medium" filled>Relatar</Botao>
+                            <Botao aoClicar={aoFechar} estilo="cinza" weight="light" formMethod="dialog" size="medium" filled>CANCELAR</Botao>
+                            <Botao aoClicar={updateMotivo} weight="light" estilo="azul" size="medium" filled>RELATAR</Botao>
                         </div>
                     </form>
                 </DialogEstilizado>
