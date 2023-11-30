@@ -252,6 +252,7 @@ function Configuracoes(){
     return (
         <>
             <div style={{maxWidth: '1240px'}}>
+                <Toast ref={toast} />
                 <Titulo>
                     <h2 style={{ fontWeight: 500, color: '#B9B9B9' }}>CONFIGURAÇÕES</h2>
                 </Titulo>
