@@ -122,10 +122,10 @@ function DataTablePassagens() {
 
         const interval = setInterval(() => {
             fetchPassages()
-          }, 95000);
+          }, 35000);
           return () => clearInterval(interval);
 
-    }, [startDate, endDate])
+    }, [startDate, endDate, modalOpened])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
@@ -272,7 +272,8 @@ function DataTablePassagens() {
                 <Column body={containerBodyTemplate} field="container" header="Container" style={{ width: '20%',textAlign: 'center'}} headerStyle={{ width: '20%', textAlign: 'center' }}></Column>
                 <Column field="id_gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
-                <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '15%',textAlign: 'center'}} headerStyle={{ width: '15%', textAlign: 'center'}}></Column>
+                <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
+                <Column field="updated_by" header="Aprovação" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}/>
                 <Column body={statusBodyTemplate} header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
             </DataTable>
             <ModalMotivo aoFechar={() => setModalOpened(false)} opened={modalOpened} passagem={expandedRows} />
