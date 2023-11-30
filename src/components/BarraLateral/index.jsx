@@ -79,15 +79,20 @@ function BarraLateral() {
             "pageTitulo": "RELATÓRIOS",
             "icone": <CiBellOn size={20} className="icon" />,
             "itemTitulo": "RELATÓRIOS"
-        },
-        {
-            "id": 4,
-            "url": "/configuracoes",
-            "pageTitulo": "CONFIGURAÇÕES",
-            "icone": <CiSettings size={20} className="icon" />,
-            "itemTitulo": "CONFIGURAÇÕES"
         }
     ];
+
+    if(ArmazenadorToken.UserPermission === 'Administrador')
+    {
+        itensMenu.push(
+            {
+                "id": 4,
+                "url": "/configuracoes",
+                "pageTitulo": "CONFIGURAÇÕES",
+                "icone": <CiSettings size={20} className="icon" />,
+                "itemTitulo": "CONFIGURAÇÕES"
+        })
+    }
 
     return (
         <BarraLateralEstilizada>
