@@ -8,6 +8,8 @@ function Configuracoes(){
 
     const [cameras, setCameras] = useState([])
     const [motivos, setMotivos] = useState([])
+    const [gates, setGates] = useState([])
+    const [selectedGate, setSelectedGate] = useState('')
     const [selectedCamera, setSelectedCamera] = useState('')
     const [selectedMotivo, setSelectedMotivo] = useState('')
     const [classError, setClassError] = useState([])
@@ -52,10 +54,31 @@ function Configuracoes(){
         })
     }
 
+    function fetchGates()
+    {
+        http.get('api/web/public/portoes')
+        .then(response => {
+            response.map((item) => {
+                let obj = {
+                    name: item.name,
+                    code: item.id
+                }
+                if(!gates.includes(obj))
+                {
+                    setGates(estadoAnterior => [...estadoAnterior, obj]);
+                }
+            })
+        })
+        .catch(erro => {
+            console.error(erro)
+        })
+    }
+
     useEffect(() => {
 
         fetchCameras()
         fetchMotivos()
+        fetchGates()
         
     }, [])
     
@@ -67,11 +90,15 @@ function Configuracoes(){
             <Frame>
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>CÂMERAS E DIREÇÕES</h4>
 
-                 <DropdownItens camposVazios={classError} setValor={setSelectedCamera} valor={selectedCamera} options={cameras} label="CÂMERAS" name="camera" placeholder="" />
+                 <DropdownItens camposVazios={classError} setValor={setSelectedCamera} valor={selectedCamera} options={cameras} label="CÂMERAS" name="cameras" placeholder="" />
 
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>DESCRIÇÃO DE MOTIVOS DE ERROS</h4>
                 
                 <DropdownItens camposVazios={classError} setValor={setSelectedMotivo} valor={selectedMotivo} options={motivos} label="DESCRIÇÕES" name="reasons" placeholder="" />
+
+                <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>PORTÕES</h4>
+
+                <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} label="PORTÕES" name="gates" placeholder="" />
             </Frame>
         </>
     )
