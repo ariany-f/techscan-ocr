@@ -7,12 +7,14 @@ import { addLocale, FilterMatchMode, FilterOperator } from 'primereact/api'
 import { JsonToExcel } from "react-json-to-excel"
 import { FaSearch } from 'react-icons/fa'
 import { MdOutlineFileDownload, MdOutlineClear } from 'react-icons/md'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Botao from '@components/Botao'
 import Texto from '@components/Texto'
 import styled from 'styled-components'
 import ModalMotivo from '../ModalMotivo'
+import { Toast } from 'primereact/toast'
 import http from '@http'
+import { ArmazenadorToken } from '../../utils'
 
 const ContainerLadoALado = styled.div`
     display: flex;
@@ -78,6 +80,7 @@ function DataTablePassagens() {
     const [modalOpened, setModalOpened] = useState(false)
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const toastConfirmarPassagem = useRef(null);
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         plate: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
@@ -125,7 +128,7 @@ function DataTablePassagens() {
           }, 35000);
           return () => clearInterval(interval);
 
-    }, [startDate, endDate, modalOpened])
+    }, [startDate, endDate, modalOpened, toastConfirmarPassagem])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
@@ -178,8 +181,11 @@ function DataTablePassagens() {
                 </>
                 : ''
                 }
-                <Botao weight="300" aoClicar={() => setModalOpened(true)} estilo="cinza">Relatar Problema na Passagem</Botao>
-
+                
+                <ContainerLadoALado>
+                    <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
+                    <Botao estilo="azul" style={{width:"300px"}} size="small" weight="light" aoClicar={() => confirmarPassagem(data.id)}>CONFIRMAR PASSAGEM</Botao>
+                </ContainerLadoALado>
                 <div>
                     {data.images.map((item, index) => {
                         return <img key={`${data.id}-${index}`} width="240px" src={`https://api.uniebco.com.br/api/web/public/${item}`} style={{margin: '5px'}} />
@@ -188,6 +194,24 @@ function DataTablePassagens() {
             </>
         );
     };
+
+    const confirmarPassagem = (id) => {
+        var sendData = {
+            id: id,
+            is_ok: 1,
+            updated_by: ArmazenadorToken.UserId
+        }
+        http.put('api/web/public/passagens', sendData)
+        .then(response => {
+            if(response.code === 200)
+            {
+                toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+            }
+        })
+        .catch(erro => {
+            console.error(erro)
+        })
+    }
 
     const LimparDatas = () => {
         setStartDate('')
@@ -276,6 +300,8 @@ function DataTablePassagens() {
                 <Column field="updated_by" header="Aprovação" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}/>
                 <Column body={statusBodyTemplate} header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
             </DataTable>
+            
+            <Toast ref={toastConfirmarPassagem} />
             <ModalMotivo aoFechar={() => setModalOpened(false)} opened={modalOpened} passagem={expandedRows} />
         </>
     )

@@ -9,6 +9,7 @@ import styled from "styled-components"
 import http from '@http'
 import styles from './ModalMotivo.module.css'
 import { Autocomplete, TextField } from "@mui/material"
+import { ArmazenadorToken } from "../../utils"
 
 const Overlay = styled.div`
     background-color: rgba(0,0,0,0.80);
@@ -96,7 +97,7 @@ function ModalMotivo({ opened = false, aoClicar, aoFechar, passagem }) {
             is_ok: 1,
             preset_reason: selectedMotivo.id !== 0 ? selectedMotivo.id : null,
             description_reason: typedMotivo,
-            updated_by: 11
+            updated_by: ArmazenadorToken.UserId
         }
         http.put('api/web/public/passagens', sendData)
         .then(response => {
