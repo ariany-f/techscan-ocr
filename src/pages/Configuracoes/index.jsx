@@ -90,15 +90,15 @@ function Configuracoes(){
             <Frame>
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>CÂMERAS E DIREÇÕES</h4>
 
-                 <DropdownItens camposVazios={classError} setValor={setSelectedCamera} valor={selectedCamera} options={cameras} label="CÂMERAS" name="cameras" placeholder="" />
+                 <DropdownItens camposVazios={classError} setValor={setSelectedCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder="" />
 
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>DESCRIÇÃO DE MOTIVOS DE ERROS</h4>
                 
-                <DropdownItens camposVazios={classError} setValor={setSelectedMotivo} valor={selectedMotivo} options={motivos} label="DESCRIÇÕES" name="reasons" placeholder="" />
+                <DropdownItens camposVazios={classError} setValor={setSelectedMotivo} valor={selectedMotivo} options={motivos} name="reasons" placeholder="" />
 
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>PORTÕES</h4>
 
-                <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} label="PORTÕES" name="gates" placeholder="" />
+                <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} name="gates" placeholder="" />
             </Frame>
         </>
     )
