@@ -262,7 +262,7 @@ function DataTablePassagens() {
                 title="Download CSV"
                 data={passagens}
                 fileName={`relatorio-ocr-${new Date()}`}
-                btnClassName="button neutro filled medium 300"
+                btnClassName="button azul filled medium 300"
             /> : ''}
             <DataTable showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} scrollHeight="600px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
                     rowExpansionTemplate={rowExpansionTemplate} paginator rows={25} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ maxWidth: '98%', marginTop: '1rem' }}>
