@@ -16,6 +16,10 @@ const ContainerLadoALado = styled.div`
     align-itens: center;
 `
 
+const ImagemRepresentativa = styled.img`
+    border: ${ props => props.$ativo ? '5px solid #58bd44' : '' };
+`
+
 function Configuracoes(){
 
     const [cameras, setCameras] = useState([])
@@ -23,7 +27,7 @@ function Configuracoes(){
         name: '',
         direction: 1,
         position: '',
-        representative_img_id: 1
+        representative_img_id: null
     })
     const [motivos, setMotivos] = useState([])
     const [gates, setGates] = useState([])
@@ -32,6 +36,7 @@ function Configuracoes(){
     const [selectedGate, setSelectedGate] = useState('')
     const [selectedCamera, setSelectedCamera] = useState('')
     const [selectedMotivo, setSelectedMotivo] = useState('')
+    const [selectedCaminhao, setSelectedCaminhao] = useState(null)
     const [classError, setClassError] = useState([])
 
     const setDirecao = (direction) => {
@@ -39,6 +44,15 @@ function Configuracoes(){
             return {
                 ...estadoAnterior,
                 direction
+            }
+        })
+    }
+
+    const setName = (name) => {
+        setCamera(estadoAnterior => {
+            return {
+                ...estadoAnterior,
+                name
             }
         })
     }
@@ -61,7 +75,8 @@ function Configuracoes(){
                     name: item.name,
                     code: item.id,
                     direction: item.direction,
-                    position: item.position
+                    position: item.position,
+                    representative_img_id: item.representative_img_id
                 }
                 if(!cameras.includes(obj))
                 {
@@ -154,13 +169,21 @@ function Configuracoes(){
         fetchDirecoes()
     }, [])
 
-    const SelecionarCamera = (value) => {
+    const selecionarCamera = (value) => {
         
         setSelectedCamera(value)
         const filtered = cameras.filter((item) => {
            return parseInt(item.code) === parseInt(value)
         })
-       setCamera(filtered[0])
+        setCamera(filtered[0])
+        if(filtered[0].representative_img_id)
+        {
+            setSelectedCaminhao(filtered[0].representative_img_id)
+        }
+    }
+
+    const selecionarCaminhao = (id) => {
+        setSelectedCaminhao(id)
     }
     
     return (
@@ -172,15 +195,25 @@ function Configuracoes(){
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>CÂMERAS E DIREÇÕES</h4>
                 <div>
                     <ContainerLadoALado>
-                        <DropdownItens camposVazios={classError} setValor={SelecionarCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder=""  />
+                        <DropdownItens camposVazios={classError} setValor={selecionarCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder=""  />
                         <Botao weight="light" size="small" estilo="azul">ADICIONAR CÂMERA</Botao>
                     </ContainerLadoALado>
-                    {camera.position &&
-                        <CampoTexto valor={camera.position} setValor={setPosicao} label="POSIÇÃO" name="position" placeholder="" />
-                    }
-                    {camera.direction &&
-                        <DropdownItens camposVazios={classError} setValor={setDirecao} valor={camera.direction} options={direcoes} name="direction" placeholder="" />
-                    }
+                    <div style={{display: 'flex', gap: '32px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '20px'}}>
+                        {camera.name &&
+                            <CampoTexto valor={camera.name} setValor={setName} label="NOME" name="name" placeholder="" />
+                        }
+                        {camera.position &&
+                            <CampoTexto valor={camera.position} setValor={setPosicao} label="POSIÇÃO" name="position" placeholder="" />
+                        }
+                        {camera.direction &&
+                            <DropdownItens camposVazios={classError} setValor={setDirecao} valor={camera.direction} options={direcoes} label="DIREÇÃO" name="direction" placeholder="" />
+                        }
+                        <ContainerLadoALado>
+                            {imagens.map((item, index) => {
+                                return <ImagemRepresentativa onClick={() => selecionarCaminhao(item.id)} $ativo={(parseInt(selectedCaminhao) === parseInt(item.id))} key={index} width="150px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
+                            })}
+                        </ContainerLadoALado>
+                    </div>
                 </div>
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>DESCRIÇÃO DE MOTIVOS DE ERROS</h4>
                 
@@ -195,11 +228,6 @@ function Configuracoes(){
                     <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} name="gates" placeholder="" />
                     <Botao weight="light" size="small" estilo="azul">ADICIONAR PORTÃO</Botao>
                 </ContainerLadoALado>
-
-                {imagens.map((item, index) => {
-                    return <img key={index} width="100px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
-                })
-                }
             </Frame>
         </>
     )
