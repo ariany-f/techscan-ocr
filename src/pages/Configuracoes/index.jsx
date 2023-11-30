@@ -1,6 +1,7 @@
 import http from '@http'
 import Titulo from '@components/Titulo'
 import CampoTexto from '@components/CampoTexto'
+import Texto from '@components/Texto'
 import Frame from '@components/Frame'
 import Botao from '@components/Botao'
 import DropdownItens from '@components/DropdownItens'
@@ -18,6 +19,7 @@ const ContainerLadoALado = styled.div`
 
 const ImagemRepresentativa = styled.img`
     border: ${ props => props.$ativo ? '5px solid #58bd44' : '' };
+    cursor: pointer;
 `
 
 function Configuracoes(){
@@ -209,6 +211,7 @@ function Configuracoes(){
                             <DropdownItens camposVazios={classError} setValor={setDirecao} valor={camera.direction} options={direcoes} label="DIREÇÃO" name="direction" placeholder="" />
                         }
                         <ContainerLadoALado>
+                            <Texto>Imagem Representativa</Texto>
                             {imagens.map((item, index) => {
                                 return <ImagemRepresentativa onClick={() => selecionarCaminhao(item.id)} $ativo={(parseInt(selectedCaminhao) === parseInt(item.id))} key={index} width="150px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
                             })}
