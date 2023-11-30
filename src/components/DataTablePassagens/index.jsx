@@ -178,7 +178,7 @@ function DataTablePassagens() {
                 </>
                 : ''
                 }
-                <Botao weight="300" aoClicar={() => setModalOpened(true)} estilo="neutro">Relatar Problema na Passagem</Botao>
+                <Botao weight="300" aoClicar={() => setModalOpened(true)} estilo="cinza">Relatar Problema na Passagem</Botao>
 
                 <div>
                     {data.images.map((item, index) => {
