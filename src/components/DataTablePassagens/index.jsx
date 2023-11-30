@@ -19,6 +19,7 @@ const ContainerLadoALado = styled.div`
     justify-content: space-between;
     gap: 35px;
     align-itens: center;
+    width: 950px;
 `
 
 const StatusLabel = styled.div`
@@ -238,7 +239,7 @@ function DataTablePassagens() {
 
                 <div style={{ width: '20%', display: 'flex', flexDirection: 'column', alignItens: 'center' }}>
                     <Texto weight={700}>Limpar Filtros</Texto>
-                    <Botao aoClicar={LimparDatas} estilo="vermillion"><MdOutlineClear /></Botao>
+                    <Botao estilo="cinza" size="medium" aoClicar={LimparDatas}><MdOutlineClear className="icon" /></Botao>
                 </div>
 
                 <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
@@ -263,7 +264,7 @@ function DataTablePassagens() {
                 fileName={`relatorio-ocr-${new Date()}`}
                 btnClassName="button neutro filled medium 300"
             /> : ''}
-            <DataTable showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} scrollHeight="720px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
+            <DataTable showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} scrollHeight="600px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
                     rowExpansionTemplate={rowExpansionTemplate} paginator rows={25} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ maxWidth: '98%', marginTop: '1rem' }}>
                 <Column header="#" style={{ width: '5%', }} headerStyle={{ width: '5%', textAlign: 'center' }} expander={true} />
                 <Column body={plateBodyTemplate} field="plate" header="Placa" style={{ width: '15%',textAlign: 'center'}} headerStyle={{ width: '15%', textAlign: 'center' }}></Column>

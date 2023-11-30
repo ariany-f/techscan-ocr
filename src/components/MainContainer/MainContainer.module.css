@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 48px;
+    gap: 24px;
     width: inherit;
     flex: 1;
 }
