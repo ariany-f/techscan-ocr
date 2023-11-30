@@ -15,6 +15,7 @@ const ContainerLadoALado = styled.div`
     align-items: center;
     gap: 35px;
     align-itens: center;
+    width: 100%;
 `
 
 const ImagemRepresentativa = styled.img`
@@ -196,11 +197,7 @@ function Configuracoes(){
             <Frame>
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>CÂMERAS E DIREÇÕES</h4>
                 <div>
-                    <ContainerLadoALado>
-                        <DropdownItens camposVazios={classError} setValor={selecionarCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder=""  />
-                        <Botao weight="light" size="small" estilo="azul">SALVAR CÂMERA</Botao>
-                        <Botao weight="light" size="small" estilo="azul">ADICIONAR NOVA CÂMERA</Botao>
-                    </ContainerLadoALado>
+                    <DropdownItens camposVazios={classError} setValor={selecionarCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder=""  />
                     <div style={{display: 'flex', gap: '32px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '20px'}}>
                         {camera.name &&
                             <CampoTexto valor={camera.name} setValor={setName} label="NOME" name="name" placeholder="" />
@@ -216,6 +213,10 @@ function Configuracoes(){
                             {imagens.map((item, index) => {
                                 return <ImagemRepresentativa onClick={() => selecionarCaminhao(item.id)} $ativo={(parseInt(selectedCaminhao) === parseInt(item.id))} key={index} width="150px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
                             })}
+                        </ContainerLadoALado>
+                        <ContainerLadoALado>
+                            <Botao weight="light" size="small" estilo="azul">SALVAR CÂMERA</Botao>
+                            <Botao weight="light" size="small" estilo="azul">ADICIONAR NOVA CÂMERA</Botao>
                         </ContainerLadoALado>
                     </div>
                 </div>
