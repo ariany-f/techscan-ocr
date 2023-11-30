@@ -1,8 +1,9 @@
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { FilterMatchMode, FilterOperator } from 'primereact/api'
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch, FaPlus } from 'react-icons/fa'
 import { InputText } from 'primereact/inputtext'
+import Botao from '@components/Botao'
 import './DataTable.css'
 import { useState } from 'react';
 import styled from 'styled-components'
@@ -95,10 +96,13 @@ function DataTableUsuarios({ usuarios, aoSelecionar }) {
         const value = filters['global'] ? filters['global'].value : '';
 
         return (
-            <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
-                <FaSearch />
-                <InputText type="search" value={value || ''} onChange={(e) => onGlobalFilterChange(e)} placeholder="Procurar" />
-            </span>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap:'20px'}}>
+                <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
+                    <FaSearch />
+                    <InputText type="search" value={value || ''} onChange={(e) => onGlobalFilterChange(e)} placeholder="Procurar" />
+                </span>
+                <Botao aoClicar={aoSelecionar} style={{ marginTop: '15px', width:'300px' }} estilo="azul" size="small" weight="light"><FaPlus className="icon"/> Adicionar Usuário</Botao>
+            </div>
         );
     };
 

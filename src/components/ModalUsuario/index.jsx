@@ -160,16 +160,32 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
             setSenha(password)
         }
 
-        http.put(`api/web/public/users`, usuario)
-        .then((response) => {
-           if(response.code == 200)
-           {
-                toast.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
-           }
-        })
-        .catch(erro => {
-            console.error(erro)
-        })
+        if(usuario.id)
+        {
+            http.put(`api/web/public/users`, usuario)
+            .then((response) => {
+               if(response.code == 200)
+               {
+                    toast.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+               }
+            })
+            .catch(erro => {
+                console.error(erro)
+            })
+        }
+        else{
+            http.post(`api/web/public/users`, usuario)
+            .then((response) => {
+            if(response.code == 200)
+            {
+                    toast.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+                    aoFechar()
+            }
+            })
+            .catch(erro => {
+                console.error(erro)
+            })
+        }
     }
 
     useEffect(() => {
