@@ -67,13 +67,6 @@ function BarraLateral() {
             "itemTitulo": "INÍCIO"
         },
         {
-            "id": 2,
-            "url": "/usuarios",
-            "pageTitulo": "USUÁRIOS",
-            "icone": <PiUserCircleThin titulo="Extrato" size={20} className="icon" />,
-            "itemTitulo": "USUÁRIOS"
-        },
-        {
             "id": 3,
             "url": "/relatorios",
             "pageTitulo": "RELATÓRIOS",
@@ -85,6 +78,13 @@ function BarraLateral() {
     if(ArmazenadorToken.UserPermission === 'Administrador')
     {
         itensMenu.push(
+            {
+                "id": 2,
+                "url": "/usuarios",
+                "pageTitulo": "USUÁRIOS",
+                "icone": <PiUserCircleThin titulo="Extrato" size={20} className="icon" />,
+                "itemTitulo": "USUÁRIOS"
+            },
             {
                 "id": 4,
                 "url": "/configuracoes",
