@@ -7,7 +7,7 @@ import Botao from '@components/Botao'
 import DropdownItens from '@components/DropdownItens'
 import { useEffect, useState } from "react"
 import styled from 'styled-components'
-
+import { FaSave, FaPlus } from "react-icons/fa"
 
 const ContainerLadoALado = styled.div`
     display: flex;
@@ -215,24 +215,28 @@ function Configuracoes(){
                             })}
                         </ContainerLadoALado>
                         <ContainerLadoALado>
-                            <Botao weight="light" size="small" estilo="azul">SALVAR CÂMERA</Botao>
-                            <Botao weight="light" size="small" estilo="azul">ADICIONAR NOVA CÂMERA</Botao>
+                            <Botao weight="light" size="small" estilo="cinza"><FaSave className="icon" /> SALVAR CÂMERA</Botao>
+                            <Botao weight="light" size="small" estilo="azul"><FaPlus className="icon" /> ADICIONAR NOVA CÂMERA</Botao>
                         </ContainerLadoALado>
                     </div>
                 </div>
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>DESCRIÇÃO DE MOTIVOS DE ERROS</h4>
                 
-                <ContainerLadoALado>
-                    <DropdownItens camposVazios={classError} setValor={setSelectedMotivo} valor={selectedMotivo} options={motivos} name="reasons" placeholder="" />
-                    <Botao weight="light" size="small" estilo="azul">ADICIONAR MOTIVO</Botao>
-                </ContainerLadoALado>
+                <div>
+                    <ContainerLadoALado>
+                        <DropdownItens camposVazios={classError} setValor={setSelectedMotivo} valor={selectedMotivo} options={motivos} name="reasons" placeholder="" />
+                        <Botao weight="light" size="small" estilo="azul">ADICIONAR MOTIVO</Botao>
+                    </ContainerLadoALado>
+                </div>
 
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>PORTÕES</h4>
 
-                <ContainerLadoALado>
-                    <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} name="gates" placeholder="" />
-                    <Botao weight="light" size="small" estilo="azul">ADICIONAR PORTÃO</Botao>
-                </ContainerLadoALado>
+                <div>
+                    <ContainerLadoALado>
+                        <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} name="gates" placeholder="" />
+                        <Botao weight="light" size="small" estilo="azul">ADICIONAR PORTÃO</Botao>
+                    </ContainerLadoALado>
+                </div>
             </Frame>
         </>
     )
