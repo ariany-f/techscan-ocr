@@ -56,7 +56,6 @@ function Configuracoes(){
     {
         http.get('api/web/public/cameras')
         .then(response => {
-            console.log(response)
             response.map((item) => {
                 let obj = {
                     name: item.name,
@@ -162,6 +161,7 @@ function Configuracoes(){
            return parseInt(item.code) === parseInt(value)
         })
        setCamera(filtered)
+       console.log(camera)
     }
     
     return (
