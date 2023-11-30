@@ -219,8 +219,8 @@ function Configuracoes(){
                             })}
                         </ContainerLadoALado>
                         <ContainerLadoALado>
-                            <Botao weight="light" size="small" estilo="cinza"><FaSave className="icon" aoClicar={salvarNovaCamera} /> SALVAR CÂMERA</Botao>
-                            <Botao weight="light" size="small" estilo="azul"><FaPlus className="icon" aoClicar={editarCamera} /> ADICIONAR NOVA CÂMERA</Botao>
+                            <Botao weight="light" size="small" estilo="cinza" aoClicar={salvarNovaCamera}><FaSave className="icon" /> SALVAR CÂMERA</Botao>
+                            <Botao weight="light" size="small" estilo="azul" aoClicar={editarCamera}><FaPlus className="icon" /> ADICIONAR NOVA CÂMERA</Botao>
                         </ContainerLadoALado>
                     </div>
                 </div>
