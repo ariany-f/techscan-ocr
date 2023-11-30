@@ -26,7 +26,7 @@ function Usuarios(){
 
         fetchUsuarios()
         
-    }, [])
+    }, [modalOpened])
 
     const abrirDetalhesUsuario = (value) => {
         setIdUsuario(value.id)
