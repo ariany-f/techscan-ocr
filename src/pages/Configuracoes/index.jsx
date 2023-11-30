@@ -185,6 +185,14 @@ function Configuracoes(){
         }
     }
 
+    const salvarNovaCamera = () => {
+        console.log(camera)
+    }
+    
+    const editarCamera = () => {
+        console.log(camera)
+    }
+
     const selecionarCaminhao = (id) => {
         setSelectedCaminhao(id)
     }
@@ -199,15 +207,11 @@ function Configuracoes(){
                 <div>
                     <DropdownItens camposVazios={classError} setValor={selecionarCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder=""  />
                     <div style={{display: 'flex', gap: '32px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '20px'}}>
-                        {camera.name &&
-                            <CampoTexto valor={camera.name} setValor={setName} label="NOME" name="name" placeholder="" />
-                        }
-                        {camera.position &&
-                            <CampoTexto valor={camera.position} setValor={setPosicao} label="POSIÇÃO" name="position" placeholder="" />
-                        }
-                        {camera.direction &&
-                            <DropdownItens camposVazios={classError} setValor={setDirecao} valor={camera.direction} options={direcoes} label="DIREÇÃO" name="direction" placeholder="" />
-                        }
+                        <>
+                            <CampoTexto valor={camera?.name} setValor={setName} label="NOME" name="name" placeholder="" />
+                            <CampoTexto valor={camera?.position} setValor={setPosicao} label="POSIÇÃO" name="position" placeholder="" />
+                            <DropdownItens camposVazios={classError} setValor={setDirecao} valor={camera?.direction} options={direcoes} label="DIREÇÃO" name="direction" placeholder="" />
+                        </>
                         <ContainerLadoALado>
                             <Texto>Imagem Representativa</Texto>
                             {imagens.map((item, index) => {
@@ -215,8 +219,8 @@ function Configuracoes(){
                             })}
                         </ContainerLadoALado>
                         <ContainerLadoALado>
-                            <Botao weight="light" size="small" estilo="cinza"><FaSave className="icon" /> SALVAR CÂMERA</Botao>
-                            <Botao weight="light" size="small" estilo="azul"><FaPlus className="icon" /> ADICIONAR NOVA CÂMERA</Botao>
+                            <Botao weight="light" size="small" estilo="cinza"><FaSave className="icon" aoClicar={salvarNovaCamera} /> SALVAR CÂMERA</Botao>
+                            <Botao weight="light" size="small" estilo="azul"><FaPlus className="icon" aoClicar={editarCamera} /> ADICIONAR NOVA CÂMERA</Botao>
                         </ContainerLadoALado>
                     </div>
                 </div>
