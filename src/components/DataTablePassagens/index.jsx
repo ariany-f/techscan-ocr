@@ -259,7 +259,7 @@ function DataTablePassagens() {
     return (
         <>
             {location.pathname == '/relatorios' ?   <JsonToExcel
-                title={icone}
+                title="Download CSV"
                 data={passagens}
                 fileName={`relatorio-ocr-${new Date()}`}
                 btnClassName="button neutro filled medium 300"
