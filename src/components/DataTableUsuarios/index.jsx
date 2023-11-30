@@ -96,12 +96,12 @@ function DataTableUsuarios({ usuarios, aoSelecionar }) {
         const value = filters['global'] ? filters['global'].value : '';
 
         return (
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap:'20px'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap:'20px', flexWrap: 'wrap'}}>
                 <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
                     <FaSearch />
                     <InputText type="search" value={value || ''} onChange={(e) => onGlobalFilterChange(e)} placeholder="Procurar" />
                 </span>
-                <Botao aoClicar={aoSelecionar} style={{ marginTop: '15px', width:'300px' }} estilo="azul" size="small" weight="light"><FaPlus className="icon"/> Adicionar Usuário</Botao>
+                <Botao aoClicar={aoSelecionar} style={{ marginTop: '15px', width:'300px' }} estilo="azul" size="small" weight="light"><FaPlus className="icon"/> ADICIONAR USUÁRIO</Botao>
             </div>
         );
     };

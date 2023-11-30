@@ -17,9 +17,9 @@ import http from '@http'
 const ContainerLadoALado = styled.div`
     display: flex;
     justify-content: space-between;
-    gap: 35px;
+    gap: 20px;
     align-itens: center;
-    width: 950px;
+    flex-wrap: wrap;
 `
 
 const StatusLabel = styled.div`
@@ -228,17 +228,17 @@ function DataTablePassagens() {
 
         return (
             <ContainerLadoALado>
-                <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItens: 'center' }}>
-                    <Texto weight={700}>Data/Hora Inicial</Texto>
+                <div style={{ width: '20%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                    <Texto weight={400}>Data/Hora Inicial</Texto>
                     <Calendar locale="pt" dateFormat="dd/mm/yy" value={startDate} onChange={(e) => setStartDate(e.value)} showTime hourFormat="24" />
                 </div>
-                <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItens: 'center' }}>
-                    <Texto weight={700}>Data/Hora Final</Texto>
+                <div style={{ width: '20%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                    <Texto weight={400}>Data/Hora Final</Texto>
                     <Calendar locale="pt" dateFormat="dd/mm/yy" value={endDate} onChange={(e) => setEndDate(e.value)} showTime hourFormat="24" />
                 </div>
 
-                <div style={{ width: '20%', display: 'flex', flexDirection: 'column', alignItens: 'center' }}>
-                    <Texto weight={700}>Limpar Filtros</Texto>
+                <div style={{ width: '15%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                    <Texto weight={400}>Limpar Filtros</Texto>
                     <Botao estilo="cinza" size="medium" aoClicar={LimparDatas}><MdOutlineClear className="icon" /></Botao>
                 </div>
 
