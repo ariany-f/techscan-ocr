@@ -1,14 +1,26 @@
 import http from '@http'
 import Titulo from '@components/Titulo'
 import Frame from '@components/Frame'
+import Botao from '@components/Botao'
 import DropdownItens from '@components/DropdownItens'
 import { useEffect, useState } from "react"
+import styled from 'styled-components'
+
+
+const ContainerLadoALado = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+    align-itens: center;
+`
 
 function Configuracoes(){
 
     const [cameras, setCameras] = useState([])
     const [motivos, setMotivos] = useState([])
     const [gates, setGates] = useState([])
+    const [imagens, setImagens] = useState([])
     const [selectedGate, setSelectedGate] = useState('')
     const [selectedCamera, setSelectedCamera] = useState('')
     const [selectedMotivo, setSelectedMotivo] = useState('')
@@ -73,12 +85,25 @@ function Configuracoes(){
             console.error(erro)
         })
     }
+    
+
+    function fetchImagensRepresentativas()
+    {
+        http.get('api/web/public/imagens-representativas')
+        .then(response => {
+            setImagens(response)
+        })
+        .catch(erro => {
+            console.error(erro)
+        })
+    }
 
     useEffect(() => {
 
         fetchCameras()
         fetchMotivos()
         fetchGates()
+        fetchImagensRepresentativas()
         
     }, [])
     
@@ -90,15 +115,29 @@ function Configuracoes(){
             <Frame>
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>CÂMERAS E DIREÇÕES</h4>
 
-                 <DropdownItens camposVazios={classError} setValor={setSelectedCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder="" />
+                <ContainerLadoALado>
+                    <DropdownItens camposVazios={classError} setValor={setSelectedCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder="" />
+                    <Botao weight="light" size="small" estilo="azul">ADICIONAR CÂMERA</Botao>
+                </ContainerLadoALado>
 
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>DESCRIÇÃO DE MOTIVOS DE ERROS</h4>
                 
-                <DropdownItens camposVazios={classError} setValor={setSelectedMotivo} valor={selectedMotivo} options={motivos} name="reasons" placeholder="" />
+                <ContainerLadoALado>
+                    <DropdownItens camposVazios={classError} setValor={setSelectedMotivo} valor={selectedMotivo} options={motivos} name="reasons" placeholder="" />
+                    <Botao weight="light" size="small" estilo="azul">ADICIONAR MOTIVO</Botao>
+                </ContainerLadoALado>
 
                 <h4 style={{ fontWeight: 500, color: '#B9B9B9' }}>PORTÕES</h4>
 
-                <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} name="gates" placeholder="" />
+                <ContainerLadoALado>
+                    <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} name="gates" placeholder="" />
+                    <Botao weight="light" size="small" estilo="azul">ADICIONAR PORTÃO</Botao>
+                </ContainerLadoALado>
+
+                {imagens.map((item) => {
+                    return <img width="100px" src={`https://api.uniebco.com.br/api/web/public/img/${item.url}.png`} />
+                })
+                }
             </Frame>
         </>
     )

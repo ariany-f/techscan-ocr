@@ -63,7 +63,7 @@ function Login() {
                     <CampoTexto camposVazios={classError} name="password" valor={usuario.password} setValor={setPassword} type="password" label="Senha" placeholder="Digite sua senha" />
                 </Frame>
             </form>
-            <Botao aoClicar={evento => sendData(evento)} estilo="primary" size="medium" filled>Confirmar</Botao>
+            <Botao aoClicar={evento => sendData(evento)} estilo="azul" size="medium" filled>Confirmar</Botao>
             
           
         </>
