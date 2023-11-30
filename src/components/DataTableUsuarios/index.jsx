@@ -111,11 +111,11 @@ function DataTableUsuarios({ usuarios, aoSelecionar }) {
     return (
         <>
             <DataTable showGridlines dataKey="id" onFilter={(e) => setFilters(e.filters)} header={header} filters={filters} value={usuarios} selection={selectedUsuarios} onSelectionChange={(e) => verDetalhes(e.value)} selectionMode="single" paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
-                <Column field="id" header="Id"></Column>
-                <Column field="name" header="Nome" filter filterPlaceholder="Procurar"></Column>
-                <Column field="email" header="Email"></Column>
-                <Column field="user_permissions" header="Permissão"></Column>
-                <Column body={dateBodyTemplate} header="Data de Criação"></Column>
+                <Column field="id" header="Id" style={{ width: '5%',textAlign: 'center'}} headerStyle={{ width: '5%', justifyContent: 'center', textAlign: 'center'}}></Column>
+                <Column field="name" header="Nome" style={{ width: '30%',textAlign: 'center'}} headerStyle={{ width: '30%', textAlign: 'center'}}></Column>
+                <Column field="email" header="Email" style={{ width: '25%',textAlign: 'center'}} headerStyle={{ width: '25%', textAlign: 'center'}}></Column>
+                <Column field="user_permissions" header="Permissão" style={{ width: '20%',textAlign: 'center'}} headerStyle={{ width: '20%', textAlign: 'center'}}></Column>
+                <Column body={dateBodyTemplate} header="Data de Criação" style={{ width: '20%',textAlign: 'center'}} headerStyle={{ width: '20%', textAlign: 'center'}}></Column>
             </DataTable>
         </>
     )
