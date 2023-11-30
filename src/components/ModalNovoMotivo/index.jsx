@@ -72,7 +72,7 @@ function ModalNovoMotivo({ opened = false, aoClicar, aoFechar, passagem }) {
 
     const [name, setName] = useState('')
     const [is_ocr_error, setIsOcrError] = useState(false)
-    const toast = useRef(null);
+    const toastMotivo = useRef(null);
 
     function salvarMotivo()
     {
@@ -84,8 +84,11 @@ function ModalNovoMotivo({ opened = false, aoClicar, aoFechar, passagem }) {
         .then(response => {
             if(response.code === 200)
             {
-                toast.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
-                aoFechar()
+                toastMotivo.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+                const interval = setInterval(() => {
+                    aoFechar()
+                  }, 3000);
+                return () => clearInterval(interval);
             }
         })
         .catch(erro => {
@@ -98,8 +101,7 @@ function ModalNovoMotivo({ opened = false, aoClicar, aoFechar, passagem }) {
         <>
             {opened &&
             <Overlay>
-                
-                <Toast ref={toast} />
+                <Toast ref={toastMotivo} />
                 <DialogEstilizado id="modal-motivo" open={opened}>
                     <Frame>
                         <Titulo>

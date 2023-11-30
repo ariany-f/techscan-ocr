@@ -240,16 +240,17 @@ function Configuracoes(){
         setRepresentativeImgId(id)
         setSelectedCaminhao(id)
     }
-
     
     useEffect(() => {
         fetchMotivos()
     }, [modalNovoMotivoOpened])
+    
+    useEffect(() => {
+        fetchGates()
+    }, [modalNovoPortaoOpened])
 
     useEffect(() => {
         fetchCameras()
-        fetchMotivos()
-        fetchGates()
         fetchImagensRepresentativas()
         fetchDirecoes()
     }, [])
