@@ -160,8 +160,7 @@ function Configuracoes(){
         const filtered = cameras.filter((item) => {
            return parseInt(item.code) === parseInt(value)
         })
-       setCamera(filtered)
-       console.log(filtered)
+       setCamera(filtered[0])
     }
     
     return (
