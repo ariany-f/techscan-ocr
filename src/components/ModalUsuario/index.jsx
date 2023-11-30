@@ -185,6 +185,17 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
         }
     }, [idUsuario])
 
+    const fecharModal = () => {
+        setUsuario({
+            name: '',
+            email: '',
+            permission_id: 1,
+            status: 1,
+            password: ''
+        })
+        aoFechar()
+    }
+
     return (
         <>
             {opened &&
@@ -194,7 +205,7 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
                     <Frame>
                         <CloseDiv>
                             <form method="dialog">
-                                <button className="close" onClick={aoFechar} formMethod="dialog">
+                                <button className="close" onClick={fecharModal} formMethod="dialog">
                                     <RiCloseFill size={20} className="fechar" />
                                 </button>
                             </form>
@@ -205,7 +216,7 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
                                     <FaUserCircle size={100} className="icon"/>
                                     <p style={{ color: 'white', textTransform: 'uppercase' }}>{name}</p>
                                 </div>
-                                <p style={{color: 'white', cursor: 'pointer'}} onClick={aoFechar}>VOLTAR</p>
+                                <p style={{color: 'white', cursor: 'pointer'}} onClick={fecharModal}>VOLTAR</p>
                             </Col6>
                             <Col6 $width="70%" style={{paddingTop: '40px'}} $verticalAlign="center">
                                 <CampoTexto
@@ -239,7 +250,7 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
                                 />
                                 <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                        <Botao size="small" aoClicar={aoFechar} estilo="cinza" weight="light">CANCELAR</Botao>
+                                        <Botao size="small" aoClicar={fecharModal} estilo="cinza" weight="light">CANCELAR</Botao>
                                         <Botao size="small" aoClicar={editarUsuario} estilo="azul" weight="light">SALVAR</Botao>
                                     </div>
                                 </div>
