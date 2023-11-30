@@ -198,7 +198,8 @@ function Configuracoes(){
                 <div>
                     <ContainerLadoALado>
                         <DropdownItens camposVazios={classError} setValor={selecionarCamera} valor={selectedCamera} options={cameras} name="cameras" placeholder=""  />
-                        <Botao weight="light" size="small" estilo="azul">ADICIONAR CÂMERA</Botao>
+                        <Botao weight="light" size="small" estilo="azul">SALVAR CÂMERA</Botao>
+                        <Botao weight="light" size="small" estilo="azul">ADICIONAR NOVA CÂMERA</Botao>
                     </ContainerLadoALado>
                     <div style={{display: 'flex', gap: '32px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '20px'}}>
                         {camera.name &&
