@@ -5,12 +5,15 @@ import SubTitulo from "@components/SubTitulo"
 import Titulo from "@components/Titulo"
 import { useNavigate } from "react-router-dom"
 import { useSessaoUsuarioContext } from "../../contexts/SessaoUsuario"
-import { useState } from "react"
+import { useRef, useState } from "react"
+import { ArmazenadorToken } from "../../utils"
+import { Toast } from 'primereact/toast'
 
 function Login() {
 
     const [classError, setClassError] = useState([])
     const navegar = useNavigate()
+    const toast = useRef(null);
 
     const { 
         usuario,
@@ -43,7 +46,26 @@ function Login() {
         if(document.querySelectorAll("form .error").length === 0 && document.querySelectorAll('input:not([value]), input[value=""]').length === 0)
         {
             submeterLogin().then((response) => {
-                setUsuarioEstaLogado(true)
+                if(response.success)
+                {
+                    ArmazenadorToken.definirToken(
+                        response.data[0].token,
+                        response.data[0].expires_at
+                    )
+                    ArmazenadorToken.definirUsuario(
+                        response.data[0].user_id,
+                        response.data[0].user_name,
+                        response.data[0].user_email,
+                        response.data[0].user_permission
+                    )
+                    setUsuarioEstaLogado(true)
+                    navegar('/')
+                }
+                else
+                {
+                    toast.current.show({severity:'error', summary: 'Mensagem', detail: response.message, life: 3000});
+                }
+               
             })
         }
     }
@@ -51,6 +73,7 @@ function Login() {
 
     return (
         <>
+            <Toast ref={toast} />
             <Titulo>
                 <h2>Bem-vindo</h2>
                 <SubTitulo>

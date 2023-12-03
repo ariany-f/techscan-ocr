@@ -51,20 +51,7 @@ export const SessaoUsuarioProvider = ({ children }) => {
         usuario.gate_id = 1
         return http.post('api/web/public/users/login', usuario)
             .then((response) => {
-                ArmazenadorToken.definirToken(
-                    response.data[0].token,
-                    response.data[0].expires_at
-                )
-                ArmazenadorToken.definirUsuario(
-                    response.data[0].user_id,
-                    response.data[0].user_name,
-                    response.data[0].user_email,
-                    response.data[0].user_permission
-                )
-                return response.data
-            })
-            .then(() => {
-                navegar('/')
+                return response
             })
             .catch(erro => {
                 console.error(erro)
