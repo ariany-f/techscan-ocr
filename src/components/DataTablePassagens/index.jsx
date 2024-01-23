@@ -98,6 +98,7 @@ function DataTablePassagens() {
             if(response.code === 200)
             {
                 toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+                setExpandedRows(null)
             }
         })
         .catch(erro => {
@@ -144,7 +145,7 @@ function DataTablePassagens() {
 
         const interval = setInterval(() => {
             fetchPassages()
-          }, 35000);
+          }, 2500);
           return () => clearInterval(interval);
 
     }, [startDate, endDate, modalOpened, confirmarPassagem, passagens])
