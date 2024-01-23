@@ -22,6 +22,7 @@ function RelatorioDashboard() {
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [primeiraVez, setPrimeiraVez] = useState(false);
 
   const [dianteira, setDianteira] = useState([]);
   const [traseira, setTraseira] = useState([]);
@@ -147,7 +148,11 @@ function RelatorioDashboard() {
           data: dataContainer
         });
 
-        LimparDatas()
+        if(primeiraVez)
+        {
+          LimparDatas()
+          setPrimeiraVez(true)
+        }
     }, 3000);
 
 }, [startDate, endDate])
