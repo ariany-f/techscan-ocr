@@ -148,7 +148,7 @@ function RelatorioDashboard() {
           data: dataContainer
         });
 
-        if(primeiraVez)
+        if(!primeiraVez)
         {
           LimparDatas()
           setPrimeiraVez(true)
