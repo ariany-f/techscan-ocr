@@ -7,6 +7,7 @@ import Dashboard from '@pages/Dashboard'
 import Usuarios from '@pages/Usuarios'
 import Configuracoes from '@pages/Configuracoes'
 import Relatorios from '@pages/Relatorios'
+import RelatorioDashboard from '@pages/Relatorios/dashboard'
 import NaoEncontrada from '@pages/NaoEncontrada'
 
 function AppRouter() {
@@ -24,6 +25,7 @@ function AppRouter() {
                     <Route index element={<Dashboard />} />
                     <Route path="usuarios" element={<Usuarios />} />
                     <Route path="relatorios" element={<Relatorios />} />
+                    <Route path="relatorios/dashboard" element={<RelatorioDashboard />} />
                     <Route path="configuracoes" element={<Configuracoes />} />
                 </Route>
                 <Route path="*" element={<NaoEncontrada />}></Route>

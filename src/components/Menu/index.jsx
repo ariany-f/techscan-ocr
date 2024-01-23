@@ -88,7 +88,14 @@ const Menu = ({open}) => {
             "url": "/relatorios",
             "pageTitulo": "RELATÓRIOS",
             "icone": <CiBellOn size={20} className="icon" />,
-            "itemTitulo": "RELATÓRIOS"
+            "itemTitulo": "RELATÓRIOS",
+            "subItem": {
+                "id": 1,
+                "url": "/relatorios/dashboard",
+                "pageTitulo": "DASHBOARD",
+                "icone": <></>,
+                "itemTitulo": "DASHBOARD"
+            }
         },
         {
             "id": 4,

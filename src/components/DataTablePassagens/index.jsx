@@ -126,7 +126,6 @@ function DataTablePassagens() {
         }
         http.post('api/web/public/passagens', filterData)
         .then(response => {
-            console.log(response)
             if(response)
             {
                 setPassagens(response)
@@ -138,15 +137,17 @@ function DataTablePassagens() {
     }
 
     useEffect(() => {
-
-        fetchPassages()
+        if(passagens.length === 0)
+        {
+            fetchPassages()
+        }
 
         const interval = setInterval(() => {
             fetchPassages()
           }, 35000);
           return () => clearInterval(interval);
 
-    }, [startDate, endDate, modalOpened, confirmarPassagem])
+    }, [startDate, endDate, modalOpened, confirmarPassagem, passagens])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;

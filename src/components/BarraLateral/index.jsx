@@ -3,12 +3,13 @@ import ItemNavegacao from "./ItemNavegacao"
 import { AiOutlineHome } from "react-icons/ai"
 import { PiUserCircleThin } from "react-icons/pi"
 import { CiSettings, CiBellOn } from 'react-icons/ci'
-import { FaUserCircle } from 'react-icons/fa'
+import { FaChevronRight, FaUserCircle } from 'react-icons/fa'
 import "./BarraLateral.css"
 import { Link, useLocation } from "react-router-dom"
 import logo from '/imagens/logo.png'
 import { useSessaoUsuarioContext } from "../../contexts/SessaoUsuario"
 import { ArmazenadorToken } from './../../utils';
+import { useState } from "react"
 
 const ListaEstilizada = styled.ul`
     list-style: none;
@@ -71,7 +72,16 @@ function BarraLateral() {
             "url": "/relatorios",
             "pageTitulo": "RELATÓRIOS",
             "icone": <CiBellOn size={20} className="icon" />,
-            "itemTitulo": "RELATÓRIOS"
+            "itemTitulo": "RELATÓRIOS",
+            "subItem": [
+                {
+                    "id": 1,
+                    "url": "/relatorios/dashboard",
+                    "pageTitulo": "ESTATÍSTICAS",
+                    "icone": <></>,
+                    "itemTitulo": "ESTATÍSTICAS"
+                }
+            ]
         }
     ];
 
@@ -103,9 +113,11 @@ function BarraLateral() {
                     {itensMenu.map((item) => {
                         return (
                             <Link key={item.id} className="link" to={item.url}>
-                                <ItemNavegacao ativo={(('/'+location.pathname.split('/')[1]) === item.url)}>
-                                    {item.icone}
-                                    {item.itemTitulo}
+                                <ItemNavegacao subItem={item?.subItem ?? []} ativo={(('/'+location.pathname.split('/')[1]) === item.url)}>
+                                    <div>
+                                        {item.icone}
+                                        {item.itemTitulo}
+                                    </div>
                                 </ItemNavegacao>
                             </Link>
                         )

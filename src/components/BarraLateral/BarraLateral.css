@@ -21,7 +21,6 @@
     gap: 10px;
 }
 
-
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     aside:not(.mobile) {
