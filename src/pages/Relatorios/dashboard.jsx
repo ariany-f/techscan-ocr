@@ -15,7 +15,7 @@ const ContainerLadoALado = styled.div`
     gap: 20px;
     align-itens: center;
     flex-wrap: wrap;
-    width: 75vw;
+    width: 80vw;
 `
 
 function RelatorioDashboard() {
