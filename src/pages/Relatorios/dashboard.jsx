@@ -70,7 +70,7 @@ function RelatorioDashboard() {
                 (item.Camera === 'plate' || item.Camera === 'LPR') && item.Posicao === 'traseira'
               ))
               setContainer(response.filter(item =>
-                item.Camera !== 'plate'
+                item.Camera !== 'plate' && item.Camera !== 'LPR'
               ))
           }
       })
