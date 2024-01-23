@@ -146,7 +146,8 @@ function RelatorioDashboard() {
           type: 'pie',
           data: dataContainer
         });
-
+        
+        LimparDatas()
     }, 3000);
 
 }, [startDate, endDate])
