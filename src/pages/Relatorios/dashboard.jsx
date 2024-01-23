@@ -206,9 +206,9 @@ function RelatorioDashboard() {
                   <h6>Placa Dianteira</h6>
                 </Titulo>
                 <Chart type="pie" data={dataDianteira} options={configDianteira} className="w-full md:w-10rem" />
-                <p>{
+                <p style={{marginTop: '15px'}}>{
                   dataDianteira.datasets && dataDianteira.datasets[0] ?
-                  (Math.floor(parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100)) 
+                  ('Porcentagem Acerto: ' + Math.floor(parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100)) 
                   + '%')
                   : ''}
                 </p>
@@ -218,9 +218,9 @@ function RelatorioDashboard() {
                   <h6>Placa Traseira</h6>
                 </Titulo>
                 <Chart type="pie" data={dataTraseira} options={configTraseira} className="w-full md:w-10rem" />
-                <p>{
+                <p style={{marginTop: '15px'}}>{
                   dataTraseira.datasets && dataTraseira.datasets[0] ?
-                  (Math.floor(parseInt(dataTraseira.datasets[0].data[0]) / ((parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]))/100)) 
+                  ('Porcentagem Acerto: ' + Math.floor(parseInt(dataTraseira.datasets[0].data[0]) / ((parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]))/100)) 
                   + '%')
                   : ''}
                  </p>
@@ -230,9 +230,9 @@ function RelatorioDashboard() {
                   <h6>Conteiner</h6>
                 </Titulo>
                 <Chart type="pie" data={dataContainer} options={configContainer} className="w-full md:w-10rem" />
-                <p>{
+                <p style={{marginTop: '15px'}}> {
                   dataContainer.datasets && dataContainer.datasets[0] ?
-                  (Math.floor(parseInt(dataContainer.datasets[0].data[0]) / ((parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]))/100)) 
+                  ('Porcentagem Acerto: ' + Math.floor(parseInt(dataContainer.datasets[0].data[0]) / ((parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]))/100)) 
                   + '%')
                   : ''}</p>
               </div>
