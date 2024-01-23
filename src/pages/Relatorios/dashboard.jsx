@@ -73,6 +73,7 @@ function RelatorioDashboard() {
               setContainer(response.filter(item =>
                 item.Camera !== 'plate' && item.Camera !== 'LPR'
               ))
+              setPrimeiraVez(true)
           }
       })
       .catch(erro => {
@@ -151,7 +152,6 @@ function RelatorioDashboard() {
         if(!primeiraVez)
         {
           LimparDatas()
-          setPrimeiraVez(true)
         }
     }, 3000);
 
