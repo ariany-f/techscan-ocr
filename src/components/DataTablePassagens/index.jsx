@@ -204,7 +204,10 @@ function DataTablePassagens() {
                 
                 <ContainerLadoALado>
                     <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
-                    <Botao estilo="azul" style={{width:"300px"}} size="small" weight="light" aoClicar={() => confirmarPassagem(data.id)}>CONFIRMAR PASSAGEM</Botao>
+                    {
+                        !rowData.status &&
+                        <Botao estilo="azul" style={{width:"300px"}} size="small" weight="light" aoClicar={() => confirmarPassagem(data.id)}>CONFIRMAR PASSAGEM</Botao>
+                    }
                 </ContainerLadoALado>
                 <div>
                     {data.images.map((item, index) => {
