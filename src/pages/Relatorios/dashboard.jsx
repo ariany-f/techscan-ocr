@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import http from '@http'
 import { MdOutlineClear } from 'react-icons/md';
 import { addLocale } from 'primereact/api'
+import Loading from '@components/Loading'
 
 const ContainerLadoALado = styled.div`
     display: flex;
@@ -34,6 +35,7 @@ function RelatorioDashboard() {
   const [configTraseira, setConfigTraseira] = useState({})
   const [dataContainer, setDataContainer] = useState({})
   const [configContainer, setConfigContainer] = useState({})
+  const [loading, setLoading] = useState(false)
 
   const LimparDatas = () => {
       setStartDate('')
@@ -84,6 +86,7 @@ function RelatorioDashboard() {
   useEffect(() => {
     
     fetchData()
+    setLoading(true)
     setTimeout(() => {
         setDataDianteira(
         {
@@ -154,8 +157,9 @@ function RelatorioDashboard() {
           LimparDatas()
         }
     }, 3000);
-	
-
+    
+    setLoading(false)
+    
 }, [startDate, endDate])
         
       addLocale('pt', {
@@ -188,6 +192,7 @@ function RelatorioDashboard() {
 
       return (
         <>
+          <Loading opened={loading} />
           <Titulo>
               <h2 style={{ fontWeight: 500, color: '#B9B9B9' }}>ESTATÍSTICAS</h2>
           </Titulo>
@@ -207,7 +212,7 @@ function RelatorioDashboard() {
                 </div>
             </ContainerLadoALado>
             <ContainerLadoALado>
-			{(Object.keys(dataDianteira).length > 0) &&
+			      {(Object.keys(dataDianteira).length > 0) &&
               <div>
                 <Titulo>
                   <h6>Placa Dianteira</h6>
@@ -220,9 +225,9 @@ function RelatorioDashboard() {
                   : ''}
                 </p>
               </div>
-			}
+			      }
 			
-			{(Object.keys(dataTraseira).length > 0) &&
+			      {(Object.keys(dataTraseira).length > 0) &&
               <div>
                 <Titulo>
                   <h6>Placa Traseira</h6>
@@ -235,8 +240,8 @@ function RelatorioDashboard() {
                   : ''}
                  </p>
               </div>
-			}
-			{(Object.keys(dataContainer).length > 0) &&
+			        }
+			      {(Object.keys(dataContainer).length > 0) &&
               <div>
                 <Titulo>
                   <h6>Conteiner</h6>
@@ -248,7 +253,7 @@ function RelatorioDashboard() {
                   + '%')
                   : ''}</p>
               </div>
-			}
+			        }
           </ContainerLadoALado>
         </>
       )
