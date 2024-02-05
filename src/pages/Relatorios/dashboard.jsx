@@ -44,6 +44,7 @@ function RelatorioDashboard() {
 
   function fetchData()
   {
+      setLoading(true)
       const filterData = {
 
           dataInicial: startDate ? startDate.toLocaleDateString('sv-SE', {
@@ -86,7 +87,6 @@ function RelatorioDashboard() {
   useEffect(() => {
     
     fetchData()
-    setLoading(true)
     setTimeout(() => {
         setDataDianteira(
         {
@@ -151,6 +151,8 @@ function RelatorioDashboard() {
           type: 'pie',
           data: dataContainer
         });
+        
+        setLoading(false)
 
         if(!primeiraVez)
         {
@@ -158,8 +160,7 @@ function RelatorioDashboard() {
         }
     }, 3000);
     
-    setLoading(false)
-    
+
 }, [startDate, endDate])
         
       addLocale('pt', {
