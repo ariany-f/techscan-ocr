@@ -5,6 +5,7 @@ import Texto from '@components/Texto'
 import ModalNovoMotivo from '@components/ModalNovoMotivo'
 import ModalNovoPortao from '@components/ModalNovoPortao'
 import Frame from '@components/Frame'
+import Loading from '@components/Loading'
 import Botao from '@components/Botao'
 import DropdownItens from '@components/DropdownItens'
 import { useEffect, useRef, useState } from "react"
@@ -59,6 +60,7 @@ function Configuracoes(){
     const [modalNovoMotivoOpened, setModalNovoMotivoOpened] = useState(false)
     const [modalNovoPortaoOpened, setModalNovoPortaoOpened] = useState(false)
     const toast = useRef(null);
+    const [loading, setLoading] = useState(false)
 
 
     const setDirecao = (direction) => {
@@ -203,10 +205,12 @@ function Configuracoes(){
     }
     
     const selecionarCamera = (value) => {
+        setLoading(true)
         setSelectedCamera(value)
         if(value === '')
         {
             setCamera(InicialCamera)
+            setLoading(false)
         }
         else{
             const filtered = cameras.filter((item) => {
@@ -217,6 +221,7 @@ function Configuracoes(){
             {
                 setSelectedCaminhao(filtered[0].representative_img_id)
             }
+            setLoading(false)
         }
     }
 
@@ -259,6 +264,7 @@ function Configuracoes(){
         <>
             <div style={{maxWidth: '1240px'}}>
                 <Toast ref={toast} />
+                <Loading opened={loading} />
                 <Titulo>
                     <h2 style={{ fontWeight: 500, color: '#B9B9B9' }}>CONFIGURAÇÕES</h2>
                 </Titulo>
