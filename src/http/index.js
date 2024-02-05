@@ -2,7 +2,7 @@ import axios from "axios"
 import { ArmazenadorToken } from "../utils"
 
 const http = axios.create({
-    baseURL: 'https://api.uniebco.com.br'
+    baseURL: 'https://localhost'
 })
 
 http.interceptors.request.use(function (config) {
