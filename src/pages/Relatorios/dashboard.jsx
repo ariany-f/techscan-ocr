@@ -93,7 +93,7 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((dianteira[0]) ? dianteira[0]['Acertos'] : 0), ((dianteira[0]) ? dianteira[0]['Erros'] : 0)],
+              data: [((dianteira[0]) ? dianteira[0]['Acertos'] : '0'), ((dianteira[0]) ? dianteira[0]['Erros'] : '0')],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'
@@ -109,7 +109,7 @@ function RelatorioDashboard() {
           ],
           datasets: [{
             label: '',
-            data: [((traseira[0]) ? traseira[0]['Acertos'] : 0), ((traseira[0]) ? traseira[0]['Erros'] : 0)],
+            data: [((traseira[0]) ? traseira[0]['Acertos'] : '0'), ((traseira[0]) ? traseira[0]['Erros'] : '0')],
             backgroundColor: [
               'rgb(54, 162, 235)',
               'rgb(255, 205, 86)'
@@ -125,7 +125,7 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((container[0]) ? container[0]['Acertos'] : 0), ((container[0]) ? container[0]['Erros'] : 0)],
+              data: [((container[0]) ? container[0]['Acertos'] : '0'), ((container[0]) ? container[0]['Erros'] : '0')],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'
@@ -154,6 +154,7 @@ function RelatorioDashboard() {
           LimparDatas()
         }
     }, 3000);
+	
 
 }, [startDate, endDate])
         
@@ -206,47 +207,48 @@ function RelatorioDashboard() {
                 </div>
             </ContainerLadoALado>
             <ContainerLadoALado>
-              {dataDianteira &&
-                <div>
-                  <Titulo>
-                    <h6>Placa Dianteira</h6>
-                  </Titulo>
-                  <Chart type="pie" data={dataDianteira} options={configDianteira} className="w-full md:w-10rem" />
-                  <p style={{marginTop: '15px'}}>{
-                    dataDianteira.datasets && dataDianteira.datasets[0] ?
-                    ('Porcentagem Acerto: ' + Math.floor(parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100)) 
-                    + '%')
-                    : ''}
-                  </p>
-                </div>
-              }
-              {dataTraseira &&
-                <div>
-                  <Titulo>
-                    <h6>Placa Traseira</h6>
-                  </Titulo>
-                  <Chart type="pie" data={dataTraseira} options={configTraseira} className="w-full md:w-10rem" />
-                  <p style={{marginTop: '15px'}}>{
-                    dataTraseira.datasets && dataTraseira.datasets[0] ?
-                    ('Porcentagem Acerto: ' + Math.floor(parseInt(dataTraseira.datasets[0].data[0]) / ((parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]))/100)) 
-                    + '%')
-                    : ''}
-                  </p>
-                </div>
-              }
-              {dataContainer &&
-                <div>
-                  <Titulo>
-                    <h6>Conteiner</h6>
-                  </Titulo>
-                  <Chart type="pie" data={dataContainer} options={configContainer} className="w-full md:w-10rem" />
-                  <p style={{marginTop: '15px'}}> {
-                    dataContainer.datasets && dataContainer.datasets[0] ?
-                    ('Porcentagem Acerto: ' + Math.floor(parseInt(dataContainer.datasets[0].data[0]) / ((parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]))/100)) 
-                    + '%')
-                    : ''}</p>
-                </div>
-              }
+			{(Object.keys(dataDianteira).length > 0) &&
+              <div>
+                <Titulo>
+                  <h6>Placa Dianteira</h6>
+                </Titulo>
+                <Chart type="pie" data={dataDianteira} options={configDianteira} className="w-full md:w-10rem" />
+                <p style={{marginTop: '15px'}}>{
+                  dataDianteira.datasets && dataDianteira.datasets[0] ?
+                  ('Porcentagem Acerto: ' + Math.floor((!isNaN(parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100))) ? parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100) : 100) 
+                  + '%')
+                  : ''}
+                </p>
+              </div>
+			}
+			
+			{(Object.keys(dataTraseira).length > 0) &&
+              <div>
+                <Titulo>
+                  <h6>Placa Traseira</h6>
+                </Titulo>
+                <Chart type="pie" data={dataTraseira} options={configTraseira} className="w-full md:w-10rem" />
+                <p style={{marginTop: '15px'}}>{
+                  dataTraseira.datasets && dataTraseira.datasets[0] ?
+                  ('Porcentagem Acerto: ' + Math.floor((!isNaN(parseInt(dataTraseira.datasets[0].data[0]) / ((parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]))/100))) ? parseInt(dataTraseira.datasets[0].data[0]) / ((parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]))/100) : 100) 
+                  + '%')
+                  : ''}
+                 </p>
+              </div>
+			}
+			{(Object.keys(dataContainer).length > 0) &&
+              <div>
+                <Titulo>
+                  <h6>Conteiner</h6>
+                </Titulo>
+                <Chart type="pie" data={dataContainer} options={configContainer} className="w-full md:w-10rem" />
+                <p style={{marginTop: '15px'}}> {
+                  dataContainer.datasets && dataContainer.datasets[0] ?
+                  ('Porcentagem Acerto: ' + Math.floor((!isNaN(parseInt(dataContainer.datasets[0].data[0]) / ((parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]))/100))) ? parseInt(dataContainer.datasets[0].data[0]) / ((parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]))/100) : 100) 
+                  + '%')
+                  : ''}</p>
+              </div>
+			}
           </ContainerLadoALado>
         </>
       )

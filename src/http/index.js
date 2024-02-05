@@ -2,7 +2,7 @@ import axios from "axios"
 import { ArmazenadorToken } from "../utils"
 
 const http = axios.create({
-    baseURL: 'https://localhost'
+    baseURL: 'http://localhost'
 })
 
 http.interceptors.request.use(function (config) {

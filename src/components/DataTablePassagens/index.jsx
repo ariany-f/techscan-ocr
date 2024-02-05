@@ -211,7 +211,7 @@ function DataTablePassagens() {
                 </ContainerLadoALado>
                 <div>
                     {data.images.map((item, index) => {
-                        return <img key={`${data.id}-${index}`} width="240px" src={`https://localhost/api/web/public/${item}`} style={{margin: '5px'}} />
+                        return <img key={`${data.id}-${index}`} width="240px" src={`http://localhost/api/web/public/${item}`} style={{margin: '5px'}} />
                     })}
                 </div>
             </>
