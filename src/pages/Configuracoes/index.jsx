@@ -53,7 +53,7 @@ function Configuracoes(){
     const [imagens, setImagens] = useState([])
     const [direcoes, setDirecoes] = useState([])
     const [selectedGate, setSelectedGate] = useState('')
-    const [selectedCamera, setSelectedCamera] = useState(null)
+    const [selectedCamera, setSelectedCamera] = useState('')
     const [selectedMotivo, setSelectedMotivo] = useState('')
     const [selectedCaminhao, setSelectedCaminhao] = useState(1)
     const [classError, setClassError] = useState([])
