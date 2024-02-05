@@ -210,7 +210,7 @@ function Configuracoes(){
         if(value === '')
         {
             setCamera(InicialCamera)
-            setLoading(false)
+            //setLoading(false)
         }
         else{
             const filtered = cameras.filter((item) => {
@@ -221,7 +221,7 @@ function Configuracoes(){
             {
                 setSelectedCaminhao(filtered[0].representative_img_id)
             }
-            setLoading(false)
+          //  setLoading(false)
         }
     }
 
