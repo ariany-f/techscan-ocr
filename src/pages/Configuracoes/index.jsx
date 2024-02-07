@@ -115,7 +115,7 @@ function Configuracoes(){
         http.get('api/web/public/cameras')
         .then(response => {
             
-            if(cameras.length !== 1)
+            if(cameras.length === 0)
             {
                 let obj = {
                     name: 'Selecione uma câmera para começar',
@@ -414,7 +414,7 @@ function Configuracoes(){
                         </div>
                     }
                     {
-                        !cameras.length &&
+                        (!cameras.length || cameras.length === 1) &&
                         <div>
                             <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>SINCRONIZAR COM AS CÂMERAS DO SERVIDOR</h5>
                             
