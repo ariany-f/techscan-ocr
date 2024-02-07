@@ -348,6 +348,30 @@ function Configuracoes(){
                                 name="cameras" 
                                 label="CÂMERA SELECIONADA"  
                             />
+                            {
+								(!cameras.length || cameras.length === 1) 
+								?
+								<div>
+									<h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>SINCRONIZAR COM AS CÂMERAS DO SERVIDOR</h5>
+									
+									<div>
+										<ContainerLadoALado>
+											<Botao aoClicar={() => sincronizar()} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> SINCRONIZAR</Botao>
+										</ContainerLadoALado>
+									</div>
+								</div>
+								:
+								(!inscricoes.length) &&
+									<div>
+										<h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>INSCRIÇÃO PARA EVENTOS DO WEBSOCKET</h5>
+										
+										<div>
+											<ContainerLadoALado>
+												<Botao aoClicar={() => inscrever()} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> INSCREVER</Botao>
+											</ContainerLadoALado>
+										</div>
+									</div>
+							}
                             <Col12 style={{border: '1px solid #B9B9B9', padding: '15px'}}>
                                 <Col6>
                                     <CampoTexto valor={camera?.name} setValor={setName} label="NOME" name="name" placeholder="" />
@@ -401,30 +425,6 @@ function Configuracoes(){
                             </ContainerLadoALado>
                         </div>
                     </div>
-                    {
-                        !inscricoes.length &&
-                        <div>
-                            <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>INSCRIÇÃO PARA EVENTOS DO WEBSOCKET</h5>
-                            
-                            <div>
-                                <ContainerLadoALado>
-                                    <Botao aoClicar={() => inscrever()} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> INSCREVER</Botao>
-                                </ContainerLadoALado>
-                            </div>
-                        </div>
-                    }
-                    {
-                        (!cameras.length || cameras.length === 1) &&
-                        <div>
-                            <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>SINCRONIZAR COM AS CÂMERAS DO SERVIDOR</h5>
-                            
-                            <div>
-                                <ContainerLadoALado>
-                                    <Botao aoClicar={() => sincronizar()} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> SINCRONIZAR</Botao>
-                                </ContainerLadoALado>
-                            </div>
-                        </div>
-                    }
                     
                 </Frame>
                 <ModalNovoMotivo opened={modalNovoMotivoOpened} aoFechar={() => setModalNovoMotivoOpened(false)}/>
