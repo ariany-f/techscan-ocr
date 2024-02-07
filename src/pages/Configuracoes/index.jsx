@@ -44,10 +44,12 @@ function Configuracoes(){
         direction: 1,
         position: '',
         code: '',
+        gate_id: 1,
         representative_img_id: 1
     }
     const [cameras, setCameras] = useState([])
     const [camera, setCamera] = useState(InicialCamera)
+    const [inscricoes, setInscricoes] = useState([])
     const [motivos, setMotivos] = useState([])
     const [gates, setGates] = useState([])
     const [imagens, setImagens] = useState([])
@@ -98,6 +100,15 @@ function Configuracoes(){
             }
         })
     }
+    
+    const setGate = (gate_id) => {
+        setCamera(estadoAnterior => {
+            return {
+                ...estadoAnterior,
+                gate_id
+            }
+        })
+    }
 
     function fetchCameras()
     {
@@ -118,6 +129,7 @@ function Configuracoes(){
                     name: item.name,
                     id: item.id,
                     code: item.id,
+                    gate_id: item.gate_id,
                     direction: item.direction,
                     position: item.position,
                     representative_img_id: item.representative_img_id
@@ -203,6 +215,32 @@ function Configuracoes(){
             console.error(erro)
         })
     }
+
+    function inscrever() {
+        http.get('api/web/public/inscrever')
+        .then(response => {
+            getInscricoes()
+        })
+        .catch(erro => {
+            console.error(erro)
+        })  
+    }
+
+    function getInscricoes() {
+        if(inscricoes.length === 0)
+        {
+            http.get('api/web/public/inscricoes')
+            .then(response => {
+                if(response.data)
+                {
+                    setInscricoes(response.data)
+                }
+            })
+            .catch(erro => {
+                console.error(erro)
+            })  
+        }
+    }
     
     const selecionarCamera = (value) => {
         setLoading(true)
@@ -223,6 +261,8 @@ function Configuracoes(){
             }
             setLoading(false)
         }
+        
+        console.log(camera)
     }
 
     const salvarCamera = () => {
@@ -255,10 +295,24 @@ function Configuracoes(){
     }, [modalNovoPortaoOpened])
 
     useEffect(() => {
-        fetchCameras()
-        fetchImagensRepresentativas()
-        fetchDirecoes()
-    }, [])
+        getInscricoes()
+    }, [inscricoes])
+
+    useEffect(() => {
+        
+        if(cameras.length === 0)
+        {
+            fetchCameras()
+        }
+        if(imagens.length === 0)
+        {
+            fetchImagensRepresentativas()
+        }
+        if(direcoes.length === 0)
+        {
+            fetchDirecoes()
+        }
+    }, [cameras, direcoes])
     
     return (
         <>
@@ -289,6 +343,9 @@ function Configuracoes(){
                                 </Col6>
                                 <Col6>
                                     <DropdownItens camposVazios={classError} setValor={setDirecao} valor={camera?.direction} options={direcoes} label="DIREÇÃO" name="direction" placeholder="" />
+                                </Col6>
+                                <Col6>
+                                    <DropdownItens camposVazios={classError} setValor={setGate} valor={camera?.gate_id} options={gates} label="PORTÃO VINCULADO" name="gates" placeholder="" />
                                 </Col6>
                                 <Col12>
                                     <Texto>Imagem Representativa</Texto>
@@ -330,6 +387,19 @@ function Configuracoes(){
                             </ContainerLadoALado>
                         </div>
                     </div>
+                    {
+                        !inscricoes.length &&
+                        <div>
+                            <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>INSCRIÇÃO PARA EVENTOS DO WEBSOCKET</h5>
+                            
+                            <div>
+                                <ContainerLadoALado>
+                                    <Botao aoClicar={() => inscrever()} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> INSCREVER</Botao>
+                                </ContainerLadoALado>
+                            </div>
+                        </div>
+                    }
+                    
                 </Frame>
                 <ModalNovoMotivo opened={modalNovoMotivoOpened} aoFechar={() => setModalNovoMotivoOpened(false)}/>
                 <ModalNovoPortao opened={modalNovoPortaoOpened} aoFechar={() => setModalNovoPortaoOpened(false)}/>
