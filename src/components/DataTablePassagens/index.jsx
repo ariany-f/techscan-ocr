@@ -177,6 +177,10 @@ function DataTablePassagens() {
     const plateBodyTemplate = (rowData) => {
         return rowData.plate ?? '----------';
     };
+    
+    const plateCameraTemplate = (rowData) => {
+        return rowData.camera ?? '----------';
+    };
 
     const containerBodyTemplate = (rowData) => {
         return rowData.container ?? '----------';
@@ -296,10 +300,11 @@ function DataTablePassagens() {
             /> : ''}
             <DataTable showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} scrollHeight="600px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
                     rowExpansionTemplate={rowExpansionTemplate} paginator rows={25} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ maxWidth: '98%', marginTop: '1rem' }}>
-                <Column header="#" style={{ width: '5%', }} headerStyle={{ width: '5%', textAlign: 'center' }} expander={true} />
+                <Column header="#" style={{ width: '3%', }} headerStyle={{ width: '3%', textAlign: 'center' }} expander={true} />
                 <Column body={plateBodyTemplate} field="plate" header="Placa" style={{ width: '15%',textAlign: 'center'}} headerStyle={{ width: '15%', textAlign: 'center' }}></Column>
-                <Column body={dateBodyTemplate} header="Data/Hora" style={{ width: '15%',textAlign: 'center'}} headerStyle={{ width: '15%', textAlign: 'center'}}></Column>
-                <Column body={containerBodyTemplate} field="container" header="Container" style={{ width: '20%',textAlign: 'center'}} headerStyle={{ width: '20%', textAlign: 'center' }}></Column>
+                <Column body={plateCameraTemplate} field="plate" header="Câmera" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
+                <Column body={dateBodyTemplate} header="Data/Hora" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
+                <Column body={containerBodyTemplate} field="container" header="Container" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column field="gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
