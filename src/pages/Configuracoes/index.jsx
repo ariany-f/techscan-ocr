@@ -227,7 +227,7 @@ function Configuracoes(){
     }
 
     function sincronizar() {
-        http.get('api/web/public/cameras')
+        http.get('api/web/public/popular-cameras')
         .then(response => {
             fetchCameras()
         })
