@@ -114,15 +114,19 @@ function Configuracoes(){
     {
         http.get('api/web/public/cameras')
         .then(response => {
-            let obj = {
-                name: 'Selecione uma câmera para começar',
-                code: '',
-                direction: 1,
-                position: '',
-                id: null,
-                representative_img_id: 1
+            
+            if(cameras.length !== 1)
+            {
+                let obj = {
+                    name: 'Selecione uma câmera para começar',
+                    code: '',
+                    direction: 1,
+                    position: '',
+                    id: null,
+                    representative_img_id: 1
+                }
+                setCameras((estadoAnterior) => [...estadoAnterior, obj])
             }
-            setCameras((estadoAnterior) => [...estadoAnterior, obj])
 
             response.map((item, index) => {
                 let obj = {
