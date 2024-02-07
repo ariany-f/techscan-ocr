@@ -226,6 +226,16 @@ function Configuracoes(){
         })  
     }
 
+    function sincronizar() {
+        http.get('api/web/public/cameras')
+        .then(response => {
+            fetchCameras()
+        })
+        .catch(erro => {
+            console.error(erro)
+        })  
+    }
+
     function getInscricoes() {
         if(inscricoes.length === 0)
         {
@@ -395,6 +405,18 @@ function Configuracoes(){
                             <div>
                                 <ContainerLadoALado>
                                     <Botao aoClicar={() => inscrever()} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> INSCREVER</Botao>
+                                </ContainerLadoALado>
+                            </div>
+                        </div>
+                    }
+                    {
+                        !cameras.length &&
+                        <div>
+                            <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>SINCRONIZAR COM AS CÂMERAS DO SERVIDOR</h5>
+                            
+                            <div>
+                                <ContainerLadoALado>
+                                    <Botao aoClicar={() => sincronizar()} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> SINCRONIZAR</Botao>
                                 </ContainerLadoALado>
                             </div>
                         </div>
