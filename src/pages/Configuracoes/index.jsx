@@ -262,10 +262,9 @@ function Configuracoes(){
         {
             http.get('api/web/public/tempo-vinculo-passagens')
             .then(response => {
-                console.log(response)
-                if(response.data)
+                if(response[0])
                 {
-                    //setTempo(response.data)
+                    setTempo(response[0].value)
                 }
             })
             .catch(erro => {
