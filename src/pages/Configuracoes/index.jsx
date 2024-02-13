@@ -313,6 +313,22 @@ function Configuracoes(){
         }
     }
 
+    const salvarNovoTempo = () => {
+        if(tempo)
+        {
+            http.put('api/web/public/tempo-vinculo-passagens', tempo)
+            .then(response => {
+                if(response.code == 200)
+                {
+                    toast.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+                }
+            })
+            .catch(erro => {
+                console.error(erro)
+            })
+        }
+    }
+
     const alterarRepresentativeImg = (id) => {
         setRepresentativeImgId(id)
         setSelectedCaminhao(id)
@@ -452,8 +468,8 @@ function Configuracoes(){
 
                         <div>
                             <ContainerLadoALado>
-                                <CampoTexto valor={tempo} setValor={setTempo} label="TEMPO PARA VÍNCULO DE PASSAGENS" name="tempo" placeholder="" />
-                                <Botao aoClicar={() =>setModalNovoPortaoOpened(true)} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> ADICIONAR PORTÃO</Botao>
+                                <CampoTexto valor={tempo} setValor={setTempo} label="" name="tempo" placeholder="" />
+                                <Botao aoClicar={() =>salvarNovoTempo()} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> ALTERAR TEMPO</Botao>
                             </ContainerLadoALado>
                         </div>
                     </div>
