@@ -257,7 +257,7 @@ function Configuracoes(){
         }
     }
 
-    function getInscricoes() {
+    function getTempoVinculoPassagem() {
         if(tempo === 0)
         {
             http.get('api/web/public/tempo-vinculo-passagens')
