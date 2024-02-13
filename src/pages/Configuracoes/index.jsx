@@ -50,6 +50,7 @@ function Configuracoes(){
     const [cameras, setCameras] = useState([])
     const [camera, setCamera] = useState(InicialCamera)
     const [inscricoes, setInscricoes] = useState([])
+    const [tempo, setTempo] = useState(0)
     const [motivos, setMotivos] = useState([])
     const [gates, setGates] = useState([])
     const [imagens, setImagens] = useState([])
@@ -255,6 +256,24 @@ function Configuracoes(){
             })  
         }
     }
+
+    function getInscricoes() {
+        if(tempo === 0)
+        {
+            http.get('api/web/public/tempo-vinculo-passagens')
+            .then(response => {
+                console.log(response)
+                if(response.data)
+                {
+                    //setTempo(response.data)
+                }
+            })
+            .catch(erro => {
+                console.error(erro)
+            })  
+        }
+    }
+    
     
     const selecionarCamera = (value) => {
         setLoading(true)
@@ -311,6 +330,10 @@ function Configuracoes(){
     useEffect(() => {
         getInscricoes()
     }, [inscricoes])
+
+    useEffect(() => {
+        getTempoVinculoPassagem()
+    }, [tempo])
 
     useEffect(() => {
         
@@ -421,6 +444,16 @@ function Configuracoes(){
                         <div>
                             <ContainerLadoALado>
                                 <DropdownItens camposVazios={classError} setValor={setSelectedGate} valor={selectedGate} options={gates} name="gates" placeholder="" />
+                                <Botao aoClicar={() =>setModalNovoPortaoOpened(true)} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> ADICIONAR PORTÃO</Botao>
+                            </ContainerLadoALado>
+                        </div>
+                    </div>
+                    <div>
+                        <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>VINCULO DE PASSAGENS</h5>
+
+                        <div>
+                            <ContainerLadoALado>
+                                <CampoTexto valor={tempo} setValor={setTempo} label="TEMPO PARA VÍNCULO DE PASSAGENS" name="tempo" placeholder="" />
                                 <Botao aoClicar={() =>setModalNovoPortaoOpened(true)} weight="light" size="small" estilo="azul"><FaPlus className="icon" /> ADICIONAR PORTÃO</Botao>
                             </ContainerLadoALado>
                         </div>
