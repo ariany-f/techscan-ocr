@@ -14,7 +14,7 @@ function AppRouter() {
   
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/public_html'>
         <SessaoUsuarioProvider>
             <Routes>
                 <Route path="/login" element={<Publico/>}>

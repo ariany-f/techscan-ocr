@@ -3,10 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "http://localhost/techscan",
+  "homepage": "/public_html",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npx cross-env NODE_OPTIONS=--max-old-space-size=8192 vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prod": "npm run build && serve build"
