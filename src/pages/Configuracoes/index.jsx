@@ -317,7 +317,7 @@ function Configuracoes(){
         if(tempo)
         {
             const obj = {}
-            obj['time'] = tempo
+            obj['time'] = parseInt(tempo)
             http.put('api/web/public/tempo-vinculo-passagens', obj)
             .then(response => {
                 if(response.code == 200)
