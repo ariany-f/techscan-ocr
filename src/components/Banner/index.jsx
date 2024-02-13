@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import styles from './Banner.module.css'
-import logo from '/imagens/logo.png'
+import logo from '@imagens/logo.png'
 import { Link } from 'react-router-dom'
 
 const BannerLateral = styled.div`

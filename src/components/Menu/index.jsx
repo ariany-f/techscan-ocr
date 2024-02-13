@@ -6,7 +6,7 @@ import { CiSettings, CiBellOn } from 'react-icons/ci'
 import { FaUserCircle } from 'react-icons/fa'
 import "./Menu.css"
 import { Link, useLocation } from "react-router-dom"
-import logo from '/imagens/logo.png'
+import logo from '@imagens/logo.png'
 import { useSessaoUsuarioContext } from "../../contexts/SessaoUsuario"
 import { ArmazenadorToken } from './../../utils';
 
