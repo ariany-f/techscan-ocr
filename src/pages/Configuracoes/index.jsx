@@ -316,7 +316,9 @@ function Configuracoes(){
     const salvarNovoTempo = () => {
         if(tempo)
         {
-            http.put('api/web/public/tempo-vinculo-passagens', tempo)
+            const obj = {}
+            obj['time'] = tempo
+            http.put('api/web/public/tempo-vinculo-passagens', obj)
             .then(response => {
                 if(response.code == 200)
                 {
