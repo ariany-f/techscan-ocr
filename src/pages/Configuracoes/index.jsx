@@ -466,7 +466,7 @@ function Configuracoes(){
                         </div>
                     </div>
                     <div>
-                        <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>VINCULO DE PASSAGENS</h5>
+                        <h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>VINCULO DE PASSAGENS EM SEGUNDOS</h5>
 
                         <div>
                             <ContainerLadoALado>
