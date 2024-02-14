@@ -145,7 +145,7 @@ function DataTablePassagens() {
 
         const interval = setInterval(() => {
             fetchPassages()
-          }, 1000);
+          }, 5000);
           return () => clearInterval(interval);
 
     }, [startDate, endDate, modalOpened, confirmarPassagem, passagens])
