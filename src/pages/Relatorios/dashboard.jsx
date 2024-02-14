@@ -101,7 +101,7 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Acertos']/100)*60) : dianteira[0]['Acertos']) : '0'), ((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Erros']/100)*60) : dianteira[0]['Erros']) : '0')],
+              data: [((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Acertos']/100)*100) : dianteira[0]['Acertos']) : '0'), ((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Erros']/100)*100) : dianteira[0]['Erros']) : '0')],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'
@@ -133,7 +133,7 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Acertos']/100)*60) : container[0]['Acertos']) : '0'), ((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Erros']/100)*60) : container[0]['Erros']) : '0')],
+              data: [((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Acertos']/100)*50) : container[0]['Acertos']) : '0'), ((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Erros']/100)*50) : container[0]['Erros']) : '0')],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'
