@@ -56,6 +56,7 @@ function Login() {
                         response.data[0].user_id,
                         response.data[0].user_name,
                         response.data[0].user_email,
+                        '',
                         response.data[0].user_permission
                     )
                     setUsuarioEstaLogado(true)

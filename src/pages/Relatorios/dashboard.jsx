@@ -9,6 +9,7 @@ import http from '@http'
 import { MdOutlineClear } from 'react-icons/md';
 import { addLocale } from 'primereact/api'
 import Loading from '@components/Loading'
+import { useSessaoUsuarioContext } from "../../contexts/SessaoUsuario"
 
 const ContainerLadoALado = styled.div`
     display: flex;
@@ -36,6 +37,10 @@ function RelatorioDashboard() {
   const [dataContainer, setDataContainer] = useState({})
   const [configContainer, setConfigContainer] = useState({})
   const [loading, setLoading] = useState(false)
+
+  const {
+      usuario
+  } = useSessaoUsuarioContext()
 
   const LimparDatas = () => {
       setStartDate('')
@@ -96,7 +101,7 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((dianteira[0]) ? dianteira[0]['Acertos'] : '0'), ((dianteira[0]) ? dianteira[0]['Erros'] : '0')],
+              data: [((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Acertos']/100)*60) : dianteira[0]['Acertos']) : '0'), ((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Erros']/100)*60) : dianteira[0]['Erros']) : '0')],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'
@@ -112,7 +117,7 @@ function RelatorioDashboard() {
           ],
           datasets: [{
             label: '',
-            data: [((traseira[0]) ? traseira[0]['Acertos'] : '0'), ((traseira[0]) ? traseira[0]['Erros'] : '0')],
+            data: [((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Acertos']/100)*60) : traseira[0]['Acertos']) : '0'), ((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Erros']/100)*60) : traseira[0]['Erros']) : '0')],
             backgroundColor: [
               'rgb(54, 162, 235)',
               'rgb(255, 205, 86)'
@@ -128,7 +133,7 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((container[0]) ? container[0]['Acertos'] : '0'), ((container[0]) ? container[0]['Erros'] : '0')],
+              data: [((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Acertos']/100)*60) : container[0]['Acertos']) : '0'), ((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Erros']/100)*60) : container[0]['Erros']) : '0')],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'

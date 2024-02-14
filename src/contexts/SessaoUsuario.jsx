@@ -5,13 +5,15 @@ import { ArmazenadorToken } from '../utils';
 
 const usuarioInicial = {
     email: '',
-    password: ''
+    password: '',
+    company: ''
 }
 
 export const SessaoUsuarioContext = createContext({
     usuario: usuarioInicial,
     erros: {},
     setUsuarioEstaLogado: () => null,
+    setCompany: () => null,
     setEmail: () => null,
     setPassword: () => null,
     submeterLogout: () => null,
@@ -38,6 +40,15 @@ export const SessaoUsuarioProvider = ({ children }) => {
             }
         })
     }
+    const setCompany = (company) => {
+        setUsuario(estadoAnterior => {
+            return {
+                ...estadoAnterior,
+                company
+            }
+        })
+    } 
+    
     const setPassword = (password) => {
         setUsuario(estadoAnterior => {
             return {
@@ -69,6 +80,7 @@ export const SessaoUsuarioProvider = ({ children }) => {
         usuarioEstaLogado,
         setUsuarioEstaLogado,
         setEmail,
+        setCompany,
         setPassword,
         submeterLogin,
         submeterLogout,
