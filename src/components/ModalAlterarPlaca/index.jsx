@@ -80,7 +80,8 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
         const confirm = myArray.map((item) => {
            var sendData = {
                 id: parseInt(item),
-                plate: plate
+                plate: plate,
+                container: passagem[0].container
             }
             http.put('api/web/public/passagens', sendData)
             .then(response => {
