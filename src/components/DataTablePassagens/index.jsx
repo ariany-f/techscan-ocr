@@ -211,7 +211,7 @@ function DataTablePassagens() {
         const myArray = rowData.status.split(" | ");
         console.log(myArray)
         const is_not_ok = myArray.filter((item) => {
-            return !item
+            return item === 0
         })
 
         console.log(is_not_ok)
