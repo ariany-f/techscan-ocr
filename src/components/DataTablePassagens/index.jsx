@@ -171,7 +171,11 @@ function DataTablePassagens() {
     };
 
     const dateBodyTemplate = (rowData) => {
-        return formatDate(new Date(rowData.datetime));
+        const myArray = rowData.split(" | ");
+        const datas = myArray.map((item) => {
+            return formatDate(new Date(item))
+        })
+        return datas;
     };
     
     const plateBodyTemplate = (rowData) => {
