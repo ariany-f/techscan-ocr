@@ -198,6 +198,7 @@ function DataTablePassagens() {
     };
 
     const statusBodyTemplate = (rowData) => {
+        console.log(rowData.status)
         return <StatusLabel className={rowData.status ? 'active' : ''}/>
     }
 
