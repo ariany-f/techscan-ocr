@@ -91,21 +91,22 @@ function ModalMotivo({ opened = false, aoClicar, aoFechar, passagem }) {
 
     function updateMotivo()
     {
-        var sendData = {
-            id: passagem[0].id,
-            is_ocr_error: selectedMotivo.is_ocr_error,
-            is_ok: 1,
-            preset_reason: selectedMotivo.id !== 0 ? selectedMotivo.id : null,
-            description_reason: typedMotivo,
-            updated_by: ArmazenadorToken.UserId
-        }
-        http.put('api/web/public/passagens', sendData)
-        .then(response => {
-            aoFechar()
-        })
-        .catch(erro => {
-            console.error(erro)
-        })
+        console.log(passagem)
+        // var sendData = {
+        //     id: passagem[0].id,
+        //     is_ocr_error: selectedMotivo.is_ocr_error,
+        //     is_ok: 1,
+        //     preset_reason: selectedMotivo.id !== 0 ? selectedMotivo.id : null,
+        //     description_reason: typedMotivo,
+        //     updated_by: ArmazenadorToken.UserId
+        // }
+        // http.put('api/web/public/passagens', sendData)
+        // .then(response => {
+        //     aoFechar()
+        // })
+        // .catch(erro => {
+        //     console.error(erro)
+        // })
     }
     
     useEffect(() => {
