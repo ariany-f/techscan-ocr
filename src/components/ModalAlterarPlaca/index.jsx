@@ -72,7 +72,7 @@ const DialogEstilizado = styled.dialog`
 function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
 
     const [date, setDate] = useState(new Date())
-    const [plate, setPlate] = useState(passagem.length > 0 ? passagem[0]?.plate : '')
+    const [plate, setPlate] = useState(passagem && passagem.length > 0 ? passagem[0]?.plate : '')
 
     function updatePlate()
     {
