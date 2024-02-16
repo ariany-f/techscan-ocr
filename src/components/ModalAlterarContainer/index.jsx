@@ -76,11 +76,9 @@ function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem })
 
     function updateContainer()
     {
-        console.log(passagem)
         const myArray = passagem[0].id.split(",");
-        console.log(myArray)
         const confirm = myArray.map((item) => {
-            console.log(item)
+            console.log(parseInt(item))
            var sendData = {
                 id: parseInt(item),
                 container: container,
