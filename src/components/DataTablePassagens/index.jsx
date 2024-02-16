@@ -212,6 +212,8 @@ function DataTablePassagens() {
         const is_not_ok = myArray.filter((item) => {
             return !item
         })
+
+        console.log(is_not_ok)
         
         return <StatusLabel className={is_not_ok.length === 0 ? 'active' : ''}/>
     }
