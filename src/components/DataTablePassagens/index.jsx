@@ -91,7 +91,7 @@ function DataTablePassagens() {
         const myArray = id.split(",");
         const confirm = myArray.map((item) => {
            var sendData = {
-                id: item,
+                id: parseInt(item),
                 is_ok: 1,
                 updated_by: ArmazenadorToken.UserId
             }
