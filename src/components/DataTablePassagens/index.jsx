@@ -88,22 +88,23 @@ function DataTablePassagens() {
     });
 
     const confirmarPassagem = (id) => {
-        var sendData = {
-            id: id,
-            is_ok: 1,
-            updated_by: ArmazenadorToken.UserId
-        }
-        http.put('api/web/public/passagens', sendData)
-        .then(response => {
-            if(response.code === 200)
-            {
-                toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
-                setExpandedRows(null)
-            }
-        })
-        .catch(erro => {
-            console.error(erro)
-        })
+        console.log(id)
+        // var sendData = {
+        //     id: id,
+        //     is_ok: 1,
+        //     updated_by: ArmazenadorToken.UserId
+        // }
+        // http.put('api/web/public/passagens', sendData)
+        // .then(response => {
+        //     if(response.code === 200)
+        //     {
+        //         toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+        //         setExpandedRows(null)
+        //     }
+        // })
+        // .catch(erro => {
+        //     console.error(erro)
+        // })
     }
 
     function fetchPassages()
@@ -198,13 +199,13 @@ function DataTablePassagens() {
     };
 
     const statusBodyTemplate = (rowData) => {
-        const is_ok = 1;
+       
         const myArray = rowData.status.split(" | ");
         const is_not_ok = myArray.filter((item) => {
             return !item
         })
-        console.log(is_not_ok)
-        return <StatusLabel className={is_ok ? 'active' : ''}/>
+        
+        return <StatusLabel className={is_not_ok.length === 0 ? 'active' : ''}/>
     }
 
     const rowExpansionTemplate = (data) => {
