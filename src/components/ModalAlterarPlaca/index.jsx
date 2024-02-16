@@ -83,7 +83,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
                 plate: plate,
                 container: passagem[0].container
             }
-            http.put('api/web/public/passagens', sendData)
+            http.patch('api/web/public/passagens', sendData)
             .then(response => {
             })
             .catch(erro => {

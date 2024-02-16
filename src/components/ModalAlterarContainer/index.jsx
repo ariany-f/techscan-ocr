@@ -83,7 +83,7 @@ function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem })
                 container: container,
                 plate: passagem[0].plate
             }
-            http.put('api/web/public/passagens', sendData)
+            http.patch('api/web/public/passagens', sendData)
             .then(response => {
             })
             .catch(erro => {
