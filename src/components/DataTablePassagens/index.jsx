@@ -88,23 +88,29 @@ function DataTablePassagens() {
     });
 
     const confirmarPassagem = (id) => {
-        console.log(id)
-        // var sendData = {
-        //     id: id,
-        //     is_ok: 1,
-        //     updated_by: ArmazenadorToken.UserId
-        // }
-        // http.put('api/web/public/passagens', sendData)
-        // .then(response => {
-        //     if(response.code === 200)
-        //     {
-        //         toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
-        //         setExpandedRows(null)
-        //     }
-        // })
-        // .catch(erro => {
-        //     console.error(erro)
-        // })
+        const myArray = rowData.id.split(",");
+        const confirm = myArray.map((item) => {
+           var sendData = {
+                id: item,
+                is_ok: 1,
+                updated_by: ArmazenadorToken.UserId
+            }
+            console.log(sendData)
+            // http.put('api/web/public/passagens', sendData)
+            // .then(response => {
+            //     if(response.code === 200)
+            //     {
+            //         toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+            //         setExpandedRows(null)
+            //     }
+            // })
+            // .catch(erro => {
+            //     console.error(erro)
+            // })
+            return
+        })
+
+        
     }
 
     function fetchPassages()
