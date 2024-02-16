@@ -209,7 +209,7 @@ function DataTablePassagens() {
     }
 
     const rowExpansionTemplate = (data) => {
-        const myArray = rowData.status.split(" | ");
+        const myArray = data.status.split(" | ");
         const is_not_ok = myArray.filter((item) => {
             return !item
         })
