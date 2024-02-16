@@ -91,7 +91,7 @@ function ModalMotivo({ opened = false, aoClicar, aoFechar, passagem }) {
 
     function updateMotivo()
     {
-        const myArray = assagem[0].id.split(",");
+        const myArray = passagem[0].id.split(",");
         const confirm = myArray.map((item) => {
            var sendData = {
                 id: parseInt(int),
