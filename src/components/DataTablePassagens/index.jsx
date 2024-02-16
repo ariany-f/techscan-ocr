@@ -209,6 +209,10 @@ function DataTablePassagens() {
     }
 
     const rowExpansionTemplate = (data) => {
+        const myArray = rowData.status.split(" | ");
+        const is_not_ok = myArray.filter((item) => {
+            return !item
+        })
         return (
             <>
                 {data.error_reason
@@ -224,7 +228,7 @@ function DataTablePassagens() {
                 <ContainerLadoALado>
                     <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
                     {
-                        !data.status &&
+                        is_not_ok.length !== 0 &&
                         <Botao estilo="azul" style={{width:"300px"}} size="small" weight="light" aoClicar={() => confirmarPassagem(data.id)}>CONFIRMAR PASSAGEM</Botao>
                     }
                 </ContainerLadoALado>
