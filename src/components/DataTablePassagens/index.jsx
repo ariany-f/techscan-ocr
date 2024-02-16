@@ -209,6 +209,7 @@ function DataTablePassagens() {
     const statusBodyTemplate = (rowData) => {
        
         const myArray = rowData.status.split(" | ");
+        console.log(myArray)
         const is_not_ok = myArray.filter((item) => {
             return !item
         })
