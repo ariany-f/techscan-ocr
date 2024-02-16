@@ -198,8 +198,15 @@ function DataTablePassagens() {
     };
 
     const statusBodyTemplate = (rowData) => {
-        console.log(rowData.status)
-        return <StatusLabel className={rowData.status ? 'active' : ''}/>
+        const is_ok = true;
+        const myArray = rowData.status.split(" | ");
+        myArray.map((item) => {
+            if(!item)
+            {
+                is_ok = false;
+            }
+        })
+        return <StatusLabel className={is_ok ? 'active' : ''}/>
     }
 
     const rowExpansionTemplate = (data) => {
