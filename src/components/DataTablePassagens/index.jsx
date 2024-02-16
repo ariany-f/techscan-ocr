@@ -96,19 +96,22 @@ function DataTablePassagens() {
                 updated_by: ArmazenadorToken.UserId
             }
             console.log(sendData)
-            // http.put('api/web/public/passagens', sendData)
-            // .then(response => {
-            //     if(response.code === 200)
-            //     {
-            //         toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
-            //         setExpandedRows(null)
-            //     }
-            // })
-            // .catch(erro => {
-            //     console.error(erro)
-            // })
-            return
+            http.put('api/web/public/passagens', sendData)
+            .then(response => {
+                return response.code
+                
+            })
+            .catch(erro => {
+                console.error(erro)
+            })
         })
+
+        console.log(confirm)
+        // if(response.code === 200)
+        //         {
+        //             toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+        //             setExpandedRows(null)
+        //         }
 
         
     }
