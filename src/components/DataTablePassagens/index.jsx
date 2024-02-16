@@ -175,7 +175,7 @@ function DataTablePassagens() {
         const datas = myArray.map((item) => {
             if(item)
             {
-                return formatDate(new Date(item))
+                return formatDate(new Date(item)) + ' '
             }
         })
         return datas;
