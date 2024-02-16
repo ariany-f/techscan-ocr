@@ -186,7 +186,7 @@ function DataTablePassagens() {
     };
     
     const plateCameraTemplate = (rowData) => {
-        return rowData.camera ?? '----------';
+        return rowData.cameras ?? '----------';
     };
 
     const containerBodyTemplate = (rowData) => {
