@@ -72,7 +72,7 @@ const DialogEstilizado = styled.dialog`
 function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem }) {
 
     const [date, setDate] = useState(new Date())
-    const [container, setContainer] = useState(passagem[0].container)
+    const [container, setContainer] = useState(passagem[0]?.container ?? '')
 
     function updateContainer()
     {
