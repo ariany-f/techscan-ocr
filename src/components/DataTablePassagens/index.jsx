@@ -95,10 +95,9 @@ function DataTablePassagens() {
                 is_ok: 1,
                 updated_by: ArmazenadorToken.UserId
             }
-            console.log(sendData)
             http.put('api/web/public/passagens', sendData)
             .then(response => {
-                return response.code
+                return response
                 
             })
             .catch(erro => {
