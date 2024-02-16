@@ -171,7 +171,7 @@ function DataTablePassagens() {
     };
 
     const dateBodyTemplate = (rowData) => {
-        const myArray = rowData.split(" | ");
+        const myArray = rowData.datetime.split(" | ");
         const datas = myArray.map((item) => {
             return formatDate(new Date(item))
         })
