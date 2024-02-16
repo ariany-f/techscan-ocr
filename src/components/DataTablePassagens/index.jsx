@@ -88,7 +88,7 @@ function DataTablePassagens() {
     });
 
     const confirmarPassagem = (id) => {
-        const myArray = rowData.id.split(",");
+        const myArray = id.split(",");
         const confirm = myArray.map((item) => {
            var sendData = {
                 id: item,
