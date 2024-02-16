@@ -15,6 +15,8 @@ import ModalMotivo from '../ModalMotivo'
 import { Toast } from 'primereact/toast'
 import http from '@http'
 import { ArmazenadorToken } from '../../utils'
+import ModalAlterarPlaca from '../ModalAlterarPlaca'
+import ModalAlterarContainer from '../ModalAlterarContainer'
 
 const ContainerLadoALado = styled.div`
     display: flex;
@@ -78,6 +80,8 @@ function DataTablePassagens() {
     const [passagens, setPassagens] = useState([])
     const [expandedRows, setExpandedRows] = useState(null);
     const [modalOpened, setModalOpened] = useState(false)
+    const [modalPlateOpened, setModalPlateOpened] = useState(false)
+    const [modalContainerOpened, setModalContainerOpened] = useState(false)
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const toastConfirmarPassagem = useRef(null);
@@ -105,12 +109,8 @@ function DataTablePassagens() {
             })
         })
 
-        console.log(confirm)
-        // if(response.code === 200)
-        //         {
-        //             toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
-        //             setExpandedRows(null)
-        //         }
+        toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
+        setExpandedRows(null)
 
         
     }
@@ -235,6 +235,8 @@ function DataTablePassagens() {
                 
                 <ContainerLadoALado>
                     <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
+                    <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
+                    <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalContainerOpened(true)}>ALTERAR CONTAINER</Botao>
                     {
                         is_not_ok.length !== 0 &&
                         <Botao estilo="azul" style={{width:"300px"}} size="small" weight="light" aoClicar={() => confirmarPassagem(data.id)}>CONFIRMAR PASSAGEM</Botao>
@@ -340,6 +342,8 @@ function DataTablePassagens() {
             
             <Toast ref={toastConfirmarPassagem} />
             <ModalMotivo aoFechar={() => setModalOpened(false)} opened={modalOpened} passagem={expandedRows} />
+            <ModalAlterarPlaca aoFechar={() => setModalPlateOpened(false)} opened={modalPlateOpened} passagem={expandedRows} />
+            <ModalAlterarContainer aoFechar={() => setModalContainerOpened(false)} opened={modalContainerOpened} passagem={expandedRows} />
         </>
     )
 }
