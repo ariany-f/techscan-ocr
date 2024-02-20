@@ -94,6 +94,8 @@ function Login() {
            
             if (event.keyCode === 13)
             {
+                console.log(emailRef)
+                console.log(passRef)
                 changeFilledValues()
                 
                 sendData(event);
