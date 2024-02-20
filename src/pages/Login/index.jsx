@@ -14,6 +14,7 @@ function Login() {
     const [classError, setClassError] = useState([])
     const navegar = useNavigate()
     const toast = useRef(null);
+    const botao = useRef(null)
 
     const { 
         usuario,
@@ -77,23 +78,7 @@ function Login() {
            
         if (event.keyCode === 13)
         {
-            document.querySelectorAll('input').forEach(function(element) {
-
-                if(element.value !== '')
-                {
-                    if(element.name === 'email')
-                    {
-                        setEmail(element.value)
-                        console.log(usuario.email)
-                    } 
-                    if(element.name === 'password')
-                    {
-                        setPassword(element.value)
-                    }
-                }
-            })
-            
-            sendData(event);
+            botao.current.click()
         }
     };
 
@@ -120,7 +105,7 @@ function Login() {
                     <CampoTexto camposVazios={classError} name="password" valor={usuario.password} setValor={setPassword} type="password" label="Senha" placeholder="Digite sua senha" />
                 </Frame>
             </form>
-            <Botao aoClicar={evento => sendData(evento)} estilo="azul" size="medium" filled>Confirmar</Botao>
+            <Botao reference={botao} aoClicar={evento => sendData(evento)} estilo="azul" size="medium" filled>Confirmar</Botao>
             
           
         </>
