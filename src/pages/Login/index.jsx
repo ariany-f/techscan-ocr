@@ -77,8 +77,8 @@ function Login() {
 
     const changeFilledValues = () => 
     {
-        console.log(emailRef.current)
-        console.log(passRef.current)
+        console.log(emailRef)
+        console.log(passRef)
         // if(!usuario.email)
         // {
         //     setEmail(emailRef.current.value)
@@ -104,7 +104,7 @@ function Login() {
         return () => {
             window.removeEventListener('keydown', handleEnter);
         };
-    }, []);
+    }, [emailRef, passRef]);
 
     return (
         <>
