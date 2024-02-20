@@ -30,7 +30,17 @@ function Login() {
         evento.preventDefault()
 
         document.querySelectorAll('input').forEach(function(element) {
-            console.log(element.name)
+
+            if(element.name == 'email')
+            {
+                setEmail(element.value)
+            } 
+            if(element.name == 'password')
+            {
+                setPassword(element.value)
+            }
+
+
             if(element.value !== '')
             {
                 if(classError.includes(element.name))
@@ -76,29 +86,12 @@ function Login() {
         }
     }
 
-    const changeFilledValues = () => 
-    {
-        console.log(emailRef)
-        console.log(passRef)
-        // if(!usuario.email)
-        // {
-        //     setEmail(emailRef.current.value)
-        // }
-        // if(!usuario.password)
-        // {
-        //     setPassword(passRef.current.value)
-        // }
-    }
 
     useEffect(() => {
         const handleEnter = (event) => {
            
             if (event.keyCode === 13)
             {
-                console.log(emailRef)
-                console.log(passRef)
-                changeFilledValues()
-                
                 sendData(event);
             }
         };
