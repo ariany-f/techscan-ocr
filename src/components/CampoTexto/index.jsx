@@ -74,7 +74,7 @@ const Campo = styled.input`
     }
 `
 
-function CampoTexto({ label, type='text', placeholder, valor, setValor, name, width = 'inherit', camposVazios = [], patternMask = [], required = true}) {
+function CampoTexto({ reference = null, label, type='text', placeholder, valor, setValor, name, width = 'inherit', camposVazios = [], patternMask = [], required = true}) {
 
     const classeCampoVazio = camposVazios.filter((val) => {
         return val === name
@@ -152,7 +152,7 @@ function CampoTexto({ label, type='text', placeholder, valor, setValor, name, wi
                 {(label) ?
                 <label htmlFor={name} className={styles.label}>{label}</label>
                 : ''}
-                <Campo onBlur={(evento) => changeValor(evento, patternMask)} className={(classeCampoVazio.includes(name) ? 'error' : '')} $width={width} id={name} name={name} type={type == 'password' ? (visibilityPassword ? 'text' : type) : type} value={valor} onChange={(evento) => changeValor(evento, patternMask)} placeholder={placeholder} autoComplete="on"></Campo>
+                <Campo ref={reference} className={(classeCampoVazio.includes(name) ? 'error' : '')} $width={width} id={name} name={name} type={type == 'password' ? (visibilityPassword ? 'text' : type) : type} value={valor} onChange={(evento) => changeValor(evento, patternMask)} placeholder={placeholder} autoComplete="on"></Campo>
                 {temIcone(type, visibilityPassword)}
             </div>
 
