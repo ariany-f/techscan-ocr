@@ -31,17 +31,6 @@ function Login() {
 
             if(element.value !== '')
             {
-                if(element.name === 'email')
-                {
-                    setEmail(element.value)
-                    console.log(usuario.email)
-                } 
-                if(element.name === 'password')
-                {
-                    setPassword(element.value)
-                }
-
-
                 if(classError.includes(element.name))
                 {
                     setClassError(classError.filter(item => item !== element.name))
@@ -88,6 +77,22 @@ function Login() {
            
         if (event.keyCode === 13)
         {
+            document.querySelectorAll('input').forEach(function(element) {
+
+                if(element.value !== '')
+                {
+                    if(element.name === 'email')
+                    {
+                        setEmail(element.value)
+                        console.log(usuario.email)
+                    } 
+                    if(element.name === 'password')
+                    {
+                        setPassword(element.value)
+                    }
+                }
+            })
+            
             sendData(event);
         }
     };
