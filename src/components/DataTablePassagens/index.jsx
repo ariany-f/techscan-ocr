@@ -110,7 +110,7 @@ function DataTablePassagens() {
         })
 
         toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
-        setExpandedRows(null)        
+        setExpandedRows(null)
     }
 
     function fetchPassages()
