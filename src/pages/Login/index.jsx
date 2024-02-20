@@ -99,7 +99,7 @@ function Login() {
         return () => {
             window.removeEventListener('keydown', handleEnter);
         };
-    }, [emailRef, passRef]);
+    }, []);
 
     return (
         <>
