@@ -14,8 +14,6 @@ function Login() {
     const [classError, setClassError] = useState([])
     const navegar = useNavigate()
     const toast = useRef(null);
-    const emailRef = useRef(null);
-    const passRef = useRef(null);
 
     const { 
         usuario,
@@ -34,6 +32,7 @@ function Login() {
             if(element.value !== '')
             {
                 
+                console.log(element.value)
                 if(element.name === 'email')
                 {
                     setEmail(element.value)
@@ -42,7 +41,7 @@ function Login() {
                 {
                     setPassword(element.value)
                 }
-                
+
                 if(classError.includes(element.name))
                 {
                     setClassError(classError.filter(item => item !== element.name))
@@ -59,7 +58,7 @@ function Login() {
 
         if(document.querySelectorAll("form .error").length === 0 && document.querySelectorAll('input:not([value]), input[value=""]').length === 0)
         {
-            
+            console.log(usuario)
             submeterLogin().then((response) => {
                 if(response.success)
                 {
@@ -113,8 +112,8 @@ function Login() {
             </Titulo>
             <form>
                 <Frame>
-                    <CampoTexto camposVazios={classError} ref={emailRef} name="email" valor={usuario.email} setValor={setEmail} type="email" label="Email" placeholder="Digite seu Email" />
-                    <CampoTexto camposVazios={classError} ref={passRef} name="password" valor={usuario.password} setValor={setPassword} type="password" label="Senha" placeholder="Digite sua senha" />
+                    <CampoTexto camposVazios={classError} name="email" valor={usuario.email} setValor={setEmail} type="email" label="Email" placeholder="Digite seu Email" />
+                    <CampoTexto camposVazios={classError} name="password" valor={usuario.password} setValor={setPassword} type="password" label="Senha" placeholder="Digite sua senha" />
                 </Frame>
             </form>
             <Botao aoClicar={evento => sendData(evento)} estilo="azul" size="medium" filled>Confirmar</Botao>
