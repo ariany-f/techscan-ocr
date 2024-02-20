@@ -59,7 +59,10 @@ const DialogEstilizado = styled.dialog`
             box-sizing: initial;
             fill: var(--primaria);
             stroke: var(--primaria);
-            color: var(--primaria);
+            color: var(--primaria);    
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 5px;
         }
         position: absolute;
         right: 20px;
