@@ -85,6 +85,18 @@ function ModalImagem({ opened = false, aoClicar, aoFechar, imagem = null }) {
         aoFechar()
     }
 
+    useEffect(() => {
+        const handleEsc = (event) => {
+            if (event.keyCode === 27) 
+                aoFechar();
+        };
+        window.addEventListener('keydown', handleEsc);
+
+        return () => {
+            window.removeEventListener('keydown', handleEsc);
+        };
+    }, []);
+
     return (
         <>
             {opened &&
