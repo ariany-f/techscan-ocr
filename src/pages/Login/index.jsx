@@ -75,21 +75,27 @@ function Login() {
         }
     }
 
+    const changeFilledValues()
+    {
+        console.log(emailRef.current)
+        console.log(passRef.current)
+        // if(!usuario.email)
+        // {
+        //     setEmail(emailRef.current.value)
+        // }
+        // if(!usuario.password)
+        // {
+        //     setPassword(passRef.current.value)
+        // }
+    }
+
     useEffect(() => {
         const handleEnter = (event) => {
            
             if (event.keyCode === 13)
             {
-                console.log(emailRef.current)
-                console.log(passRef.current)
-                // if(!usuario.email)
-                // {
-                //     setEmail(emailRef.current.value())
-                // }
-                // if(!usuario.password)
-                // {
-                //     setPassword(passRef.current.value())
-                // }
+                changeFilledValues()
+                
                 sendData(event);
             }
         };
