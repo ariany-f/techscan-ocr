@@ -25,7 +25,6 @@ function Login() {
     
     const sendData = (evento) => {
         
-        console.log(evento)
         evento.preventDefault()
 
         document.querySelectorAll('input').forEach(function(element) {
@@ -48,7 +47,6 @@ function Login() {
         if(document.querySelectorAll("form .error").length === 0 && document.querySelectorAll('input:not([value]), input[value=""]').length === 0)
         {
             
-            console.log('chegou aqui')
             submeterLogin().then((response) => {
                 if(response.success)
                 {
@@ -77,7 +75,7 @@ function Login() {
 
     useEffect(() => {
         const handleEnter = (event) => {
-            console.log(event.keyCode)
+           
             if (event.keyCode === 13) 
                 sendData(event);
         };
