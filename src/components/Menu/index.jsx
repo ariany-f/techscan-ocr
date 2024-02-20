@@ -53,6 +53,8 @@ const ItemFimDePagina = styled.div`
     bottom: 0;
     & li {
         font-size: 20px;
+        margin-bottom: 10px;
+        cursor: pointer;
     }
 `
 
