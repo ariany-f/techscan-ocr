@@ -14,6 +14,8 @@ function Login() {
     const [classError, setClassError] = useState([])
     const navegar = useNavigate()
     const toast = useRef(null);
+    const emailRef = useRef(null);
+    const passRef = useRef(null);
 
     const { 
         usuario,
@@ -76,8 +78,18 @@ function Login() {
     useEffect(() => {
         const handleEnter = (event) => {
            
-            if (event.keyCode === 13) 
+            if (event.keyCode === 13)
+            {
+                if(!usuario.email)
+                {
+                    setEmail(emailRef.current.value())
+                }
+                if(!usuario.password)
+                {
+                    setPassword(passRef.current.value())
+                }
                 sendData(event);
+            }
         };
         window.addEventListener('keydown', handleEnter);
 
@@ -97,8 +109,8 @@ function Login() {
             </Titulo>
             <form>
                 <Frame>
-                    <CampoTexto camposVazios={classError} name="email" valor={usuario.email} setValor={setEmail} type="email" label="Email" placeholder="Digite seu Email" />
-                    <CampoTexto camposVazios={classError} name="password" valor={usuario.password} setValor={setPassword} type="password" label="Senha" placeholder="Digite sua senha" />
+                    <CampoTexto camposVazios={classError} ref={emailRef} name="email" valor={usuario.email} setValor={setEmail} type="email" label="Email" placeholder="Digite seu Email" />
+                    <CampoTexto camposVazios={classError} ref={passRef} name="password" valor={usuario.password} setValor={setPassword} type="password" label="Senha" placeholder="Digite sua senha" />
                 </Frame>
             </form>
             <Botao aoClicar={evento => sendData(evento)} estilo="azul" size="medium" filled>Confirmar</Botao>
