@@ -84,15 +84,15 @@ function Login() {
         }
     }
 
+    const handleEnter = (event) => {
+           
+        if (event.keyCode === 13)
+        {
+            sendData(event);
+        }
+    };
 
     useEffect(() => {
-        const handleEnter = (event) => {
-           
-            if (event.keyCode === 13)
-            {
-                sendData(event);
-            }
-        };
         window.addEventListener('keydown', handleEnter);
 
         return () => {
