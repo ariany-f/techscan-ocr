@@ -33,6 +33,7 @@ function Login() {
             {
                 
                 console.log(element.value)
+                console.log(element.name)
                 if(element.name === 'email')
                 {
                     setEmail(element.value)
@@ -41,6 +42,8 @@ function Login() {
                 {
                     setPassword(element.value)
                 }
+
+                console.log(usuario)
 
                 if(classError.includes(element.name))
                 {
