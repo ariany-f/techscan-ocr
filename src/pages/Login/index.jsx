@@ -30,6 +30,7 @@ function Login() {
         evento.preventDefault()
 
         document.querySelectorAll('input').forEach(function(element) {
+            console.log(element.name)
             if(element.value !== '')
             {
                 if(classError.includes(element.name))
