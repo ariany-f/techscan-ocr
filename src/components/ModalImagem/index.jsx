@@ -111,7 +111,6 @@ function ModalImagem({ opened = false, aoClicar, aoFechar, imagem = null }) {
                             </form>
                         </CloseDiv>
                         <Col12>
-                            <p style={{color: 'white', cursor: 'pointer'}} onClick={fecharModal}>VOLTAR</p>
                             <img style={{width: '100%'}} src={`https://${window.location.hostname}/api/web/public/${imagem}`}/>
                         </Col12>
                     </Frame>
