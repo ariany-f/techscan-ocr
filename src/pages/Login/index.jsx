@@ -80,14 +80,16 @@ function Login() {
            
             if (event.keyCode === 13)
             {
-                if(!usuario.email)
-                {
-                    setEmail(emailRef.current.value())
-                }
-                if(!usuario.password)
-                {
-                    setPassword(passRef.current.value())
-                }
+                console.log(emailRef.current)
+                console.log(passRef.current)
+                // if(!usuario.email)
+                // {
+                //     setEmail(emailRef.current.value())
+                // }
+                // if(!usuario.password)
+                // {
+                //     setPassword(passRef.current.value())
+                // }
                 sendData(event);
             }
         };
