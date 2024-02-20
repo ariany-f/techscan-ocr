@@ -31,18 +31,18 @@ function Login() {
 
         document.querySelectorAll('input').forEach(function(element) {
 
-            if(element.name == 'email')
-            {
-                setEmail(element.value)
-            } 
-            if(element.name == 'password')
-            {
-                setPassword(element.value)
-            }
-
-
             if(element.value !== '')
             {
+                
+                if(element.name === 'email')
+                {
+                    setEmail(element.value)
+                } 
+                if(element.name === 'password')
+                {
+                    setPassword(element.value)
+                }
+                
                 if(classError.includes(element.name))
                 {
                     setClassError(classError.filter(item => item !== element.name))
