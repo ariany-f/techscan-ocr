@@ -45,7 +45,7 @@ const Overlay = styled.div`
 
 const DialogEstilizado = styled.dialog`
     display: flex;
-    width: 60vw;
+    width: 80vw;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -112,7 +112,7 @@ function ModalImagem({ opened = false, aoClicar, aoFechar, imagem = null }) {
                         </CloseDiv>
                         <Col12>
                             <p style={{color: 'white', cursor: 'pointer'}} onClick={fecharModal}>VOLTAR</p>
-                            <img src={`https://${window.location.hostname}/api/web/public/${imagem}`}/>
+                            <img style={{width: '100%'}} src={`https://${window.location.hostname}/api/web/public/${imagem}`}/>
                         </Col12>
                     </Frame>
                 </DialogEstilizado>
