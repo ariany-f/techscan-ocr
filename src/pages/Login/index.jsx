@@ -31,11 +31,10 @@ function Login() {
 
             if(element.value !== '')
             {
-                
-                console.log(element.name === 'email')
                 if(element.name === 'email')
                 {
                     setEmail(element.value)
+                    console.log(usuario.email)
                 } 
                 if(element.name === 'password')
                 {
@@ -59,7 +58,6 @@ function Login() {
 
         if(document.querySelectorAll("form .error").length === 0 && document.querySelectorAll('input:not([value]), input[value=""]').length === 0)
         {
-            console.log(usuario)
             submeterLogin().then((response) => {
                 if(response.success)
                 {
