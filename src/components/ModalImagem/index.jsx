@@ -89,7 +89,6 @@ function ModalImagem({ opened = false, aoClicar, aoFechar, imagem = null }) {
         <>
             {opened &&
             <Overlay>
-                <Toast ref={toast} />
                 <DialogEstilizado id="modal-detalhes-usuario" open={opened}>
                     <Frame>
                         <CloseDiv>
