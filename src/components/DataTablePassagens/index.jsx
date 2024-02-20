@@ -17,6 +17,7 @@ import http from '@http'
 import { ArmazenadorToken } from '../../utils'
 import ModalAlterarPlaca from '../ModalAlterarPlaca'
 import ModalAlterarContainer from '../ModalAlterarContainer'
+import ModalImagem from '../ModalImagem'
 
 const ContainerLadoALado = styled.div`
     display: flex;
@@ -82,6 +83,8 @@ function DataTablePassagens() {
     const [modalOpened, setModalOpened] = useState(false)
     const [modalPlateOpened, setModalPlateOpened] = useState(false)
     const [modalContainerOpened, setModalContainerOpened] = useState(false)
+    const [modalImagemOpened, setModalImagemOpened] = useState(false)
+    const [imagemModal, setImagemModal] = useState(null)
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const toastConfirmarPassagem = useRef(null);
@@ -111,6 +114,12 @@ function DataTablePassagens() {
 
         toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
         setExpandedRows(null)
+    }
+
+    function abrirImagem(item)
+    {
+        setImagemModal(item)
+        setModalImagemOpened(true)
     }
 
     function fetchPassages()
@@ -242,7 +251,7 @@ function DataTablePassagens() {
                 </ContainerLadoALado>
                 <div>
                     {data.images.map((item, index) => {
-                        return <img key={`${data.id}-${index}`} width="240px" src={`https://${window.location.hostname}/api/web/public/${item}`} style={{margin: '5px'}} />
+                        return <img onClick={abrirImagem(item)} key={`${data.id}-${index}`} width="240px" src={`https://${window.location.hostname}/api/web/public/${item}`} style={{margin: '5px'}} />
                     })}
                 </div>
             </>
@@ -342,6 +351,7 @@ function DataTablePassagens() {
             <ModalMotivo aoFechar={() => setModalOpened(false)} opened={modalOpened} passagem={expandedRows} />
             <ModalAlterarPlaca aoFechar={() => setModalPlateOpened(false)} opened={modalPlateOpened} passagem={expandedRows} />
             <ModalAlterarContainer aoFechar={() => setModalContainerOpened(false)} opened={modalContainerOpened} passagem={expandedRows} />
+            <ModalImagem aoFechar={() => setModalImagemOpened(false)} opened={modalImagemOpened} imagem={imagemModal} />
         </>
     )
 }
