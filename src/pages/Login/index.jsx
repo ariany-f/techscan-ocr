@@ -5,7 +5,7 @@ import SubTitulo from "@components/SubTitulo"
 import Titulo from "@components/Titulo"
 import { useNavigate } from "react-router-dom"
 import { useSessaoUsuarioContext } from "../../contexts/SessaoUsuario"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ArmazenadorToken } from "../../utils"
 import { Toast } from 'primereact/toast'
 
@@ -71,6 +71,17 @@ function Login() {
         }
     }
 
+    useEffect(() => {
+        const handleEnter = (event) => {
+            if (event.keyCode === 13) 
+                sendData(event);
+        };
+        window.addEventListener('keydown', handleEnter);
+
+        return () => {
+            window.removeEventListener('keydown', handleEnter);
+        };
+    }, []);
 
     return (
         <>
