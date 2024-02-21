@@ -164,13 +164,13 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
     }
 
     const editarUsuario = () => {
-
-        setNewPassword(password)
-
         if(usuario.id)
         {
-            console.log(usuario)
-            http.put(`api/web/public/users`, usuario)
+            const obj = {}
+            obj = usuario
+            obj['new_password'] = password
+
+            http.put(`api/web/public/users`, obj)
             .then((response) => {
                if(response.code == 200)
                {
