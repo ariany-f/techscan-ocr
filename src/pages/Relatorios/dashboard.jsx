@@ -95,7 +95,8 @@ function RelatorioDashboard() {
 
         // download the pdf
         pdf.save('filename.pdf');
-  }, []);
+        
+  }, [dataDianteira, dataTraseira, dataContainer]);
 
   function fetchData()
   {
