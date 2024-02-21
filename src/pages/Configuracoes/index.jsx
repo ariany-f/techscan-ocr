@@ -293,8 +293,6 @@ function Configuracoes(){
             }
             setLoading(false)
         }
-        
-        console.log(camera)
     }
 
     const salvarCamera = () => {
