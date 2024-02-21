@@ -182,7 +182,11 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
             })
         }
         else{
-            http.post(`api/web/public/users`, usuario)
+            let obj = {}
+            obj = usuario
+            obj['password'] = password
+
+            http.post(`api/web/public/users`, obj)
             .then((response) => {
             if(response.code == 200)
             {
