@@ -75,6 +75,7 @@ function RelatorioDashboard() {
 
       //  console.log(refTraseira.current.generateLegend())
         console.log(refTraseira.current.getCanvas())
+        console.log(refTraseira.current.getCanvas().offsetWidth)
         console.log(refTraseira.current.getBase64Image().offsetWidth)
 
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
