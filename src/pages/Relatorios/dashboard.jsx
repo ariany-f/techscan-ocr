@@ -73,10 +73,12 @@ function RelatorioDashboard() {
         // link.href = refTraseira.current.getBase64Image()
         // link.click()
 
+        console.log(refTraseira.current)
+
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
         pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 0);
-        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', 100, 0);
-        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', 200, 0);
+        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', 300, 0);
+        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', 500, 0);
          
         // download the pdf
         pdf.save('filename.pdf');
