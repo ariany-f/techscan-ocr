@@ -62,7 +62,7 @@ function RelatorioDashboard() {
         var reportPageWidth = reportRef.current.offsetWidth;
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
         var pdfctx = refTraseira.current.getCanvas().getContext('2d')
-        console.log(refTraseira.current.getElement()[0])
+        console.log(refTraseira.current.getElement().current)
         const drawedImage = pdfctx.drawImage(refTraseira.current.getElement()[0], 0, 0, refTraseira.current.getCanvas().offsetWidth, refTraseira.current.getCanvas().offsetHeight)
         pdf.addImage(drawedImage, 'PNG', 0, 50);
         
