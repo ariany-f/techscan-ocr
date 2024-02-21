@@ -11,7 +11,7 @@ import { addLocale } from 'primereact/api'
 import Loading from '@components/Loading'
 import { useSessaoUsuarioContext } from "../../contexts/SessaoUsuario"
 import { jsPDF } from "jspdf";
-import { Chartinho } from 'chart.js/auto';
+import { Chart as Chartinho } from 'chart.js/auto';
 import { CategoryScale } from 'chart.js';
 
 const ContainerLadoALado = styled.div`
