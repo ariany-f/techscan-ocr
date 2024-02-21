@@ -61,6 +61,9 @@ function RelatorioDashboard() {
         var reportPageHeight = reportRef.current.offsetHeight;
         var reportPageWidth = reportRef.current.offsetWidth;
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
+        
+        pdf.setTextColor(100);
+        pdf.setFontSize(10);
 
         pdf.text('Placa Dianteira', 0, 0)
         pdf.text('Placa Traseira', refTraseira.current.getCanvas().offsetWidth, 0)
