@@ -44,6 +44,7 @@ function RelatorioDashboard() {
   const refDianteira = useRef(null)
   const refTraseira = useRef(null)
   const refContainer = useRef(null)
+  const reportRef = useRef(null)
 
   const {
       usuario
@@ -55,11 +56,13 @@ function RelatorioDashboard() {
   }
 
   const exportPdf = useCallback(() => {
-
+        console.log(reportRef.innerHeight)
+        console.log(reportRef.innerWidth)
         const link = document.createElement('a')
         link.download = 'chart.png'
         link.href = refTraseira.current.getBase64Image()
         link.click()
+
   }, []);
 
   function fetchData()
@@ -243,7 +246,7 @@ function RelatorioDashboard() {
                   <Botao estilo="azul" size="medium" aoClicar={exportPdf}>Download PDF</Botao>
                 </div>
             </ContainerLadoALado>
-            <ContainerLadoALado id="reportPage">
+            <ContainerLadoALado ref={reportRef}>
 			      {(Object.keys(dataDianteira).length > 0) &&
               <div>
                 <Titulo>
