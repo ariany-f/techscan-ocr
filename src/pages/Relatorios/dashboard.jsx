@@ -73,7 +73,9 @@ function RelatorioDashboard() {
         // link.href = refTraseira.current.getBase64Image()
         // link.click()
 
-        console.log(refTraseira.current)
+        console.log(refTraseira.current.generateLegend())
+        console.log(refTraseira.current.getCanvas())
+        console.log(refTraseira.current.getBase64Image().offsetWidth)
 
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
         pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 0);
