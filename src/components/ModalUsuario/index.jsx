@@ -165,9 +165,7 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
 
     const editarUsuario = () => {
 
-        if(password.length){
-            setNewPassword(password)
-        }
+        setNewPassword(password)
 
         if(usuario.id)
         {
@@ -217,6 +215,7 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
             name: '',
             email: '',
             permission_id: 1,
+            new_password: '',
             status: 1,
             password: ''
         })
@@ -271,7 +270,7 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
                                     camposVazios={classError}
                                     valor={password}
                                     type="password"
-                                    setValor={setPassword}
+                                    setValor={setNewPassword}
                                     placeholder=""
                                     label="SENHA"
                                 />
