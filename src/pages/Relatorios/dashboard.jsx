@@ -106,7 +106,7 @@ function RelatorioDashboard() {
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 390, 'Capturas OCR ' + capturasOCRContainer)
      
         // download the pdf
-        pdf.save('filename.pdf');
+        pdf.save('Relatorio_Assertividade.pdf');
 
   }, [dataDianteira, dataTraseira, dataContainer, usuario]);
 
