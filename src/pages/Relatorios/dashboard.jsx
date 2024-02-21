@@ -67,9 +67,9 @@ function RelatorioDashboard() {
         pdf.text(80, 30, 'Placa Dianteira')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + 80, 30, 'Placa Traseira')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 80, 30, 'Container')
-     //   pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 80);
-     //   pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 80);
-      //  pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 80);
+        pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 80);
+        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 80);
+        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 80);
          
         // download the pdf
         pdf.save('filename.pdf');
