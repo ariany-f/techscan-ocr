@@ -64,9 +64,7 @@ function RelatorioDashboard() {
 
         pdf.setTextColor(0,0,0);
         pdf.setFontSize(20);
-        pdf.setFont("times");
-
-        pdf.text(120, 176, 'Placa Dianteira')
+        pdf.text(120, 20, 'Placa Dianteira')
         pdf.text(refTraseira.current.getCanvas().offsetWidth, 0, 'Placa Traseira')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 0, 'Container')
      //   pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 80);
