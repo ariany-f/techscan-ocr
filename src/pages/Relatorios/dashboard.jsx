@@ -60,10 +60,10 @@ function RelatorioDashboard() {
         // get size of report page
         var reportPageHeight = reportRef.current.offsetHeight;
         var reportPageWidth = reportRef.current.offsetWidth;
-
-        console.log(refTraseira.current.getCanvas().getContext('2d'))
-        
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
+
+        pdf.addImage(refTraseira.current.getCanvas().getContext('2d'), 'PNG', 0, 50);
+        
         pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 0);
         pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 0);
         pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 0);
