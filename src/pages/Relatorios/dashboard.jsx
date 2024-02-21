@@ -196,9 +196,9 @@ function RelatorioDashboard() {
           allDayText : 'Todo Dia'
       });
 
-      const TotalPassagensDianteira = parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1])
-      const TotalPassagensTraseira = parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1])
-      const TotalPassagensContainer = parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1])
+      const TotalPassagensDianteira = dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0
+      const TotalPassagensTraseira = dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0
+      const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
 
       return (
         <>
