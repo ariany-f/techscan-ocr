@@ -10,6 +10,7 @@ import { MdOutlineClear } from 'react-icons/md';
 import { addLocale } from 'primereact/api'
 import Loading from '@components/Loading'
 import { useSessaoUsuarioContext } from "../../contexts/SessaoUsuario"
+import { jsPDF } from "jspdf";
 
 const ContainerLadoALado = styled.div`
     display: flex;
