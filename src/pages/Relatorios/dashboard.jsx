@@ -11,6 +11,7 @@ import { addLocale } from 'primereact/api'
 import Loading from '@components/Loading'
 import { useSessaoUsuarioContext } from "../../contexts/SessaoUsuario"
 import { jsPDF } from "jspdf";
+import { Chartinho } from 'chart.js/auto';
 import { CategoryScale } from 'chart.js';
 
 const ContainerLadoALado = styled.div`
@@ -21,7 +22,7 @@ const ContainerLadoALado = styled.div`
     flex-wrap: wrap;
     width: 80vw;
 `
-Chart.register(CategoryScale)
+Chartinho.register(CategoryScale)
 
 function RelatorioDashboard() {
 
@@ -250,7 +251,7 @@ function RelatorioDashboard() {
                 <Titulo>
                   <h6>Placa Dianteira</h6>
                 </Titulo>
-                <Chart type="pie" data={dataDianteira} options={configDianteira} className="w-full md:w-10rem" />
+                <Chart ref={refDianteira} type="pie" data={dataDianteira} options={configDianteira} className="w-full md:w-10rem" />
                 <p style={{marginTop: '15px'}}>
                   {`Nº Passagens: ${TotalPassagensDianteira}`}
                 </p>
@@ -274,7 +275,7 @@ function RelatorioDashboard() {
                 <Titulo>
                   <h6>Placa Traseira</h6>
                 </Titulo>
-                <Chart type="pie" data={dataTraseira} options={configTraseira} className="w-full md:w-10rem" />
+                <Chart ref={refTraseira} type="pie" data={dataTraseira} options={configTraseira} className="w-full md:w-10rem" />
                 <p style={{marginTop: '15px'}}>
                   {`Nº Passagens: ${TotalPassagensTraseira}`}
                 </p>
@@ -297,7 +298,7 @@ function RelatorioDashboard() {
                 <Titulo>
                   <h6>Conteiner</h6>
                 </Titulo>
-                <Chart type="pie" data={dataContainer} options={configContainer} className="w-full md:w-10rem" />
+                <Chart ref={refContainer} type="pie" data={dataContainer} options={configContainer} className="w-full md:w-10rem" />
                 <p style={{marginTop: '15px'}}>
                    {`Nº Passagens: ${TotalPassagensContainer}`}
                 </p>
