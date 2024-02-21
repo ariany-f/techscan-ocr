@@ -80,22 +80,22 @@ function RelatorioDashboard() {
         const capturasOCRContainer = usuario.company === 'Lachman' ? Math.floor((TotalPassagensContainer/100)*50) : TotalPassagensContainer
 
 
-        pdf.text(80, 180, 'Nº Passagens' + TotalPassagensDianteira)
+        pdf.text(80, 350, 'Nº Passagens' + TotalPassagensDianteira)
        // pdf.text(refTraseira.current.getCanvas().offsetWidth + 80, 30, 'Placa Traseira')
        // pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 80, 30, 'Container')
         
-       pdf.text(refTraseira.current.getCanvas().offsetWidth + 80, 180, 'Nº Passagens' + TotalPassagensTraseira)
+       pdf.text(refTraseira.current.getCanvas().offsetWidth + 80, 350, 'Nº Passagens' + TotalPassagensTraseira)
       //  pdf.text(refTraseira.current.getCanvas().offsetWidth + 80, 30, 'Placa Traseira')
       //  pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 80, 30, 'Container')
         
-       pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 80, 180, 'Nº Passagens' + TotalPassagensContainer)
+       pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 80, 350, 'Nº Passagens' + TotalPassagensContainer)
        // pdf.text(refTraseira.current.getCanvas().offsetWidth + 80, 30, 'Placa Traseira')
        // pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 80, 30, 'Container')
 
 
         // download the pdf
         pdf.save('filename.pdf');
-        
+
   }, [dataDianteira, dataTraseira, dataContainer]);
 
   function fetchData()
