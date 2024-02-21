@@ -56,8 +56,8 @@ function RelatorioDashboard() {
   }
 
   const exportPdf = useCallback(() => {
-        console.log(reportRef.innerHeight)
-        console.log(reportRef.innerWidth)
+        console.log(reportRef.current.innerHeight)
+        console.log(reportRef.current.innerWidth)
         const link = document.createElement('a')
         link.download = 'chart.png'
         link.href = refTraseira.current.getBase64Image()
