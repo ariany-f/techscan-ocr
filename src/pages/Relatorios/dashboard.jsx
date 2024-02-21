@@ -61,8 +61,8 @@ function RelatorioDashboard() {
         var reportPageHeight = reportRef.current.offsetHeight;
         var reportPageWidth = reportRef.current.offsetWidth;
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
-
-        pdf.addImage(refTraseira.current.getCanvas().getContext('2d').drawImage(refTraseira, 0, 0, refTraseira.current.getCanvas().offsetWidth, refTraseira.current.getCanvas().offsetHeight), 'PNG', 0, 50);
+        const drawedImage = refTraseira.current.getCanvas().getContext('2d').drawImage(refTraseira.current, 0, 0, refTraseira.current.getCanvas().offsetWidth, refTraseira.current.getCanvas().offsetHeight)
+        pdf.addImage(drawedImage, 'PNG', 0, 50);
         
         pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 0);
         pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 0);
