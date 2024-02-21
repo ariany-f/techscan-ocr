@@ -61,16 +61,16 @@ function RelatorioDashboard() {
         var reportPageHeight = reportRef.current.offsetHeight;
         var reportPageWidth = reportRef.current.offsetWidth;
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
-        
-        pdf.setTextColor(100);
-        pdf.setFontSize(10);
+
+        pdf.setTextColor(0,0,0);
+        pdf.setFontSize(20);
 
         pdf.text('Placa Dianteira', 0, 0)
         pdf.text('Placa Traseira', refTraseira.current.getCanvas().offsetWidth, 0)
         pdf.text('Container', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 0)
-        pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 60);
-        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 60);
-        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 60);
+        pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 80);
+        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 80);
+        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 80);
          
         // download the pdf
         pdf.save('filename.pdf');
