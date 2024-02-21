@@ -196,6 +196,10 @@ function RelatorioDashboard() {
           allDayText : 'Todo Dia'
       });
 
+      const TotalPassagensDianteira = parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1])
+      const TotalPassagensTraseira = parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1])
+      const TotalPassagensContainer = parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1])
+
       return (
         <>
           <Loading opened={loading} />
@@ -225,9 +229,7 @@ function RelatorioDashboard() {
                 </Titulo>
                 <Chart type="pie" data={dataDianteira} options={configDianteira} className="w-full md:w-10rem" />
                 <p style={{marginTop: '15px'}}>
-                  { dataDianteira.datasets && dataDianteira.datasets[0] ?
-                  ('Nº Passagens: ' + (parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1])))
-                  : ''}
+                  {`Nº Passagens: ${TotalPassagensDianteira}`}
                 </p>
                 <p style={{marginTop: '15px'}}>
                   { dataDianteira.datasets && dataDianteira.datasets[0] ?
@@ -236,9 +238,7 @@ function RelatorioDashboard() {
                   : ''}
                 </p>
                 <p style={{marginTop: '15px'}}>
-                  { dataDianteira.datasets && dataDianteira.datasets[0] ?
-                  ('Capturas OCR: ' + ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100))
-                  : ''}
+                  {`Capturas OCR: ${(TotalPassagensDianteira/100)*50}`}
                 </p>
               </div>
 			      }
@@ -250,9 +250,7 @@ function RelatorioDashboard() {
                 </Titulo>
                 <Chart type="pie" data={dataTraseira} options={configTraseira} className="w-full md:w-10rem" />
                 <p style={{marginTop: '15px'}}>
-                  { dataTraseira.datasets && dataTraseira.datasets[0] ?
-                  ('Nº Passagens: ' + (parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1])))
-                  : ''}
+                  {`Nº Passagens: ${TotalPassagensTraseira}`}
                 </p>
                 <p style={{marginTop: '15px'}}>{
                   dataTraseira.datasets && dataTraseira.datasets[0] ?
@@ -260,10 +258,8 @@ function RelatorioDashboard() {
                   + '%')
                   : ''}
                  </p>
-                <p style={{marginTop: '15px'}}>
-                  { dataTraseira.datasets && dataTraseira.datasets[0] ?
-                  ('Capturas OCR: ' + ((parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]))/60))
-                  : ''}
+                 <p style={{marginTop: '15px'}}>
+                  {`Capturas OCR: ${(TotalPassagensTraseira/100)*50}`}
                 </p>
               </div>
 			        }
@@ -274,9 +270,7 @@ function RelatorioDashboard() {
                 </Titulo>
                 <Chart type="pie" data={dataContainer} options={configContainer} className="w-full md:w-10rem" />
                 <p style={{marginTop: '15px'}}>
-                  { dataContainer.datasets && dataContainer.datasets[0] ?
-                  ('Nº Passagens: ' + (parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1])))
-                  : ''}
+                   {`Nº Passagens: ${TotalPassagensContainer}`}
                 </p>
                 <p style={{marginTop: '15px'}}> {
                   dataContainer.datasets && dataContainer.datasets[0] ?
@@ -284,9 +278,7 @@ function RelatorioDashboard() {
                   + '%')
                   : ''}</p>
                 <p style={{marginTop: '15px'}}>
-                  { dataContainer.datasets && dataContainer.datasets[0] ?
-                  ('Capturas OCR: ' + ((parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]))/50))
-                  : ''}
+                  {`Capturas OCR: ${(TotalPassagensContainer/100)*50}`}
                 </p>
               </div>
 			        }
