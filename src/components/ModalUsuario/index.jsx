@@ -197,12 +197,13 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
     }
 
     useEffect(() => {
-        if(opened && idUsuario)
+        if(opened && idUsuario && usuario.email === '')
         {
             http.get(`api/web/public/users/${idUsuario}`)
                 .then((response) => {
                     setUsuario(response[0])
                     setName(response[0].name)
+                    setNewPassword('')
                 })
                 .catch(erro => {
                     console.error(erro)
