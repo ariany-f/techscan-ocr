@@ -84,7 +84,6 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
         name: '',
         email: '',
         permission_id: 1,
-        new_password: '',
         status: 1,
         password: ''
     })
@@ -135,14 +134,6 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
             return {
                 ...estadoAnterior,
                 password
-            }
-        })
-    }
-    const setNewPassword = (new_password) => {
-        setUsuario(estadoAnterior => {
-            return {
-                ...estadoAnterior,
-                new_password
             }
         })
     }
@@ -220,7 +211,6 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
             name: '',
             email: '',
             permission_id: 1,
-            new_password: '',
             status: 1,
             password: ''
         })
