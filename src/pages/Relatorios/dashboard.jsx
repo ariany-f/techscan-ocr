@@ -224,10 +224,16 @@ function RelatorioDashboard() {
                   <h6>Placa Dianteira</h6>
                 </Titulo>
                 <Chart type="pie" data={dataDianteira} options={configDianteira} className="w-full md:w-10rem" />
-                <p style={{marginTop: '15px'}}>{
-                  dataDianteira.datasets && dataDianteira.datasets[0] ?
-                  ('Porcentagem Acerto: ' + Math.floor((!isNaN(parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100))) ? parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100) : 100) 
+                <p style={{marginTop: '15px'}}>
+                  { dataDianteira.datasets && dataDianteira.datasets[0] ?
+                  ('Nº Passagens: ' + (parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1])))
+                  : ''}
+                  { dataDianteira.datasets && dataDianteira.datasets[0] ?
+                  ('Assertividade: ' + Math.floor((!isNaN(parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100))) ? parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100) : 100) 
                   + '%')
+                  : ''}
+                  { dataDianteira.datasets && dataDianteira.datasets[0] ?
+                  ('Capturas OCR: ' + ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100))
                   : ''}
                 </p>
               </div>
