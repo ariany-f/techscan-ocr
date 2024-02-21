@@ -47,6 +47,50 @@ function RelatorioDashboard() {
       setEndDate('')
   }
 
+  function exportPdf() {
+        
+      // get size of report page
+      var reportPageHeight = $('#reportPage').innerHeight();
+      var reportPageWidth = $('#reportPage').innerWidth();
+      
+      // create a new canvas object that we will populate with all other canvas objects
+      var pdfCanvas = $('<canvas />').attr({
+        id: "canvaspdf",
+        width: reportPageWidth,
+        height: reportPageHeight
+      });
+      
+      // keep track canvas position
+      var pdfctx = $(pdfCanvas)[0].getContext('2d');
+      var pdfctxX = 0;
+      var pdfctxY = 0;
+      var buffer = 100;
+      
+      // for each chart.js chart
+      $("canvas").each(function(index) {
+        // get the chart height/width
+        var canvasHeight = $(this).innerHeight();
+        var canvasWidth = $(this).innerWidth();
+        
+        // draw the chart into the new canvas
+        pdfctx.drawImage($(this)[0], pdfctxX, pdfctxY, canvasWidth, canvasHeight);
+        pdfctxX += canvasWidth + buffer;
+        
+        // our report page is in a grid pattern so replicate that in the new canvas
+        if (index % 2 === 1) {
+          pdfctxX = 0;
+          pdfctxY += canvasHeight + buffer;
+        }
+      });
+      
+      // create new pdf and add our new canvas as an image
+      var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
+      pdf.addImage($(pdfCanvas)[0], 'PNG', 0, 0);
+      
+      // download the pdf
+      pdf.save('filename.pdf');
+  }
+
   function fetchData()
   {
       setLoading(true)
@@ -220,12 +264,15 @@ function RelatorioDashboard() {
                     <Calendar locale="pt" dateFormat="dd/mm/yy" value={endDate} onChange={(e) => setEndDate(e.value)} showTime hourFormat="24" />
                 </div>
 
-                <div style={{ width: '15%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Limpar Filtros</Texto>
                     <Botao estilo="cinza" size="medium" aoClicar={LimparDatas}><MdOutlineClear className="icon" /></Botao>
                 </div>
+                <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                  <Botao estilo="azul" size="medium" aoClicar={exportPdf}>Download PDF</Botao>
+                </div>
             </ContainerLadoALado>
-            <ContainerLadoALado>
+            <ContainerLadoALado id="reportPage">
 			      {(Object.keys(dataDianteira).length > 0) &&
               <div>
                 <Titulo>
