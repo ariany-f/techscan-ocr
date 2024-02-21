@@ -61,12 +61,12 @@ function RelatorioDashboard() {
         var reportPageHeight = reportRef.current.offsetHeight;
         var reportPageWidth = reportRef.current.offsetWidth;
         
-        const pdfCanvas = document.createElement('canvas')
-        pdfCanvas.id('canvaspdf')
-        pdfCanvas.width(reportPageWidth)
-        pdfCanvas.height(reportPageHeight)
+        // const pdfCanvas = document.createElement('canvas')
+        // pdfCanvas.id('canvaspdf')
+        // pdfCanvas.width(reportPageWidth)
+        // pdfCanvas.height(reportPageHeight)
 
-        console.log(pdfCanvas)
+        // console.log(pdfCanvas)
 
         // const link = document.createElement('a')
         // link.download = 'chart.png'
