@@ -166,7 +166,7 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
     const editarUsuario = () => {
         if(usuario.id)
         {
-            const obj = {}
+            let obj = {}
             obj = usuario
             obj['new_password'] = password
 
