@@ -62,12 +62,12 @@ function RelatorioDashboard() {
         var reportPageWidth = reportRef.current.offsetWidth;
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
 
-        pdf.text(0, 0, 'Placa Dianteira')
-        pdf.text(refTraseira.current.getCanvas().offsetWidth, 0, 'Placa Traseira')
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 0, 'Container')
-        pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 10);
-        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 10);
-        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 10);
+        pdf.text('Placa Dianteira', 0, 0)
+        pdf.text('Placa Traseira', refTraseira.current.getCanvas().offsetWidth, 0)
+        pdf.text('Container', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 0)
+        pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 60);
+        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 60);
+        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 60);
          
         // download the pdf
         pdf.save('filename.pdf');
