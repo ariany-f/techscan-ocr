@@ -75,6 +75,9 @@ function RelatorioDashboard() {
 
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
         pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 0);
+         
+        // download the pdf
+        pdf.save('filename.pdf');
   }, []);
 
   function fetchData()
