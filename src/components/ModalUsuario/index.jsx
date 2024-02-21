@@ -270,7 +270,7 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
                                     camposVazios={classError}
                                     valor={password}
                                     type="password"
-                                    setValor={setNewPassword}
+                                    setValor={setPassword}
                                     placeholder=""
                                     label="SENHA"
                                 />
