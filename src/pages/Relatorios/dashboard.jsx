@@ -58,11 +58,8 @@ function RelatorioDashboard() {
 
         const link = document.createElement('a')
         link.download = 'chart.png'
-        console.log(refTraseira.current)
-      //  link.href = refTraseira.current.toBase64Image()
-      //  link.click()
-
-
+        link.href = refTraseira.current.getBase64Image()
+        link.click()
   }, []);
 
   function fetchData()
