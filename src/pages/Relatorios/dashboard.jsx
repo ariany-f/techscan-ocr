@@ -67,9 +67,10 @@ function RelatorioDashboard() {
         pdf.text(50, 30, 'Placa Dianteira')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + 50, 30, 'Placa Traseira')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 50, 30, 'Container')
-        pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 80);
-        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 80);
-        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 80);
+
+        pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 70);
+        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 70);
+        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 70);
          
         pdf.setFontSize(10);
         const TotalPassagensDianteira = dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0
@@ -287,6 +288,7 @@ function RelatorioDashboard() {
                     <Botao estilo="cinza" size="medium" aoClicar={LimparDatas}><MdOutlineClear className="icon" /></Botao>
                 </div>
                 <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                  <Texto weight={400}>Download PDF</Texto>
                   <Botao estilo="azul" size="medium" aoClicar={exportPdf}>Download PDF</Botao>
                 </div>
             </ContainerLadoALado>
