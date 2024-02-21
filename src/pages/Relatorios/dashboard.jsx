@@ -11,6 +11,7 @@ import { addLocale } from 'primereact/api'
 import Loading from '@components/Loading'
 import { useSessaoUsuarioContext } from "../../contexts/SessaoUsuario"
 import { jsPDF } from "jspdf";
+import { CategoryScale } from 'chart.js';
 
 const ContainerLadoALado = styled.div`
     display: flex;
@@ -20,6 +21,7 @@ const ContainerLadoALado = styled.div`
     flex-wrap: wrap;
     width: 80vw;
 `
+Chart.register(CategoryScale)
 
 function RelatorioDashboard() {
 
@@ -57,7 +59,7 @@ function RelatorioDashboard() {
         link.download = 'chart.png'
         link.href = refTraseira.current.toBase64Image()
         link.click()
-        
+
 
   }, []);
 
