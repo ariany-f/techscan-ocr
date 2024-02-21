@@ -60,21 +60,9 @@ function RelatorioDashboard() {
         // get size of report page
         var reportPageHeight = reportRef.current.offsetHeight;
         var reportPageWidth = reportRef.current.offsetWidth;
+
+        console.log(refTraseira.current.getCanvas().getContext('2d'))
         
-        // const pdfCanvas = document.createElement('canvas')
-        // pdfCanvas.id('canvaspdf')
-        // pdfCanvas.width(reportPageWidth)
-        // pdfCanvas.height(reportPageHeight)
-
-        // console.log(pdfCanvas)
-
-        // const link = document.createElement('a')
-        // link.download = 'chart.png'
-        // link.href = refTraseira.current.getBase64Image()
-        // link.click()
-
-      //  console.log(refTraseira.current.generateLegend())
-
         var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
         pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', 0, 0);
         pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 0);
