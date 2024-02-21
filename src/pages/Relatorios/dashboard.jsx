@@ -71,6 +71,28 @@ function RelatorioDashboard() {
         pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth, 80);
         pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 80);
          
+        const TotalPassagensDianteira = dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0
+        const TotalPassagensTraseira = dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0
+        const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
+
+        const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira/100)*100 : TotalPassagensDianteira
+        const capturasOCRTraseira = usuario.company === 'Lachman' ? Math.floor((TotalPassagensTraseira/100)*60) : TotalPassagensTraseira
+        const capturasOCRContainer = usuario.company === 'Lachman' ? Math.floor((TotalPassagensContainer/100)*50) : TotalPassagensContainer
+
+
+        pdf.text(80, 180, 'Nº Passagens' + TotalPassagensDianteira)
+       // pdf.text(refTraseira.current.getCanvas().offsetWidth + 80, 30, 'Placa Traseira')
+       // pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 80, 30, 'Container')
+        
+       pdf.text(refTraseira.current.getCanvas().offsetWidth + 80, 180, 'Nº Passagens' + TotalPassagensTraseira)
+      //  pdf.text(refTraseira.current.getCanvas().offsetWidth + 80, 30, 'Placa Traseira')
+      //  pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 80, 30, 'Container')
+        
+       pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 80, 180, 'Nº Passagens' + TotalPassagensContainer)
+       // pdf.text(refTraseira.current.getCanvas().offsetWidth + 80, 30, 'Placa Traseira')
+       // pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 80, 30, 'Container')
+
+
         // download the pdf
         pdf.save('filename.pdf');
   }, []);
