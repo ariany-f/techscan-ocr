@@ -73,7 +73,7 @@ function RelatorioDashboard() {
         // link.href = refTraseira.current.getBase64Image()
         // link.click()
 
-        console.log(refTraseira.current.generateLegend())
+      //  console.log(refTraseira.current.generateLegend())
         console.log(refTraseira.current.getCanvas())
         console.log(refTraseira.current.getBase64Image().offsetWidth)
 
