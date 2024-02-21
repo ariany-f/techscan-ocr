@@ -200,6 +200,10 @@ function RelatorioDashboard() {
       const TotalPassagensTraseira = dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0
       const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
 
+      const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira/100)*100 : TotalPassagensDianteira
+      const capturasOCRTraseira = usuario.company === 'Lachman' ? (TotalPassagensTraseira/100)*60 : TotalPassagensTraseira
+      const capturasOCRContainer = usuario.company === 'Lachman' ? (TotalPassagensContainer/100)*50 : TotalPassagensContainer
+
       return (
         <>
           <Loading opened={loading} />
@@ -233,12 +237,15 @@ function RelatorioDashboard() {
                 </p>
                 <p style={{marginTop: '15px'}}>
                   { dataDianteira.datasets && dataDianteira.datasets[0] ?
-                  ('Assertividade: ' + Math.floor((!isNaN(parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100))) ? parseInt(dataDianteira.datasets[0].data[0]) / ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))/100) : 100) 
-                  + '%')
-                  : ''}
+                   ('Assertividade: ' + Math.floor(
+                                      !isNaN(parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira) 
+                                      ? parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira 
+                                      : 100)
+                    + '%')
+                    : ''}
                 </p>
                 <p style={{marginTop: '15px'}}>
-                  {`Capturas OCR: ${(TotalPassagensDianteira/100)*50}`}
+                  {`Capturas OCR: ${capturasOCRDianteira}`}
                 </p>
               </div>
 			      }
@@ -254,12 +261,15 @@ function RelatorioDashboard() {
                 </p>
                 <p style={{marginTop: '15px'}}>{
                   dataTraseira.datasets && dataTraseira.datasets[0] ?
-                  ('Assertividade: ' + Math.floor((!isNaN(parseInt(dataTraseira.datasets[0].data[0]) / ((parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]))/100))) ? parseInt(dataTraseira.datasets[0].data[0]) / ((parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]))/100) : 100) 
-                  + '%')
-                  : ''}
+                  ('Assertividade: ' + Math.floor(
+                                      !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira) 
+                                      ? parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira 
+                                      : 100)
+                    + '%')
+                    : ''}
                  </p>
                  <p style={{marginTop: '15px'}}>
-                  {`Capturas OCR: ${(TotalPassagensTraseira/100)*50}`}
+                  {`Capturas OCR: ${capturasOCRTraseira}`}
                 </p>
               </div>
 			        }
@@ -274,11 +284,15 @@ function RelatorioDashboard() {
                 </p>
                 <p style={{marginTop: '15px'}}> {
                   dataContainer.datasets && dataContainer.datasets[0] ?
-                  ('Assertividade: ' + Math.floor((!isNaN(parseInt(dataContainer.datasets[0].data[0]) / ((parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]))/100))) ? parseInt(dataContainer.datasets[0].data[0]) / ((parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]))/100) : 100) 
+                  ('Assertividade: ' + Math.floor(
+                                        !isNaN(parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer) 
+                                        ? parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer 
+                                        : 100)
                   + '%')
-                  : ''}</p>
+                  : ''}
+                  </p>
                 <p style={{marginTop: '15px'}}>
-                  {`Capturas OCR: ${(TotalPassagensContainer/100)*50}`}
+                  {`Capturas OCR: ${capturasOCRContainer}`}
                 </p>
               </div>
 			        }
