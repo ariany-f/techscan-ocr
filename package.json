@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "/public_html",
   "scripts": {
     "dev": "vite",
     "build": "npx cross-env NODE_OPTIONS=--max-old-space-size=8192 vite build",
