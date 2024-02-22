@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { addLocale, FilterMatchMode, FilterOperator } from 'primereact/api'
 import { JsonToExcel } from "react-json-to-excel"
 import { FaSearch } from 'react-icons/fa'
-import { MdOutlineFileDownload, MdOutlineClear } from 'react-icons/md'
+import { MdOutlineFileDownload, MdOutlineClear, MdOutlineRefresh } from 'react-icons/md'
 import { useEffect, useRef, useState } from 'react'
 import Botao from '@components/Botao'
 import Texto from '@components/Texto'
@@ -267,6 +267,10 @@ function DataTablePassagens() {
         setEndDate('')
     }
 
+    const RefreshData = () => {
+        fetchPassages()
+    }
+
     const renderHeader = () => {
 
         const valor = filters['global'] ? filters['global'].value : '';
@@ -309,9 +313,14 @@ function DataTablePassagens() {
                     <Calendar locale="pt" dateFormat="dd/mm/yy" value={endDate} onChange={(e) => setEndDate(e.value)} showTime hourFormat="24" />
                 </div>
 
-                <div style={{ width: '15%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Limpar Filtros</Texto>
                     <Botao estilo="cinza" size="medium" aoClicar={LimparDatas}><MdOutlineClear className="icon" /></Botao>
+                </div>
+
+                <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                    <Texto weight={400}>Recarregar</Texto>
+                    <Botao estilo="azul" size="medium" aoClicar={RefreshData}><MdOutlineRefresh className="icon" /></Botao>
                 </div>
 
                 <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
