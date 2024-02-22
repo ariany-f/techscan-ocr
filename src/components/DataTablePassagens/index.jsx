@@ -154,15 +154,8 @@ function DataTablePassagens() {
     }
 
     useEffect(() => {
-        if(passagens.length === 0)
-        {
-            fetchPassages()
-        }
-
-        const interval = setInterval(() => {
-            fetchPassages()
-          }, 5000);
-          return () => clearInterval(interval);
+      
+        fetchPassages()
 
     }, [startDate, endDate, modalOpened, toastConfirmarPassagem, passagens])
  
