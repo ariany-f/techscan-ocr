@@ -79,9 +79,9 @@ function BarraLateral() {
                 {
                     "id": 1,
                     "url": "/relatorios/dashboard",
-                    "pageTitulo": "ESTATÍSTICAS",
+                    "pageTitulo": "ASSERTIVIDADE",
                     "icone": <></>,
-                    "itemTitulo": "ESTATÍSTICAS"
+                    "itemTitulo": "ASSERTIVIDADE"
                 }
             ]
         }

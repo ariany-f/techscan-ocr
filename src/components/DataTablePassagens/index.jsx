@@ -18,6 +18,7 @@ import { ArmazenadorToken } from '../../utils'
 import ModalAlterarPlaca from '../ModalAlterarPlaca'
 import ModalAlterarContainer from '../ModalAlterarContainer'
 import ModalImagem from '../ModalImagem'
+import Loading from '@components/Loading'
 
 const ContainerLadoALado = styled.div`
     display: flex;
@@ -93,6 +94,7 @@ function DataTablePassagens() {
         plate: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
         container: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },       
     }); 
+    const [loading, setLoading] = useState(false)
     // const timerRef = useRef(null);
 
     const confirmarPassagem = (id) => {
@@ -125,6 +127,7 @@ function DataTablePassagens() {
 
     function fetchPassages()
     {
+        setLoading(true)
         const filterData = {
 
             dataInicial: startDate ? startDate.toLocaleDateString('sv-SE', {
@@ -147,10 +150,12 @@ function DataTablePassagens() {
             if(response)
             {
                 setPassagens(response)
+                setLoading(false)
             }
         })
         .catch(erro => {
             console.error(erro)
+            setLoading(false)
         })
     }
 
@@ -345,6 +350,8 @@ function DataTablePassagens() {
                 fileName={`relatorio-ocr-${new Date()}`}
                 btnClassName="button azul filled medium 300"
             /> : ''}
+            
+            <Loading opened={loading} />
             <DataTable showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} style={{zIndex: 0}} scrollHeight="600px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
                     rowExpansionTemplate={rowExpansionTemplate} paginator rows={25} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ maxWidth: '98%', marginTop: '1rem' }}>
                 <Column header="#" style={{ width: '3%', }} headerStyle={{ width: '3%', textAlign: 'center' }} expander={true} />
