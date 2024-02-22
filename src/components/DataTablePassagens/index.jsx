@@ -92,7 +92,8 @@ function DataTablePassagens() {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         plate: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
         container: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },       
-    });
+    }); 
+    // const timerRef = useRef(null);
 
     const confirmarPassagem = (id) => {
         const myArray = id.split(",");
@@ -153,11 +154,21 @@ function DataTablePassagens() {
         })
     }
 
+    // useEffect(() => { 
+
+    //     timerRef.current = setInterval(() => {
+    //         fetchPassages()
+    //     }, 1000);
+    //      return () => {
+    //         clearInterval(timerRef.current);
+    //      };
+    // }, [startDate, endDate, modalOpened, toastConfirmarPassagem]);
+
     useEffect(() => {
       
         fetchPassages()
 
-    }, [startDate, endDate, modalOpened, toastConfirmarPassagem, passagens])
+    }, [startDate, endDate, modalOpened, toastConfirmarPassagem])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
