@@ -172,7 +172,7 @@ function DataTablePassagens() {
 
         // clear on component unmount
         return () => {
-            clearInterval(timerRef.current);
+            window.clearTimeout(timerRef.current);
         };
 
     }, [startDate, endDate, modalOpened, toastConfirmarPassagem, timerRef])
