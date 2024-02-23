@@ -165,21 +165,21 @@ function DataTablePassagens() {
         {
             fetchPassages()
         }
-        //  // useRef value stored in .current property
-        // timerRef.current = window.setTimeout(() => {
-        //     fetchPassages()
-        // }, 60000);
-
-        // // clear on component unmount
-        // return () => {
-        //     window.clearTimeout(timerRef.current);
-        // };
-
-        const timeoutID = window.setTimeout(() => {
+         // useRef value stored in .current property
+        timerRef.current = window.setTimeout(() => {
             fetchPassages()
-        }, 1000);
+        }, 60000);
+
+        // clear on component unmount
+        return () => {
+            window.clearTimeout(timerRef.current);
+        };
+
+        // const timeoutID = window.setTimeout(() => {
+        //     fetchPassages()
+        // }, 1000);
     
-        return () => window.clearTimeout(timeoutID );
+        // return () => window.clearTimeout(timeoutID );
 
     }, [startDate, endDate, modalOpened, toastConfirmarPassagem, passagens])
  
