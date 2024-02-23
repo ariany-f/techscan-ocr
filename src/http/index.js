@@ -2,7 +2,7 @@ import axios from "axios"
 import { ArmazenadorToken } from "../utils"
 
 const http = axios.create({
-    baseURL: `https://${window.location.hostname}`
+    baseURL: `http://${window.location.hostname}`
 })
 
 http.interceptors.request.use(function (config) {

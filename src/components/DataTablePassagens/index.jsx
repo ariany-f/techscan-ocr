@@ -159,16 +159,6 @@ function DataTablePassagens() {
         })
     }
 
-    // useEffect(() => { 
-
-    //     timerRef.current = setInterval(() => {
-    //         fetchPassages()
-    //     }, 1000);
-    //      return () => {
-    //         clearInterval(timerRef.current);
-    //      };
-    // }, [startDate, endDate, modalOpened, toastConfirmarPassagem]);
-
     useEffect(() => {
       
         fetchPassages()
