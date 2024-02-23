@@ -161,16 +161,16 @@ function DataTablePassagens() {
 
     useEffect(() => {
          // useRef value stored in .current property
-        timer.current = window.setTimeout(() => {
+        timerRef.current = window.setTimeout(() => {
             fetchPassages()
         }, 30000);
 
         // clear on component unmount
         return () => {
-            clearInterval(timer.current);
+            clearInterval(timerRef.current);
         };
 
-    }, [startDate, endDate, modalOpened, toastConfirmarPassagem, timer])
+    }, [startDate, endDate, modalOpened, toastConfirmarPassagem, timerRef])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
