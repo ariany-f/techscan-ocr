@@ -181,7 +181,7 @@ function DataTablePassagens() {
     
         return () => window.clearTimeout(timeoutID );
 
-    }, [startDate, endDate, modalOpened, toastConfirmarPassagem])
+    }, [startDate, endDate, modalOpened, toastConfirmarPassagem, passagens])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
