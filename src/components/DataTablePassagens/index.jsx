@@ -165,17 +165,23 @@ function DataTablePassagens() {
         {
             fetchPassages()
         }
-         // useRef value stored in .current property
-        timerRef.current = window.setTimeout(() => {
+        //  // useRef value stored in .current property
+        // timerRef.current = window.setTimeout(() => {
+        //     fetchPassages()
+        // }, 60000);
+
+        // // clear on component unmount
+        // return () => {
+        //     window.clearTimeout(timerRef.current);
+        // };
+
+        const timeoutID = window.setTimeout(() => {
             fetchPassages()
-        }, 60000);
+        }, 1000);
+    
+        return () => window.clearTimeout(timeoutID );
 
-        // clear on component unmount
-        return () => {
-            window.clearTimeout(timerRef.current);
-        };
-
-    }, [startDate, endDate, modalOpened, toastConfirmarPassagem, timerRef])
+    }, [startDate, endDate, modalOpened, toastConfirmarPassagem])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
