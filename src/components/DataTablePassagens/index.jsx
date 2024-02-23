@@ -160,6 +160,11 @@ function DataTablePassagens() {
     }
 
     useEffect(() => {
+
+        if(passagens.length === 0)
+        {
+            fetchPassages()
+        }
          // useRef value stored in .current property
         timerRef.current = window.setTimeout(() => {
             fetchPassages()
