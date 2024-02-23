@@ -95,7 +95,7 @@ function DataTablePassagens() {
         container: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },       
     }); 
     const [loading, setLoading] = useState(false)
-    // const timerRef = useRef(null);
+    const timerRef = useRef(null);
 
     const confirmarPassagem = (id) => {
         const myArray = id.split(",");
@@ -160,10 +160,17 @@ function DataTablePassagens() {
     }
 
     useEffect(() => {
-      
-        fetchPassages()
+         // useRef value stored in .current property
+        timer.current = window.setTimeout(() => {
+            fetchPassages()
+        }, 30000);
 
-    }, [startDate, endDate, modalOpened, toastConfirmarPassagem])
+        // clear on component unmount
+        return () => {
+            clearInterval(timer.current);
+        };
+
+    }, [startDate, endDate, modalOpened, toastConfirmarPassagem, timer])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
