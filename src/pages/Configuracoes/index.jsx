@@ -428,7 +428,7 @@ function Configuracoes(){
                                 </Col12>
                                 <ContainerLadoALado  style={{marginTop: '30px', flexWrap: 'wrap'}}>
                                     {imagens.map((item, index) => {
-                                        return <ImagemRepresentativa onClick={() => alterarRepresentativeImg(item.id)} $ativo={(parseInt(selectedCaminhao) === parseInt(item.id))} key={index} width="135px" src={`https://${window.location.hostname}/api/web/public/img/${item.url}.png`} />
+                                        return <ImagemRepresentativa onClick={() => alterarRepresentativeImg(item.id)} $ativo={(parseInt(selectedCaminhao) === parseInt(item.id))} key={index} width="135px" src={`http://${window.location.hostname}/api/web/public/img/${item.url}.png`} />
                                     })}
                                 </ContainerLadoALado>
                             </Col12>
