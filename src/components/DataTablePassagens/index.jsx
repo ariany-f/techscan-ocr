@@ -75,6 +75,24 @@ const StatusLabel = styled.div`
         width: 100%;
         height: 100%;
     }
+    
+    &.warning {
+        background-color: #cfc13f;
+    }
+    &.warning::before {
+        animation: none;
+        background-color: #cfc13f;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+    &.warning::after {
+        animation: none;
+        background-color: #cfc13f;
+        width: 100%;
+        height: 100%;
+    }
 `
 
 function DataTablePassagens() {
@@ -236,8 +254,10 @@ function DataTablePassagens() {
         const is_not_ok = myArray.filter((item) => {
             return item === '0'
         })
+
+        const is_warned = rowData.error_reason
         
-        return <StatusLabel className={is_not_ok.length === 0 ? 'active' : ''}/>
+        return <StatusLabel className={is_not_ok.length === 0 ? 'active' : (is_warned ? 'warning' : '')}/>
     }
 
     const rowExpansionTemplate = (data) => {
@@ -245,6 +265,7 @@ function DataTablePassagens() {
         const is_not_ok = myArray.filter((item) => {
             return !item
         })
+        const is_warned = rowData.error_reason
         return (
             <>
                 {data.error_reason
@@ -262,7 +283,7 @@ function DataTablePassagens() {
                     <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
                     <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalContainerOpened(true)}>ALTERAR CONTAINER</Botao>
                     {
-                        is_not_ok.length !== 0 &&
+                        (is_not_ok.length !== 0 && !is_warned) &&
                         <Botao estilo="azul" style={{width:"300px"}} size="small" weight="light" aoClicar={() => confirmarPassagem(data.id)}>CONFIRMAR PASSAGEM</Botao>
                     }
                 </ContainerLadoALado>
