@@ -81,7 +81,8 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
            var sendData = {
                 id: parseInt(item),
                 plate: plate,
-                container: passagem[0].container
+                container: passagem[0].container,
+                updated_by: ArmazenadorToken.UserId
             }
             http.patch('api/web/public/passagens', sendData)
             .then(response => {

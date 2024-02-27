@@ -81,7 +81,8 @@ function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem })
            var sendData = {
                 id: parseInt(item),
                 container: container,
-                plate: passagem[0].plate
+                plate: passagem[0].plate,
+                updated_by: ArmazenadorToken.UserId
             }
             http.patch('api/web/public/passagens', sendData)
             .then(response => {

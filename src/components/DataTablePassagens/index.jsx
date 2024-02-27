@@ -255,7 +255,7 @@ function DataTablePassagens() {
             return item === '0'
         })
 
-        const is_warned = rowData.error_reason
+        const is_warned = rowData.updated_by
         
         return <StatusLabel className={is_not_ok.length === 0 ? 'active' : (is_warned ? 'warning' : '')}/>
     }
@@ -265,7 +265,7 @@ function DataTablePassagens() {
         const is_not_ok = myArray.filter((item) => {
             return !item
         })
-        const is_warned = data.error_reason
+        const is_warned = data.updated_by
         return (
             <>
                 {data.error_reason
