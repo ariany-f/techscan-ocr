@@ -328,8 +328,8 @@ function RelatorioDashboard() {
                 <p style={{marginTop: '15px'}}>{
                   dataTraseira.datasets && dataTraseira.datasets[0] ?
                   ('Assertividade: ' + Math.floor(
-                                      !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira*0.6)) 
-                                      ? parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira*0.6) 
+                                      !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira)) 
+                                      ? parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira) 
                                       : 100)
                     + '%')
                     : ''}
@@ -351,8 +351,8 @@ function RelatorioDashboard() {
                 <p style={{marginTop: '15px'}}> {
                   dataContainer.datasets && dataContainer.datasets[0] ?
                   ('Assertividade: ' + Math.floor(
-                                        !isNaN(parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer*0.5)) 
-                                        ? parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer*0.5) 
+                                        !isNaN(parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)) 
+                                        ? parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer) 
                                         : 100)
                   + '%')
                   : ''}
