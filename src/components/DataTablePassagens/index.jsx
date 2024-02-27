@@ -265,7 +265,7 @@ function DataTablePassagens() {
         const is_not_ok = myArray.filter((item) => {
             return !item
         })
-        const is_warned = rowData.error_reason
+        const is_warned = data.error_reason
         return (
             <>
                 {data.error_reason
