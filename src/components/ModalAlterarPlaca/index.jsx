@@ -77,7 +77,9 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
     function updatePlate()
     {
         const myArray = passagem[0].id.split(",");
+        const myArrayPlates = passagem[0].plate.split(",");
         console.log(passagem[0])
+        console.log(myArrayPlates)
         const confirm = myArray.map((item) => {
            var sendData = {
                 id: parseInt(item),
