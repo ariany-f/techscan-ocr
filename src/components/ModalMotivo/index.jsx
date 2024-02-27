@@ -96,7 +96,6 @@ function ModalMotivo({ opened = false, aoClicar, aoFechar, passagem }) {
            var sendData = {
                 id: parseInt(item),
                 is_ocr_error: selectedMotivo.is_ocr_error,
-                is_ok: 1,
                 preset_reason: selectedMotivo.id !== 0 ? selectedMotivo.id : null,
                 description_reason: typedMotivo,
                 updated_by: ArmazenadorToken.UserId
