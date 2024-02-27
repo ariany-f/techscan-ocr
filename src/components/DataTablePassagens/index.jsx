@@ -384,7 +384,8 @@ function DataTablePassagens() {
 
 
     const expandedRowsChange = (data) => {
-
+        console.log(expandedRows)
+        console.log(data)
         setExpandedRows(null)
         setExpandedRows(data)
     }
