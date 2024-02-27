@@ -136,7 +136,7 @@ function RelatorioDashboard() {
           if(response)
           {
               setDianteira(response.filter(item =>
-                (item.Camera === 'plate' || item.Camera === 'LPR') && item.Posicao === 'frente'
+                (item.Camera === 'plate' || item.Camera === 'LPR') && (item.Posicao === 'frente' || item.Posicao === 'placa')
               ))
               setTraseira(response.filter(item =>
                 (item.Camera === 'plate' || item.Camera === 'LPR') && item.Posicao === 'traseira'
