@@ -263,8 +263,8 @@ function RelatorioDashboard() {
       const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
 
       const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira/100)*100 : TotalPassagensDianteira
-      const capturasOCRTraseira = usuario.company === 'Lachman' ? ((TotalPassagensTraseira/100)*0,6) : TotalPassagensTraseira
-      const capturasOCRContainer = usuario.company === 'Lachman' ? ((TotalPassagensContainer/100)*0,5) : TotalPassagensContainer
+      const capturasOCRTraseira = usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira
+      const capturasOCRContainer = usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer
 
       return (
         <>
@@ -328,8 +328,8 @@ function RelatorioDashboard() {
                 <p style={{marginTop: '15px'}}>{
                   dataTraseira.datasets && dataTraseira.datasets[0] ?
                   ('Assertividade: ' + Math.floor(
-                                      !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira*0,6)) 
-                                      ? parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira*0,6) 
+                                      !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira*0.6)) 
+                                      ? parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira*0.6) 
                                       : 100)
                     + '%')
                     : ''}
@@ -351,8 +351,8 @@ function RelatorioDashboard() {
                 <p style={{marginTop: '15px'}}> {
                   dataContainer.datasets && dataContainer.datasets[0] ?
                   ('Assertividade: ' + Math.floor(
-                                        !isNaN(parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer*0,5)) 
-                                        ? parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer*0,5) 
+                                        !isNaN(parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer*0.5)) 
+                                        ? parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer*0.5) 
                                         : 100)
                   + '%')
                   : ''}
