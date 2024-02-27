@@ -180,7 +180,7 @@ function RelatorioDashboard() {
           ],
           datasets: [{
             label: '',
-            data: [((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Acertos']/100)*60) : traseira[0]['Acertos']) : '0'), ((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Erros']/100)*60) : traseira[0]['Erros']) : '0')],
+            data: [((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Acertos']/100)*100) : traseira[0]['Acertos']) : '0'), ((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Erros']/100)*100) : traseira[0]['Erros']) : '0')],
             backgroundColor: [
               'rgb(54, 162, 235)',
               'rgb(255, 205, 86)'
@@ -196,7 +196,7 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Acertos']/100)*50) : container[0]['Acertos']) : '0'), ((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Erros']/100)*50) : container[0]['Erros']) : '0')],
+              data: [((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Acertos']/100)*100) : container[0]['Acertos']) : '0'), ((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Erros']/100)*100) : container[0]['Erros']) : '0')],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'
@@ -328,8 +328,8 @@ function RelatorioDashboard() {
                 <p style={{marginTop: '15px'}}>{
                   dataTraseira.datasets && dataTraseira.datasets[0] ?
                   ('Assertividade: ' + Math.floor(
-                                      !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira) 
-                                      ? parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira 
+                                      !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira*0,6)) 
+                                      ? parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira*0,6) 
                                       : 100)
                     + '%')
                     : ''}
@@ -351,8 +351,8 @@ function RelatorioDashboard() {
                 <p style={{marginTop: '15px'}}> {
                   dataContainer.datasets && dataContainer.datasets[0] ?
                   ('Assertividade: ' + Math.floor(
-                                        !isNaN(parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer) 
-                                        ? parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer 
+                                        !isNaN(parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer*0,5)) 
+                                        ? parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer*0,5) 
                                         : 100)
                   + '%')
                   : ''}
