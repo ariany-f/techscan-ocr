@@ -184,16 +184,6 @@ function DataTablePassagens() {
             fetchPassages()
         }
 
-        if(modalPlateOpened)
-        {
-            fetchPassages()
-        }
-
-        if(modalContainerOpened)
-        {
-            fetchPassages()
-        }
-
         // useRef value stored in .current property
         timerRef.current = window.setTimeout(() => {
             fetchPassages()
