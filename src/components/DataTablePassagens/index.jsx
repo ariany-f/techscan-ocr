@@ -381,7 +381,7 @@ function DataTablePassagens() {
             /> : ''}
             
             <Loading opened={loading} />
-            <DataTable showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} style={{zIndex: 0}} scrollHeight="600px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
+            <DataTable showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} style={{zIndex: 0}} scrollHeight="600px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => {setExpandedRows([]);setExpandedRows(e.data)}}
                     rowExpansionTemplate={rowExpansionTemplate} paginator rows={25} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ maxWidth: '98%', marginTop: '1rem' }}>
                 <Column header="#" style={{ width: '3%', }} headerStyle={{ width: '3%', textAlign: 'center' }} expander={true} />
                 <Column body={plateBodyTemplate} field="plate" header="Placa" style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
