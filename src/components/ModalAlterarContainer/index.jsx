@@ -77,19 +77,23 @@ function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem })
     function updateContainer()
     {
         const myArray = passagem[0].id.split(",");
-        const confirm = myArray.map((item) => {
-           var sendData = {
-                id: parseInt(item),
-                container: container,
-                plate: passagem[0].plate,
-                updated_by: ArmazenadorToken.UserId
+        const myArrayConainers = passagem[0].container.split(",");
+        const confirm = myArray.map((item, index) => {
+            if((typeof myArrayConainers[index] !== 'undefined' && myArrayConainers[index] !== container) || typeof myArrayConainers[index] === 'undefined')
+            {
+            var sendData = {
+                    id: parseInt(item),
+                    container: container,
+                    plate: passagem[0].plate,
+                    updated_by: ArmazenadorToken.UserId
+                }
+                http.patch('api/web/public/passagens', sendData)
+                .then(response => {
+                })
+                .catch(erro => {
+                    console.error(erro)
+                })
             }
-            http.patch('api/web/public/passagens', sendData)
-            .then(response => {
-            })
-            .catch(erro => {
-                console.error(erro)
-            })
          })
  
          aoFechar()
