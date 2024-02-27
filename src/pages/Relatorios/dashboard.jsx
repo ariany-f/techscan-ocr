@@ -311,7 +311,7 @@ function RelatorioDashboard() {
                     : ''}
                 </p>
                 <p style={{marginTop: '15px'}}>
-                  {`Capturas OCR: ${capturasOCRDianteira}`}
+                  {`Capturas OCR: ${Math.floor(capturasOCRDianteira)}`}
                 </p>
               </div>
 			      }
@@ -335,7 +335,7 @@ function RelatorioDashboard() {
                     : ''}
                  </p>
                  <p style={{marginTop: '15px'}}>
-                  {`Capturas OCR: ${capturasOCRTraseira}`}
+                  {`Capturas OCR: ${Math.floor(capturasOCRTraseira)}`}
                 </p>
               </div>
 			        }
@@ -358,7 +358,7 @@ function RelatorioDashboard() {
                   : ''}
                   </p>
                 <p style={{marginTop: '15px'}}>
-                  {`Capturas OCR: ${capturasOCRContainer}`}
+                  {`Capturas OCR: ${Math.floor(capturasOCRContainer)}`}
                 </p>
               </div>
 			        }
