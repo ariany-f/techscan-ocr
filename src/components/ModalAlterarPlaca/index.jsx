@@ -78,21 +78,23 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
     {
         const myArray = passagem[0].id.split(",");
         const myArrayPlates = passagem[0].plate.split(",");
-        console.log(passagem[0])
-        console.log(myArrayPlates)
-        const confirm = myArray.map((item) => {
-           var sendData = {
-                id: parseInt(item),
-                plate: plate,
-                container: passagem[0].container,
-                updated_by: ArmazenadorToken.UserId
+        
+        const confirm = myArray.map((index, item) => {
+            if((typeof myArrayPlates[index] !== 'undefined' && myArrayPlates[index] !== plate) || typeof myArrayPlates[index] === 'undefined')
+            {
+                var sendData = {
+                    id: parseInt(item),
+                    plate: plate,
+                    container: passagem[0].container,
+                    updated_by: ArmazenadorToken.UserId
+                }
+                http.patch('api/web/public/passagens', sendData)
+                .then(response => {
+                })
+                .catch(erro => {
+                    console.error(erro)
+                })
             }
-            http.patch('api/web/public/passagens', sendData)
-            .then(response => {
-            })
-            .catch(erro => {
-                console.error(erro)
-            })
          })
  
          aoFechar()
