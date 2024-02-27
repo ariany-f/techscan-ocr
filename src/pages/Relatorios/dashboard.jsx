@@ -164,7 +164,7 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Acertos']/100)*100) : dianteira[0]['Acertos']) : '0'), ((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Erros']/100)*100) : dianteira[0]['Erros']) : '0')],
+              data: [((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Acertos'])) : dianteira[0]['Acertos']) : '0'), ((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Erros'])) : dianteira[0]['Erros']) : '0')],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'
@@ -180,7 +180,7 @@ function RelatorioDashboard() {
           ],
           datasets: [{
             label: '',
-            data: [((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Acertos']/100)*100) : traseira[0]['Acertos']) : '0'), ((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Erros']/100)*100) : traseira[0]['Erros']) : '0')],
+            data: [((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Acertos'])) : traseira[0]['Acertos']) : '0'), ((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Erros'])) : traseira[0]['Erros']) : '0')],
             backgroundColor: [
               'rgb(54, 162, 235)',
               'rgb(255, 205, 86)'
@@ -196,7 +196,7 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Acertos']/100)*100) : container[0]['Acertos']) : '0'), ((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Erros']/100)*100) : container[0]['Erros']) : '0')],
+              data: [((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Acertos'])) : container[0]['Acertos']) : '0'), ((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Erros'])) : container[0]['Erros']) : '0')],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'
@@ -262,7 +262,7 @@ function RelatorioDashboard() {
       const TotalPassagensTraseira = dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0
       const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
 
-      const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira/100)*100 : TotalPassagensDianteira
+      const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira
       const capturasOCRTraseira = usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira
       const capturasOCRContainer = usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer
 
@@ -305,7 +305,7 @@ function RelatorioDashboard() {
                   { dataDianteira.datasets && dataDianteira.datasets[0] ?
                    ('Assertividade: ' + Math.floor(
                                       !isNaN(parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira) 
-                                      ? parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira 
+                                      ? Math.min(100, parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira*100)
                                       : 100)
                     + '%')
                     : ''}
@@ -329,7 +329,7 @@ function RelatorioDashboard() {
                   dataTraseira.datasets && dataTraseira.datasets[0] ?
                   ('Assertividade: ' + Math.floor(
                                       !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira)) 
-                                      ? parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira) 
+                                      ? Math.min(100, parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira)*100) 
                                       : 100)
                     + '%')
                     : ''}
@@ -352,7 +352,7 @@ function RelatorioDashboard() {
                   dataContainer.datasets && dataContainer.datasets[0] ?
                   ('Assertividade: ' + Math.floor(
                                         !isNaN(parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)) 
-                                        ? parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer) 
+                                        ? Math.min(100, parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)*100)
                                         : 100)
                   + '%')
                   : ''}
