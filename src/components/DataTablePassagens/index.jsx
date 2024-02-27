@@ -384,11 +384,10 @@ function DataTablePassagens() {
 
 
     const expandedRowsChange = (e) => {
-        console.log(e)
-        //setExpandedRows(null)
-        const timeoutID = window.setTimeout(() => {
-            setExpandedRows(e.data)
-        }, 1000);
+        
+        setExpandedRows(null)
+        const open = e.data.pop()
+        setExpandedRows(open)
     }
 
     return (
