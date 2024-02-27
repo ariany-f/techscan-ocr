@@ -263,8 +263,8 @@ function RelatorioDashboard() {
       const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
 
       const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira/100)*100 : TotalPassagensDianteira
-      const capturasOCRTraseira = usuario.company === 'Lachman' ? Math.floor((TotalPassagensTraseira/100)*60) : TotalPassagensTraseira
-      const capturasOCRContainer = usuario.company === 'Lachman' ? Math.floor((TotalPassagensContainer/100)*50) : TotalPassagensContainer
+      const capturasOCRTraseira = usuario.company === 'Lachman' ? ((TotalPassagensTraseira/100)*0,6) : TotalPassagensTraseira
+      const capturasOCRContainer = usuario.company === 'Lachman' ? ((TotalPassagensContainer/100)*0,5) : TotalPassagensContainer
 
       return (
         <>
