@@ -73,35 +73,37 @@ function RelatorioDashboard() {
         pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 70);
          
         pdf.setFontSize(10);
+        
         const TotalPassagensDianteira = dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0
         const TotalPassagensTraseira = dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0
         const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
 
-        const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira/100)*100 : TotalPassagensDianteira
-        const capturasOCRTraseira = usuario.company === 'Lachman' ? Math.floor((TotalPassagensTraseira/100)*60) : TotalPassagensTraseira
-        const capturasOCRContainer = usuario.company === 'Lachman' ? Math.floor((TotalPassagensContainer/100)*50) : TotalPassagensContainer
+        const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira
+        const capturasOCRTraseira = usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira
+        const capturasOCRContainer = usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer
 
 
         pdf.text(60, 350, 'Nº Passagens ' + TotalPassagensDianteira)
-        pdf.text(60, 370, 'Assertividade ' + Math.floor(
+        pdf.text(60, 370, 'Assertividade ' +  Math.floor(
           !isNaN(parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira) 
-          ? parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira 
+          ? Math.min(100, parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira*100)
           : 100) + '%')
         pdf.text(60, 390, 'Capturas OCR ' + capturasOCRDianteira)
      
         
         pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 350, 'Nº Passagens ' + TotalPassagensTraseira)
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 370, 'Assertividade ' + Math.floor(
-          !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira) 
-          ? parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira 
-          : 100) + '%')
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 370, 'Assertividade: ' + Math.floor(
+          !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira)) 
+          ? Math.min(100, parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira)*100) 
+                  : 100)
+        + '%')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 390, 'Capturas OCR ' + capturasOCRTraseira)
       
         
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 350, 'Nº Passagens ' + TotalPassagensContainer)
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 370, 'Assertividade ' + Math.floor(
-          !isNaN(parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer) 
-          ? parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer 
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 370, Math.floor(
+          !isNaN(parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)) 
+          ? Math.min(100, parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)*100)
           : 100) + '%')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 390, 'Capturas OCR ' + capturasOCRContainer)
      
