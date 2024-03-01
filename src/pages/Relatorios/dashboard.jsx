@@ -73,7 +73,7 @@ function RelatorioDashboard() {
         pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 70);
          
         pdf.setFontSize(10);
-        
+
         const TotalPassagensDianteira = dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0
         const TotalPassagensTraseira = dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0
         const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
@@ -88,7 +88,7 @@ function RelatorioDashboard() {
           !isNaN(parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira) 
           ? Math.min(100, parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira*100)
           : 100) + '%')
-        pdf.text(60, 390, 'Capturas OCR ' + capturasOCRDianteira)
+        pdf.text(60, 390, 'Capturas OCR ' + Math.floor(capturasOCRDianteira))
      
         
         pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 350, 'Nº Passagens ' + TotalPassagensTraseira)
@@ -97,15 +97,15 @@ function RelatorioDashboard() {
           ? Math.min(100, parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira)*100) 
                   : 100)
         + '%')
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 390, 'Capturas OCR ' + capturasOCRTraseira)
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 390, 'Capturas OCR ' + Math.floor(capturasOCRTraseira))
       
         
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 350, 'Nº Passagens ' + TotalPassagensContainer)
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 370, Math.floor(
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 370, 'Assertividade: ' + Math.floor(
           !isNaN(parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)) 
           ? Math.min(100, parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)*100)
           : 100) + '%')
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 390, 'Capturas OCR ' + capturasOCRContainer)
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 390, 'Capturas OCR ' + Math.floor(capturasOCRContainer))
      
         // download the pdf
         pdf.save('Relatorio_Assertividade.pdf');
