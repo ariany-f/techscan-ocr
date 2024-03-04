@@ -165,7 +165,6 @@ function DataTablePassagens() {
         }
         http.post('api/web/public/passagens', filterData)
         .then(response => {
-            console.log(response)
             if(response)
             {
                 setPassagens(response)
@@ -267,6 +266,7 @@ function DataTablePassagens() {
     const qtdImagensBodyTemplate = (rowData) => {
         let countImages = 0;
         const images = rowData.itens.map((item) => {
+            console.log(item)
             if(item.images)
             {
                 countImages =+ item.images.length
