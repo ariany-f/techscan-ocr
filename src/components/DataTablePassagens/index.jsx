@@ -231,44 +231,44 @@ function DataTablePassagens() {
     
     const plateBodyTemplate = (rowData) => {
         const plates = rowData.itens.map((item) => {
-            return item.plate ? `${item.plate} ` : '----------';
+            return `${item.plate} `;
         })
-        return plates;
+        return plates ?? '----------';
     };
     
     const plateCameraTemplate = (rowData) => {
         const cameras = rowData.itens.map((item) => {
-            return item.camera ? `${item.camera} ` : '----------';
+            return `${item.camera} `;
         })
-        return cameras;
+        return cameras ?? '----------';
     };
 
     const containerBodyTemplate = (rowData) => {
         const containers = rowData.itens.map((item) => {
-            return item.container ? `${item.container} ` : '----------';
+            return `${item.container} `;
         })
-        return containers;
+        return containers ?? '----------';
     };
     
     const updatedByBodyTemplate = (rowData) => {
         const updated = rowData.itens.map((item) => {
-            return item.updated_by ? `${item.updated_by} ` : '----------';
+            return `${item.updated_by} `
         })
-        return updated;
+        return updated ?? '----------';
     };
     
     const DirectionBodyTemplate = (rowData) => {
         const directions = rowData.itens.map((item) => {
-            return item.direction ? `${item.direction} ` : '----------';
+            return `${item.direction} `;
         })
-        return directions;
+        return directions ?? '----------';
     };
     
     const GateBodyTemplate = (rowData) => {
         const gates = rowData.itens.map((item) => {
-            return item.gate ? `${item.gate} ` : '----------';
+            return `${item.gate} `;
         })
-        return gates;
+        return gates ?? '----------';
     };
 
     const qtdImagensBodyTemplate = (rowData) => {
@@ -323,8 +323,12 @@ function DataTablePassagens() {
                 
                 <ContainerLadoALado>
                     <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
-                    <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
-                    <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalContainerOpened(true)}>ALTERAR CONTAINER</Botao>
+                    {plateBodyTemplate !== '----------' &&
+                        <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
+                    }
+                     {containerBodyTemplate !== '----------' &&
+                        <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalContainerOpened(true)}>ALTERAR CONTAINER</Botao>
+                    }
                     {data.itens.length > 1 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalBindOpened(true)}>DESVINCULAR PASSAGENS</Botao>
                     }
