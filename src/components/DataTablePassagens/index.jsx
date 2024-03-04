@@ -268,7 +268,7 @@ function DataTablePassagens() {
         const images = rowData.itens.map((item) => {
             if(item.images)
             {
-                countImages += item.images.length
+                countImages =+ item.images.length
             }
         })
         return countImages;
