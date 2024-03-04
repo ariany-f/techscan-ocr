@@ -266,7 +266,6 @@ function DataTablePassagens() {
     const qtdImagensBodyTemplate = (rowData) => {
         let countImages = 0;
         const images = rowData.itens.map((item) => {
-            console.log(item)
             if(item.images)
             {
                 countImages =+ item.images.length
@@ -326,7 +325,7 @@ function DataTablePassagens() {
                 </ContainerLadoALado>
                 <div>
                     {data.itens.map((passage, index) => {
-                        console.log(passage)
+                        console.log(passage.images)
                        {passage.images.map((item, index) => {
                         return <img onClick={() => abrirImagem(item)} key={`${data.id}-${index}`} width="240px" src={`http://${window.location.hostname}/api/web/public/${item}`} style={{margin: '5px'}} />
                         })}
