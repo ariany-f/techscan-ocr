@@ -155,7 +155,6 @@ function RelatorioDashboard() {
   }
 
   useEffect(() => {
-    console.log('me ajuda')
     fetchData()
     setTimeout(() => {
         setDataDianteira(
