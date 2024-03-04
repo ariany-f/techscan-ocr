@@ -49,6 +49,7 @@ function Configuracoes(){
     }
     const [cameras, setCameras] = useState([])
     const [camera, setCamera] = useState(InicialCamera)
+    const [erroApi, setErroApi] = useState(null)
     const [inscricoes, setInscricoes] = useState([])
     const [tempo, setTempo] = useState(0)
     const [motivos, setMotivos] = useState([])
@@ -246,10 +247,16 @@ function Configuracoes(){
         {
             http.get('api/web/public/inscricoes')
             .then(response => {
-                console.log(response)
                 if(response.data)
                 {
                     setInscricoes(response.data)
+                }
+                else
+                {
+                    if(response.errors)
+                    {
+                        setErroApi(response.errors)
+                    }
                 }
             })
             .catch(erro => {
@@ -400,7 +407,7 @@ function Configuracoes(){
 									</div>
 								</div>
 								:
-								(!inscricoes.length) &&
+								(!inscricoes.length) && (!erroApi) ?
 									<div>
 										<h5 style={{ fontWeight: 500, color: '#B9B9B9' }}>INSCRIÇÃO PARA EVENTOS DO WEBSOCKET</h5>
 										
@@ -410,6 +417,9 @@ function Configuracoes(){
 											</ContainerLadoALado>
 										</div>
 									</div>
+                                :
+                                <div>Erro ao conectar a Api do OCR</div>
+                                
 							}
                             <Col12 style={{border: '1px solid #B9B9B9', padding: '15px'}}>
                                 <Col6>
