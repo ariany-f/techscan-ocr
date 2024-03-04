@@ -137,17 +137,9 @@ function RelatorioDashboard() {
       .then(response => {
           if(response)
           {
-              const diant = response.filter(item =>{
-                  return ((item.Camera === 'plate' || item.Camera === 'LPR') && (item.Posicao === 'frente'))
-              })
-              
-              const placadiant = response.filter(item =>{
-                  return ((item.Camera === 'plate' || item.Camera === 'LPR') && (item.Posicao === 'placa'))
-              })
-              setDianteira(diant)
-              console.log(diant)
-              console.log(placadiant)
-
+              setDianteira(response.filter(item =>
+                (item.Camera === 'plate' || item.Camera === 'LPR') && (item.Posicao === 'frente')
+              ))
               setTraseira(response.filter(item =>
                 (item.Camera === 'plate' || item.Camera === 'LPR') && item.Posicao === 'traseira'
               ))
