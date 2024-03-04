@@ -1,7 +1,7 @@
 import styles from './SubTitulo.module.css'
 import styled from 'styled-components'
 
-const SubTituloContent = styled.p`
+const SubTituloContent = styled.span`
     font-size: ${ props => props.$fontSize ? props.$fontSize : '16px' }!important;
     color: ${ props => props.$color ? props.$color : 'var(--neutro-600)' }!important;
     font-weight: ${ props => props.$fontWeight ? props.$fontWeight : 300 }!important;
