@@ -121,7 +121,7 @@ function ModalBind({ opened = false, aoClicar, aoFechar, passagem }) {
                 <DialogEstilizado id="modal-alterar-placa" open={opened}>
                     <Frame>
                         <Titulo>
-                            <h6>Desvincular passagem</h6>
+                            <h6>Desvincular passagem que não faz parte do pacote</h6>
                             <SubTitulo>
                                 <Texto>Seu registro será gravado com data e horário:&nbsp;
                                 {date.toLocaleDateString('pt-BR', {
