@@ -292,11 +292,11 @@ function RelatorioDashboard() {
 
   function showLegend() {
 
-    console.log(usuario)
     setTotalPassagensDianteira(dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0)
     setTotalPassagensTraseira(dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0)
     setTotalPassagensContainer(dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0)
   
+    console.log(TotalPassagensDianteira)
     setCapturasOCRDianteira(usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira)
     setCapturasOCRTraseira(usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira)
     setCapturasOCRContainer(usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer)
