@@ -74,12 +74,13 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
 
     const [date, setDate] = useState(new Date())
     const [plate, setPlate] = useState('')
-    const [selectedPlate, setSelectedPlate] = useState(0)
     const [dropdownPlates, setDropdownPlates] = useState([])
+    const [selectedPlate, setSelectedPlate] = useState(null)
 
     function updatePlate()
     {
         console.log(selectedPlate)
+        console.log(dropdownPlates)
         const filtered = dropdownPlates.filter(item => {
             return item.code === selectedPlate
         })
@@ -121,6 +122,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
                 }
             }))
            setDropdownPlates(plates)
+           setSelectedPlate(plates[0])
         }
 
     }, [passagem])
