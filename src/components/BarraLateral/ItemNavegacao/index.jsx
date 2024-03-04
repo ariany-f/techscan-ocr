@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { styled } from "styled-components"
 
 const ItemListaEstilizado = styled.li`
@@ -71,14 +71,14 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
         {children}
         {subItem && subItem.length > 0 && subItem.map(item => {
             return (
-                <Link as="li" key={item.id} className="link" to={item.url}>
+                <NavLink as="li" key={item.id} className="link" to={item.url}>
                     <ListaEstilizada>
                         <SubItemEstilizado $ativo={('/'+location.pathname.split('/')[1]+'/'+location.pathname.split('/')[2]) === item.url} >
                             {item.icone}
                             {item.itemTitulo}
                         </SubItemEstilizado>
                     </ListaEstilizada>
-                </Link>
+                </NavLink>
             )
         })}
     </ItemListaEstilizado>
