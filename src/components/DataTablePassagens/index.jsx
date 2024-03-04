@@ -272,11 +272,13 @@ function DataTablePassagens() {
     };
 
     const qtdImagensBodyTemplate = (rowData) => {
-        let countImages = 0;
-        countImages = rowData.itens.reduce((item) => {
-            return countImages + item.images.length
-        })
-        return countImages;
+       
+        const initialValue = 0;
+        const sumWithInitial = rowData.itens.reduce(
+            (accumulator, currentValue) => accumulator + currentValue.images.length,
+            initialValue,
+        );
+        return initialValue;
     };
 
     const statusBodyTemplate = (rowData) => {
