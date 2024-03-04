@@ -115,6 +115,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
                     code: item.id
                 }
             }))
+            console.log(plates)
             setDropdownPlates(plates)
         }
 
