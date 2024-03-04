@@ -244,7 +244,7 @@ function DataTablePassagens() {
     };
 
     const containerBodyTemplate = (rowData) => {
-        const containers = rowData.itens.map((item) => {
+        let containers = rowData.itens.map((item) => {
             return item.container ? `${item.container} ` : null;
         })
         containers = containers.filter(function (el) {
