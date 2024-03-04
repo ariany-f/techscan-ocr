@@ -336,6 +336,7 @@ function RelatorioDashboard() {
 
     if(dianteira && traseira && container)
     {
+      console.log(dianteira)
       configurarGraficos()
     }
 
