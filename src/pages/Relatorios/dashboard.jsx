@@ -337,13 +337,15 @@ function RelatorioDashboard() {
       configurarGraficos(dianteira, traseira, container)
     }
 
-    if(dataDianteira && dataTraseira && dataContainer)
-    {
-      showLegend()
-      setLoading(false)
-    }
+    setTimeout(() => {
+      if(dataDianteira && dataTraseira && dataContainer)
+      {
+        showLegend()
+        setLoading(false)
+      }
+    }, 3000);
     
-}, [startDate, endDate, dataDianteira, dataTraseira, dataContainer])
+}, [startDate, endDate, dianteira, traseira, container])
      
       return (
         <>
