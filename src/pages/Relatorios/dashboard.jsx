@@ -199,9 +199,7 @@ function RelatorioDashboard() {
 
   useEffect(() => {
 
-    fetchData()
-
-    
+    await fetchData()    
     setDataDianteira(
     {
         labels: [
