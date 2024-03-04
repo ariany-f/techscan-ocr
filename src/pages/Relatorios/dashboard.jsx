@@ -46,6 +46,33 @@ function RelatorioDashboard() {
   const refContainer = useRef(null)
   const reportRef = useRef(null)
 
+  addLocale('pt', {
+    closeText: 'Fechar',
+    prevText: 'Anterior',
+    nextText: 'Próximo',
+    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
+    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+    dayNamesMin: ['D','S','T','Q','Q','S','S'],
+    weekHeader: 'Semana',
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: '',
+    timeOnlyTitle: 'Só Horas',
+    timeText: 'Tempo',
+    hourText: 'Hora',
+    minuteText: 'Minuto',
+    secondText: 'Segundo',
+    currentText: 'Data Atual',
+    ampm: false,
+    month: 'Mês',
+    week: 'Semana',
+    day: 'Dia',
+    allDayText : 'Todo Dia'
+});
+
   const {
       usuario
   } = useSessaoUsuarioContext()
@@ -82,29 +109,33 @@ function RelatorioDashboard() {
         const capturasOCRTraseira = usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira
         const capturasOCRContainer = usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer
 
-
-        pdf.text(60, 350, 'Nº Passagens ' + TotalPassagensDianteira)
-        pdf.text(60, 370, 'Assertividade ' +  Math.floor(
+        const percentageDianteira = Math.floor(
           !isNaN(parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira) 
           ? Math.min(100, parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira*100)
-          : 100) + '%')
+          : 100);
+      
+        const percentageTraseira = Math.floor(
+            !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira) 
+            ? Math.min(100, parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira*100)
+            : 100);
+      
+        const percentageContainer = Math.floor(
+            !isNaN(parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer) 
+            ? Math.min(100, parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer*100)
+            : 100);
+
+        pdf.text(60, 350, 'Nº Passagens ' + TotalPassagensDianteira)
+        pdf.text(60, 370, 'Assertividade ' +  percentageDianteira + '%')
         pdf.text(60, 390, 'Capturas OCR ' + Math.floor(capturasOCRDianteira))
      
         
         pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 350, 'Nº Passagens ' + TotalPassagensTraseira)
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 370, 'Assertividade: ' + Math.floor(
-          !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira)) 
-          ? Math.min(100, parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira)*100) 
-                  : 100)
-        + '%')
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 370, 'Assertividade: ' + percentageTraseira + '%')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + 60, 390, 'Capturas OCR ' + Math.floor(capturasOCRTraseira))
       
         
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 350, 'Nº Passagens ' + TotalPassagensContainer)
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 370, 'Assertividade: ' + Math.floor(
-          !isNaN(parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)) 
-          ? Math.min(100, parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)*100)
-          : 100) + '%')
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 370, 'Assertividade: ' + percentageContainer + '%')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 60, 390, 'Capturas OCR ' + Math.floor(capturasOCRContainer))
      
         // download the pdf
@@ -154,6 +185,29 @@ function RelatorioDashboard() {
       })
   }
 
+  const TotalPassagensDianteira = dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0
+  const TotalPassagensTraseira = dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0
+  const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
+
+  const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira
+  const capturasOCRTraseira = usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira
+  const capturasOCRContainer = usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer
+
+  const percentageDianteira = Math.floor(
+    !isNaN(parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira) 
+    ? Math.min(100, parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira*100)
+    : 100);
+
+  const percentageTraseira = Math.floor(
+      !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira) 
+      ? Math.min(100, parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira*100)
+      : 100);
+
+  const percentageContainer = Math.floor(
+      !isNaN(parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer) 
+      ? Math.min(100, parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer*100)
+      : 100);
+
   useEffect(() => {
     fetchData()
     setTimeout(() => {
@@ -165,7 +219,16 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Acertos'])) : dianteira[0]['Acertos']) : '0'), ((dianteira[0]) ? (usuario.company === 'LACHMAN' ? ((dianteira[0]['Erros'])) : dianteira[0]['Erros']) : '0')],
+              data: [
+                      ((dianteira[0]) ? 
+                        (usuario.company === 'LACHMAN' ? 
+                          ((dianteira[0]['Acertos']))
+                          : dianteira[0]['Acertos']) : '0'),
+                      ((dianteira[0]) ?
+                        (usuario.company === 'LACHMAN' ?
+                          ((dianteira[0]['Erros'])) 
+                          : dianteira[0]['Erros']) : '0')
+                    ],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'
@@ -181,7 +244,16 @@ function RelatorioDashboard() {
           ],
           datasets: [{
             label: '',
-            data: [((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Acertos'])) : traseira[0]['Acertos']) : '0'), ((traseira[0]) ? (usuario.company === 'LACHMAN' ? ((traseira[0]['Erros'])) : traseira[0]['Erros']) : '0')],
+            data: [
+                    ((traseira[0]) ? 
+                      (usuario.company === 'LACHMAN' ? 
+                        ((traseira[0]['Acertos'])) 
+                        : traseira[0]['Acertos']) : '0'), 
+                    ((traseira[0]) ? 
+                      (usuario.company === 'LACHMAN' ? 
+                        ((traseira[0]['Erros'])) 
+                        : traseira[0]['Erros']) : '0')
+                  ],
             backgroundColor: [
               'rgb(54, 162, 235)',
               'rgb(255, 205, 86)'
@@ -197,7 +269,16 @@ function RelatorioDashboard() {
             ],
             datasets: [{
               label: '',
-              data: [((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Acertos'])) : container[0]['Acertos']) : '0'), ((container[0]) ? (usuario.company === 'LACHMAN' ? ((container[0]['Erros'])) : container[0]['Erros']) : '0')],
+              data: [
+                      ((container[0]) ? 
+                        (usuario.company === 'LACHMAN' ? 
+                          ((container[0]['Acertos'])) 
+                          : container[0]['Acertos']) : '0'), 
+                      ((container[0]) ? 
+                        (usuario.company === 'LACHMAN' ? 
+                          ((container[0]['Erros'])) 
+                          : container[0]['Erros']) : '0')
+                    ],
               backgroundColor: [
                 'rgb(54, 162, 235)',
                 'rgb(255, 205, 86)'
@@ -229,44 +310,8 @@ function RelatorioDashboard() {
         }
     }, 3000);
     
-
 }, [startDate, endDate])
-        
-      addLocale('pt', {
-          closeText: 'Fechar',
-          prevText: 'Anterior',
-          nextText: 'Próximo',
-          monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-          monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
-          dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-          dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
-          dayNamesMin: ['D','S','T','Q','Q','S','S'],
-          weekHeader: 'Semana',
-          firstDay: 1,
-          isRTL: false,
-          showMonthAfterYear: false,
-          yearSuffix: '',
-          timeOnlyTitle: 'Só Horas',
-          timeText: 'Tempo',
-          hourText: 'Hora',
-          minuteText: 'Minuto',
-          secondText: 'Segundo',
-          currentText: 'Data Atual',
-          ampm: false,
-          month: 'Mês',
-          week: 'Semana',
-          day: 'Dia',
-          allDayText : 'Todo Dia'
-      });
-
-      const TotalPassagensDianteira = dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0
-      const TotalPassagensTraseira = dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0
-      const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
-
-      const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira
-      const capturasOCRTraseira = usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira
-      const capturasOCRContainer = usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer
-
+     
       return (
         <>
           <Loading opened={loading} />
@@ -304,11 +349,7 @@ function RelatorioDashboard() {
                 </p>
                 <p style={{marginTop: '15px'}}>
                   { dataDianteira.datasets && dataDianteira.datasets[0] ?
-                   ('Assertividade: ' + Math.floor(
-                                      !isNaN(parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira) 
-                                      ? Math.min(100, parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira*100)
-                                      : 100)
-                    + '%')
+                   ('Assertividade: ' + percentageDianteira + '%')
                     : ''}
                 </p>
                 <p style={{marginTop: '15px'}}>
@@ -328,11 +369,7 @@ function RelatorioDashboard() {
                 </p>
                 <p style={{marginTop: '15px'}}>{
                   dataTraseira.datasets && dataTraseira.datasets[0] ?
-                  ('Assertividade: ' + Math.floor(
-                                      !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira)) 
-                                      ? Math.min(100, parseInt(dataTraseira.datasets[0].data[0]) / (capturasOCRTraseira)*100) 
-                                      : 100)
-                    + '%')
+                  ('Assertividade: ' + percentageTraseira + '%')
                     : ''}
                  </p>
                  <p style={{marginTop: '15px'}}>
@@ -351,11 +388,7 @@ function RelatorioDashboard() {
                 </p>
                 <p style={{marginTop: '15px'}}> {
                   dataContainer.datasets && dataContainer.datasets[0] ?
-                  ('Assertividade: ' + Math.floor(
-                                        !isNaN(parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)) 
-                                        ? Math.min(100, parseInt(dataContainer.datasets[0].data[0]) / (capturasOCRContainer)*100)
-                                        : 100)
-                  + '%')
+                  ('Assertividade: ' + percentageContainer + '%')
                   : ''}
                   </p>
                 <p style={{marginTop: '15px'}}>
