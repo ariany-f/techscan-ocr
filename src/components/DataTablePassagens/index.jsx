@@ -115,6 +115,7 @@ function DataTablePassagens() {
         container: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },       
     }); 
     const [loading, setLoading] = useState(false)
+    const [changeFields, setChangeFields] = useState(false)
     const timerRef = useRef(null);
 
     const confirmarPassagem = (id) => {
@@ -179,9 +180,10 @@ function DataTablePassagens() {
 
     useEffect(() => {
 
-        if(!passagens)
+        if(!passagens || changeFields)
         {
             fetchPassages()
+            setChangeFields(false)
         }
 
         // useRef value stored in .current property
@@ -194,7 +196,7 @@ function DataTablePassagens() {
             window.clearTimeout(timerRef.current);
         };
 
-    }, [startDate, endDate, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened, modalBindOpened])
+    }, [changeFields, startDate, endDate, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened, modalBindOpened])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
@@ -398,6 +400,7 @@ function DataTablePassagens() {
     const LimparDatas = () => {
         setStartDate('')
         setEndDate('')
+        setChangeFields(true)
     }
 
     const RefreshData = () => {
@@ -440,12 +443,12 @@ function DataTablePassagens() {
                 
                 <div style={{ width: '20%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Data/Hora Inicial</Texto>
-                    <Calendar locale="pt" dateFormat="dd/mm/yy" value={startDate} onChange={(e) => setStartDate(e.value)} showTime hourFormat="24" />
+                    <Calendar locale="pt" dateFormat="dd/mm/yy" value={startDate} onChange={(e) => {setStartDate(e.value);setChangeFields(true)}} showTime hourFormat="24" />
                 </div>
 
                 <div style={{ width: '20%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Data/Hora Final</Texto>
-                    <Calendar locale="pt" dateFormat="dd/mm/yy" value={endDate} onChange={(e) => setEndDate(e.value)} showTime hourFormat="24" />
+                    <Calendar locale="pt" dateFormat="dd/mm/yy" value={endDate} onChange={(e) => {setEndDate(e.value);setChangeFields(true)}} showTime hourFormat="24" />
                 </div>
 
                 <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
