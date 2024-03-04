@@ -285,9 +285,8 @@ function DataTablePassagens() {
                 is_warned = true
             }
 
-            return item.is_ok === '0'
+            return item.is_ok === 0
         })
-        console.log(is_not_ok)
         
         return <StatusLabel className={is_not_ok.length === 0 ? 'active' : (is_warned ? 'warning' : '')}/>
     }
@@ -301,7 +300,7 @@ function DataTablePassagens() {
                 is_warned = true
             }
 
-            return item.is_ok === '0'
+            return item.is_ok === 0
         })
         
         return (
