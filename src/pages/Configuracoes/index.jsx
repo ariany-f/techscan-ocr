@@ -246,6 +246,7 @@ function Configuracoes(){
         {
             http.get('api/web/public/inscricoes')
             .then(response => {
+                console.log(response)
                 if(response.data)
                 {
                     setInscricoes(response.data)
