@@ -116,7 +116,7 @@ function DataTablePassagens() {
     const timerRef = useRef(null);
 
     const confirmarPassagem = (id) => {
-        const myArray = id.split(",");
+        const myArray = id;
         const confirm = myArray.map((item) => {
            var sendData = {
                 id: parseInt(item),
@@ -223,11 +223,11 @@ function DataTablePassagens() {
     };
 
     const dateBodyTemplate = (rowData) => {
-        const myArray = rowData.datetime.split(" | ");
+        const myArray = rowData.itens;
         const datas = myArray.map((item) => {
-            if(item)
+            if(item.datetime)
             {
-                return formatDate(new Date(item)) + ' '
+                return formatDate(new Date(item.datetime)) + ' '
             }
         })
         return datas;
@@ -251,9 +251,9 @@ function DataTablePassagens() {
 
     const statusBodyTemplate = (rowData) => {
        
-        const myArray = rowData.status.split(" | ");
+        const myArray = rowData.itens;
         const is_not_ok = myArray.filter((item) => {
-            return item === '0'
+            return item.status === '0'
         })
 
         const is_warned = rowData.updated_by
@@ -262,9 +262,9 @@ function DataTablePassagens() {
     }
 
     const rowExpansionTemplate = (data) => {
-        const myArray = data.status.split(" | ");
+        const myArray = data.itens;
         const is_not_ok = myArray.filter((item) => {
-            return !item
+            return !item.status
         })
         const is_warned = data.updated_by
         return (
