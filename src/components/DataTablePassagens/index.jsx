@@ -261,10 +261,9 @@ function DataTablePassagens() {
         let updated = rowData.itens.map((item) => {
             return item.updated_by ? `${item.updated_by} ` : null;
         })
-        updated = updated.filter(function (el) {
-            return el != null;
+        updated = updated.filter(function (el, index) {
+            return el != null && index === 0;
         });
-        updated = updated[0]
 
         return updated.length ? updated : '----------';
     };
