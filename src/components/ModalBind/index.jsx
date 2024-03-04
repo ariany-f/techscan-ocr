@@ -79,7 +79,7 @@ function ModalBind({ opened = false, aoClicar, aoFechar, passagem }) {
     function updateBind()
     {
         const filtered = dropdownEvents.filter(item => {
-            return item.code === selectedEvent
+            return item.code === parseInt(selectedEvent)
         })
         console.log(filtered)
 

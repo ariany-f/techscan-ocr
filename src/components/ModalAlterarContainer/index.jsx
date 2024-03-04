@@ -80,7 +80,7 @@ function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem })
     function updateContainer()
     {
         const filtered = dropdownContainers.filter(item => {
-            return item.code === selectedContainer
+            return item.code === parseInt(selectedContainer)
         })
 
         var sendData = {
