@@ -84,7 +84,7 @@ function ModalBind({ opened = false, aoClicar, aoFechar, passagem }) {
         console.log(filtered)
 
         var sendData = {
-            id: filtered.code,
+            id: filtered[0].code,
             updated_by: ArmazenadorToken.UserId
         }
         http.patch('api/web/public/passagens/desvincular', sendData)

@@ -84,8 +84,8 @@ function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem })
         })
 
         var sendData = {
-            id: filtered.code,
-            plate: filtered.plate,
+            id: filtered[0].code,
+            plate: filtered[0].plate,
             container: container,
             updated_by: ArmazenadorToken.UserId
         }
