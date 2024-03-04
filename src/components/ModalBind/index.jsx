@@ -132,8 +132,8 @@ function ModalBind({ opened = false, aoClicar, aoFechar, passagem }) {
                                 })}
                                 </Texto>
                             </SubTitulo>
-                            <DropdownItens setValor={setSelectedEvent} valor={selectedEvent} options={dropdownEvents} label="Selecionar Evento" name="plate" placeholder="" />
                         </Titulo>
+                        <DropdownItens setValor={setSelectedEvent} valor={selectedEvent} options={dropdownEvents} label="Selecionar Evento" name="plate" placeholder="" />
                     </Frame>
                     <form method="dialog">
                         <div className={styles.containerBottom}>
