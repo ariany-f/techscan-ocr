@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom"
+import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom"
 import { styled } from "styled-components"
 
 const ItemListaEstilizado = styled.li`
@@ -82,7 +82,7 @@ const LinkButton = styled.button`
 `
 
 const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
-    const navigate = useNavigate()
+    const navigate = useNavigation()
 
     const goTo = (url) => {
         navigate(url)
