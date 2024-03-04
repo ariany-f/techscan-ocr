@@ -86,14 +86,14 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
         {children}
         {subItem && subItem.length > 0 && subItem.map(item => {
             return (
-                <button key={item.id} className="link" onClick={() => navigate(item.url)}>
+                <LinkButton key={item.id} className="link" onClick={navigate(item.url)}>
                     <ListaEstilizada>
                         <SubItemEstilizado $ativo={('/'+location.pathname.split('/')[1]+'/'+location.pathname.split('/')[2]) === item.url} >
                             {item.icone}
                             {item.itemTitulo}
                         </SubItemEstilizado>
                     </ListaEstilizada>
-                </button>
+                </LinkButton>
             )
         })}
     </ItemListaEstilizado>
