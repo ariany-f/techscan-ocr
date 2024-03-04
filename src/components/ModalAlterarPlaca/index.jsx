@@ -4,6 +4,7 @@ import Texto from "@components/Texto"
 import CampoTexto from "@components/CampoTexto"
 import Titulo from "@components/Titulo"
 import SubTitulo from "@components/SubTitulo"
+import DropdownItens from '@components/DropdownItens'
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import http from '@http'
@@ -73,6 +74,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
 
     const [date, setDate] = useState(new Date())
     const [plate, setPlate] = useState('')
+    const [selectedPlate, setSelectedPlate] = useState(0)
 
     console.log(passagem)
 
@@ -111,6 +113,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
                     <Frame>
                         <Titulo>
                             <h6>Alterar Placa</h6>
+                            <DropdownItens setValor={setSelectedPlate} valor={selectedPlate} options={passagem.itens} label="Selecionar Placa" name="plate" placeholder="" />
                             <SubTitulo>
                                 <Texto>Seu registro será gravado com data e horário:&nbsp;
                                 {date.toLocaleDateString('pt-BR', {
