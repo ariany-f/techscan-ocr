@@ -117,7 +117,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
            // setDropdownPlates(plates)
         }
 
-    }, [])
+    }, [passagem])
 
     return(
         <>
