@@ -79,38 +79,41 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
 
     function updatePlate()
     {
-        const myArray = passagem[0].id.split(",");
-        const myArrayPlates = passagem[0].plate.split(",");
+        console.log(selectedPlate)
+        // var sendData = {
+        //     id: selectedPlate,
+        //     plate: plate,
+        //     container: passagem[0].container,
+        //     updated_by: ArmazenadorToken.UserId
+        // }
+        // http.patch('api/web/public/passagens', sendData)
+        // .then(response => {
+        // })
+        // .catch(erro => {
+        //     console.error(erro)
+        // })
+        // const myArray = passagem[0].id.split(",");
+        // const myArrayPlates = passagem[0].plate.split(",");
         
-        const confirm = myArray.map((item, index) => {
-            if((typeof myArrayPlates[index] !== 'undefined' && myArrayPlates[index] !== plate) || typeof myArrayPlates[index] === 'undefined')
-            {
-                var sendData = {
-                    id: parseInt(item),
-                    plate: plate,
-                    container: passagem[0].container,
-                    updated_by: ArmazenadorToken.UserId
-                }
-                http.patch('api/web/public/passagens', sendData)
-                .then(response => {
-                })
-                .catch(erro => {
-                    console.error(erro)
-                })
-            }
-         })
+        // const confirm = myArray.map((item, index) => {
+        //     if((typeof myArrayPlates[index] !== 'undefined' && myArrayPlates[index] !== plate) || typeof myArrayPlates[index] === 'undefined')
+        //     {
+               
+        //     }
+        //  })
  
          aoFechar()
     }
 
     useEffect(() => {
 
-        if(passagem)
+        if(passagem && passagem[0])
         {
             const plates = (passagem[0].itens.map(item => {
                 return {
                     name: item.plate,
-                    code: item.id
+                    code: item.id,
+                    container: item.container
                 }
             }))
            setDropdownPlates(plates)
