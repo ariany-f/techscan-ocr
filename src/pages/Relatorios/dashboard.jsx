@@ -47,7 +47,7 @@ function RelatorioDashboard() {
   const reportRef = useRef(null)
   
   const [TotalPassagensDianteira, setTotalPassagensDianteira] = useState()
-  const [TotalPassagensTraseira setTotalPassagensTraseira] = useState()
+  const [TotalPassagensTraseira, setTotalPassagensTraseira] = useState()
   const [TotalPassagensContainer, setTotalPassagensContainer] = useState()
 
   const [capturasOCRDianteira, setCapturasOCRDianteira] = useState()
@@ -198,7 +198,7 @@ function RelatorioDashboard() {
   } 
 
   useEffect(() => {
-    
+
     fetchData()
 
     setTotalPassagensDianteira(dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0)
