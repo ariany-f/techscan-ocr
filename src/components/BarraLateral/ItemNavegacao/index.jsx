@@ -84,11 +84,15 @@ const LinkButton = styled.button`
 const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
     const navigate = useNavigate()
 
+    const goTo = (url) => {
+        navigate(url)
+    }
+
     return <ItemListaEstilizado onClick={aoClicar} $ativo={ativo}>
         {children}
         {subItem && subItem.length > 0 && subItem.map(item => {
             return (
-                <LinkButton type="button" aria-label="Navegar" key={item.id} className="link" onClick={() => navigate(item.url)}>
+                <LinkButton type="button" aria-label="Navegar" key={item.id} className="link" onClick={goTo(item.url)}>
                     <ListaEstilizada>
                         <SubItemEstilizado $ativo={('/'+location.pathname.split('/')[1]+'/'+location.pathname.split('/')[2]) === item.url} >
                             {item.icone}
