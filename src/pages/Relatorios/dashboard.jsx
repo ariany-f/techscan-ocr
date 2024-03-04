@@ -201,32 +201,7 @@ function RelatorioDashboard() {
   function configurarGraficos() {
     
     setDataDianteira(
-      {
-          labels: [
-            'Acertos',
-            'Erros'
-          ],
-          datasets: [{
-            label: '',
-            data: [
-                    ((dianteira[0]) ? 
-                      (usuario.company === 'LACHMAN' ? 
-                        (dianteira[0]['Acertos'])
-                        : dianteira[0]['Acertos']) : '0'),
-                    ((dianteira[0]) ?
-                      (usuario.company === 'LACHMAN' ?
-                        (dianteira[0]['Erros'])
-                        : dianteira[0]['Erros']) : '0')
-                  ],
-            backgroundColor: [
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4
-          }]
-      });
-  
-      setDataTraseira({
+    {
         labels: [
           'Acertos',
           'Erros'
@@ -234,14 +209,14 @@ function RelatorioDashboard() {
         datasets: [{
           label: '',
           data: [
-                  ((traseira[0]) ? 
+                  ((dianteira[0]) ? 
                     (usuario.company === 'LACHMAN' ? 
-                      (traseira[0]['Acertos'])
-                      : traseira[0]['Acertos']) : '0'), 
-                  ((traseira[0]) ? 
-                    (usuario.company === 'LACHMAN' ? 
-                      (traseira[0]['Erros'])
-                      : traseira[0]['Erros']) : '0')
+                      (dianteira[0]['Acertos'])
+                      : dianteira[0]['Acertos']) : '0'),
+                  ((dianteira[0]) ?
+                    (usuario.company === 'LACHMAN' ?
+                      (dianteira[0]['Erros'])
+                      : dianteira[0]['Erros']) : '0')
                 ],
           backgroundColor: [
             'rgb(54, 162, 235)',
@@ -249,49 +224,76 @@ function RelatorioDashboard() {
           ],
           hoverOffset: 4
         }]
-      });
-  
-      setDataContainer({
-          labels: [
-            'Acertos',
-            'Erros'
+    });
+
+    setDataTraseira({
+      labels: [
+        'Acertos',
+        'Erros'
+      ],
+      datasets: [{
+        label: '',
+        data: [
+                ((traseira[0]) ? 
+                  (usuario.company === 'LACHMAN' ? 
+                    (traseira[0]['Acertos'])
+                    : traseira[0]['Acertos']) : '0'), 
+                ((traseira[0]) ? 
+                  (usuario.company === 'LACHMAN' ? 
+                    (traseira[0]['Erros'])
+                    : traseira[0]['Erros']) : '0')
+              ],
+        backgroundColor: [
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
+    });
+
+    setDataContainer({
+        labels: [
+          'Acertos',
+          'Erros'
+        ],
+        datasets: [{
+          label: '',
+          data: [
+                  ((container[0]) ? 
+                    (usuario.company === 'LACHMAN' ? 
+                      (container[0]['Acertos'])
+                      : container[0]['Acertos']) : '0'), 
+                  ((container[0]) ? 
+                    (usuario.company === 'LACHMAN' ? 
+                      (container[0]['Erros']) 
+                      : container[0]['Erros']) : '0')
+                ],
+          backgroundColor: [
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
           ],
-          datasets: [{
-            label: '',
-            data: [
-                    ((container[0]) ? 
-                      (usuario.company === 'LACHMAN' ? 
-                        (container[0]['Acertos'])
-                        : container[0]['Acertos']) : '0'), 
-                    ((container[0]) ? 
-                      (usuario.company === 'LACHMAN' ? 
-                        (container[0]['Erros']) 
-                        : container[0]['Erros']) : '0')
-                  ],
-            backgroundColor: [
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4
-          }]
-      })        
-  
-      setConfigDianteira({
-        type: 'pie',
-        data: dataDianteira
-      });
-  
-      setConfigTraseira({
-        type: 'pie',
-        data: dataTraseira
-      });
-  
-      setConfigContainer({
-        type: 'pie',
-        data: dataContainer
-      });
-      
+          hoverOffset: 4
+        }]
+    })        
+
+    setConfigDianteira({
+      type: 'pie',
+      data: dataDianteira
+    });
+
+    setConfigTraseira({
+      type: 'pie',
+      data: dataTraseira
+    });
+
+    setConfigContainer({
+      type: 'pie',
+      data: dataContainer
+    });
+
+    setTimeout(() => {
       showLegend()
+    }, 3000);
   }
 
   function showLegend() {
