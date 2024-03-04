@@ -196,8 +196,8 @@ function RelatorioDashboard() {
       })
   }
 
-  function configurarGraficos() {
-    console.log(dianteira)
+  function configurarGraficos(dianteira, traseira, container) {
+    
     setDataDianteira(
     {
         labels: [
@@ -336,8 +336,7 @@ function RelatorioDashboard() {
 
     if(dianteira && traseira && container)
     {
-      console.log(dianteira)
-      configurarGraficos()
+      configurarGraficos(dianteira, traseira, container)
     }
 
     setLoading(false)
