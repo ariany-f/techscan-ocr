@@ -191,13 +191,6 @@ function RelatorioDashboard() {
               }))
           }
       })
-      .then(response => {
-        if(dianteira)
-        {
-          console.log(dianteira)
-        }
-        configurarGraficos()
-      })
       .catch(erro => {
           console.error(erro)
       })
@@ -335,14 +328,20 @@ function RelatorioDashboard() {
   }
 
   useEffect(() => {
-    if(!dataDianteira)
+
+    if((!dataDianteira) || (!dataTraseira) || (!dataContainer))
     {
       fetchData()
     }
 
+    if(dianteira && traseira && container)
+    {
+      configurarGraficos()
+    }
+
     setLoading(false)
     
-}, [startDate, endDate])
+}, [startDate, endDate, dianteira, traseira, container])
      
       return (
         <>
