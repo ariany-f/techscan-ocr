@@ -332,7 +332,7 @@ function RelatorioDashboard() {
       fetchData()
     }
 
-    if(dianteira && traseira && container)
+    if(dianteira && traseira && container && (!dataDianteira) && (!dataTraseira) && (!dataContainer))
     {
       configurarGraficos(dianteira, traseira, container)
     }
