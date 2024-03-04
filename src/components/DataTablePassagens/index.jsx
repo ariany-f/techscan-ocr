@@ -327,8 +327,10 @@ function DataTablePassagens() {
 
             return item.is_ok === 0
         })
+        console.log(plateBodyTemplate)
         
         return (
+
             <>
                 {data.error_reason
                 ? <>
@@ -342,6 +344,7 @@ function DataTablePassagens() {
                 
                 <ContainerLadoALado>
                     <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
+                    
                     {plateBodyTemplate !== '----------' &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
                     }
