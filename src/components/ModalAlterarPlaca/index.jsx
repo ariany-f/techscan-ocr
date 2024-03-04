@@ -138,7 +138,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
                             </SubTitulo>
                             <DropdownItens setValor={setSelectedPlate} valor={selectedPlate} options={dropdownPlates} label="Selecionar Placa" name="plate" placeholder="" />
                         </Titulo>
-                        <CampoTexto valor={plate} setValor={setPlate} label="Placa" placeholder="Digite a placa"/>
+                        <CampoTexto valor={plate} setValor={setPlate} label="Nova Placa" placeholder="Digite a nova placa"/>
                        
                     </Frame>
                     <form method="dialog">
