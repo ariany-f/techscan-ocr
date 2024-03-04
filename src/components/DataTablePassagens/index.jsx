@@ -266,10 +266,6 @@ function DataTablePassagens() {
     const qtdImagensBodyTemplate = (rowData) => {
         let countImages = 0;
         const images = rowData.itens.map((item) => {
-            item.images = item.images.split(',')
-            item.images = item.images.filter(function (el) {
-                return el != "";
-            });
             if(item.images)
             {
                 countImages =+ item.images.length
@@ -323,10 +319,6 @@ function DataTablePassagens() {
                 </ContainerLadoALado>
                 <div>
                     {data.itens.map((passage, index) => {
-                        passage.images = passage.images.split(',')
-                        passage.images = passage.images.filter(function (el) {
-                            return el != "";
-                        });
                        {passage.images.map((item, index) => {
                         return <img onClick={() => abrirImagem(item)} key={`${data.id}-${index}`} width="240px" src={`http://${window.location.hostname}/api/web/public/${item}`} style={{margin: '5px'}} />
                         })}
