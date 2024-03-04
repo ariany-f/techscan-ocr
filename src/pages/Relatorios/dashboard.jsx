@@ -191,7 +191,6 @@ function RelatorioDashboard() {
               ))
               
               configurarGraficos()
-              showLegend()
           }
       })
       .catch(erro => {
@@ -291,6 +290,8 @@ function RelatorioDashboard() {
         type: 'pie',
         data: dataContainer
       });
+      
+      showLegend()
   }
 
   function showLegend() {
@@ -332,11 +333,6 @@ function RelatorioDashboard() {
     }
 
     setLoading(false)
-
-    // if(!primeiraVez)
-    // {
-    //   LimparDatas()
-    // }
     
 }, [startDate, endDate])
      
