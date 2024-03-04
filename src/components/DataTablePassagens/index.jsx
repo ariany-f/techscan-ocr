@@ -235,10 +235,7 @@ function DataTablePassagens() {
     
     const plateBodyTemplate = (rowData) => {
         const plates = rowData.itens.map((item) => {
-            if(item.plate)
-            {
-                return item.plate ?? '----------';
-            }
+            return item.plate ?? '----------';
         })
         return plates;
     };
@@ -255,10 +252,7 @@ function DataTablePassagens() {
 
     const containerBodyTemplate = (rowData) => {
         const containers = rowData.itens.map((item) => {
-            if(item.container)
-            {
-                return item.container ?? '----------';
-            }
+            return item.container ?? '----------';
         })
         return containers;
     };
