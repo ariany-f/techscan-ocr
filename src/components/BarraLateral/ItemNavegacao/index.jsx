@@ -97,7 +97,7 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
         }, [])
 
     function goTo() {
-        // setEndereco(url)
+        console.log(endereco)
         if(endereco)
         {
             navegar(endereco)
