@@ -245,7 +245,7 @@ function DataTablePassagens() {
 
     const containerBodyTemplate = (rowData) => {
         const containers = rowData.itens.map((item) => {
-            return `${item.container} `;
+            return item.container ? `${item.container} ` : null;
         })
         return containers ?? '----------';
     };
@@ -259,7 +259,7 @@ function DataTablePassagens() {
     
     const DirectionBodyTemplate = (rowData) => {
         const directions = rowData.itens.map((item) => {
-            return `${item.direction} `;
+            return item.direction ? `${item.direction} ` : null;
         })
         return directions ?? '----------';
     };
