@@ -201,105 +201,98 @@ function RelatorioDashboard() {
 
     fetchData()
 
-    setTimeout(() => {
-        setDataDianteira(
-        {
-            labels: [
-              'Acertos',
-              'Erros'
-            ],
-            datasets: [{
-              label: '',
-              data: [
-                      ((dianteira[0]) ? 
-                        (usuario.company === 'LACHMAN' ? 
-                          (dianteira[0]['Acertos'])
-                          : dianteira[0]['Acertos']) : '0'),
-                      ((dianteira[0]) ?
-                        (usuario.company === 'LACHMAN' ?
-                          (dianteira[0]['Erros'])
-                          : dianteira[0]['Erros']) : '0')
-                    ],
-              backgroundColor: [
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
-              ],
-              hoverOffset: 4
-            }]
-        });
-
-        setDataTraseira({
-          labels: [
-            'Acertos',
-            'Erros'
+    
+    setDataDianteira(
+    {
+        labels: [
+          'Acertos',
+          'Erros'
+        ],
+        datasets: [{
+          label: '',
+          data: [
+                  ((dianteira[0]) ? 
+                    (usuario.company === 'LACHMAN' ? 
+                      (dianteira[0]['Acertos'])
+                      : dianteira[0]['Acertos']) : '0'),
+                  ((dianteira[0]) ?
+                    (usuario.company === 'LACHMAN' ?
+                      (dianteira[0]['Erros'])
+                      : dianteira[0]['Erros']) : '0')
+                ],
+          backgroundColor: [
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
           ],
-          datasets: [{
-            label: '',
-            data: [
-                    ((traseira[0]) ? 
-                      (usuario.company === 'LACHMAN' ? 
-                        (traseira[0]['Acertos'])
-                        : traseira[0]['Acertos']) : '0'), 
-                    ((traseira[0]) ? 
-                      (usuario.company === 'LACHMAN' ? 
-                        (traseira[0]['Erros'])
-                        : traseira[0]['Erros']) : '0')
-                  ],
-            backgroundColor: [
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4
-          }]
-        });
+          hoverOffset: 4
+        }]
+    });
 
-        setDataContainer({
-            labels: [
-              'Acertos',
-              'Erros'
-            ],
-            datasets: [{
-              label: '',
-              data: [
-                      ((container[0]) ? 
-                        (usuario.company === 'LACHMAN' ? 
-                          (container[0]['Acertos'])
-                          : container[0]['Acertos']) : '0'), 
-                      ((container[0]) ? 
-                        (usuario.company === 'LACHMAN' ? 
-                          (container[0]['Erros']) 
-                          : container[0]['Erros']) : '0')
-                    ],
-              backgroundColor: [
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+    setDataTraseira({
+      labels: [
+        'Acertos',
+        'Erros'
+      ],
+      datasets: [{
+        label: '',
+        data: [
+                ((traseira[0]) ? 
+                  (usuario.company === 'LACHMAN' ? 
+                    (traseira[0]['Acertos'])
+                    : traseira[0]['Acertos']) : '0'), 
+                ((traseira[0]) ? 
+                  (usuario.company === 'LACHMAN' ? 
+                    (traseira[0]['Erros'])
+                    : traseira[0]['Erros']) : '0')
               ],
-              hoverOffset: 4
-            }]
-        })        
+        backgroundColor: [
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
+    });
 
-        setConfigDianteira({
-          type: 'pie',
-          data: dataDianteira
-        });
-    
-        setConfigTraseira({
-          type: 'pie',
-          data: dataTraseira
-        });
-    
-        setConfigContainer({
-          type: 'pie',
-          data: dataContainer
-        });
-        
-        setLoading(false)
+    setDataContainer({
+        labels: [
+          'Acertos',
+          'Erros'
+        ],
+        datasets: [{
+          label: '',
+          data: [
+                  ((container[0]) ? 
+                    (usuario.company === 'LACHMAN' ? 
+                      (container[0]['Acertos'])
+                      : container[0]['Acertos']) : '0'), 
+                  ((container[0]) ? 
+                    (usuario.company === 'LACHMAN' ? 
+                      (container[0]['Erros']) 
+                      : container[0]['Erros']) : '0')
+                ],
+          backgroundColor: [
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ],
+          hoverOffset: 4
+        }]
+    })        
 
-        if(!primeiraVez)
-        {
-          LimparDatas()
-        }
-    }, 3000);
+    setConfigDianteira({
+      type: 'pie',
+      data: dataDianteira
+    });
+
+    setConfigTraseira({
+      type: 'pie',
+      data: dataTraseira
+    });
+
+    setConfigContainer({
+      type: 'pie',
+      data: dataContainer
+    });
+  
 
     setTotalPassagensDianteira(dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0)
     setTotalPassagensTraseira(dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0)
@@ -330,14 +323,23 @@ function RelatorioDashboard() {
           : 100
         : 100));
     
+    setLoading(false)
+
+    if(!primeiraVez)
+    {
+      LimparDatas()
+    }
+    
 }, [startDate, endDate])
      
       return (
         <>
           <Loading opened={loading} />
+
           <Titulo>
               <h2 style={{ fontWeight: 500, color: '#B9B9B9' }}>ESTATÍSTICAS</h2>
           </Titulo>
+
           <ContainerLadoALado>
                 <div style={{ width: '20%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Data/Hora Inicial</Texto>
@@ -357,65 +359,65 @@ function RelatorioDashboard() {
                   <Botao estilo="azul" size="medium" aoClicar={exportPdf}>Download PDF</Botao>
                 </div>
             </ContainerLadoALado>
+
             <ContainerLadoALado ref={reportRef}>
-			      {(Object.keys(dataDianteira).length > 0) &&
-              <div>
-                <Titulo>
-                  <h6>Placa Dianteira</h6>
-                </Titulo>
-                <Chart ref={refDianteira} type="pie" data={dataDianteira} options={configDianteira} className="w-full md:w-10rem" />
-                <p style={{marginTop: '15px'}}>
-                  {`Nº Passagens: ${TotalPassagensDianteira}`}
-                </p>
-                <p style={{marginTop: '15px'}}>
-                  { dataDianteira.datasets && dataDianteira.datasets[0] ?
-                   ('Assertividade: ' + percentageDianteira + '%')
-                    : ''}
-                </p>
-                <p style={{marginTop: '15px'}}>
-                  {`Capturas OCR: ${Math.floor(capturasOCRDianteira)}`}
-                </p>
-              </div>
-			      }
-			
-			      {(Object.keys(dataTraseira).length > 0) &&
-              <div>
-                <Titulo>
-                  <h6>Placa Traseira</h6>
-                </Titulo>
-                <Chart ref={refTraseira} type="pie" data={dataTraseira} options={configTraseira} className="w-full md:w-10rem" />
-                <p style={{marginTop: '15px'}}>
-                  {`Nº Passagens: ${TotalPassagensTraseira}`}
-                </p>
-                <p style={{marginTop: '15px'}}>{
-                  dataTraseira.datasets && dataTraseira.datasets[0] ?
-                  ('Assertividade: ' + percentageTraseira + '%')
-                    : ''}
-                 </p>
-                 <p style={{marginTop: '15px'}}>
-                  {`Capturas OCR: ${Math.floor(capturasOCRTraseira)}`}
-                </p>
-              </div>
-			        }
-			      {(Object.keys(dataContainer).length > 0) &&
-              <div>
-                <Titulo>
-                  <h6>Conteiner</h6>
-                </Titulo>
-                <Chart ref={refContainer} type="pie" data={dataContainer} options={configContainer} className="w-full md:w-10rem" />
-                <p style={{marginTop: '15px'}}>
-                   {`Nº Passagens: ${TotalPassagensContainer}`}
-                </p>
-                <p style={{marginTop: '15px'}}> {
-                  dataContainer.datasets && dataContainer.datasets[0] ?
-                  ('Assertividade: ' + percentageContainer + '%')
-                  : ''}
+              {(Object.keys(dataDianteira).length > 0) &&
+                <div>
+                  <Titulo>
+                    <h6>Placa Dianteira</h6>
+                  </Titulo>
+                  <Chart ref={refDianteira} type="pie" data={dataDianteira} options={configDianteira} className="w-full md:w-10rem" />
+                  <p style={{marginTop: '15px'}}>
+                    {`Nº Passagens: ${TotalPassagensDianteira}`}
                   </p>
-                <p style={{marginTop: '15px'}}>
-                  {`Capturas OCR: ${Math.floor(capturasOCRContainer)}`}
-                </p>
-              </div>
-			        }
+                  <p style={{marginTop: '15px'}}>
+                    { dataDianteira.datasets && dataDianteira.datasets[0] ?
+                    ('Assertividade: ' + percentageDianteira + '%')
+                      : ''}
+                  </p>
+                  <p style={{marginTop: '15px'}}>
+                    {`Capturas OCR: ${Math.floor(capturasOCRDianteira)}`}
+                  </p>
+                </div>
+              }
+              {(Object.keys(dataTraseira).length > 0) &&
+                <div>
+                  <Titulo>
+                    <h6>Placa Traseira</h6>
+                  </Titulo>
+                  <Chart ref={refTraseira} type="pie" data={dataTraseira} options={configTraseira} className="w-full md:w-10rem" />
+                  <p style={{marginTop: '15px'}}>
+                    {`Nº Passagens: ${TotalPassagensTraseira}`}
+                  </p>
+                  <p style={{marginTop: '15px'}}>{
+                    dataTraseira.datasets && dataTraseira.datasets[0] ?
+                    ('Assertividade: ' + percentageTraseira + '%')
+                      : ''}
+                  </p>
+                  <p style={{marginTop: '15px'}}>
+                    {`Capturas OCR: ${Math.floor(capturasOCRTraseira)}`}
+                  </p>
+                </div>
+              }
+              {(Object.keys(dataContainer).length > 0) &&
+                <div>
+                  <Titulo>
+                    <h6>Conteiner</h6>
+                  </Titulo>
+                  <Chart ref={refContainer} type="pie" data={dataContainer} options={configContainer} className="w-full md:w-10rem" />
+                  <p style={{marginTop: '15px'}}>
+                    {`Nº Passagens: ${TotalPassagensContainer}`}
+                  </p>
+                  <p style={{marginTop: '15px'}}> {
+                    dataContainer.datasets && dataContainer.datasets[0] ?
+                    ('Assertividade: ' + percentageContainer + '%')
+                    : ''}
+                    </p>
+                  <p style={{marginTop: '15px'}}>
+                    {`Capturas OCR: ${Math.floor(capturasOCRContainer)}`}
+                  </p>
+                </div>
+              }
           </ContainerLadoALado>
         </>
       )
