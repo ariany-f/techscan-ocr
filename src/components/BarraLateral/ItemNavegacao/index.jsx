@@ -108,14 +108,14 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
         {children}
         {subItem && subItem.length > 0 && subItem.map(item => {
             return (
-                <LinkButton type="button" aria-label="Navegar" key={item.id} className="link" onClick={() => {setEndereco(item.url);goTo()}}>
+                <Link type="button" aria-label="Navegar" key={item.id} className="link" to={item.url}>
                     <ListaEstilizada>
                         <SubItemEstilizado $ativo={('/'+location.pathname.split('/')[1]+'/'+location.pathname.split('/')[2]) === item.url} >
                             {item.icone}
                             {item.itemTitulo}
                         </SubItemEstilizado>
                     </ListaEstilizada>
-                </LinkButton>
+                </Link>
             )
         })}
     </ItemListaEstilizado>
