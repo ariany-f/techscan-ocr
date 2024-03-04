@@ -30,9 +30,9 @@ function RelatorioDashboard() {
   const [endDate, setEndDate] = useState(null);
   const [primeiraVez, setPrimeiraVez] = useState(false);
 
-  const [dianteira, setDianteira] = useState([]);
-  const [traseira, setTraseira] = useState([]);
-  const [container, setContainer] = useState([]);
+  const [dianteira, setDianteira] = useState(null);
+  const [traseira, setTraseira] = useState(null);
+  const [container, setContainer] = useState(null);
 
   const [dataDianteira, setDataDianteira] = useState(null)
   const [configDianteira, setConfigDianteira] = useState({})
