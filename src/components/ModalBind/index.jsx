@@ -81,6 +81,7 @@ function ModalBind({ opened = false, aoClicar, aoFechar, passagem }) {
         const filtered = dropdownEvents.filter(item => {
             return item.code === selectedEvent
         })
+        console.log(filtered)
 
         var sendData = {
             id: filtered.code,
