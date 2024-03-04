@@ -259,14 +259,14 @@ function DataTablePassagens() {
     
     const DirectionBodyTemplate = (rowData) => {
         const directions = rowData.itens.map((item) => {
-            return item.direction ?? '----------';
+            return item.direction ? `${item.direction} ` : '----------';
         })
         return directions;
     };
     
     const GateBodyTemplate = (rowData) => {
         const gates = rowData.itens.map((item) => {
-            return item.gate ?? '----------';
+            return item.gate ? `${item.gate} ` : '----------';
         })
         return gates;
     };
