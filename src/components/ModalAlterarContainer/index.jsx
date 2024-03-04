@@ -4,6 +4,7 @@ import Texto from "@components/Texto"
 import CampoTexto from "@components/CampoTexto"
 import Titulo from "@components/Titulo"
 import SubTitulo from "@components/SubTitulo"
+import DropdownItens from '@components/DropdownItens'
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import http from '@http'
@@ -72,33 +73,49 @@ const DialogEstilizado = styled.dialog`
 function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem }) {
 
     const [date, setDate] = useState(new Date())
-    const [container, setContainer] = useState(passagem && passagem.length > 0 ? passagem[0]?.container : '')
+    const [container, setContainer] = useState('')
+    const [dropdownContainers, setDropdownContainers] = useState([])
+    const [selectedContainer, setSelectedContainer] = useState(null)
 
     function updateContainer()
     {
-        const myArray = passagem[0].id.split(",");
-        const myArrayConainers = passagem[0].container.split(",");
-        const confirm = myArray.map((item, index) => {
-            if((typeof myArrayConainers[index] !== 'undefined' && myArrayConainers[index] !== container) || typeof myArrayConainers[index] === 'undefined')
-            {
-            var sendData = {
-                    id: parseInt(item),
-                    container: container,
-                    plate: passagem[0].plate,
-                    updated_by: ArmazenadorToken.UserId
-                }
-                http.patch('api/web/public/passagens', sendData)
-                .then(response => {
-                })
-                .catch(erro => {
-                    console.error(erro)
-                })
-            }
-         })
- 
-         aoFechar()
-        
+        const filtered = dropdownContainers.filter(item => {
+            return item.code === selectedContainer
+        })
+
+        var sendData = {
+            id: filtered.code,
+            plate: filtered.plate,
+            container: container,
+            updated_by: ArmazenadorToken.UserId
+        }
+        http.patch('api/web/public/passagens', sendData)
+        .then(response => {
+
+        })
+        .catch(erro => {
+            console.error(erro)
+        })
+       
+        aoFechar()
     }
+
+    useEffect(() => {
+
+        if(passagem && passagem[0])
+        {
+            const containers = (passagem[0].itens.map(item => {
+                return {
+                    name: item.container,
+                    code: item.id,
+                    plate: item.plate
+                }
+            }))
+           setDropdownContainers(containers)
+           setSelectedContainer(containers[0].code)
+        }
+
+    }, [passagem])
 
     return(
         <>
@@ -119,8 +136,9 @@ function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem })
                                 })}
                                 </Texto>
                             </SubTitulo>
+                            <DropdownItens setValor={setSelectedContainer} valor={selectedContainer} options={dropdownContainers} label="Selecionar Container" name="container" placeholder="" />
                         </Titulo>
-                        <CampoTexto valor={container} setValor={setContainer} label="Container" placeholder="Digite o container"/>
+                        <CampoTexto valor={container} setValor={setContainer} label="Container" placeholder="Digite o Container"/>
                        
                     </Frame>
                     <form method="dialog">
