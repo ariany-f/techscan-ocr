@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import { styled } from "styled-components"
 
 const ItemListaEstilizado = styled.li`
@@ -66,12 +66,27 @@ const SubItemEstilizado = styled.li`
     }
 `
 
+const LinkButton = styled.button`
+    color: ${ props => props.$ativo ? 'var(--styled-white)' : 'var(--white)' };
+    background-color: ${ props => props.$ativo ? 'var(--primaria)' : 'inherit' };
+    &:hover{
+        color: var(--secundaria);
+        background-color: var(--styled-white);
+        & .icon {
+            fill: 'var(--secundaria)';
+            color: 'var(--secundaria)';
+        }
+    }
+`
+
 const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
+    const navigate = useNavigate()
+
     return <ItemListaEstilizado onClick={aoClicar} $ativo={ativo}>
         {children}
         {subItem && subItem.length > 0 && subItem.map(item => {
             return (
-                <button key={item.id} className="link" to={item.url}>
+                <button key={item.id} className="link" onClick={() => navigate(item.url)}>
                     <ListaEstilizada>
                         <SubItemEstilizado $ativo={('/'+location.pathname.split('/')[1]+'/'+location.pathname.split('/')[2]) === item.url} >
                             {item.icone}
