@@ -264,6 +264,8 @@ function DataTablePassagens() {
         updated = updated.filter(function (el) {
             return el != null;
         });
+        updated = updated[0]
+
         return updated.length ? updated : '----------';
     };
     
@@ -380,7 +382,13 @@ function DataTablePassagens() {
                 <div>
                     {data.itens.map((passage, index) => {
                        return Object.values(passage.images).map((item, index) => {
-                            return <img onClick={() => abrirImagem(item)} key={`${data.id}-${index}`} width="240px" src={`http://${window.location.hostname}/api/web/public/${item}`} style={{margin: '5px'}} />
+                            return (
+                                <>
+                                    <img onClick={() => abrirImagem(item)} key={`${data.id}-${index}`} width="240px" src={`http://${window.location.hostname}/api/web/public/${item}`} style={{margin: '5px'}} />
+                                    
+                                    <p>{passage.position}</p>
+                                </>
+                            )
                         })
                     })}
                 </div>
