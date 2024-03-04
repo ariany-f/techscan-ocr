@@ -282,11 +282,15 @@ function DataTablePassagens() {
     const statusBodyTemplate = (rowData) => {
        
         const myArray = rowData.itens;
+        let is_warned = false
         const is_not_ok = myArray.filter((item) => {
-            return item.status === '0'
+            if(item.updated_by)
+            {
+                is_warned = true
+            }
+            
+            return item.is_ok === '0'
         })
-
-        const is_warned = rowData.updated_by
         
         return <StatusLabel className={is_not_ok.length === 0 ? 'active' : (is_warned ? 'warning' : '')}/>
     }
