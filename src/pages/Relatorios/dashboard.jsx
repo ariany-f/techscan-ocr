@@ -293,7 +293,7 @@ function RelatorioDashboard() {
   function showLegend() {
 
     console.log(dataDianteira)
-    
+
     setTotalPassagensDianteira(dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0)
     setTotalPassagensTraseira(dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0)
     setTotalPassagensContainer(dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0)
@@ -340,9 +340,8 @@ function RelatorioDashboard() {
     if(dataDianteira && dataTraseira && dataContainer)
     {
       showLegend()
+      setLoading(false)
     }
-
-    setLoading(false)
     
 }, [startDate, endDate, dianteira, traseira, container])
      
