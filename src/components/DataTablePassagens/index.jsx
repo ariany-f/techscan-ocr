@@ -250,6 +250,7 @@ function DataTablePassagens() {
         containers = containers.filter(function (el) {
             return el != null;
         });
+        console.log(containers)
         return containers ?? '----------';
     };
     
