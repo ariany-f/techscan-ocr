@@ -45,6 +45,7 @@ const ListaEstilizada = styled.ul`
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 `
 
 const SubItemEstilizado = styled.li`
