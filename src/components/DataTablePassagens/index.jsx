@@ -250,8 +250,7 @@ function DataTablePassagens() {
         containers = containers.filter(function (el) {
             return el != null;
         });
-        console.log(containers)
-        return containers ?? '----------';
+        return containers.length ? containers : '----------';
     };
     
     const updatedByBodyTemplate = (rowData) => {
