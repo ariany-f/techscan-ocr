@@ -364,13 +364,13 @@ function DataTablePassagens() {
                     {(is_ok.length === 0) &&
                         <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
                     }
-                    {plates.length !== 0 &&
+                    {(is_ok.length === 0) && plates.length !== 0 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
                     }
-                     {containers.length !== 0 &&
+                    {(is_ok.length === 0) && containers.length !== 0 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalContainerOpened(true)}>ALTERAR CONTAINER</Botao>
                     }
-                    {data.itens.length > 1 &&
+                    {(is_ok.length === 0) && data.itens.length > 1 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalBindOpened(true)}>DESVINCULAR PASSAGENS</Botao>
                     }
                     {(is_not_ok.length !== 0 && !is_warned) &&
