@@ -234,19 +234,49 @@ function DataTablePassagens() {
     };
     
     const plateBodyTemplate = (rowData) => {
-        return rowData.plate ?? '----------';
+        const myArray = rowData.itens;
+        const plates = myArray.map((item) => {
+            if(item.plate)
+            {
+                return rowData.plate ?? '----------';
+            }
+        })
+        return plates;
     };
     
     const plateCameraTemplate = (rowData) => {
-        return rowData.cameras ?? '----------';
+        const myArray = rowData.itens;
+        const cameras = myArray.map((item) => {
+            if(item.camera)
+            {
+                return rowData.camera ?? '----------';
+            }
+        })
+        return cameras;
     };
 
     const containerBodyTemplate = (rowData) => {
-        return rowData.container ?? '----------';
+        
+        const myArray = rowData.itens;
+        const containers = myArray.map((item) => {
+            if(item.container)
+            {
+                return rowData.container ?? '----------';
+            }
+        })
+        return containers;
     };
 
     const qtdImagensBodyTemplate = (rowData) => {
-        return rowData.images.length;
+        const myArray = rowData.itens;
+        let countImages = 0;
+        const images = myArray.map((item) => {
+            if(item.images)
+            {
+                countImages++
+            }
+        })
+        return countImages;
     };
 
     const statusBodyTemplate = (rowData) => {
