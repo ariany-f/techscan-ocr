@@ -189,11 +189,10 @@ function RelatorioDashboard() {
               setContainer(response.filter(item =>
                 item.Camera !== 'plate' && item.Camera !== 'LPR'
               ))
-              
-              setTimeout(() => {
-                configurarGraficos()
-              }, 3000);
           }
+      })
+      .then(response => {
+        configurarGraficos()
       })
       .catch(erro => {
           console.error(erro)
