@@ -323,8 +323,8 @@ function DataTablePassagens() {
                     }
                 </ContainerLadoALado>
                 <div>
-                    {data.itens.map((images, index) => {
-                       {images.map((item, index) => {
+                    {data.itens.map((passage, index) => {
+                       {passage.images.map((item, index) => {
                         return <img onClick={() => abrirImagem(item)} key={`${data.id}-${index}`} width="240px" src={`http://${window.location.hostname}/api/web/public/${item}`} style={{margin: '5px'}} />
                         })}
                     })}
