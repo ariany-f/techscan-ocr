@@ -65,10 +65,12 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
         {subItem && subItem.length > 0 && subItem.map(item => {
             return (
                 <Link key={item.id} className="link" to={item.url}>
-                    <SubItemEstilizado $ativo={('/'+location.pathname.split('/')[1]+'/'+location.pathname.split('/')[2]) === item.url} >
-                        {item.icone}
-                        {item.itemTitulo}
-                    </SubItemEstilizado>
+                    <ul>
+                        <SubItemEstilizado $ativo={('/'+location.pathname.split('/')[1]+'/'+location.pathname.split('/')[2]) === item.url} >
+                            {item.icone}
+                            {item.itemTitulo}
+                        </SubItemEstilizado>
+                    </ul>
                 </Link>
             )
         })}
