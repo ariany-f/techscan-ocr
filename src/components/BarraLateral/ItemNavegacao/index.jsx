@@ -86,7 +86,7 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
     const navegar = useNavigate()
 
     function goTo(url) {
-        navegar(url)
+        navegar(`${url}/dashboard`)
     }
 
     return <ItemListaEstilizado onClick={aoClicar} $ativo={ativo}>
