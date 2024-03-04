@@ -19,6 +19,7 @@ import ModalAlterarPlaca from '../ModalAlterarPlaca'
 import ModalAlterarContainer from '../ModalAlterarContainer'
 import ModalImagem from '../ModalImagem'
 import Loading from '@components/Loading'
+import ModalBind from '../ModalBind'
 
 const ContainerLadoALado = styled.div`
     display: flex;
@@ -457,6 +458,7 @@ function DataTablePassagens() {
             <Toast ref={toastConfirmarPassagem} />
             <ModalMotivo aoFechar={() => setModalOpened(false)} opened={modalOpened} passagem={expandedRows} />
             <ModalAlterarPlaca aoFechar={() => setModalPlateOpened(false)} opened={modalPlateOpened} passagem={expandedRows} />
+            <ModalBind aoFechar={() => setModalBindOpened(false)} opened={modalBindOpened} passagem={expandedRows} />
             <ModalAlterarContainer aoFechar={() => setModalContainerOpened(false)} opened={modalContainerOpened} passagem={expandedRows} />
             <ModalImagem aoFechar={() => setModalImagemOpened(false)} opened={modalImagemOpened} imagem={imagemModal} />
         </>
