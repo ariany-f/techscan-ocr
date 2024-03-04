@@ -259,30 +259,21 @@ function DataTablePassagens() {
     
     const updatedByBodyTemplate = (rowData) => {
         const updated = rowData.itens.map((item) => {
-            if(item.updated_by)
-            {
-                return item.updated_by ?? '----------';
-            }
+            return item.updated_by ?? '----------';
         })
         return updated;
     };
     
     const DirectionBodyTemplate = (rowData) => {
         const directions = rowData.itens.map((item) => {
-            if(item.direction)
-            {
-                return item.direction ?? '----------';
-            }
+            return item.direction ?? '----------';
         })
         return directions;
     };
     
     const GateBodyTemplate = (rowData) => {
         const gates = rowData.itens.map((item) => {
-            if(item.gate)
-            {
-                return item.gate ?? '----------';
-            }
+            return item.gate ?? '----------';
         })
         return gates;
     };
@@ -301,8 +292,6 @@ function DataTablePassagens() {
     const statusBodyTemplate = (rowData) => {
         let is_warned = false
         const is_not_ok = rowData.itens.filter((item) => {
-
-            console.log(item)
 
             if(item.updated_by)
             {
