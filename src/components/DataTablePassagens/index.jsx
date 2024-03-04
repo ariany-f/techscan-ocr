@@ -378,7 +378,7 @@ function DataTablePassagens() {
                         <Botao estilo="azul" style={{width:"300px"}} size="small" weight="light" aoClicar={() => confirmarPassagem(data.id)}>CONFIRMAR PASSAGEM</Botao>
                     }
                 </ContainerLadoALado>
-                <div style={{display: 'flex'}}>
+                <div style={{display: 'flex', flexWrap: 'wrap'}}>
                     {data.itens.map((passage, index) => {
                        return Object.values(passage.images).map((item, index) => {
                             return (
