@@ -247,7 +247,9 @@ function DataTablePassagens() {
         const containers = rowData.itens.map((item) => {
             return item.container ? `${item.container} ` : null;
         })
-        console.log(containers)
+        containers = containers.filter(function (el) {
+            return el != null;
+        });
         return containers ?? '----------';
     };
     
