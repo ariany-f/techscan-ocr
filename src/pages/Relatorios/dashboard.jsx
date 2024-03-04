@@ -190,7 +190,9 @@ function RelatorioDashboard() {
                 item.Camera !== 'plate' && item.Camera !== 'LPR'
               ))
               
-              configurarGraficos()
+              setTimeout(() => {
+                configurarGraficos()
+              }, 3000);
           }
       })
       .catch(erro => {
