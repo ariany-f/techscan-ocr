@@ -73,23 +73,20 @@ const DialogEstilizado = styled.dialog`
 function ModalBind({ opened = false, aoClicar, aoFechar, passagem }) {
 
     const [date, setDate] = useState(new Date())
-    const [plate, setPlate] = useState('')
-    const [dropdownPlates, setDropdownPlates] = useState([])
-    const [selectedPlate, setSelectedPlate] = useState(null)
+    const [dropdownEvents, setDropdownEvents] = useState([])
+    const [selectedEvent, setSelectedEvent] = useState(null)
 
-    function updatePlate()
+    function updateBind()
     {
-        const filtered = dropdownPlates.filter(item => {
-            return item.code === selectedPlate
+        const filtered = dropdownEvents.filter(item => {
+            return item.code === selectedEvent
         })
 
         var sendData = {
             id: filtered.code,
-            plate: plate,
-            container: filtered.container,
             updated_by: ArmazenadorToken.UserId
         }
-        http.patch('api/web/public/passagens', sendData)
+        http.patch('api/web/public/passagens/desvincular', sendData)
         .then(response => {
 
         })
@@ -106,13 +103,12 @@ function ModalBind({ opened = false, aoClicar, aoFechar, passagem }) {
         {
             const plates = (passagem[0].itens.map(item => {
                 return {
-                    name: item.plate,
+                    name: item.plate ?? item.container,
                     code: item.id,
-                    container: item.container
                 }
             }))
-           setDropdownPlates(plates)
-           setSelectedPlate(plates[0].code)
+           setDropdownEvents(plates)
+           setSelectedEvent(plates[0].code)
         }
 
     }, [passagem])
@@ -124,7 +120,7 @@ function ModalBind({ opened = false, aoClicar, aoFechar, passagem }) {
                 <DialogEstilizado id="modal-alterar-placa" open={opened}>
                     <Frame>
                         <Titulo>
-                            <h6>Alterar Placa</h6>
+                            <h6>Desvincular passagem</h6>
                             <SubTitulo>
                                 <Texto>Seu registro será gravado com data e horário:&nbsp;
                                 {date.toLocaleDateString('pt-BR', {
@@ -136,15 +132,13 @@ function ModalBind({ opened = false, aoClicar, aoFechar, passagem }) {
                                 })}
                                 </Texto>
                             </SubTitulo>
-                            <DropdownItens setValor={setSelectedPlate} valor={selectedPlate} options={dropdownPlates} label="Selecionar Placa" name="plate" placeholder="" />
+                            <DropdownItens setValor={setSelectedEvent} valor={selectedEvent} options={dropdownEvents} label="Selecionar Evento" name="plate" placeholder="" />
                         </Titulo>
-                        <CampoTexto valor={plate} setValor={setPlate} label="Placa" placeholder="Digite a placa"/>
-                       
                     </Frame>
                     <form method="dialog">
                         <div className={styles.containerBottom}>
                             <Botao aoClicar={aoFechar} estilo="cinza" weight="light" formMethod="dialog" size="medium" filled>CANCELAR</Botao>
-                            <Botao aoClicar={updatePlate} weight="light" estilo="azul" size="medium" filled>SALVAR</Botao>
+                            <Botao aoClicar={updateBind} weight="light" estilo="azul" size="medium" filled>SALVAR</Botao>
                         </div>
                     </form>
                 </DialogEstilizado>
