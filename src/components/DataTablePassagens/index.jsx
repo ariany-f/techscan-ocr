@@ -327,8 +327,21 @@ function DataTablePassagens() {
 
             return item.is_ok === 0
         })
-        console.log(plateBodyTemplate)
-        
+
+        let containers = data.itens.map((item) => {
+            return item.container ? `${item.container} ` : null;
+        })
+        containers = containers.filter(function (el) {
+            return el != null;
+        });
+
+        let plates = data.itens.map((item) => {
+            return item.plate ? `${item.plate} ` : null;
+        })
+        plates = plates.filter(function (el) {
+            return el != null;
+        });
+
         return (
 
             <>
@@ -345,10 +358,10 @@ function DataTablePassagens() {
                 <ContainerLadoALado>
                     <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
                     
-                    {plateBodyTemplate !== '----------' &&
+                    {plates.length &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
                     }
-                     {containerBodyTemplate !== '----------' &&
+                     {containers.length &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalContainerOpened(true)}>ALTERAR CONTAINER</Botao>
                     }
                     {data.itens.length > 1 &&
