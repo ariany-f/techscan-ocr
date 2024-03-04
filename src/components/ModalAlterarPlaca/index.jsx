@@ -79,35 +79,25 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
 
     function updatePlate()
     {
-        console.log(selectedPlate)
-        console.log(dropdownPlates)
         const filtered = dropdownPlates.filter(item => {
             return item.code === selectedPlate
         })
-        console.log(filtered)
-        // var sendData = {
-        //     id: selectedPlate,
-        //     plate: plate,
-        //     container: passagem[0].container,
-        //     updated_by: ArmazenadorToken.UserId
-        // }
-        // http.patch('api/web/public/passagens', sendData)
-        // .then(response => {
-        // })
-        // .catch(erro => {
-        //     console.error(erro)
-        // })
-        // const myArray = passagem[0].id.split(",");
-        // const myArrayPlates = passagem[0].plate.split(",");
-        
-        // const confirm = myArray.map((item, index) => {
-        //     if((typeof myArrayPlates[index] !== 'undefined' && myArrayPlates[index] !== plate) || typeof myArrayPlates[index] === 'undefined')
-        //     {
-               
-        //     }
-        //  })
- 
-         aoFechar()
+
+        var sendData = {
+            id: filtered.code,
+            plate: plate,
+            container: filtered.container,
+            updated_by: ArmazenadorToken.UserId
+        }
+        http.patch('api/web/public/passagens', sendData)
+        .then(response => {
+
+        })
+        .catch(erro => {
+            console.error(erro)
+        })
+       
+        aoFechar()
     }
 
     useEffect(() => {
