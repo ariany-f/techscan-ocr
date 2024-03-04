@@ -103,6 +103,7 @@ function DataTablePassagens() {
     const [modalPlateOpened, setModalPlateOpened] = useState(false)
     const [modalContainerOpened, setModalContainerOpened] = useState(false)
     const [modalImagemOpened, setModalImagemOpened] = useState(false)
+    const [modalBindOpened, setModalBindOpened] = useState(false)
     const [imagemModal, setImagemModal] = useState(null)
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
@@ -193,12 +194,6 @@ function DataTablePassagens() {
         return () => {
             window.clearTimeout(timerRef.current);
         };
-
-        // const timeoutID = window.setTimeout(() => {
-        //     fetchPassages()
-        // }, 1000);
-    
-        // return () => window.clearTimeout(timeoutID );
 
     }, [startDate, endDate, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened])
  
@@ -332,6 +327,9 @@ function DataTablePassagens() {
                     <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
                     <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
                     <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalContainerOpened(true)}>ALTERAR CONTAINER</Botao>
+                    {data.itens.length > 1 &&
+                        <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalBindOpened(true)}>DESVINCULAR PASSAGENS</Botao>
+                    }
                     {
                         (is_not_ok.length !== 0 && !is_warned) &&
                         <Botao estilo="azul" style={{width:"300px"}} size="small" weight="light" aoClicar={() => confirmarPassagem(data.id)}>CONFIRMAR PASSAGEM</Botao>
@@ -390,10 +388,12 @@ function DataTablePassagens() {
 
         return (
             <ContainerLadoALado>
+                
                 <div style={{ width: '20%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Data/Hora Inicial</Texto>
                     <Calendar locale="pt" dateFormat="dd/mm/yy" value={startDate} onChange={(e) => setStartDate(e.value)} showTime hourFormat="24" />
                 </div>
+
                 <div style={{ width: '20%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Data/Hora Final</Texto>
                     <Calendar locale="pt" dateFormat="dd/mm/yy" value={endDate} onChange={(e) => setEndDate(e.value)} showTime hourFormat="24" />
