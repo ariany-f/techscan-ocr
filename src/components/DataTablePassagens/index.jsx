@@ -180,7 +180,7 @@ function DataTablePassagens() {
 
     useEffect(() => {
 
-        if(!passagens || changeFields)
+        if((!passagens) || changeFields)
         {
             fetchPassages()
             setChangeFields(false)
