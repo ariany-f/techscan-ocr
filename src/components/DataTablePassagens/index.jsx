@@ -262,6 +262,26 @@ function DataTablePassagens() {
         })
         return containers;
     };
+    
+    const updatedByBodyTemplate = (rowData) => {
+        const updated = rowData.itens.map((item) => {
+            if(item.updated_by)
+            {
+                return item.updated_by ?? '----------';
+            }
+        })
+        return updated;
+    };
+    
+    const DirectionBodyTemplate = (rowData) => {
+        const directions = rowData.itens.map((item) => {
+            if(item.direction)
+            {
+                return item.direction ?? '----------';
+            }
+        })
+        return directions;
+    };
 
     const qtdImagensBodyTemplate = (rowData) => {
         let countImages = 0;
@@ -436,9 +456,9 @@ function DataTablePassagens() {
                 <Column body={dateBodyTemplate} header="Data/Hora" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
                 <Column body={containerBodyTemplate} field="container" header="Container" style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
                 <Column field="gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
-                <Column field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
+                <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
-                <Column field="updated_by" header="Aprovação" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}/>
+                <Column body={updatedByBodyTemplate} field="updated_by" header="Aprovação" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}/>
                 <Column body={statusBodyTemplate} header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
             </DataTable>
             
