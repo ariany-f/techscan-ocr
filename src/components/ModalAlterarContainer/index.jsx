@@ -138,7 +138,7 @@ function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem })
                             </SubTitulo>
                             <DropdownItens setValor={setSelectedContainer} valor={selectedContainer} options={dropdownContainers} label="Selecionar Container" name="container" placeholder="" />
                         </Titulo>
-                        <CampoTexto valor={container} setValor={setContainer} label="Container" placeholder="Digite o Container"/>
+                        <CampoTexto valor={container} setValor={setContainer} label="Novo Container" placeholder="Digite o novo Container"/>
                        
                     </Frame>
                     <form method="dialog">
