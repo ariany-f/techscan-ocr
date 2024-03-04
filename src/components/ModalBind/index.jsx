@@ -23,7 +23,7 @@ const Overlay = styled.div`
 
 const DialogEstilizado = styled.dialog`
     display: flex;
-    width: 60vw;
+    width: 50vw;
     flex-direction: column;
     justify-content: center;
     align-items: center;
