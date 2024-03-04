@@ -34,7 +34,7 @@ function RelatorioDashboard() {
   const [traseira, setTraseira] = useState([]);
   const [container, setContainer] = useState([]);
 
-  const [dataDianteira, setDataDianteira] = useState({})
+  const [dataDianteira, setDataDianteira] = useState(null)
   const [configDianteira, setConfigDianteira] = useState({})
   const [dataTraseira, setDataTraseira] = useState({})
   const [configTraseira, setConfigTraseira] = useState({})
@@ -157,9 +157,7 @@ function RelatorioDashboard() {
 
   function fetchData()
   {
-      setLoading(true)
       const filterData = {
-
           dataInicial: startDate ? startDate.toLocaleDateString('sv-SE', {
               day: '2-digit',
               month: '2-digit',
@@ -176,6 +174,8 @@ function RelatorioDashboard() {
           }) : null
       }
 
+      setLoading(true)
+      
       http.post('api/web/public/estatisticas', filterData)
       .then(response => {
           if(response)
@@ -189,109 +189,111 @@ function RelatorioDashboard() {
               setContainer(response.filter(item =>
                 item.Camera !== 'plate' && item.Camera !== 'LPR'
               ))
-              setPrimeiraVez(true)
+              
+              configurarGraficos()
+              showLegend()
           }
       })
       .catch(erro => {
           console.error(erro)
       })
-  } 
+  }
 
-  useEffect(() => {
-
-    await fetchData()    
+  function configurarGraficos() {
+    
     setDataDianteira(
-    {
-        labels: [
-          'Acertos',
-          'Erros'
-        ],
-        datasets: [{
-          label: '',
-          data: [
-                  ((dianteira[0]) ? 
-                    (usuario.company === 'LACHMAN' ? 
-                      (dianteira[0]['Acertos'])
-                      : dianteira[0]['Acertos']) : '0'),
-                  ((dianteira[0]) ?
-                    (usuario.company === 'LACHMAN' ?
-                      (dianteira[0]['Erros'])
-                      : dianteira[0]['Erros']) : '0')
-                ],
-          backgroundColor: [
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+      {
+          labels: [
+            'Acertos',
+            'Erros'
           ],
-          hoverOffset: 4
-        }]
-    });
-
-    setDataTraseira({
-      labels: [
-        'Acertos',
-        'Erros'
-      ],
-      datasets: [{
-        label: '',
-        data: [
-                ((traseira[0]) ? 
-                  (usuario.company === 'LACHMAN' ? 
-                    (traseira[0]['Acertos'])
-                    : traseira[0]['Acertos']) : '0'), 
-                ((traseira[0]) ? 
-                  (usuario.company === 'LACHMAN' ? 
-                    (traseira[0]['Erros'])
-                    : traseira[0]['Erros']) : '0')
-              ],
-        backgroundColor: [
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-        ],
-        hoverOffset: 4
-      }]
-    });
-
-    setDataContainer({
-        labels: [
-          'Acertos',
-          'Erros'
-        ],
-        datasets: [{
-          label: '',
-          data: [
-                  ((container[0]) ? 
-                    (usuario.company === 'LACHMAN' ? 
-                      (container[0]['Acertos'])
-                      : container[0]['Acertos']) : '0'), 
-                  ((container[0]) ? 
-                    (usuario.company === 'LACHMAN' ? 
-                      (container[0]['Erros']) 
-                      : container[0]['Erros']) : '0')
-                ],
-          backgroundColor: [
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-          ],
-          hoverOffset: 4
-        }]
-    })        
-
-    setConfigDianteira({
-      type: 'pie',
-      data: dataDianteira
-    });
-
-    setConfigTraseira({
-      type: 'pie',
-      data: dataTraseira
-    });
-
-    setConfigContainer({
-      type: 'pie',
-      data: dataContainer
-    });
+          datasets: [{
+            label: '',
+            data: [
+                    ((dianteira[0]) ? 
+                      (usuario.company === 'LACHMAN' ? 
+                        (dianteira[0]['Acertos'])
+                        : dianteira[0]['Acertos']) : '0'),
+                    ((dianteira[0]) ?
+                      (usuario.company === 'LACHMAN' ?
+                        (dianteira[0]['Erros'])
+                        : dianteira[0]['Erros']) : '0')
+                  ],
+            backgroundColor: [
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+          }]
+      });
   
+      setDataTraseira({
+        labels: [
+          'Acertos',
+          'Erros'
+        ],
+        datasets: [{
+          label: '',
+          data: [
+                  ((traseira[0]) ? 
+                    (usuario.company === 'LACHMAN' ? 
+                      (traseira[0]['Acertos'])
+                      : traseira[0]['Acertos']) : '0'), 
+                  ((traseira[0]) ? 
+                    (usuario.company === 'LACHMAN' ? 
+                      (traseira[0]['Erros'])
+                      : traseira[0]['Erros']) : '0')
+                ],
+          backgroundColor: [
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ],
+          hoverOffset: 4
+        }]
+      });
+  
+      setDataContainer({
+          labels: [
+            'Acertos',
+            'Erros'
+          ],
+          datasets: [{
+            label: '',
+            data: [
+                    ((container[0]) ? 
+                      (usuario.company === 'LACHMAN' ? 
+                        (container[0]['Acertos'])
+                        : container[0]['Acertos']) : '0'), 
+                    ((container[0]) ? 
+                      (usuario.company === 'LACHMAN' ? 
+                        (container[0]['Erros']) 
+                        : container[0]['Erros']) : '0')
+                  ],
+            backgroundColor: [
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+          }]
+      })        
+  
+      setConfigDianteira({
+        type: 'pie',
+        data: dataDianteira
+      });
+  
+      setConfigTraseira({
+        type: 'pie',
+        data: dataTraseira
+      });
+  
+      setConfigContainer({
+        type: 'pie',
+        data: dataContainer
+      });
+  }
 
+  function showLegend() {
     setTotalPassagensDianteira(dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0)
     setTotalPassagensTraseira(dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0)
     setTotalPassagensContainer(dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0)
@@ -321,12 +323,20 @@ function RelatorioDashboard() {
           : 100
         : 100));
     
+  }
+
+  useEffect(() => {
+    if(!dataDianteira)
+    {
+      fetchData()
+    }
+
     setLoading(false)
 
-    if(!primeiraVez)
-    {
-      LimparDatas()
-    }
+    // if(!primeiraVez)
+    // {
+    //   LimparDatas()
+    // }
     
 }, [startDate, endDate])
      
