@@ -107,15 +107,13 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
 
         if(passagem)
         {
-            console.log(passagem)
-            // const plates = (passagem.itens.map(item => {
-            //     return {
-            //         name: item.plate,
-            //         code: item.id
-            //     }
-            // }))
-            // console.log([plates])
-           // setDropdownPlates(plates)
+            const plates = (passagem[0].itens.map(item => {
+                return {
+                    name: item.plate,
+                    code: item.id
+                }
+            }))
+           setDropdownPlates(plates)
         }
 
     }, [passagem])
