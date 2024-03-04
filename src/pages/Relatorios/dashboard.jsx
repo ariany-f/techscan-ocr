@@ -343,7 +343,7 @@ function RelatorioDashboard() {
       setLoading(false)
     }
     
-}, [startDate, endDate])
+}, [startDate, endDate, dianteira, traseira, container])
      
       return (
         <>
