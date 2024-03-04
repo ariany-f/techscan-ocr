@@ -228,11 +228,11 @@ function RelatorioDashboard() {
               data: [
                       ((dianteira[0]) ? 
                         (usuario.company === 'LACHMAN' ? 
-                          ((dianteira[0]['Acertos']))
+                          (dianteira[0]['Acertos'])
                           : dianteira[0]['Acertos']) : '0'),
                       ((dianteira[0]) ?
                         (usuario.company === 'LACHMAN' ?
-                          ((dianteira[0]['Erros'])) 
+                          (dianteira[0]['Erros'])
                           : dianteira[0]['Erros']) : '0')
                     ],
               backgroundColor: [
@@ -253,11 +253,11 @@ function RelatorioDashboard() {
             data: [
                     ((traseira[0]) ? 
                       (usuario.company === 'LACHMAN' ? 
-                        ((traseira[0]['Acertos'])) 
+                        (traseira[0]['Acertos'])
                         : traseira[0]['Acertos']) : '0'), 
                     ((traseira[0]) ? 
                       (usuario.company === 'LACHMAN' ? 
-                        ((traseira[0]['Erros'])) 
+                        (traseira[0]['Erros'])
                         : traseira[0]['Erros']) : '0')
                   ],
             backgroundColor: [
@@ -278,11 +278,11 @@ function RelatorioDashboard() {
               data: [
                       ((container[0]) ? 
                         (usuario.company === 'LACHMAN' ? 
-                          ((container[0]['Acertos'])) 
+                          (container[0]['Acertos'])
                           : container[0]['Acertos']) : '0'), 
                       ((container[0]) ? 
                         (usuario.company === 'LACHMAN' ? 
-                          ((container[0]['Erros'])) 
+                          (container[0]['Erros']) 
                           : container[0]['Erros']) : '0')
                     ],
               backgroundColor: [
