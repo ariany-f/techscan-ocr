@@ -69,6 +69,8 @@ const SubItemEstilizado = styled.li`
 const LinkButton = styled.button`
     color: ${ props => props.$ativo ? 'var(--styled-white)' : 'var(--white)' };
     background-color: ${ props => props.$ativo ? 'var(--primaria)' : 'inherit' };
+    border: none;
+    cursor: pointer;
     &:hover{
         color: var(--secundaria);
         background-color: var(--styled-white);
@@ -86,7 +88,7 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
         {children}
         {subItem && subItem.length > 0 && subItem.map(item => {
             return (
-                <LinkButton key={item.id} className="link" onClick={navigate(item.url)}>
+                <LinkButton aria-label="Navegar" key={item.id} className="link" onClick={navigate(item.url)}>
                     <ListaEstilizada>
                         <SubItemEstilizado $ativo={('/'+location.pathname.split('/')[1]+'/'+location.pathname.split('/')[2]) === item.url} >
                             {item.icone}
