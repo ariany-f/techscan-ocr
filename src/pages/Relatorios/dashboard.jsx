@@ -327,7 +327,7 @@ function RelatorioDashboard() {
 
   useEffect(() => {
 
-    if((!dataDianteira) || (!dataTraseira) || (!dataContainer))
+    if((!dianteira) || (!traseira) || (!container))
     {
       fetchData()
     }
@@ -343,7 +343,7 @@ function RelatorioDashboard() {
       setLoading(false)
     }
     
-}, [startDate, endDate, dianteira, traseira, container])
+}, [startDate, endDate])
      
       return (
         <>
