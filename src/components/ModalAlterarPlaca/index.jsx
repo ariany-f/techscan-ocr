@@ -81,6 +81,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
 
         if(passagem)
         {
+            console.log(passagem[0].id.split(","))
             setPlates(passagem[0].id.split(","));
             console.log(plate)
         }
