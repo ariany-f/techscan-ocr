@@ -103,7 +103,7 @@ function ModalBind({ opened = false, aoClicar, aoFechar, passagem }) {
         {
             const plates = (passagem[0].itens.map(item => {
                 return {
-                    name: item.plate ? `Placa: ${item.plate} Camera: ${item.camera} Hora: ${item.datetime}` : `Container: ${item.container} Camera: ${item.camera} Hora: ${item.datetime}`,
+                    name: item.plate ? `Placa: ${item.plate} | Camera: ${item.camera} | Data/Hora: ${item.datetime}` : `Container: ${item.container} | Camera: ${item.camera} | Data/Hora: ${item.datetime}`,
                     code: item.id,
                 }
             }))
