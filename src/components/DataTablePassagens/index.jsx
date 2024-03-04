@@ -97,7 +97,7 @@ const StatusLabel = styled.div`
 
 function DataTablePassagens() {
     
-    const [passagens, setPassagens] = useState([])
+    const [passagens, setPassagens] = useState(null)
     const [expandedRows, setExpandedRows] = useState(null);
     const [modalOpened, setModalOpened] = useState(false)
     const [modalPlateOpened, setModalPlateOpened] = useState(false)
@@ -179,7 +179,7 @@ function DataTablePassagens() {
 
     useEffect(() => {
 
-        if(passagens.length === 0)
+        if(!passagens)
         {
             fetchPassages()
         }
