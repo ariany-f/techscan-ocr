@@ -118,21 +118,19 @@ function DataTablePassagens() {
     const timerRef = useRef(null);
 
     const confirmarPassagem = (id) => {
-        const myArray = id;
-        const confirm = myArray.map((item) => {
-           var sendData = {
-                id: parseInt(item),
-                is_ok: 1,
-                updated_by: ArmazenadorToken.UserId
-            }
-            http.put('api/web/public/passagens', sendData)
-            .then(response => {
-                return response
-                
-            })
-            .catch(erro => {
-                console.error(erro)
-            })
+
+        var sendData = {
+            id: id,
+            is_ok: 1,
+            updated_by: ArmazenadorToken.UserId
+        }
+        http.put('api/web/public/passagens', sendData)
+        .then(response => {
+            return response
+            
+        })
+        .catch(erro => {
+            console.error(erro)
         })
 
         toastConfirmarPassagem.current.show({severity:'success', summary: 'Mensagem', detail:'Salvo com sucesso!', life: 3000});
@@ -492,10 +490,10 @@ function DataTablePassagens() {
             </DataTable>
             
             <Toast ref={toastConfirmarPassagem} />
-            <ModalMotivo aoFechar={() => setModalOpened(false)} opened={modalOpened} passagem={expandedRows} />
-            <ModalAlterarPlaca aoFechar={() => setModalPlateOpened(false)} opened={modalPlateOpened} passagem={expandedRows} />
-            <ModalBind aoFechar={() => setModalBindOpened(false)} opened={modalBindOpened} passagem={expandedRows} />
-            <ModalAlterarContainer aoFechar={() => setModalContainerOpened(false)} opened={modalContainerOpened} passagem={expandedRows} />
+            <ModalMotivo aoFechar={() => {setModalOpened(false);setExpandedRows(null)}} opened={modalOpened} passagem={expandedRows} />
+            <ModalAlterarPlaca aoFechar={() => {setModalPlateOpened(false);setExpandedRows(null)}} opened={modalPlateOpened} passagem={expandedRows} />
+            <ModalBind aoFechar={() => {setModalBindOpened(false);setExpandedRows(null)}} opened={modalBindOpened} passagem={expandedRows} />
+            <ModalAlterarContainer aoFechar={() => {setModalContainerOpened(false);setExpandedRows(null)}} opened={modalContainerOpened} passagem={expandedRows} />
             <ModalImagem aoFechar={() => setModalImagemOpened(false)} opened={modalImagemOpened} imagem={imagemModal} />
         </>
     )
