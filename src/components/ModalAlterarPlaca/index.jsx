@@ -75,6 +75,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
     const [date, setDate] = useState(new Date())
     const [plate, setPlate] = useState('')
     const [selectedPlate, setSelectedPlate] = useState(0)
+    const [dropdownPlates, setDropdownPlates] = useState({})
 
     console.log(passagem)
 
@@ -102,8 +103,21 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
          })
  
          aoFechar()
-        
     }
+
+    useEffect(() => {
+
+        if(passagem)
+        {
+            setDropdownPlates(passagem.itens.map(item => {
+                return  {
+                    name: item.plate,
+                    code: item.id
+                }
+            }))
+        }
+
+    }, [])
 
     return(
         <>
@@ -113,7 +127,6 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
                     <Frame>
                         <Titulo>
                             <h6>Alterar Placa</h6>
-                            <DropdownItens setValor={setSelectedPlate} valor={selectedPlate} options={passagem.itens} label="Selecionar Placa" name="plate" placeholder="" />
                             <SubTitulo>
                                 <Texto>Seu registro será gravado com data e horário:&nbsp;
                                 {date.toLocaleDateString('pt-BR', {
@@ -125,6 +138,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
                                 })}
                                 </Texto>
                             </SubTitulo>
+                            <DropdownItens setValor={setSelectedPlate} valor={selectedPlate} options={dropdownPlates} label="Selecionar Placa" name="plate" placeholder="" />
                         </Titulo>
                         <CampoTexto valor={plate} setValor={setPlate} label="Placa" placeholder="Digite a placa"/>
                        
