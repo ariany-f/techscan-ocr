@@ -234,43 +234,38 @@ function DataTablePassagens() {
     };
     
     const plateBodyTemplate = (rowData) => {
-        const myArray = rowData.itens;
-        const plates = myArray.map((item) => {
+        const plates = rowData.itens.map((item) => {
             if(item.plate)
             {
-                return rowData.plate ?? '----------';
+                return item.plate ?? '----------';
             }
         })
         return plates;
     };
     
     const plateCameraTemplate = (rowData) => {
-        const myArray = rowData.itens;
-        const cameras = myArray.map((item) => {
+        const cameras = rowData.itens.map((item) => {
             if(item.camera)
             {
-                return rowData.camera ?? '----------';
+                return item.camera ?? '----------';
             }
         })
         return cameras;
     };
 
     const containerBodyTemplate = (rowData) => {
-        
-        const myArray = rowData.itens;
-        const containers = myArray.map((item) => {
+        const containers = rowData.itens.map((item) => {
             if(item.container)
             {
-                return rowData.container ?? '----------';
+                return item.container ?? '----------';
             }
         })
         return containers;
     };
 
     const qtdImagensBodyTemplate = (rowData) => {
-        const myArray = rowData.itens;
         let countImages = 0;
-        const images = myArray.map((item) => {
+        const images = rowData.itens.map((item) => {
             if(item.images)
             {
                 countImages++
