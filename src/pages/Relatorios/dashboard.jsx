@@ -181,15 +181,15 @@ function RelatorioDashboard() {
           console.log(response)
           if(response)
           {
-              setDianteira(response.filter(item =>
-                (item.Camera === 'plate' || item.Camera === 'LPR') && (item.Posicao === 'frente')
-              ))
-              setTraseira(response.filter(item =>
-                (item.Camera === 'plate' || item.Camera === 'LPR') && item.Posicao === 'traseira'
-              ))
-              setContainer(response.filter(item =>
-                item.Camera !== 'plate' && item.Camera !== 'LPR'
-              ))
+              setDianteira(response.filter(item => {
+                return (item.Camera === 'plate' || item.Camera === 'LPR') && (item.Posicao === 'frente')
+              }))
+              setTraseira(response.filter(item => {
+                return (item.Camera === 'plate' || item.Camera === 'LPR') && item.Posicao === 'traseira'
+              }))
+              setContainer(response.filter(item => {
+                return item.Camera !== 'plate' && item.Camera !== 'LPR'
+              }))
           }
       })
       .then(response => {
