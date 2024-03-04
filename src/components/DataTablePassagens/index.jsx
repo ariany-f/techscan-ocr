@@ -196,7 +196,7 @@ function DataTablePassagens() {
             window.clearTimeout(timerRef.current);
         };
 
-    }, [startDate, endDate, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened])
+    }, [startDate, endDate, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened, modalBindOpened])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
