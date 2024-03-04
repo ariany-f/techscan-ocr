@@ -107,7 +107,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
 
         if(passagem)
         {
-            console.log(passagem.itens)
+            console.log(passagem)
             // const plates = (passagem.itens.map(item => {
             //     return {
             //         name: item.plate,
