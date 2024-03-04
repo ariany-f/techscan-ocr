@@ -342,7 +342,7 @@ function RelatorioDashboard() {
 
     setLoading(false)
     
-}, [startDate, endDate, dianteira, traseira, container, dataDianteira, dataTraseira, dataContainer])
+}, [startDate, endDate, dianteira, traseira, container])
      
       return (
         <>
