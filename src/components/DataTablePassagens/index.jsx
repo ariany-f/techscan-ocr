@@ -358,10 +358,10 @@ function DataTablePassagens() {
                 <ContainerLadoALado>
                     <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
                     
-                    {plates.length &&
+                    {plates.length !== 0 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
                     }
-                     {containers.length &&
+                     {containers.length !== 0 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalContainerOpened(true)}>ALTERAR CONTAINER</Botao>
                     }
                     {data.itens.length > 1 &&
