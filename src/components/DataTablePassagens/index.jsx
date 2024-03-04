@@ -275,8 +275,12 @@ function DataTablePassagens() {
        
         const initialValue = 0;
         const sumWithInitial = rowData.itens.reduce(
-            (accumulator, currentValue) => accumulator + currentValue.images.length,
-            initialValue,
+            (accumulator, currentValue) => {
+                console.log(accumulator)
+                console.log(currentValue)
+                accumulator + currentValue,
+                initialValue,
+        }
         );
         return initialValue;
     };
