@@ -80,6 +80,10 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
     function updatePlate()
     {
         console.log(selectedPlate)
+        const filtered = dropdownPlates.filter(item => {
+            return item.code === selectedPlate
+        })
+        console.log(filtered)
         // var sendData = {
         //     id: selectedPlate,
         //     plate: plate,
