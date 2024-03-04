@@ -41,6 +41,12 @@ const ItemListaEstilizado = styled.li`
     }
 `
 
+const ListaEstilizada = styled.ul`
+    list-style: none;
+    padding: 0;
+    margin: 0;
+`
+
 const SubItemEstilizado = styled.li`
     color: ${ props => props.$ativo ? 'var(--styled-white)' : 'var(--white)' };
     line-height: 20px; /* 142.857% */
@@ -64,13 +70,13 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
         {children}
         {subItem && subItem.length > 0 && subItem.map(item => {
             return (
-                <Link key={item.id} className="link" to={item.url}>
-                    <ul>
+                <Link as="li" key={item.id} className="link" to={item.url}>
+                    <ListaEstilizada>
                         <SubItemEstilizado $ativo={('/'+location.pathname.split('/')[1]+'/'+location.pathname.split('/')[2]) === item.url} >
                             {item.icone}
                             {item.itemTitulo}
                         </SubItemEstilizado>
-                    </ul>
+                    </ListaEstilizada>
                 </Link>
             )
         })}
