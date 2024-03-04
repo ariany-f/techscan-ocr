@@ -165,6 +165,7 @@ function DataTablePassagens() {
         }
         http.post('api/web/public/passagens', filterData)
         .then(response => {
+            console.log(response)
             if(response)
             {
                 setPassagens(response)
@@ -292,10 +293,16 @@ function DataTablePassagens() {
 
     const rowExpansionTemplate = (data) => {
         const myArray = data.itens;
+        let is_warned = false
         const is_not_ok = myArray.filter((item) => {
-            return !item.status
+            if(item.updated_by)
+            {
+                is_warned = true
+            }
+
+            return item.is_ok === '0'
         })
-        const is_warned = data.updated_by
+        
         return (
             <>
                 {data.error_reason
