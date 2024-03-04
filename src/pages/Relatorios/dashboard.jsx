@@ -36,9 +36,9 @@ function RelatorioDashboard() {
 
   const [dataDianteira, setDataDianteira] = useState(null)
   const [configDianteira, setConfigDianteira] = useState({})
-  const [dataTraseira, setDataTraseira] = useState({})
+  const [dataTraseira, setDataTraseira] = useState(null)
   const [configTraseira, setConfigTraseira] = useState({})
-  const [dataContainer, setDataContainer] = useState({})
+  const [dataContainer, setDataContainer] = useState(null)
   const [configContainer, setConfigContainer] = useState({})
   const [loading, setLoading] = useState(false)
   const refDianteira = useRef(null)
@@ -369,7 +369,7 @@ function RelatorioDashboard() {
             </ContainerLadoALado>
 
             <ContainerLadoALado ref={reportRef}>
-              {(Object.keys(dataDianteira).length > 0) &&
+              {dataDianteira && (Object.keys(dataDianteira).length > 0) &&
                 <div>
                   <Titulo>
                     <h6>Placa Dianteira</h6>
@@ -388,7 +388,7 @@ function RelatorioDashboard() {
                   </p>
                 </div>
               }
-              {(Object.keys(dataTraseira).length > 0) &&
+              {dataTraseira && (Object.keys(dataTraseira).length > 0) &&
                 <div>
                   <Titulo>
                     <h6>Placa Traseira</h6>
@@ -407,7 +407,7 @@ function RelatorioDashboard() {
                   </p>
                 </div>
               }
-              {(Object.keys(dataContainer).length > 0) &&
+              {dataContainer && (Object.keys(dataContainer).length > 0) &&
                 <div>
                   <Titulo>
                     <h6>Conteiner</h6>
