@@ -326,6 +326,10 @@ function DataTablePassagens() {
             return item.is_ok === 0
         })
 
+        const is_ok = myArray.filter((item) => {
+            return item.is_ok === 1
+        })
+
         let containers = data.itens.map((item) => {
             return item.container ? `${item.container} ` : null;
         })
@@ -343,19 +347,23 @@ function DataTablePassagens() {
         return (
 
             <>
-                {data.error_reason
-                ? <>
-                    <Texto>Problemas na passagem:</Texto>
-                    {data.error_reason}
-                    &nbsp;em {formatDate(new Date(data.updated_at))}
-                    {data.updated_by ? (" por " + data.updated_by) : ''}
-                </>
-                : ''
+                {
+                    data.itens.map(item => {
+                        item.error_reason
+                        ? <>
+                        <Texto>Problemas na passagem:</Texto>
+                        {item.error_reason}
+                        &nbsp;em {formatDate(new Date(item.updated_at))}
+                        {item.updated_by ? (" por " + item.updated_by) : ''}
+                    </>
+                    : ''
+                    })
                 }
                 
                 <ContainerLadoALado>
-                    <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
-                    
+                    {(is_ok.length === 0) &&
+                        <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
+                    }
                     {plates.length !== 0 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
                     }
@@ -365,8 +373,7 @@ function DataTablePassagens() {
                     {data.itens.length > 1 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalBindOpened(true)}>DESVINCULAR PASSAGENS</Botao>
                     }
-                    {
-                        (is_not_ok.length !== 0 && !is_warned) &&
+                    {(is_not_ok.length !== 0 && !is_warned) &&
                         <Botao estilo="azul" style={{width:"300px"}} size="small" weight="light" aoClicar={() => confirmarPassagem(data.id)}>CONFIRMAR PASSAGEM</Botao>
                     }
                 </ContainerLadoALado>
