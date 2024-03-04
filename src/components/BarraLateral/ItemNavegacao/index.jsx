@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom"
 import { styled } from "styled-components"
 
@@ -87,11 +87,21 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
     const navegar = useNavigate()
     const [endereco, setEndereco] = useState(null)
 
+    useEffect(() => {
+        //   if(!recarga.name)
+        //   {
+        //     setColaboradores([])
+        //     setDepartamentos([])
+        //     navegar(-1)
+        //   }
+        }, [])
+
     function goTo(url) {
-        console.log(url)
         setEndereco(url)
-        console.log(endereco)
-        navegar(endereco)
+        if(endereco)
+        {
+            navegar(endereco)
+        }
     }
 
     return <ItemListaEstilizado onClick={aoClicar} $ativo={ativo}>
