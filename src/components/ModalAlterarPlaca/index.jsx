@@ -6,7 +6,6 @@ import Titulo from "@components/Titulo"
 import SubTitulo from "@components/SubTitulo"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-import DropdownItens from '@components/DropdownItens'
 import http from '@http'
 import styles from './ModalMotivo.module.css'
 import { Autocomplete, TextField } from "@mui/material"
@@ -74,25 +73,13 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
 
     const [date, setDate] = useState(new Date())
     const [plate, setPlate] = useState(passagem && passagem.length > 0 ? passagem[0]?.plate : '')
-    const [selectedPlate, setSelectedPlate] = useState(0)
-    const [plates, setPlates] = useState({})
 
-    useEffect(() => {
-
-        if(passagem)
-        {
-            console.log(passagem[0].id.split(","))
-            setPlates(passagem[0].id.split(","));
-            console.log(plates)
-        }
-
-    }, [passagem, setPlates])
- 
     function updatePlate()
     {
+        const myArray = passagem[0].id.split(",");
         const myArrayPlates = passagem[0].plate.split(",");
         
-        const confirm = plates.map((item, index) => {
+        const confirm = myArray.map((item, index) => {
             if((typeof myArrayPlates[index] !== 'undefined' && myArrayPlates[index] !== plate) || typeof myArrayPlates[index] === 'undefined')
             {
                 var sendData = {
@@ -122,7 +109,6 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
                     <Frame>
                         <Titulo>
                             <h6>Alterar Placa</h6>
-                            <DropdownItens setValor={setSelectedPlate} valor={selectedPlate} options={plates} label="Selecionar Placa" name="plates" placeholder="" />
                             <SubTitulo>
                                 <Texto>Seu registro será gravado com data e horário:&nbsp;
                                 {date.toLocaleDateString('pt-BR', {
