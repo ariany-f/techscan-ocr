@@ -231,31 +231,28 @@ function DataTablePassagens() {
     
     const plateBodyTemplate = (rowData) => {
         const plates = rowData.itens.map((item) => {
-            return item.plate ?? '----------';
+            return item.plate ? `${item.plate} ` : '----------';
         })
         return plates;
     };
     
     const plateCameraTemplate = (rowData) => {
         const cameras = rowData.itens.map((item) => {
-            if(item.camera)
-            {
-                return item.camera ?? '----------';
-            }
+            return item.camera ? `${item.camera} ` : '----------';
         })
         return cameras;
     };
 
     const containerBodyTemplate = (rowData) => {
         const containers = rowData.itens.map((item) => {
-            return item.container ?? '----------';
+            return item.container ? `${item.container} ` : '----------';
         })
         return containers;
     };
     
     const updatedByBodyTemplate = (rowData) => {
         const updated = rowData.itens.map((item) => {
-            return item.updated_by ?? '----------';
+            return item.updated_by ? `${item.updated_by} ` : '----------';
         })
         return updated;
     };
