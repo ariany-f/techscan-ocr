@@ -79,7 +79,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
 
     useEffect(() => {
 
-        if(passagem[0])
+        if(passagem)
         {
             setPlates(passagem[0].id.split(","));
         }
