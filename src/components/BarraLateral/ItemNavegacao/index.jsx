@@ -96,8 +96,8 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
         //   }
         }, [])
 
-    function goTo(url) {
-        setEndereco(url)
+    function goTo() {
+        // setEndereco(url)
         if(endereco)
         {
             navegar(endereco)
@@ -108,7 +108,7 @@ const ItemNavegacao = ({children, ativo = false, aoClicar = null, subItem}) => {
         {children}
         {subItem && subItem.length > 0 && subItem.map(item => {
             return (
-                <LinkButton type="button" aria-label="Navegar" key={item.id} className="link" onClick={goTo(item.url)}>
+                <LinkButton type="button" aria-label="Navegar" key={item.id} className="link" onClick={() => {setEndereco(item.url);goTo()}}>
                     <ListaEstilizada>
                         <SubItemEstilizado $ativo={('/'+location.pathname.split('/')[1]+'/'+location.pathname.split('/')[2]) === item.url} >
                             {item.icone}
