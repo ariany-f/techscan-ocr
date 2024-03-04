@@ -288,10 +288,6 @@ function RelatorioDashboard() {
       type: 'pie',
       data: dataContainer
     });
-
-    setTimeout(() => {
-      showLegend()
-    }, 7000);
   }
 
   function showLegend() {
@@ -339,9 +335,14 @@ function RelatorioDashboard() {
       configurarGraficos(dianteira, traseira, container)
     }
 
+    if(dataDianteira && dataTraseira && dataContainer)
+    {
+      showLegend()
+    }
+
     setLoading(false)
     
-}, [startDate, endDate, dianteira, traseira, container])
+}, [startDate, endDate, dianteira, traseira, container, dataDianteira, dataTraseira, dataContainer])
      
       return (
         <>
