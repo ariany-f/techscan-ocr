@@ -230,17 +230,23 @@ function DataTablePassagens() {
     };
     
     const plateBodyTemplate = (rowData) => {
-        const plates = rowData.itens.map((item) => {
-            return `${item.plate} `;
+        let plates = rowData.itens.map((item) => {
+            return item.plate ? `${item.plate} ` : null;
         })
-        return plates ?? '----------';
+        plates = plates.filter(function (el) {
+            return el != null;
+        });
+        return plates.length ? plates : '----------';
     };
     
     const plateCameraTemplate = (rowData) => {
-        const cameras = rowData.itens.map((item) => {
-            return `${item.camera} `;
+        let cameras = rowData.itens.map((item) => {
+            return item.camera ? `${item.camera} ` : null;
         })
-        return cameras ?? '----------';
+        cameras = cameras.filter(function (el) {
+            return el != null;
+        });
+        return cameras.length ? cameras : '----------';
     };
 
     const containerBodyTemplate = (rowData) => {
@@ -254,24 +260,34 @@ function DataTablePassagens() {
     };
     
     const updatedByBodyTemplate = (rowData) => {
-        const updated = rowData.itens.map((item) => {
-            return `${item.updated_by} `
+        let updated = rowData.itens.map((item) => {
+            return item.updated_by ? `${item.updated_by} ` : null;
         })
-        return updated ?? '----------';
+        updated = updated.filter(function (el) {
+            return el != null;
+        });
+        return updated.length ? updated : '----------';
     };
     
     const DirectionBodyTemplate = (rowData) => {
-        const directions = rowData.itens.map((item) => {
+        let directions = rowData.itens.map((item) => {
             return item.direction ? `${item.direction} ` : null;
         })
-        return directions ?? '----------';
+        directions = directions.filter(function (el) {
+            return el != null;
+        });
+        return directions.length ? directions : '----------';
     };
     
     const GateBodyTemplate = (rowData) => {
-        const gates = rowData.itens.map((item) => {
-            return `${item.gate} `;
+        
+        let gates = rowData.itens.map((item) => {
+            return item.gate ? `${item.gate} ` : null;
         })
-        return gates ?? '----------';
+        gates = gates.filter(function (el) {
+            return el != null;
+        });
+        return gates.length ? gates : '----------';
     };
 
     const qtdImagensBodyTemplate = (rowData) => {
