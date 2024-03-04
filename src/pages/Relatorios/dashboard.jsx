@@ -178,7 +178,6 @@ function RelatorioDashboard() {
       
       http.post('api/web/public/estatisticas', filterData)
       .then(response => {
-          console.log(response)
           if(response)
           {
               setDianteira(response.filter(item => {
@@ -193,6 +192,10 @@ function RelatorioDashboard() {
           }
       })
       .then(response => {
+        if(dianteira)
+        {
+          console.log(dianteira)
+        }
         configurarGraficos()
       })
       .catch(erro => {
