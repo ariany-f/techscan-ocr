@@ -325,7 +325,10 @@ function DataTablePassagens() {
                 <div>
                     {data.itens.map((passage, index) => {
                         console.log(passage)
-                        passage.images = passage.images.split(',').filter()
+                        passage.images = passage.images.split(',')
+                        passage.images = passage.images.filter(function (el) {
+                            return el != null;
+                        });
                        {passage.images.map((item, index) => {
                         return <img onClick={() => abrirImagem(item)} key={`${data.id}-${index}`} width="240px" src={`http://${window.location.hostname}/api/web/public/${item}`} style={{margin: '5px'}} />
                         })}
