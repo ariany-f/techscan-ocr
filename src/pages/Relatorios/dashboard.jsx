@@ -296,10 +296,9 @@ function RelatorioDashboard() {
     setTotalPassagensTraseira(dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0)
     setTotalPassagensContainer(dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0)
   
-    console.log(TotalPassagensDianteira)
-    setCapturasOCRDianteira(usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira)
-    setCapturasOCRTraseira(usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira)
-    setCapturasOCRContainer(usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer)
+    setCapturasOCRDianteira(usuario.company === 'Lachman' ? ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))*1) : (parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1])))
+    setCapturasOCRTraseira(usuario.company === 'Lachman' ? ((parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]))*0.6) : (parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1])))
+    setCapturasOCRContainer(usuario.company === 'Lachman' ? ((parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]))*0.5) : (parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1])))
   
     setPercentageDianteira(Math.floor(
       dataDianteira.datasets && dataDianteira.datasets[0] ?
