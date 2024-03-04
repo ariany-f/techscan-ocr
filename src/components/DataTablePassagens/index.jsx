@@ -273,12 +273,8 @@ function DataTablePassagens() {
 
     const qtdImagensBodyTemplate = (rowData) => {
         let countImages = 0;
-        countImages =+ rowData.itens.map((item) => {
-            if(item.images)
-            {
-                console.log(item.images.length)
-                return parseInt(item.images.length)
-            }
+        countImages = rowData.itens.reduce((item) => {
+            return countImages + item.images.length
         })
         return countImages;
     };
