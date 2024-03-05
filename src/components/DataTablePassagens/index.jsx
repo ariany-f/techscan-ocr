@@ -172,18 +172,16 @@ function DataTablePassagens() {
                 setPassagens(response)
                 setLoading(false)
 
-                const teste = []
+                const dadosParaCsv = []
 
-                const arrayOfObjects = response.map((item, index) => {
+                response.map((item, index) => {
                     return item.itens.map((it, key) => {
-                        teste.push(it)
+                        dadosParaCsv.push(it)
                         return
                     });
                 })
 
-
-               console.log(teste)
-              //  setCsvData(dadosParaCsv)
+               setCsvData(dadosParaCsv)
             }
         })
         .catch(erro => {
