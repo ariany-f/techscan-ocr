@@ -174,6 +174,7 @@ function DataTablePassagens() {
                 var dadosParaCsv = response.filter(item => {
                     return item.itens
                 })
+                console.log(dadosParaCsv)
                 setCsvData(dadosParaCsv)
             }
         })
