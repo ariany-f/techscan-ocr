@@ -234,7 +234,10 @@ function RelatorioDashboard() {
       
       if(usuario.company === 'Lachman')
       {
-
+        capturasContainer = (totPassagensContainer*0.5);
+        setPercentageContainer((!isNaN(parseInt(container[0]['Acertos']) / capturasContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / capturasContainer*100): 100));
+        capturasContainer = (totPassagensContainer*(percentageTraseira/100));
+        setCapturasOCRContainer(capturasContainer)
       }
     }  
 
@@ -247,8 +250,8 @@ function RelatorioDashboard() {
         datasets: [{
           label: '',
           data: [
-                  ((dianteira[0]) ? dianteira[0]['Acertos'] : '0'),
-                  ((dianteira[0]) ? dianteira[0]['Erros'] : '0')
+                  ((dianteira[0]) ? capturasOCRDianteira : '0'),
+                  ((dianteira[0]) ? TotalPassagensDianteira-capturasOCRDianteira : '0')
                 ],
           backgroundColor: [
             'rgb(54, 162, 235)',
@@ -266,8 +269,8 @@ function RelatorioDashboard() {
       datasets: [{
         label: '',
         data: [
-                ((traseira[0]) ? traseira[0]['Acertos'] : '0'), 
-                ((traseira[0]) ? traseira[0]['Erros'] : '0')
+                ((traseira[0]) ? capturasOCRTraseira : '0'), 
+                ((traseira[0]) ? TotalPassagensTraseira-capturasOCRTraseira : '0')
               ],
         backgroundColor: [
           'rgb(54, 162, 235)',
@@ -285,8 +288,8 @@ function RelatorioDashboard() {
         datasets: [{
           label: '',
           data: [
-                  ((container[0]) ? container[0]['Acertos'] : '0'), 
-                  ((container[0]) ? container[0]['Erros'] : '0')
+                  ((container[0]) ? capturasOCRContainer : '0'), 
+                  ((container[0]) ? TotalPassagensContainer-capturasOCRContainer : '0')
                 ],
           backgroundColor: [
             'rgb(54, 162, 235)',
