@@ -207,13 +207,7 @@ function RelatorioDashboard() {
 
       if(usuario.company === 'Lachman')
       {
-        // setPercentageDianteira(
-        //     Math.floor(
-        //       !isNaN(parseInt(dianteira[0]['Acertos']) / capturasDianteira) ? 
-        //           Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasDianteira*100)
-        //           : 100
-        //     )
-        // );
+        
       }
     }
     if(traseira[0]) {
@@ -225,7 +219,8 @@ function RelatorioDashboard() {
 
       if(usuario.company === 'Lachman')
       {
-
+        capturasTraseira = (totPassagensTraseira*0.6);
+        setPercentageTraseira((!isNaN(parseInt(traseira[0]['Acertos']) / capturasTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasTraseira*100): 100));
       }
     }
     if(container[0]) {
