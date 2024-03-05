@@ -251,7 +251,6 @@ function RelatorioDashboard() {
 
   function MontarGraficos()
   {
-    
     setDataDianteira(
       {
           labels: [
@@ -261,8 +260,8 @@ function RelatorioDashboard() {
           datasets: [{
             label: '',
             data: [
-                    ((dianteira[0] && capturasOCRDianteira) ? parseInt(capturasOCRDianteira) : '0'),
-                    ((dianteira[0] && capturasOCRDianteira) ? parseInt(TotalPassagensDianteira-capturasOCRDianteira) : '0')
+                    ((capturasOCRDianteira) ? parseInt(capturasOCRDianteira) : '0'),
+                    ((capturasOCRDianteira) ? parseInt(TotalPassagensDianteira-capturasOCRDianteira) : '0')
                   ],
             backgroundColor: [
               'rgb(54, 162, 235)',
@@ -280,8 +279,8 @@ function RelatorioDashboard() {
         datasets: [{
           label: '',
           data: [
-                  ((traseira[0] && capturasOCRTraseira) ? parseInt(capturasOCRTraseira) : '0'), 
-                  ((traseira[0] && capturasOCRTraseira) ? (parseInt(TotalPassagensTraseira)-parseInt(capturasOCRTraseira)) : '0')
+                  ((capturasOCRTraseira) ? parseInt(capturasOCRTraseira) : '0'), 
+                  ((capturasOCRTraseira) ? (parseInt(TotalPassagensTraseira)-parseInt(capturasOCRTraseira)) : '0')
                 ],
           backgroundColor: [
             'rgb(54, 162, 235)',
@@ -299,8 +298,8 @@ function RelatorioDashboard() {
           datasets: [{
             label: '',
             data: [
-                    ((container[0] && capturasOCRContainer) ? parseInt(capturasOCRContainer) : '0'), 
-                    ((container[0] && capturasOCRContainer) ? (parseInt(TotalPassagensContainer)-parseInt(capturasOCRContainer)) : '0')
+                    ((capturasOCRContainer) ? parseInt(capturasOCRContainer) : '0'), 
+                    ((capturasOCRContainer) ? (parseInt(TotalPassagensContainer)-parseInt(capturasOCRContainer)) : '0')
                   ],
             backgroundColor: [
               'rgb(54, 162, 235)',
@@ -340,11 +339,15 @@ function RelatorioDashboard() {
 
     if(dataDianteira && dataTraseira && dataContainer)
     {
-      MontarGraficos()
       setLoading(false)
     }
+
+    if(capturasOCRContainer && capturasOCRTraseira && capturasOCRDianteira)
+    {
+      MontarGraficos()
+    }
     
-}, [startDate, endDate, dianteira, traseira, container, dataDianteira, dataTraseira, dataContainer])
+}, [startDate, endDate, dianteira, traseira, container, dataDianteira, dataTraseira, dataContainer, capturasOCRDianteira, capturasOCRTraseira, capturasOCRContainer])
      
       return (
         <>
