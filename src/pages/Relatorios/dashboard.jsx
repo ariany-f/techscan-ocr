@@ -117,9 +117,9 @@ function RelatorioDashboard() {
         const TotalPassagensTraseira = dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0
         const TotalPassagensContainer = dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0
 
-        const capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira
-        const capturasOCRTraseira = usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira
-        const capturasOCRContainer = usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer
+        let capturasOCRDianteira = usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira
+        let capturasOCRTraseira = usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira
+        let capturasOCRContainer = usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer
 
         const percentageDianteira = Math.floor(
           !isNaN(parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira) 
@@ -135,6 +135,13 @@ function RelatorioDashboard() {
             !isNaN(parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer) 
             ? Math.min(100, parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer*100)
             : 100);
+
+        if(usuario.company === 'Lachman')
+        {
+            capturasOCRDianteira = TotalPassagensDianteira*(percentageDianteira/100)
+            capturasOCRTraseira = TotalPassagensTraseira*(percentageTraseira/100)
+            capturasOCRContainer = TotalPassagensContainer*(percentageContainer/100)
+        }
 
         pdf.text(60, 350, 'Nº Passagens ' + TotalPassagensDianteira)
         pdf.text(60, 370, 'Assertividade ' +  percentageDianteira + '%')
