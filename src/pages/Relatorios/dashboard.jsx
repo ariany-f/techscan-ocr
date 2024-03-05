@@ -241,7 +241,8 @@ function RelatorioDashboard() {
       }
     }  
     setTimeout(() => {
-      
+      console.log(capturasOCRTraseira)
+      console.log(TotalPassagensTraseira)
       setDataDianteira(
         {
             labels: [
