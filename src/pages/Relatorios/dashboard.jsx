@@ -240,79 +240,81 @@ function RelatorioDashboard() {
         setCapturasOCRContainer(capturasContainer)
       }
     }  
-
-    setDataDianteira(
-    {
-        labels: [
-          'Acertos',
-          'Erros'
-        ],
-        datasets: [{
-          label: '',
-          data: [
-                  ((dianteira[0]) ? capturasOCRDianteira : '0'),
-                  ((dianteira[0]) ? TotalPassagensDianteira-capturasOCRDianteira : '0')
-                ],
-          backgroundColor: [
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-          ],
-          hoverOffset: 4
-        }]
-    });
-
-    setDataTraseira({
-      labels: [
-        'Acertos',
-        'Erros'
-      ],
-      datasets: [{
-        label: '',
-        data: [
-                ((traseira[0]) ? capturasOCRTraseira : '0'), 
-                ((traseira[0]) ? TotalPassagensTraseira-capturasOCRTraseira : '0')
+    setTimeout(() => {
+      
+      setDataDianteira(
+        {
+            labels: [
+              'Acertos',
+              'Erros'
+            ],
+            datasets: [{
+              label: '',
+              data: [
+                      ((dianteira[0]) ? parseInt(capturasOCRDianteira) : '0'),
+                      ((dianteira[0]) ? parseInt(TotalPassagensDianteira-capturasOCRDianteira) : '0')
+                    ],
+              backgroundColor: [
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)'
               ],
-        backgroundColor: [
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-        ],
-        hoverOffset: 4
-      }]
-    });
-
-    setDataContainer({
-        labels: [
-          'Acertos',
-          'Erros'
-        ],
-        datasets: [{
-          label: '',
-          data: [
-                  ((container[0]) ? capturasOCRContainer : '0'), 
-                  ((container[0]) ? TotalPassagensContainer-capturasOCRContainer : '0')
-                ],
-          backgroundColor: [
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+              hoverOffset: 4
+            }]
+        })
+    
+        setDataTraseira({
+          labels: [
+            'Acertos',
+            'Erros'
           ],
-          hoverOffset: 4
-        }]
-    })        
+          datasets: [{
+            label: '',
+            data: [
+                    ((traseira[0]) ? parseInt(capturasOCRTraseira) : '0'), 
+                    ((traseira[0]) ? (parseInt(TotalPassagensTraseira)-parseInt(capturasOCRTraseira)) : '0')
+                  ],
+            backgroundColor: [
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+          }]
+        })
+    
+        setDataContainer({
+            labels: [
+              'Acertos',
+              'Erros'
+            ],
+            datasets: [{
+              label: '',
+              data: [
+                      ((container[0]) ? parseInt(capturasOCRContainer) : '0'), 
+                      ((container[0]) ? (parseInt(TotalPassagensContainer)-parseInt(capturasOCRContainer)) : '0')
+                    ],
+              backgroundColor: [
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)'
+              ],
+              hoverOffset: 4
+            }]
+        })
 
-    setConfigDianteira({
-      type: 'pie',
-      data: dataDianteira
-    });
-
-    setConfigTraseira({
-      type: 'pie',
-      data: dataTraseira
-    });
-
-    setConfigContainer({
-      type: 'pie',
-      data: dataContainer
-    });
+        setConfigDianteira({
+          type: 'pie',
+          data: dataDianteira
+        });
+    
+        setConfigTraseira({
+          type: 'pie',
+          data: dataTraseira
+        });
+    
+        setConfigContainer({
+          type: 'pie',
+          data: dataContainer
+        });
+    }, 1000);
   }
 
   useEffect(() => {
