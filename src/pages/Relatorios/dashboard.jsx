@@ -323,6 +323,7 @@ function RelatorioDashboard() {
         type: 'pie',
         data: dataContainer
       });
+      setPrimeiraVez(true)
   }
 
   useEffect(() => {
@@ -337,10 +338,12 @@ function RelatorioDashboard() {
       configurarGraficos(dianteira, traseira, container)
     }
 
-    if(capturasOCRTraseira && capturasOCRDianteira)
+    if(capturasOCRTraseira || capturasOCRDianteira || capturasOCRContainer)
     {
-      console.log(capturasOCRDianteira)
-      montarGraficos()
+      if(!primeiraVez)
+      {
+        montarGraficos()
+      }
     }
     
 
