@@ -176,7 +176,7 @@ function DataTablePassagens() {
                     map(([key, value]) => ({ [key]: value.itens }));
                 })
 
-              //  console.log(dadosParaCsv)
+               console.log(arrayOfObjects)
               //  setCsvData(dadosParaCsv)
             }
         })
