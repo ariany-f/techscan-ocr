@@ -171,13 +171,10 @@ function DataTablePassagens() {
             {
                 setPassagens(response)
                 setLoading(false)
-                
-            
-            
-                setCsvData(response.filter(item => {
+                var dadosParaCsv = response.filter(item => {
                     return item.itens
-                }))
-                console.log(csvData)
+                })
+                setCsvData(dadosParaCsv)
             }
         })
         .catch(erro => {
