@@ -200,16 +200,36 @@ function RelatorioDashboard() {
     
     if(dianteira[0]) {
       setTotalPassagensDianteira(dianteira[0]['Acertos'] + dianteira[0]['Erros'])
+      setCapturasOCRDianteira(usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira)
+        
+      setPercentageDianteira(Math.floor(
+          !isNaN(parseInt(dianteira[0]['Acertos']) / capturasOCRDianteira) 
+          ? Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasOCRDianteira*100)
+          : 100));
     }
     if(traseira[0]) {
       setTotalPassagensTraseira(traseira[0]['Acertos'] + traseira[0]['Erros'])
+      setCapturasOCRTraseira(usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira)
+      
+      setPercentageTraseira(Math.floor(
+          !isNaN(parseInt(traseira[0]['Acertos']) / capturasOCRTraseira) 
+            ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasOCRTraseira*100)
+            : 100));
     }
     if(container[0]) {
       setTotalPassagensContainer(container[0]['Acertos'] + container[0]['Erros'])
+      setCapturasOCRContainer(usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer)
+      
+      setPercentageContainer(Math.floor(
+          !isNaN(parseInt(container[0]['Acertos']) / capturasOCRContainer) 
+          ? Math.min(100, parseInt(container[0]['Acertos']) / capturasOCRContainer*100)
+          : 100));
     }
 
-    showLegend()
     
+  
+  
+
     setDataDianteira(
     {
         labels: [
@@ -282,34 +302,6 @@ function RelatorioDashboard() {
       type: 'pie',
       data: dataContainer
     });
-  }
-
-  function showLegend() {
-
-    setCapturasOCRDianteira(usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira)
-    setCapturasOCRTraseira(usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira)
-    setCapturasOCRContainer(usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer)
-    
-    setPercentageDianteira(Math.floor(
-      dataDianteira.datasets && dataDianteira.datasets[0] ?
-        !isNaN(parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira) 
-        ? Math.min(100, parseInt(dataDianteira.datasets[0].data[0]) / capturasOCRDianteira*100)
-        : 100
-      : 100));
-  
-    setPercentageTraseira(Math.floor(
-      dataTraseira.datasets && dataTraseira.datasets[0] ?
-        !isNaN(parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira) 
-          ? Math.min(100, parseInt(dataTraseira.datasets[0].data[0]) / capturasOCRTraseira*100)
-          : 100
-        : 100));
-  
-    setPercentageContainer(Math.floor(
-      dataContainer.datasets && dataContainer.datasets[0] ?
-          !isNaN(parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer) 
-          ? Math.min(100, parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer*100)
-          : 100
-        : 100));
   }
 
   useEffect(() => {
