@@ -203,7 +203,7 @@ function RelatorioDashboard() {
       setTotalPassagensDianteira(totPassagensDiant)
       let capturasDianteira = ((usuario.company === 'Lachman') ? (totPassagensDiant*1) : totPassagensDiant)
       setCapturasOCRDianteira(capturasDianteira)
-      setPercentageTraseira(Math.floor(!isNaN(parseInt(dianteira[0]['Acertos']) / capturasDianteira) ? Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasDianteira*100): 100));
+      setPercentageDianteira(Math.floor(!isNaN(parseInt(dianteira[0]['Acertos']) / capturasDianteira) ? Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasDianteira*100): 100));
     }
     if(traseira[0]) {
       let totPassagensTraseira = traseira[0]['Acertos'] + traseira[0]['Erros']
