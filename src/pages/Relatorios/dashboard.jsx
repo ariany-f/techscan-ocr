@@ -201,11 +201,14 @@ function RelatorioDashboard() {
     let totPassagensDiant = 0;
     let totPassagensTraseira = 0;
     let totPassagensContainer = 0;
+    let capturasDianteira = 0;
+    let capturasTraseira = 0;
+    let capturasContainer = 0;
     
     if(dianteira[0]) {
       totPassagensDiant = parseInt(dianteira[0]['Acertos']) + parseInt(dianteira[0]['Erros'])
       setTotalPassagensDianteira(totPassagensDiant)
-      let capturasDianteira = ((usuario.company === 'Lachman') ? 
+      capturasDianteira = ((usuario.company === 'Lachman') ? 
                                 ((totPassagensDiant*1)-parseInt(dianteira[0]['Erros'])) 
                                 : (totPassagensDiant-parseInt(dianteira[0]['Erros'])))
       setCapturasOCRDianteira(capturasDianteira)
@@ -214,7 +217,7 @@ function RelatorioDashboard() {
     if(traseira[0]) {
       totPassagensTraseira = Math.floor((parseInt(traseira[0]['Acertos']) + parseInt(traseira[0]['Erros']))*0.6)
       setTotalPassagensTraseira(totPassagensTraseira)
-      let capturasTraseira = ((usuario.company === 'Lachman') ? 
+      capturasTraseira = ((usuario.company === 'Lachman') ? 
                                 ((totPassagensTraseira)-parseInt(traseira[0]['Erros']))
                                 : (totPassagensTraseira-parseInt(traseira[0]['Erros'])))
       setCapturasOCRTraseira(capturasTraseira)
@@ -223,7 +226,7 @@ function RelatorioDashboard() {
     if(container[0]) {
       totPassagensContainer = Math.floor((parseInt(container[0]['Acertos']) + parseInt(container[0]['Erros']))*0.5)
       setTotalPassagensContainer(totPassagensContainer)
-      let capturasContainer = ((usuario.company === 'Lachman') ? 
+      capturasContainer = ((usuario.company === 'Lachman') ? 
                                 ((totPassagensContainer)-parseInt(container[0]['Erros'])) 
                                 : (totPassagensContainer-parseInt(container[0]['Erros'])))
       setCapturasOCRContainer(capturasContainer)
@@ -239,7 +242,7 @@ function RelatorioDashboard() {
         datasets: [{
           label: '',
           data: [
-                  ((dianteira[0]) ? Math.min(dianteira[0]['Acertos'], totPassagensDiant) : '0'),
+                  ((dianteira[0]) ? Math.min(dianteira[0]['Acertos'], capturasDianteira) : '0'),
                   ((dianteira[0]) ? dianteira[0]['Erros'] : '0')
                 ],
           backgroundColor: [
@@ -258,7 +261,7 @@ function RelatorioDashboard() {
       datasets: [{
         label: '',
         data: [
-                ((traseira[0]) ? Math.min(traseira[0]['Acertos'], totPassagensTraseira) : '0'), 
+                ((traseira[0]) ? Math.min(traseira[0]['Acertos'], capturasTraseira) : '0'), 
                 ((traseira[0]) ? traseira[0]['Erros'] : '0')
               ],
         backgroundColor: [
@@ -277,7 +280,7 @@ function RelatorioDashboard() {
         datasets: [{
           label: '',
           data: [
-                  ((container[0]) ? Math.min(container[0]['Acertos'], totPassagensContainer) : '0'), 
+                  ((container[0]) ? Math.min(container[0]['Acertos'], capturasContainer) : '0'), 
                   ((container[0]) ? container[0]['Erros'] : '0')
                 ],
           backgroundColor: [
