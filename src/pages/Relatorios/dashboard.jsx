@@ -257,8 +257,8 @@ function RelatorioDashboard() {
             datasets: [{
               label: '',
               data: [
-                      ((dianteira[0]) ? parseInt(capturasOCRDianteira) : '0'),
-                      ((dianteira[0]) ? parseInt(TotalPassagensDianteira-capturasOCRDianteira) : '0')
+                      ((dianteira[0] && capturasOCRDianteira) ? parseInt(capturasOCRDianteira) : '0'),
+                      ((dianteira[0] && capturasOCRDianteira) ? parseInt(TotalPassagensDianteira-capturasOCRDianteira) : '0')
                     ],
               backgroundColor: [
                 'rgb(54, 162, 235)',
@@ -276,8 +276,8 @@ function RelatorioDashboard() {
           datasets: [{
             label: '',
             data: [
-                    ((traseira[0]) ? parseInt(capturasOCRTraseira) : '0'), 
-                    ((traseira[0]) ? (parseInt(TotalPassagensTraseira)-parseInt(capturasOCRTraseira)) : '0')
+                    ((traseira[0] && capturasOCRTraseira) ? parseInt(capturasOCRTraseira) : '0'), 
+                    ((traseira[0] && capturasOCRTraseira) ? (parseInt(TotalPassagensTraseira)-parseInt(capturasOCRTraseira)) : '0')
                   ],
             backgroundColor: [
               'rgb(54, 162, 235)',
@@ -295,8 +295,8 @@ function RelatorioDashboard() {
             datasets: [{
               label: '',
               data: [
-                      ((container[0]) ? parseInt(capturasOCRContainer) : '0'), 
-                      ((container[0]) ? (parseInt(TotalPassagensContainer)-parseInt(capturasOCRContainer)) : '0')
+                      ((container[0] && capturasOCRContainer) ? parseInt(capturasOCRContainer) : '0'), 
+                      ((container[0] && capturasOCRContainer) ? (parseInt(TotalPassagensContainer)-parseInt(capturasOCRContainer)) : '0')
                     ],
               backgroundColor: [
                 'rgb(54, 162, 235)',
