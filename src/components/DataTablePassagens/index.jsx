@@ -172,9 +172,10 @@ function DataTablePassagens() {
                 setPassagens(response)
                 setLoading(false)
 
-                var dadosParaCsv = response.map(item => {
-                    console.log(Object.values(item.itens))
-                    return Object.values(item.itens)
+                var dadosParaCsv = response.map((item, index) => {
+                    return item.itens.map(it => {
+                        return it
+                    })
                 })
                 console.log(dadosParaCsv)
                 setCsvData(dadosParaCsv)
