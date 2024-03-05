@@ -211,7 +211,7 @@ function RelatorioDashboard() {
       let totPassagensTraseira = Math.floor((parseInt(traseira[0]['Acertos']) + parseInt(traseira[0]['Erros']))*0.6)
       setTotalPassagensTraseira(totPassagensTraseira)
       let capturasTraseira = ((usuario.company === 'Lachman') ? 
-                                ((totPassagensTraseira*0.6)-parseInt(traseira[0]['Erros'])) 
+                                ((totPassagensTraseira)-parseInt(traseira[0]['Erros']))
                                 : (totPassagensTraseira-parseInt(traseira[0]['Erros'])))
       setCapturasOCRTraseira(capturasTraseira)
       setPercentageTraseira(Math.floor(!isNaN(parseInt(traseira[0]['Acertos']) / capturasTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasTraseira*100): 100));
@@ -220,7 +220,7 @@ function RelatorioDashboard() {
       let totPassagensContainer = Math.floor((parseInt(container[0]['Acertos']) + parseInt(container[0]['Erros']))*0.5)
       setTotalPassagensContainer(totPassagensContainer)
       let capturasContainer = ((usuario.company === 'Lachman') ? 
-                                ((totPassagensContainer*0.5)-parseInt(container[0]['Erros'])) 
+                                ((totPassagensContainer)-parseInt(container[0]['Erros'])) 
                                 : (totPassagensContainer-parseInt(container[0]['Erros'])))
       setCapturasOCRContainer(capturasContainer)
       setPercentageContainer(Math.floor(!isNaN(parseInt(container[0]['Acertos']) / capturasContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / capturasContainer*100) : 100));
