@@ -198,9 +198,15 @@ function RelatorioDashboard() {
 
   function configurarGraficos(dianteira, traseira, container) {
     
-    setTotalPassagensDianteira(dianteira[0]['Acertos'] + dianteira[0]['Erros'])
-    setTotalPassagensTraseira(traseira[0]['Acertos'] + traseira[0]['Erros'])
-    setTotalPassagensContainer(container[0]['Acertos'] + container[0]['Erros'])
+    if(dianteira[0]) {
+      setTotalPassagensDianteira(dianteira[0]['Acertos'] + dianteira[0]['Erros'])
+    }
+    if(traseira[0]) {
+      setTotalPassagensTraseira(traseira[0]['Acertos'] + traseira[0]['Erros'])
+    }
+    if(container[0]) {
+      setTotalPassagensContainer(container[0]['Acertos'] + container[0]['Erros'])
+    }
 
     setDataDianteira(
     {
