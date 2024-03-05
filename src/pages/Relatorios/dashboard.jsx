@@ -235,7 +235,7 @@ function RelatorioDashboard() {
         datasets: [{
           label: '',
           data: [
-                  ((dianteira[0]) ? dianteira[0]['Acertos'] : '0'),
+                  ((dianteira[0]) ? Math.min(dianteira[0]['Acertos'], totPassagensDiant) : '0'),
                   ((dianteira[0]) ? dianteira[0]['Erros'] : '0')
                 ],
           backgroundColor: [
@@ -254,7 +254,7 @@ function RelatorioDashboard() {
       datasets: [{
         label: '',
         data: [
-                ((traseira[0]) ? traseira[0]['Acertos'] : '0'), 
+                ((traseira[0]) ? Math.min(traseira[0]['Acertos'], TotalPassagensTraseira) : '0'), 
                 ((traseira[0]) ? traseira[0]['Erros'] : '0')
               ],
         backgroundColor: [
@@ -273,7 +273,7 @@ function RelatorioDashboard() {
         datasets: [{
           label: '',
           data: [
-                  ((container[0]) ? container[0]['Acertos'] : '0'), 
+                  ((container[0]) ? Math.min(container[0]['Acertos'], TotalPassagensContainer) : '0'), 
                   ((container[0]) ? container[0]['Erros'] : '0')
                 ],
           backgroundColor: [
