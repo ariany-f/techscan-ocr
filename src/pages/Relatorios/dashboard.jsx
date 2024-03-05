@@ -207,7 +207,7 @@ function RelatorioDashboard() {
 
       if(usuario.company === 'Lachman')
       {
-        
+
       }
     }
     if(traseira[0]) {
@@ -221,6 +221,7 @@ function RelatorioDashboard() {
       {
         capturasTraseira = (totPassagensTraseira*0.6);
         setPercentageTraseira((!isNaN(parseInt(traseira[0]['Acertos']) / capturasTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasTraseira*100): 100));
+        capturasTraseira = (totPassagensTraseira*(percentageTraseira/100));
       }
     }
     if(container[0]) {
