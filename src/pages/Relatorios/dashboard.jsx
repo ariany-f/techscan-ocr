@@ -198,10 +198,17 @@ function RelatorioDashboard() {
 
   function configurarGraficos(dianteira, traseira, container) {
     
+    let totPassagensDiant = 0
+    let totPassagensTraseira = 0
+    let totPassagensContainer = 0
+    let capturasDianteira = 0
+    let capturasTraseira = 0
+    let capturasContainer = 0
+
     if(dianteira[0]) {
-      let totPassagensDiant = parseInt(dianteira[0]['Acertos']) + parseInt(dianteira[0]['Erros'])
+      totPassagensDiant = parseInt(dianteira[0]['Acertos']) + parseInt(dianteira[0]['Erros'])
       setTotalPassagensDianteira(totPassagensDiant)
-      let capturasDianteira = (totPassagensDiant-parseInt(dianteira[0]['Erros']))
+      capturasDianteira = (totPassagensDiant-parseInt(dianteira[0]['Erros']))
       setCapturasOCRDianteira(capturasDianteira)
       setPercentageDianteira((!isNaN(parseInt(dianteira[0]['Acertos']) / totPassagensDiant) ? Math.min(100, parseInt(dianteira[0]['Acertos']) / totPassagensDiant*100): 100));
 
@@ -211,9 +218,9 @@ function RelatorioDashboard() {
       }
     }
     if(traseira[0]) {
-      let totPassagensTraseira = parseInt(traseira[0]['Acertos']) + parseInt(traseira[0]['Erros'])
+      totPassagensTraseira = parseInt(traseira[0]['Acertos']) + parseInt(traseira[0]['Erros'])
       setTotalPassagensTraseira(totPassagensTraseira)
-      let capturasTraseira = (totPassagensTraseira-parseInt(traseira[0]['Erros']))
+      capturasTraseira = (totPassagensTraseira-parseInt(traseira[0]['Erros']))
       setCapturasOCRTraseira(capturasTraseira)
       setPercentageTraseira((!isNaN(parseInt(traseira[0]['Acertos']) / totPassagensTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / totPassagensTraseira*100): 100));
 
@@ -226,9 +233,9 @@ function RelatorioDashboard() {
       }
     }
     if(container[0]) {
-      let totPassagensContainer = parseInt(container[0]['Acertos']) + parseInt(container[0]['Erros'])
+      totPassagensContainer = parseInt(container[0]['Acertos']) + parseInt(container[0]['Erros'])
       setTotalPassagensContainer(totPassagensContainer)
-      let capturasContainer = (totPassagensContainer - parseInt(container[0]['Erros']))
+      capturasContainer = (totPassagensContainer - parseInt(container[0]['Erros']))
       setCapturasOCRContainer(capturasContainer)
       setPercentageContainer((!isNaN(parseInt(container[0]['Acertos']) / totPassagensContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / totPassagensContainer*100) : 100));
       
