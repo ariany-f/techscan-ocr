@@ -201,29 +201,38 @@ function RelatorioDashboard() {
     if(dianteira[0]) {
       let totPassagensDiant = parseInt(dianteira[0]['Acertos']) + parseInt(dianteira[0]['Erros'])
       setTotalPassagensDianteira(totPassagensDiant)
-      let capturasDianteira = ((usuario.company === 'Lachman') ? 
-                                ((totPassagensDiant)-parseInt(dianteira[0]['Erros'])) 
-                                : (totPassagensDiant-parseInt(dianteira[0]['Erros'])))
+      let capturasDianteira = (totPassagensDiant-parseInt(dianteira[0]['Erros']))
       setCapturasOCRDianteira(capturasDianteira)
       setPercentageDianteira(Math.floor(!isNaN(parseInt(dianteira[0]['Acertos']) / capturasDianteira) ? Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasDianteira*100): 100));
+
+      if(usuario.company === 'Lachman')
+      {
+        
+      }
     }
     if(traseira[0]) {
       let totPassagensTraseira = parseInt(traseira[0]['Acertos']) + parseInt(traseira[0]['Erros'])
       setTotalPassagensTraseira(totPassagensTraseira)
-      let capturasTraseira = ((usuario.company === 'Lachman') ? 
-                                ((totPassagensTraseira)-parseInt(traseira[0]['Erros'])) 
-                                : (totPassagensTraseira-parseInt(traseira[0]['Erros'])))
+      let capturasTraseira = (totPassagensTraseira-parseInt(traseira[0]['Erros']))
       setCapturasOCRTraseira(capturasTraseira)
       setPercentageTraseira(Math.floor(!isNaN(parseInt(traseira[0]['Acertos']) / capturasTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasTraseira*100): 100));
+
+      if(usuario.company === 'Lachman')
+      {
+
+      }
     }
     if(container[0]) {
       let totPassagensContainer = parseInt(container[0]['Acertos']) + parseInt(container[0]['Erros'])
       setTotalPassagensContainer(totPassagensContainer)
-      let capturasContainer = ((usuario.company === 'Lachman') ? 
-                                ((totPassagensContainer)-parseInt(container[0]['Erros'])) 
-                                : (totPassagensContainer-parseInt(container[0]['Erros'])))
+      let capturasContainer = (totPassagensContainer - parseInt(container[0]['Erros']))
       setCapturasOCRContainer(capturasContainer)
       setPercentageContainer(Math.floor(!isNaN(parseInt(container[0]['Acertos']) / capturasContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / capturasContainer*100) : 100));
+      
+      if(usuario.company === 'Lachman')
+      {
+
+      }
     }  
 
     setDataDianteira(
