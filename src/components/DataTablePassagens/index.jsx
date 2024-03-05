@@ -170,11 +170,6 @@ function DataTablePassagens() {
             if(response)
             {
                 setPassagens(response)
-            
-                setCsvData(response.filter(item => {
-                    return item.itens
-                }))
-
                 setLoading(false)
             }
         })
@@ -190,6 +185,12 @@ function DataTablePassagens() {
         {
             fetchPassages()
             setChangeFields(false)
+            
+            
+            setCsvData(passagens.filter(item => {
+                return item.itens
+            }))
+            console.log(csvData)
         }
 
         // useRef value stored in .current property
