@@ -233,7 +233,7 @@ function RelatorioDashboard() {
       setTotalPassagensContainer(totPassagensContainer)
       let capturasContainer = (totPassagensContainer - parseInt(container[0]['Erros']))
       setCapturasOCRContainer(capturasContainer)
-      setPercentageContainer(Math.floor(!isNaN(parseInt(container[0]['Acertos']) / capturasContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / capturasContainer*100) : 100));
+      setPercentageContainer((!isNaN(parseInt(container[0]['Acertos']) / capturasContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / capturasContainer*100) : 100));
       
       if(usuario.company === 'Lachman')
       {
