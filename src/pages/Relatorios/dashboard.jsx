@@ -206,76 +206,54 @@ function RelatorioDashboard() {
     let capturasContainer = 0
 
     if(dianteira[0]) {
-      totPassagensDiant = parseInt(dianteira[0]['Acertos']) + parseInt(dianteira[0]['Erros'])
-      setTotalPassagensDianteira(totPassagensDiant)
-      capturasDianteira = (totPassagensDiant-parseInt(dianteira[0]['Erros']))
-      setCapturasOCRDianteira(capturasDianteira)
-      setPercentageDianteira((!isNaN(parseInt(dianteira[0]['Acertos']) / totPassagensDiant) ? Math.min(100, parseInt(dianteira[0]['Acertos']) / totPassagensDiant*100): 100));
+        totPassagensDiant = parseInt(dianteira[0]['Acertos']) + parseInt(dianteira[0]['Erros'])
+        setTotalPassagensDianteira(totPassagensDiant)
+        capturasDianteira = (totPassagensDiant-parseInt(dianteira[0]['Erros']))
+        setCapturasOCRDianteira(capturasDianteira)
+        setPercentageDianteira((!isNaN(parseInt(dianteira[0]['Acertos']) / totPassagensDiant) ? Math.min(100, parseInt(dianteira[0]['Acertos']) / totPassagensDiant*100): 100));
 
-      if(usuario.company === 'Lachman')
-      {
+        if(usuario.company === 'Lachman')
+        {
 
-      }
+        }
     }
     if(traseira[0]) {
-      totPassagensTraseira = parseInt(traseira[0]['Acertos']) + parseInt(traseira[0]['Erros'])
-      setTotalPassagensTraseira(totPassagensTraseira)
-      capturasTraseira = (totPassagensTraseira-parseInt(traseira[0]['Erros']))
-      setCapturasOCRTraseira(capturasTraseira)
-      setPercentageTraseira((!isNaN(parseInt(traseira[0]['Acertos']) / totPassagensTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / totPassagensTraseira*100): 100));
+        totPassagensTraseira = parseInt(traseira[0]['Acertos']) + parseInt(traseira[0]['Erros'])
+        setTotalPassagensTraseira(totPassagensTraseira)
+        capturasTraseira = (totPassagensTraseira-parseInt(traseira[0]['Erros']))
+        setCapturasOCRTraseira(capturasTraseira)
+        setPercentageTraseira((!isNaN(parseInt(traseira[0]['Acertos']) / totPassagensTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / totPassagensTraseira*100): 100));
 
       if(usuario.company === 'Lachman')
       {
-        capturasTraseira = (totPassagensTraseira*0.6);
-        setPercentageTraseira((!isNaN(parseInt(traseira[0]['Acertos']) / capturasTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasTraseira*100): 100));
-        capturasTraseira = (totPassagensTraseira*(percentageTraseira/100));
-        setCapturasOCRTraseira(capturasTraseira)
+          capturasTraseira = (totPassagensTraseira*0.6);
+          setPercentageTraseira((!isNaN(parseInt(traseira[0]['Acertos']) / capturasTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasTraseira*100): 100));
+          capturasTraseira = (totPassagensTraseira*(percentageTraseira/100));
+          setCapturasOCRTraseira(capturasTraseira)
       }
     }
     if(container[0]) {
-      totPassagensContainer = parseInt(container[0]['Acertos']) + parseInt(container[0]['Erros'])
-      setTotalPassagensContainer(totPassagensContainer)
-      capturasContainer = (totPassagensContainer - parseInt(container[0]['Erros']))
-      setCapturasOCRContainer(capturasContainer)
-      setPercentageContainer((!isNaN(parseInt(container[0]['Acertos']) / totPassagensContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / totPassagensContainer*100) : 100));
-      
-      if(usuario.company === 'Lachman')
-      {
-        capturasContainer = (totPassagensContainer*0.5);
-        setPercentageContainer((!isNaN(parseInt(container[0]['Acertos']) / capturasContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / capturasContainer*100): 100));
-        capturasContainer = (totPassagensContainer*(percentageTraseira/100));
+        totPassagensContainer = parseInt(container[0]['Acertos']) + parseInt(container[0]['Erros'])
+        setTotalPassagensContainer(totPassagensContainer)
+        capturasContainer = (totPassagensContainer - parseInt(container[0]['Erros']))
         setCapturasOCRContainer(capturasContainer)
-      }
-    }  
-    setTimeout(() => {
-      if(capturasOCRTraseira)
-      {
-        console.log(capturasTraseira)
-        console.log(totPassagensTraseira)
-        console.log(capturasOCRTraseira)
-        console.log(TotalPassagensTraseira)
-      }
-      setDataDianteira(
+        setPercentageContainer((!isNaN(parseInt(container[0]['Acertos']) / totPassagensContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / totPassagensContainer*100) : 100));
+        
+        if(usuario.company === 'Lachman')
         {
-            labels: [
-              'Acertos',
-              'Erros'
-            ],
-            datasets: [{
-              label: '',
-              data: [
-                      ((dianteira[0] && capturasOCRDianteira) ? parseInt(capturasOCRDianteira) : '0'),
-                      ((dianteira[0] && capturasOCRDianteira) ? parseInt(TotalPassagensDianteira-capturasOCRDianteira) : '0')
-                    ],
-              backgroundColor: [
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
-              ],
-              hoverOffset: 4
-            }]
-        })
+          capturasContainer = (totPassagensContainer*0.5);
+          setPercentageContainer((!isNaN(parseInt(container[0]['Acertos']) / capturasContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / capturasContainer*100): 100));
+          capturasContainer = (totPassagensContainer*(percentageTraseira/100));
+          setCapturasOCRContainer(capturasContainer)
+        }
+    }
+  }
+
+  function MontarGraficos()
+  {
     
-        setDataTraseira({
+    setDataDianteira(
+      {
           labels: [
             'Acertos',
             'Erros'
@@ -283,8 +261,8 @@ function RelatorioDashboard() {
           datasets: [{
             label: '',
             data: [
-                    ((traseira[0] && capturasOCRTraseira) ? parseInt(capturasOCRTraseira) : '0'), 
-                    ((traseira[0] && capturasOCRTraseira) ? (parseInt(TotalPassagensTraseira)-parseInt(capturasOCRTraseira)) : '0')
+                    ((dianteira[0] && capturasOCRDianteira) ? parseInt(capturasOCRDianteira) : '0'),
+                    ((dianteira[0] && capturasOCRDianteira) ? parseInt(TotalPassagensDianteira-capturasOCRDianteira) : '0')
                   ],
             backgroundColor: [
               'rgb(54, 162, 235)',
@@ -292,42 +270,60 @@ function RelatorioDashboard() {
             ],
             hoverOffset: 4
           }]
-        })
-    
-        setDataContainer({
-            labels: [
-              'Acertos',
-              'Erros'
+      })
+  
+      setDataTraseira({
+        labels: [
+          'Acertos',
+          'Erros'
+        ],
+        datasets: [{
+          label: '',
+          data: [
+                  ((traseira[0] && capturasOCRTraseira) ? parseInt(capturasOCRTraseira) : '0'), 
+                  ((traseira[0] && capturasOCRTraseira) ? (parseInt(TotalPassagensTraseira)-parseInt(capturasOCRTraseira)) : '0')
+                ],
+          backgroundColor: [
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ],
+          hoverOffset: 4
+        }]
+      })
+  
+      setDataContainer({
+          labels: [
+            'Acertos',
+            'Erros'
+          ],
+          datasets: [{
+            label: '',
+            data: [
+                    ((container[0] && capturasOCRContainer) ? parseInt(capturasOCRContainer) : '0'), 
+                    ((container[0] && capturasOCRContainer) ? (parseInt(TotalPassagensContainer)-parseInt(capturasOCRContainer)) : '0')
+                  ],
+            backgroundColor: [
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)'
             ],
-            datasets: [{
-              label: '',
-              data: [
-                      ((container[0] && capturasOCRContainer) ? parseInt(capturasOCRContainer) : '0'), 
-                      ((container[0] && capturasOCRContainer) ? (parseInt(TotalPassagensContainer)-parseInt(capturasOCRContainer)) : '0')
-                    ],
-              backgroundColor: [
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
-              ],
-              hoverOffset: 4
-            }]
-        })
+            hoverOffset: 4
+          }]
+      })
 
-        setConfigDianteira({
-          type: 'pie',
-          data: dataDianteira
-        });
-    
-        setConfigTraseira({
-          type: 'pie',
-          data: dataTraseira
-        });
-    
-        setConfigContainer({
-          type: 'pie',
-          data: dataContainer
-        });
-    }, 4000);
+      setConfigDianteira({
+        type: 'pie',
+        data: dataDianteira
+      });
+  
+      setConfigTraseira({
+        type: 'pie',
+        data: dataTraseira
+      });
+  
+      setConfigContainer({
+        type: 'pie',
+        data: dataContainer
+      });
   }
 
   useEffect(() => {
@@ -344,6 +340,7 @@ function RelatorioDashboard() {
 
     if(dataDianteira && dataTraseira && dataContainer)
     {
+      MontarGraficos()
       setLoading(false)
     }
     
