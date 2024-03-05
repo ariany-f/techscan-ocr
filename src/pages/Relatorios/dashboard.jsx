@@ -230,7 +230,7 @@ function RelatorioDashboard() {
           label: '',
           data: [
                   ((dianteira[0]) ? dianteira[0]['Acertos'] : '0'),
-                  ((dianteira[0]) ? dianteira[0]['Erros'] : '0')
+                  ((dianteira[0] && percentageDianteira !== 100) ? dianteira[0]['Erros'] : '0')
                 ],
           backgroundColor: [
             'rgb(54, 162, 235)',
@@ -249,7 +249,7 @@ function RelatorioDashboard() {
         label: '',
         data: [
                 ((traseira[0]) ? traseira[0]['Acertos'] : '0'), 
-                ((traseira[0]) ? traseira[0]['Erros'] : '0')
+                ((traseira[0] && percentageTraseira !== 100) ? traseira[0]['Erros'] : '0')
               ],
         backgroundColor: [
           'rgb(54, 162, 235)',
@@ -268,7 +268,7 @@ function RelatorioDashboard() {
           label: '',
           data: [
                   ((container[0]) ? container[0]['Acertos'] : '0'), 
-                  ((container[0]) ? container[0]['Erros'] : '0')
+                  ((container[0] && percentageContainer !== 100) ? container[0]['Erros'] : '0')
                 ],
           backgroundColor: [
             'rgb(54, 162, 235)',
