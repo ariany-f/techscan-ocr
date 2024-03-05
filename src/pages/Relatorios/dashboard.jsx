@@ -208,6 +208,8 @@ function RelatorioDashboard() {
       setTotalPassagensContainer(container[0]['Acertos'] + container[0]['Erros'])
     }
 
+    showLegend()
+    
     setDataDianteira(
     {
         labels: [
@@ -324,7 +326,6 @@ function RelatorioDashboard() {
 
     if(dataDianteira && dataTraseira && dataContainer)
     {
-      showLegend()
       setLoading(false)
     }
     
