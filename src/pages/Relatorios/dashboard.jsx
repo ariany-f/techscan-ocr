@@ -222,6 +222,7 @@ function RelatorioDashboard() {
         capturasTraseira = (totPassagensTraseira*0.6);
         setPercentageTraseira((!isNaN(parseInt(traseira[0]['Acertos']) / capturasTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasTraseira*100): 100));
         capturasTraseira = (totPassagensTraseira*(percentageTraseira/100));
+        setCapturasOCRTraseira(capturasTraseira)
       }
     }
     if(container[0]) {
