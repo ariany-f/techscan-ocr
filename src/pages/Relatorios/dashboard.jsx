@@ -200,30 +200,21 @@ function RelatorioDashboard() {
     
     if(dianteira[0]) {
       setTotalPassagensDianteira(dianteira[0]['Acertos'] + dianteira[0]['Erros'])
-      setCapturasOCRDianteira(usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira)
+      setCapturasOCRDianteira(usuario.company === 'Lachman' ? ({dianteira[0]['Acertos'] + dianteira[0]['Erros']}*1) : {dianteira[0]['Acertos'] + dianteira[0]['Erros']})
         
-      setPercentageDianteira(Math.floor(
-          !isNaN(parseInt(dianteira[0]['Acertos']) / capturasOCRDianteira) 
-          ? Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasOCRDianteira*100)
-          : 100));
+      setPercentageDianteira(Math.floor(!isNaN(parseInt(dianteira[0]['Acertos']) / capturasOCRDianteira) ? Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasOCRDianteira*100): 100));
     }
     if(traseira[0]) {
       setTotalPassagensTraseira(traseira[0]['Acertos'] + traseira[0]['Erros'])
-      setCapturasOCRTraseira(usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira)
+      setCapturasOCRTraseira(usuario.company === 'Lachman' ? ({traseira[0]['Acertos'] + traseira[0]['Erros']}*0.6) : {traseira[0]['Acertos'] + traseira[0]['Erros']})
       
-      setPercentageTraseira(Math.floor(
-          !isNaN(parseInt(traseira[0]['Acertos']) / capturasOCRTraseira) 
-            ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasOCRTraseira*100)
-            : 100));
+      setPercentageTraseira(Math.floor(!isNaN(parseInt(traseira[0]['Acertos']) / capturasOCRTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasOCRTraseira*100): 100));
     }
     if(container[0]) {
       setTotalPassagensContainer(container[0]['Acertos'] + container[0]['Erros'])
-      setCapturasOCRContainer(usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer)
+      setCapturasOCRContainer(usuario.company === 'Lachman' ? ({container[0]['Acertos'] + container[0]['Erros']}*0.5) : {container[0]['Acertos'] + container[0]['Erros']})
       
-      setPercentageContainer(Math.floor(
-          !isNaN(parseInt(container[0]['Acertos']) / capturasOCRContainer) 
-          ? Math.min(100, parseInt(container[0]['Acertos']) / capturasOCRContainer*100)
-          : 100));
+      setPercentageContainer(Math.floor(!isNaN(parseInt(container[0]['Acertos']) / capturasOCRContainer) ? Math.min(100, parseInt(container[0]['Acertos']) / capturasOCRContainer*100) : 100));
     }
 
     
