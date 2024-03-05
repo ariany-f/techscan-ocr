@@ -198,6 +198,10 @@ function RelatorioDashboard() {
 
   function configurarGraficos(dianteira, traseira, container) {
     
+    setTotalPassagensDianteira(dianteira[0]['Acertos'] + dianteira[0]['Erros'])
+    setTotalPassagensTraseira(traseira[0]['Acertos'] + traseira[0]['Erros'])
+    setTotalPassagensContainer(container[0]['Acertos'] + container[0]['Erros'])
+
     setDataDianteira(
     {
         labels: [
@@ -207,14 +211,8 @@ function RelatorioDashboard() {
         datasets: [{
           label: '',
           data: [
-                  ((dianteira[0]) ? 
-                    (usuario.company === 'LACHMAN' ? 
-                      (dianteira[0]['Acertos'])
-                      : dianteira[0]['Acertos']) : '0'),
-                  ((dianteira[0]) ?
-                    (usuario.company === 'LACHMAN' ?
-                      (dianteira[0]['Erros'])
-                      : dianteira[0]['Erros']) : '0')
+                  ((dianteira[0]) ? dianteira[0]['Acertos'] : '0'),
+                  ((dianteira[0]) ? dianteira[0]['Erros'] : '0')
                 ],
           backgroundColor: [
             'rgb(54, 162, 235)',
@@ -232,14 +230,8 @@ function RelatorioDashboard() {
       datasets: [{
         label: '',
         data: [
-                ((traseira[0]) ? 
-                  (usuario.company === 'LACHMAN' ? 
-                    (traseira[0]['Acertos'])
-                    : traseira[0]['Acertos']) : '0'), 
-                ((traseira[0]) ? 
-                  (usuario.company === 'LACHMAN' ? 
-                    (traseira[0]['Erros'])
-                    : traseira[0]['Erros']) : '0')
+                ((traseira[0]) ? traseira[0]['Acertos'] : '0'), 
+                ((traseira[0]) ? traseira[0]['Erros'] : '0')
               ],
         backgroundColor: [
           'rgb(54, 162, 235)',
@@ -257,14 +249,8 @@ function RelatorioDashboard() {
         datasets: [{
           label: '',
           data: [
-                  ((container[0]) ? 
-                    (usuario.company === 'LACHMAN' ? 
-                      (container[0]['Acertos'])
-                      : container[0]['Acertos']) : '0'), 
-                  ((container[0]) ? 
-                    (usuario.company === 'LACHMAN' ? 
-                      (container[0]['Erros']) 
-                      : container[0]['Erros']) : '0')
+                  ((container[0]) ? container[0]['Acertos'] : '0'), 
+                  ((container[0]) ? container[0]['Erros'] : '0')
                 ],
           backgroundColor: [
             'rgb(54, 162, 235)',
@@ -292,13 +278,13 @@ function RelatorioDashboard() {
 
   function showLegend() {
 
-    setTotalPassagensDianteira(dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0)
-    setTotalPassagensTraseira(dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0)
-    setTotalPassagensContainer(dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0)
+    //setTotalPassagensDianteira(dataDianteira.datasets && dataDianteira.datasets[0] ? parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]) : 0)
+  //  setTotalPassagensTraseira(dataTraseira.datasets && dataTraseira.datasets[0] ? parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]) : 0)
+  //  setTotalPassagensContainer(dataContainer.datasets && dataContainer.datasets[0] ? parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]) : 0)
   
-    setCapturasOCRDianteira(usuario.company === 'Lachman' ? ((parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1]))*1) : (parseInt(dataDianteira.datasets[0].data[0]) + parseInt(dataDianteira.datasets[0].data[1])))
-    setCapturasOCRTraseira(usuario.company === 'Lachman' ? ((parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1]))*0.6) : (parseInt(dataTraseira.datasets[0].data[0]) + parseInt(dataTraseira.datasets[0].data[1])))
-    setCapturasOCRContainer(usuario.company === 'Lachman' ? ((parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1]))*0.5) : (parseInt(dataContainer.datasets[0].data[0]) + parseInt(dataContainer.datasets[0].data[1])))
+    setCapturasOCRDianteira(usuario.company === 'Lachman' ? (TotalPassagensDianteira*1) : TotalPassagensDianteira)
+    setCapturasOCRTraseira(usuario.company === 'Lachman' ? (TotalPassagensTraseira*0.6) : TotalPassagensTraseira)
+    setCapturasOCRContainer(usuario.company === 'Lachman' ? (TotalPassagensContainer*0.5) : TotalPassagensContainer)
     
     setTimeout(() => {
       setPercentageDianteira(Math.floor(
@@ -321,7 +307,7 @@ function RelatorioDashboard() {
             ? Math.min(100, parseInt(dataContainer.datasets[0].data[0]) / capturasOCRContainer*100)
             : 100
           : 100));
-    }, 1000);    
+    }, 1000);
   }
 
   useEffect(() => {
