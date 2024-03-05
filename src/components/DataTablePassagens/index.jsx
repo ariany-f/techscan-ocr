@@ -171,7 +171,8 @@ function DataTablePassagens() {
             {
                 setPassagens(response)
                 setLoading(false)
-                var dadosParaCsv = response.filter(item => {
+
+                var dadosParaCsv = response.map(item => {
                     return item.itens
                 })
                 console.log(dadosParaCsv)
