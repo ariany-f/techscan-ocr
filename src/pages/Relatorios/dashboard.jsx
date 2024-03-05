@@ -221,7 +221,7 @@ function RelatorioDashboard() {
       setTotalPassagensTraseira(totPassagensTraseira)
       let capturasTraseira = (totPassagensTraseira-parseInt(traseira[0]['Erros']))
       setCapturasOCRTraseira(capturasTraseira)
-      setPercentageTraseira(Math.floor(!isNaN(parseInt(traseira[0]['Acertos']) / capturasTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasTraseira*100): 100));
+      setPercentageTraseira((!isNaN(parseInt(traseira[0]['Acertos']) / capturasTraseira) ? Math.min(100, parseInt(traseira[0]['Acertos']) / capturasTraseira*100): 100));
 
       if(usuario.company === 'Lachman')
       {
