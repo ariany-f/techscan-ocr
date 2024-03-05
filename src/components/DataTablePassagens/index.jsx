@@ -171,10 +171,10 @@ function DataTablePassagens() {
             {
                 setPassagens(response)
                 setLoading(false)
-               
-                const arrayOfObjects = Array.from(Object.entries(response)).
+                response.map(item => {
+                    const arrayOfObjects = Array.from(Object.entries(item)).
                     map(([key, value]) => ({ [key]: value.itens }));
-                console.log(arrayOfObjects);
+                })
 
               //  console.log(dadosParaCsv)
               //  setCsvData(dadosParaCsv)
