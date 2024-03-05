@@ -182,7 +182,7 @@ function DataTablePassagens() {
                 })
 
 
-               console.log(arrayOfObjects)
+               console.log(teste)
               //  setCsvData(dadosParaCsv)
             }
         })
