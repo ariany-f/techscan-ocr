@@ -249,7 +249,7 @@ function RelatorioDashboard() {
     }
   }
 
-  function MontarGraficos()
+  function montarGraficos()
   {
     setDataDianteira(
       {
@@ -337,14 +337,16 @@ function RelatorioDashboard() {
       configurarGraficos(dianteira, traseira, container)
     }
 
+    if(capturasOCRTraseira && capturasOCRDianteira)
+    {
+      console.log(capturasOCRDianteira)
+      montarGraficos()
+    }
+    
+
     if(dataDianteira && dataTraseira && dataContainer)
     {
       setLoading(false)
-    }
-
-    if(capturasOCRContainer && capturasOCRTraseira && capturasOCRDianteira)
-    {
-      MontarGraficos()
     }
     
 }, [startDate, endDate, dianteira, traseira, container, dataDianteira, dataTraseira, dataContainer, capturasOCRDianteira, capturasOCRTraseira, capturasOCRContainer])
