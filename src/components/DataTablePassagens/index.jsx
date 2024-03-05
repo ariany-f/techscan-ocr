@@ -173,7 +173,9 @@ function DataTablePassagens() {
                 setLoading(false)
 
                 const arrayOfObjects = response.map((item, index) => {
-                    return Object.entries(item.itens);
+                    return item.itens.map((it, key) => {
+                        return it[key]
+                    });
                 })
 
 
