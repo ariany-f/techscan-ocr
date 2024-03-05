@@ -171,6 +171,13 @@ function DataTablePassagens() {
             {
                 setPassagens(response)
                 setLoading(false)
+                
+            
+            
+                setCsvData(response.filter(item => {
+                    return item.itens
+                }))
+                console.log(csvData)
             }
         })
         .catch(erro => {
@@ -185,12 +192,6 @@ function DataTablePassagens() {
         {
             fetchPassages()
             setChangeFields(false)
-            
-            
-            setCsvData(passagens.filter(item => {
-                return item.itens
-            }))
-            console.log(csvData)
         }
 
         // useRef value stored in .current property
