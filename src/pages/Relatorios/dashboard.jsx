@@ -46,17 +46,17 @@ function RelatorioDashboard() {
   const refContainer = useRef(null)
   const reportRef = useRef(null)
   
-  const [TotalPassagensDianteira, setTotalPassagensDianteira] = useState()
-  const [TotalPassagensTraseira, setTotalPassagensTraseira] = useState()
-  const [TotalPassagensContainer, setTotalPassagensContainer] = useState()
+  const [TotalPassagensDianteira, setTotalPassagensDianteira] = useState(0)
+  const [TotalPassagensTraseira, setTotalPassagensTraseira] = useState(0)
+  const [TotalPassagensContainer, setTotalPassagensContainer] = useState(0)
 
-  const [capturasOCRDianteira, setCapturasOCRDianteira] = useState()
-  const [capturasOCRTraseira, setCapturasOCRTraseira] = useState()
-  const [capturasOCRContainer, setCapturasOCRContainer] = useState()
+  const [capturasOCRDianteira, setCapturasOCRDianteira] = useState(0)
+  const [capturasOCRTraseira, setCapturasOCRTraseira] = useState(0)
+  const [capturasOCRContainer, setCapturasOCRContainer] = useState(0)
 
-  const [percentageDianteira, setPercentageDianteira] = useState();
-  const [percentageTraseira, setPercentageTraseira] = useState();
-  const [percentageContainer, setPercentageContainer] = useState();
+  const [percentageDianteira, setPercentageDianteira] = useState(100);
+  const [percentageTraseira, setPercentageTraseira] = useState(100);
+  const [percentageContainer, setPercentageContainer] = useState(100);
 
   addLocale('pt', {
     closeText: 'Fechar',
