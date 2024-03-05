@@ -241,7 +241,7 @@ function RelatorioDashboard() {
       }
     }  
     setTimeout(() => {
-      if(capturasTraseira)
+      if(capturasOCRTraseira)
       {
         console.log(capturasTraseira)
         console.log(totPassagensTraseira)
