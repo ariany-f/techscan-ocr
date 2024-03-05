@@ -327,7 +327,7 @@ function RelatorioDashboard() {
           type: 'pie',
           data: dataContainer
         });
-    }, 1000);
+    }, 4000);
   }
 
   useEffect(() => {
