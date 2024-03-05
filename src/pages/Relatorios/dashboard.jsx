@@ -199,7 +199,7 @@ function RelatorioDashboard() {
   function configurarGraficos(dianteira, traseira, container) {
     
     if(dianteira[0]) {
-      let totPassagensDiant = dianteira[0]['Acertos'] + dianteira[0]['Erros']
+      let totPassagensDiant = parseInt(dianteira[0]['Acertos']) + parseInt(dianteira[0]['Erros'])
       setTotalPassagensDianteira(totPassagensDiant)
       let capturasDianteira = ((usuario.company === 'Lachman') ? (totPassagensDiant*1) : totPassagensDiant)
       setCapturasOCRDianteira(capturasDianteira)
