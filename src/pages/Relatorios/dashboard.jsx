@@ -200,9 +200,8 @@ function RelatorioDashboard() {
     
     if(dianteira[0]) {
       setTotalPassagensDianteira(dianteira[0]['Acertos'] + dianteira[0]['Erros'])
-      setCapturasOCRDianteira(usuario.company === 'Lachman' ? ({dianteira[0]['Acertos'] + dianteira[0]['Erros']}*1) : {dianteira[0]['Acertos'] + dianteira[0]['Erros']})
-        
-      setPercentageDianteira(Math.floor(!isNaN(parseInt(dianteira[0]['Acertos']) / capturasOCRDianteira) ? Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasOCRDianteira*100): 100));
+      setCapturasOCRDianteira(dianteira[0]['Acertos'] + dianteira[0]['Erros'])
+      setPercentageDianteira(Math.floor(!isNaN(parseInt(dianteira[0]['Acertos']) / capturasOCRDianteira) ? Math.min(1) : {dianteira[0]['Acertos'] + dianteira00, parseInt(dianteira[0]['Acertos']) / capturasOCRDianteira*100): 100));
     }
     if(traseira[0]) {
       setTotalPassagensTraseira(traseira[0]['Acertos'] + traseira[0]['Erros'])
