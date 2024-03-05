@@ -101,6 +101,7 @@ function DataTablePassagens() {
     const [passagens, setPassagens] = useState(null)
     const [expandedRows, setExpandedRows] = useState(null);
     const [modalOpened, setModalOpened] = useState(false)
+    const [csvData, setCsvData] = useState([])
     const [modalPlateOpened, setModalPlateOpened] = useState(false)
     const [modalContainerOpened, setModalContainerOpened] = useState(false)
     const [modalImagemOpened, setModalImagemOpened] = useState(false)
@@ -169,6 +170,11 @@ function DataTablePassagens() {
             if(response)
             {
                 setPassagens(response)
+            
+                setCsvData(response.filter(item => {
+                    return item.itens
+                }))
+
                 setLoading(false)
             }
         })
@@ -484,12 +490,14 @@ function DataTablePassagens() {
 
     return (
         <>
-            {location.pathname == '/relatorios' ?   <JsonToExcel
-                title="Download CSV"
-                data={passagens}
-                fileName={`relatorio-ocr-${new Date()}`}
-                btnClassName="button azul filled medium 300"
-            /> : ''}
+            {location.pathname == '/relatorios' ? 
+                <JsonToExcel
+                    title="Download CSV"
+                    data={csvData}
+                    fileName={`relatorio-ocr-${new Date()}`}
+                    btnClassName="button azul filled medium 300"
+                /> 
+                : ''}
             
             <Loading opened={loading} />
             <DataTable showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} style={{zIndex: 0}} scrollHeight="600px" filters={filters} value={passagens} expandedRows={expandedRows} onRowToggle={(e) => expandedRowsChange(e)}
