@@ -203,11 +203,17 @@ function RelatorioDashboard() {
       setTotalPassagensDianteira(totPassagensDiant)
       let capturasDianteira = (totPassagensDiant-parseInt(dianteira[0]['Erros']))
       setCapturasOCRDianteira(capturasDianteira)
-      setPercentageDianteira(Math.floor(!isNaN(parseInt(dianteira[0]['Acertos']) / capturasDianteira) ? Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasDianteira*100): 100));
+      setPercentageDianteira((!isNaN(parseInt(dianteira[0]['Acertos']) / capturasDianteira) ? Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasDianteira*100): 100));
 
       if(usuario.company === 'Lachman')
       {
-        
+        // setPercentageDianteira(
+        //     Math.floor(
+        //       !isNaN(parseInt(dianteira[0]['Acertos']) / capturasDianteira) ? 
+        //           Math.min(100, parseInt(dianteira[0]['Acertos']) / capturasDianteira*100)
+        //           : 100
+        //     )
+        // );
       }
     }
     if(traseira[0]) {
