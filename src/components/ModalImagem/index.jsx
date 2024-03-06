@@ -104,7 +104,7 @@ function ModalImagem({ opened = false, aoClicar, aoFechar, imagem = null }) {
         <>
             {opened &&
             <Overlay>
-                <DialogEstilizado id="modal-detalhes-usuario" open={opened}>
+                <DialogEstilizado id="modal-imagem" open={opened}>
                     <Frame>
                         <CloseDiv>
                             <form method="dialog">
@@ -114,7 +114,7 @@ function ModalImagem({ opened = false, aoClicar, aoFechar, imagem = null }) {
                             </form>
                         </CloseDiv>
                         <Col12>
-                            <img style={{width: '100%'}} src={`https://${window.location.hostname}/api/web/public/${imagem}`}/>
+                            <img style={{width: '100%'}} src={`http://${window.location.hostname}/api/web/public/${imagem}`}/>
                         </Col12>
                     </Frame>
                 </DialogEstilizado>
