@@ -238,6 +238,13 @@ function DataTablePassagens() {
                 return formatDate(new Date(item.datetime)) + ' '
             }
         })
+
+        if(datas.length > 3)
+        {
+            let indexToRemove = 1; // index of the first element to remove
+            let numberOfElementsToRemove = datas.length - 3; // number of elements to remove
+            datas.splice(indexToRemove, numberOfElementsToRemove); // let only 3 elements at index 1
+        }
         return datas;
     };
     
