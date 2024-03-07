@@ -263,7 +263,7 @@ function DataTablePassagens() {
             return item.camera ? `${item.camera} ` : null;
         })
         cameras = cameras.filter(function (el) {
-            if(!cameras.hasOwnProperty(el))
+            if(!cameras.includes(el))
             {
                 return el != null;
             }
