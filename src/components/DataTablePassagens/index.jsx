@@ -263,14 +263,9 @@ function DataTablePassagens() {
             return item.camera ? `${item.camera} ` : null;
         })
         cameras = cameras.filter(function (el) {
-            if(!cameras.includes(el))
-            {
-                return el != null;
-            }
+            return el != null;
         });
-
-
-        
+                
         return cameras.length ? cameras : '----------';
     };
 
