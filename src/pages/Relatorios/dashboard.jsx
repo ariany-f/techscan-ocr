@@ -340,13 +340,20 @@ function RelatorioDashboard() {
 
   useEffect(() => {
 
-    if((!dianteira) || (!traseira) || (!container) || changeFields)
+    if(changeFields)
+    {
+      setDianteira(null)
+      setTraseira(null)
+      setContainer(null)
+      setChangeFields(false)
+    }
+
+    if((!dianteira) || (!traseira) || (!container))
     {
       setDataDianteira(null)
       setDataTraseira(null)
       setDataContainer(null)
       fetchData()
-      setChangeFields(false)
     }
 
     if(dianteira && traseira && container && (!dataDianteira) && (!dataTraseira) && (!dataContainer))
