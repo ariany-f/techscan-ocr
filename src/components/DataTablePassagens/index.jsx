@@ -255,7 +255,7 @@ function DataTablePassagens() {
         plates = plates.filter(function (el) {
             return el != null;
         });
-        return plates.length ? plates : '----------';
+        return plates.length ? plates.filter(onlyUnique) : '----------';
     };
     
     const plateCameraTemplate = (rowData) => {
@@ -276,7 +276,7 @@ function DataTablePassagens() {
         containers = containers.filter(function (el) {
             return el != null;
         });
-        return containers.length ? containers : '----------';
+        return containers.length ? containers.filter(onlyUnique) : '----------';
     };
     
     const updatedByBodyTemplate = (rowData) => {
