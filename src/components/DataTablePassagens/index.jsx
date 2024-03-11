@@ -266,7 +266,7 @@ function DataTablePassagens() {
             return el != null;
         });
                 
-        return cameras.length ? cameras : '----------';
+        return cameras.length ? cameras.filter(onlyUnique) : '----------';
     };
 
     const containerBodyTemplate = (rowData) => {
@@ -297,7 +297,7 @@ function DataTablePassagens() {
         directions = directions.filter(function (el) {
             return el != null;
         });
-        return directions.length ? directions : '----------';
+        return directions.length ? directions.filter(onlyUnique) : '----------';
     };
     
     const GateBodyTemplate = (rowData) => {
