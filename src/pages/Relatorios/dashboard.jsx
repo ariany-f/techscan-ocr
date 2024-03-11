@@ -351,6 +351,9 @@ function RelatorioDashboard() {
 
     if(dianteira && traseira && container && (!dataDianteira) && (!dataTraseira) && (!dataContainer))
     {
+      setCapturasOCRContainer(null)
+      setCapturasOCRDianteira(null)
+      setCapturasOCRTraseira(null)
       configurarGraficos(dianteira, traseira, container)
     }
 
