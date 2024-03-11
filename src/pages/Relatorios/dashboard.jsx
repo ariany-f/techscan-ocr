@@ -5,6 +5,7 @@ import { Calendar } from 'primereact/calendar'
 import Botao from '@components/Botao'
 import Texto from '@components/Texto'
 import { useCallback, useEffect, useRef, useState } from 'react';
+import DropdownItens from '@components/DropdownItens'
 import http from '@http'
 import { MdOutlineClear } from 'react-icons/md';
 import { addLocale } from 'primereact/api'
@@ -29,6 +30,7 @@ function RelatorioDashboard() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [primeiraVez, setPrimeiraVez] = useState(false);
+  const [passagesDirection, setPassagesDirection] = useState(null)
 
   const [dianteira, setDianteira] = useState(null);
   const [traseira, setTraseira] = useState(null);
@@ -165,6 +167,7 @@ function RelatorioDashboard() {
   function fetchData()
   {
       const filterData = {
+          direction: (passagesDirection && passagesDirection !== "0") ? passagesDirection : null,
           dataInicial: startDate ? startDate.toLocaleDateString('sv-SE', {
               day: '2-digit',
               month: '2-digit',
@@ -359,8 +362,23 @@ function RelatorioDashboard() {
       setLoading(false)
     }
     
-}, [startDate, endDate, dianteira, traseira, container, dataDianteira, dataTraseira, dataContainer, capturasOCRDianteira, capturasOCRTraseira, capturasOCRContainer])
-     
+}, [startDate, endDate, passagesDirection, dianteira, traseira, container, dataDianteira, dataTraseira, dataContainer, capturasOCRDianteira, capturasOCRTraseira, capturasOCRContainer])
+          
+      const availableDirections = [
+        {
+            name: 'Todos',
+            code: null
+        },
+        {
+            name: 'Entrada',
+            code: 1,
+        },
+        {
+            name: 'Saída',
+            code: 2
+        }
+      ]
+
       return (
         <>
           <Loading opened={loading} />
@@ -380,10 +398,14 @@ function RelatorioDashboard() {
                 </div>
 
                 <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                    <DropdownItens setValor={(e) => {setPassagesDirection(e); setChangeFields(true);}} valor={passagesDirection} options={availableDirections} label="Selecionar Direção" name="direction" placeholder="" />
+                </div>
+
+                <div style={{ width: '5%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Limpar Filtros</Texto>
                     <Botao estilo="cinza" size="medium" aoClicar={LimparDatas}><MdOutlineClear className="icon" /></Botao>
                 </div>
-                <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                <div style={{ width: '5%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                   <Texto weight={400}>Download PDF</Texto>
                   <Botao estilo="azul" size="medium" aoClicar={exportPdf}>Download PDF</Botao>
                 </div>
