@@ -31,6 +31,7 @@ function RelatorioDashboard() {
   const [endDate, setEndDate] = useState(null);
   const [primeiraVez, setPrimeiraVez] = useState(false);
   const [passagesDirection, setPassagesDirection] = useState(null)
+  const [changeFields, setChangeFields] = useState(false)
 
   const [dianteira, setDianteira] = useState(null);
   const [traseira, setTraseira] = useState(null);
@@ -94,6 +95,7 @@ function RelatorioDashboard() {
   const LimparDatas = () => {
       setStartDate('')
       setEndDate('')
+      setChangeFields(true)
   }
 
   const exportPdf = useCallback(() => {
@@ -338,9 +340,10 @@ function RelatorioDashboard() {
 
   useEffect(() => {
 
-    if((!dianteira) || (!traseira) || (!container))
+    if((!dianteira) || (!traseira) || (!container) || changeFields)
     {
       fetchData()
+      setChangeFields(false)
     }
 
     if(dianteira && traseira && container && (!dataDianteira) && (!dataTraseira) && (!dataContainer))
@@ -390,15 +393,15 @@ function RelatorioDashboard() {
           <ContainerLadoALado>
                 <div style={{ width: '20%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Data/Hora Inicial</Texto>
-                    <Calendar locale="pt" dateFormat="dd/mm/yy" value={startDate} onChange={(e) => setStartDate(e.value)} showTime hourFormat="24" />
+                    <Calendar locale="pt" dateFormat="dd/mm/yy" value={startDate} onChange={(e) => {setStartDate(e.value);setChangeFields(true)}} showTime hourFormat="24" />
                 </div>
                 <div style={{ width: '20%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Data/Hora Final</Texto>
-                    <Calendar locale="pt" dateFormat="dd/mm/yy" value={endDate} onChange={(e) => setEndDate(e.value)} showTime hourFormat="24" />
+                    <Calendar locale="pt" dateFormat="dd/mm/yy" value={endDate} onChange={(e) => {setEndDate(e.value);setChangeFields(true)}} showTime hourFormat="24" />
                 </div>
 
                 <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
-                    <DropdownItens setValor={setPassagesDirection} valor={passagesDirection} options={availableDirections} label="Selecionar Direção" name="direction" placeholder="" />
+                    <DropdownItens setValor={(e) => {setPassagesDirection(e);setChangeFields(true)}} valor={passagesDirection} options={availableDirections} label="Selecionar Direção" name="direction" placeholder="" />
                 </div>
 
                 <div style={{ width: '5%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
