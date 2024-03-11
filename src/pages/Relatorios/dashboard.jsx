@@ -365,7 +365,7 @@ function RelatorioDashboard() {
       setLoading(false)
     }
     
-}, [startDate, endDate, passagesDirection, dianteira, traseira, container, dataDianteira, dataTraseira, dataContainer, capturasOCRDianteira, capturasOCRTraseira, capturasOCRContainer])
+}, [changeFields, startDate, endDate, passagesDirection, dianteira, traseira, container, dataDianteira, dataTraseira, dataContainer, capturasOCRDianteira, capturasOCRTraseira, capturasOCRContainer])
           
       const availableDirections = [
         {
@@ -387,7 +387,7 @@ function RelatorioDashboard() {
           <Loading opened={loading} />
 
           <Titulo>
-              <h2 style={{ fontWeight: 500, color: '#B9B9B9' }}>ESTATÍSTICAS</h2>
+              <h2 style={{ fontWeight: 500, color: '#B9B9B9' }}>ASSERTIVIDADE</h2>
           </Titulo>
 
           <ContainerLadoALado>
