@@ -151,7 +151,7 @@ function DataTablePassagens() {
     {
         setLoading(true)
         const filterData = {
-            direction: (passagesDirection && passagesDirection !== 0) ? passagesDirection : null,
+            direction: (passagesDirection && passagesDirection !== "0") ? passagesDirection : null,
             dataInicial: startDate ? startDate.toLocaleDateString('sv-SE', {
                 day: '2-digit',
                 month: '2-digit',
@@ -469,16 +469,16 @@ function DataTablePassagens() {
 
         const availableDirections = [
             {
+                name: 'Todos',
+                code: null
+            },
+            {
                 name: 'Entrada',
                 code: 1,
             },
             {
                 name: 'Saída',
                 code: 2
-            },
-            {
-                name: 'Todos',
-                code: null
             }
         ]
         
