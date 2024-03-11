@@ -106,7 +106,7 @@ function ModalAlterarContainer({ opened = false, aoClicar, aoFechar, passagem })
         {
             const containers = (passagem[0].itens.map(item => {
                 return {
-                    name: item.container,
+                    name:  item.container ? `Container: ${item.container} | Camera: ${item.camera} | Data/Hora: ${item.datetime}` : `Placa: ${item.plate} | Camera: ${item.camera} | Data/Hora: ${item.datetime}`,
                     code: item.id,
                     plate: item.plate
                 }

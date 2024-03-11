@@ -105,7 +105,7 @@ function ModalAlterarPlaca({ opened = false, aoClicar, aoFechar, passagem }) {
         {
             const plates = (passagem[0].itens.map(item => {
                 return {
-                    name: item.plate,
+                    name:  item.plate ? `Placa: ${item.plate} | Camera: ${item.camera} | Data/Hora: ${item.datetime}` : `Container: ${item.container} | Camera: ${item.camera} | Data/Hora: ${item.datetime}`,
                     code: item.id,
                     container: item.container
                 }
