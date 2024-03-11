@@ -151,7 +151,7 @@ function DataTablePassagens() {
     {
         setLoading(true)
         const filterData = {
-
+            direction: passagesDirection,
             dataInicial: startDate ? startDate.toLocaleDateString('sv-SE', {
                 day: '2-digit',
                 month: '2-digit',
@@ -496,12 +496,12 @@ function DataTablePassagens() {
                 </div>
 
                 <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
-                    <Texto weight={400}>Limpar Filtros</Texto>
-                    <Botao estilo="cinza" size="medium" aoClicar={LimparDatas}><MdOutlineClear className="icon" /></Botao>
+                    <DropdownItens setValor={setPassagesDirection} valor={passagesDirection} options={availableDirections} label="Selecionar Direção" name="direction" placeholder="" />
                 </div>
 
-                <div style={{ width: '5%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
-                    <DropdownItens setValor={setPassagesDirection} valor={passagesDirection} options={availableDirections} label="Selecionar Direção" name="direction" placeholder="" />
+                <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                    <Texto weight={400}>Limpar Filtros</Texto>
+                    <Botao estilo="cinza" size="medium" aoClicar={LimparDatas}><MdOutlineClear className="icon" /></Botao>
                 </div>
                 
                 <div style={{ width: '5%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
