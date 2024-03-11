@@ -342,6 +342,9 @@ function RelatorioDashboard() {
 
     if((!dianteira) || (!traseira) || (!container) || changeFields)
     {
+      setDataDianteira(null)
+      setDataTraseira(null)
+      setDataContainer(null)
       fetchData()
       setChangeFields(false)
     }
