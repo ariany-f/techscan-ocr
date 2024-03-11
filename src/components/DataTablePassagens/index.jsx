@@ -306,6 +306,8 @@ function DataTablePassagens() {
             return item.gate ? `${item.gate} ` : null;
         })
         gates = gates.filter(function (el) {
+            console.log(gates)
+            console.log(el)
             if(!gates.hasOwnProperty(el))
             {
                 return el != null;
