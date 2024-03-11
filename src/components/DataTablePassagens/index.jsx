@@ -4,6 +4,7 @@ import { Calendar } from 'primereact/calendar'
 import { InputText } from 'primereact/inputtext'
 import { useLocation } from 'react-router-dom'
 import { addLocale, FilterMatchMode, FilterOperator } from 'primereact/api'
+import DropdownItens from '@components/DropdownItens'
 import { JsonToExcel } from "react-json-to-excel"
 import { FaSearch } from 'react-icons/fa'
 import { MdOutlineFileDownload, MdOutlineClear, MdOutlineRefresh } from 'react-icons/md'
@@ -107,9 +108,10 @@ function DataTablePassagens() {
     const [modalImagemOpened, setModalImagemOpened] = useState(false)
     const [modalBindOpened, setModalBindOpened] = useState(false)
     const [imagemModal, setImagemModal] = useState(null)
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const toastConfirmarPassagem = useRef(null);
+    const [startDate, setStartDate] = useState(null)
+    const [endDate, setEndDate] = useState(null)
+    const [passagesDirection, setPassagesDirection] = useState(null)
+    const toastConfirmarPassagem = useRef(null)
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         plate: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
@@ -465,6 +467,21 @@ function DataTablePassagens() {
             allDayText : 'Todo Dia'
         });
 
+        const availableDirections = [
+            {
+                name: 'Entrada',
+                code: 1,
+            },
+            {
+                name: 'Saída',
+                code: 2
+            },
+            {
+                name: 'Todos',
+                code: null
+            }
+        ]
+        
         return (
             <ContainerLadoALado>
                 
@@ -483,7 +500,11 @@ function DataTablePassagens() {
                     <Botao estilo="cinza" size="medium" aoClicar={LimparDatas}><MdOutlineClear className="icon" /></Botao>
                 </div>
 
-                <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                <div style={{ width: '5%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                    <DropdownItens setValor={setPassagesDirection} valor={passagesDirection} options={availableDirections} label="Selecionar Direção" name="direction" placeholder="" />
+                </div>
+                
+                <div style={{ width: '5%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <Texto weight={400}>Recarregar</Texto>
                     <Botao estilo="azul" size="medium" aoClicar={RefreshData}><MdOutlineRefresh className="icon" /></Botao>
                 </div>
