@@ -306,15 +306,14 @@ function DataTablePassagens() {
             return item.gate ? `${item.gate} ` : null;
         })
         gates = gates.filter(function (el) {
-            console.log(gates)
-            console.log(el)
-            if(gates.indexOf(el) === -1)
-            {
-                return el != null;
-            }
+            return el != null;
         });
-        return gates.length ? gates : '----------';
+        return gates.length ? gates.filter(onlyUnique) : '----------';
     };
+
+    function onlyUnique(value, index, array) {
+        return array.indexOf(value) === index;
+    }
 
     const qtdImagensBodyTemplate = (rowData) => {
        
