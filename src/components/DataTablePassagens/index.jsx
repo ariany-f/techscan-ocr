@@ -306,7 +306,10 @@ function DataTablePassagens() {
             return item.gate ? `${item.gate} ` : null;
         })
         gates = gates.filter(function (el) {
-            return el != null;
+            if(gates.hasOwnProperty(el))
+            {
+                return el != null;
+            }
         });
         return gates.length ? gates : '----------';
     };
