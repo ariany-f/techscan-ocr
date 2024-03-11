@@ -308,7 +308,7 @@ function DataTablePassagens() {
         gates = gates.filter(function (el) {
             console.log(gates)
             console.log(el)
-            if(!gates.hasOwnProperty(el))
+            if(gates.indexOf(el) === -1)
             {
                 return el != null;
             }
