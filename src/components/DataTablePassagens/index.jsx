@@ -210,7 +210,7 @@ function DataTablePassagens() {
             window.clearTimeout(timerRef.current);
         };
 
-    }, [changeFields, startDate, endDate, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened, modalBindOpened])
+    }, [changeFields, startDate, endDate, passagesDirection, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened, modalBindOpened])
  
     const onGlobalFilterChange = (event) => {
         const value = event.target.value;
@@ -496,7 +496,7 @@ function DataTablePassagens() {
                 </div>
 
                 <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
-                    <DropdownItens setValor={setPassagesDirection} valor={passagesDirection} options={availableDirections} label="Selecionar Direção" name="direction" placeholder="" />
+                    <DropdownItens setValor={(e) => {setPassagesDirection(e); setChangeFields(true);}} valor={passagesDirection} options={availableDirections} label="Selecionar Direção" name="direction" placeholder="" />
                 </div>
 
                 <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
