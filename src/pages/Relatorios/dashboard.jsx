@@ -354,6 +354,7 @@ function RelatorioDashboard() {
       setCapturasOCRContainer(null)
       setCapturasOCRDianteira(null)
       setCapturasOCRTraseira(null)
+      setPrimeiraVez(false)
       configurarGraficos(dianteira, traseira, container)
     }
 
