@@ -407,13 +407,16 @@ function DataTablePassagens() {
                 <div style={{display: 'flex', flexWrap: 'wrap'}}>
                     {data.itens.map((passage, index) => {
                        return Object.values(passage.images).map((item, index) => {
-                            return (
-                                <div style={{display: 'flex', flexDirection: 'column'}}>
-                                    <img onClick={() => abrirImagem(item)} key={`${data.id}-${index}`} width="240px" src={`http://${window.location.hostname}/api/web/public/${item}`} style={{margin: '5px'}} />
-                                    
-                                    <p>{passage.position}</p>
-                                </div>
-                            )
+                            if(item)
+                            {
+                                return (
+                                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                                        <img onClick={() => abrirImagem(item)} key={`${data.id}-${index}`} width="240px" src={`http://${window.location.hostname}/api/web/public/${item}`} style={{margin: '5px'}} />
+                                        
+                                        <p>{passage.position}</p>
+                                    </div>
+                                )
+                            }
                         })
                     })}
                 </div>
