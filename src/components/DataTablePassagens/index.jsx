@@ -333,14 +333,12 @@ function DataTablePassagens() {
 
     const statusBodyTemplate = (rowData) => {
 
-        let status = rowData.itens.map((item) => {
-            return item.status ? `${item.status}` : null;
-        })
+        // let status = rowData.itens.map((item) => {
+        //     return item.status ? `${item.status}` : null;
+        // })
         
-        status = status.filter(onlyUnique)
-        return status.length ? <StatusLabel className={status === 'Aprovada' ? 'active' : (status === 'Erro' ? 'warning' : '')}/> : '----------';
-        
-        // return <StatusLabel className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/>
+        // status = status.filter(onlyUnique)
+        return status.length ? <StatusLabel className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/> : '----------';
     }
 
     const statusRowFilterTemplate = (options) => {
