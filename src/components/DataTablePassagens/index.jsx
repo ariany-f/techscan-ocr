@@ -217,6 +217,7 @@ function DataTablePassagens() {
     }, [changeFields, startDate, endDate, passagesDirection, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened, modalBindOpened])
  
     const onGlobalFilterChange = (e) => {
+        console.log(e)
         const value = e.target.value;
         let _filters = { ...filters };
 
@@ -531,7 +532,7 @@ function DataTablePassagens() {
                 : ''}
             
             <Loading opened={loading} />
-            <DataTable globalFilterFields={['status']} showGridlines header={header} scrollable onFilter={(e) => setFilters(e.filters)} style={{zIndex: 0}} scrollHeight="600px" filters={filters} filterDisplay="row" value={passagens} expandedRows={expandedRows} onRowToggle={(e) => expandedRowsChange(e)}
+            <DataTable globalFilterFields={['status']} showGridlines header={header} scrollable style={{zIndex: 0}} scrollHeight="600px" filters={filters} filterDisplay="row" value={passagens} expandedRows={expandedRows} onRowToggle={(e) => expandedRowsChange(e)}
                     rowExpansionTemplate={rowExpansionTemplate} paginator rows={25} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ maxWidth: '98%', marginTop: '1rem' }}>
                 <Column header="#" style={{ width: '3%', }} headerStyle={{ width: '3%', textAlign: 'center' }} expander={true} />
                 <Column body={plateBodyTemplate} field="plate" header="Placa" style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
