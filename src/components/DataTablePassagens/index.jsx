@@ -227,10 +227,12 @@ function DataTablePassagens() {
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;
         let _filters = { ...filters };
-
+        console.log(_filters)
+        console.log(value)
         _filters['global'].value = value;
 
         setFilters(_filters);
+        console.log(filters)
         setGlobalFilterValue(value);
     };
 
