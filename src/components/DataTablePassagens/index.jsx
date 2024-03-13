@@ -113,12 +113,7 @@ function DataTablePassagens() {
     const [endDate, setEndDate] = useState(null)
     const [passagesDirection, setPassagesDirection] = useState(null)
     const toastConfirmarPassagem = useRef(null)
-    const [filters, setFilters] = useState({
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        plate: { value: plateRowFilter, matchMode: FilterMatchMode.CONTAINS },
-        container: { value: null, matchMode: FilterMatchMode.CONTAINS }, 
-        status: { value: null, matchMode: FilterMatchMode.EQUALS },     
-    }); 
+    
 
     FilterService.register(ArrayContainsMatchMode, plateRowFilter)
 
@@ -131,6 +126,13 @@ function DataTablePassagens() {
         // const selectedTags = filterValue.map((tag) => tag.tid)
         // return selectedTags.every((tid) => contactTagIds.includes(tid))
     }
+    
+    const [filters, setFilters] = useState({
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        plate: { value: plateRowFilter, matchMode: FilterMatchMode.CONTAINS },
+        container: { value: null, matchMode: FilterMatchMode.CONTAINS }, 
+        status: { value: null, matchMode: FilterMatchMode.EQUALS },     
+    }); 
 
 
     const [loading, setLoading] = useState(false)
