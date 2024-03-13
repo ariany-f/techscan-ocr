@@ -99,7 +99,7 @@ const StatusLabel = styled.div`
 `
 
 
-FilterService.register("custom_plate", (value, filter) => {
+FilterService.register("custom_itens", (value, filter) => {
     if (!value || !filter) return true
     if (value.length === 0) return true
     else if (value.length !== 0 && filter.length === 0) return false
@@ -130,7 +130,7 @@ function DataTablePassagens() {
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         status: { value: null, matchMode: FilterMatchMode.EQUALS },
-        plate: { value: null, matchMode: FilterMatchMode.CUSTOM }
+        itens: { value: null, matchMode: FilterMatchMode.CUSTOM }
     }); 
      
     const [loading, setLoading] = useState(false)
