@@ -355,10 +355,16 @@ function DataTablePassagens() {
     const statusItemTemplate = (option) => {
         return <StatusLabel value={option} className={getSeverity(option)} />;
     };
+
+    const teste = (options, ee) => {
+        console.log(e)
+        console.log(options)
+        options.filterApplyCallback(e.value)
+    }
     
     const statusRowFilterTemplate = (options) => {
         return (
-            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+            <Dropdown value={options.value} options={statuses} onChange={(e) => teste(options, e)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
         );
     };
 
