@@ -104,7 +104,7 @@ FilterService.register("custom_plate", (value, filter) => {
     console.log(value)
     console.log(filter)
     return value.length >= filter
-  })
+})
 
 function DataTablePassagens() {
     
@@ -284,9 +284,13 @@ function DataTablePassagens() {
         return plates.length ? plates.filter(onlyUnique) : '----------';
     };
 
+    const teste = (e, options) => {
+        options.filterApplyCallback(e.value)
+    }
+
     const plateRowFilterTemplate = (options) => {
         return (
-            <InputText value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} placeholder="Placa" className="p-column-filter" style={{ minWidth: '12rem' }} />
+            <InputText value={options.value} onChange={(e) => teste(e, options)} placeholder="Placa" className="p-column-filter" style={{ minWidth: '12rem' }} />
         );
     };
     
