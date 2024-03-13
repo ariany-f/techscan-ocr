@@ -101,6 +101,7 @@ const StatusLabel = styled.div`
 FilterService.register('custom_global', (value, filterValue) => {
     console.log(value)
     console.log(filterValue)
+    return value
  })
 
 function DataTablePassagens() {
