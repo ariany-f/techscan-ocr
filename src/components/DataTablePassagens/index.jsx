@@ -3,7 +3,7 @@ import { Column } from 'primereact/column'
 import { Calendar } from 'primereact/calendar'
 import { InputText } from 'primereact/inputtext'
 import { useLocation } from 'react-router-dom'
-import { addLocale, FilterMatchMode, FilterOperator } from 'primereact/api'
+import { addLocale, FilterMatchMode, FilterOperator, FilterService } from 'primereact/api'
 import DropdownItens from '@components/DropdownItens'
 import { JsonToExcel } from "react-json-to-excel"
 import { FaSearch } from 'react-icons/fa'
@@ -115,10 +115,24 @@ function DataTablePassagens() {
     const toastConfirmarPassagem = useRef(null)
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        plate: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        plate: { value: plateRowFilter, matchMode: FilterMatchMode.CONTAINS },
         container: { value: null, matchMode: FilterMatchMode.CONTAINS }, 
         status: { value: null, matchMode: FilterMatchMode.EQUALS },     
     }); 
+
+    FilterService.register(ArrayContainsMatchMode, plateRowFilter)
+
+    const plateRowFilter = (contactTagIds, filterValue) => {
+        console.log(filterValue)
+        console.log(contactTagIds)
+        // if (!filterValue || !contactTagIds) return true
+        // if (filterValue.length === 0) return true
+        // else if (filterValue.length !== 0 && contactTagIds.length === 0) return false
+        // const selectedTags = filterValue.map((tag) => tag.tid)
+        // return selectedTags.every((tid) => contactTagIds.includes(tid))
+    }
+
+
     const [loading, setLoading] = useState(false)
     const [changeFields, setChangeFields] = useState(false)
     const timerRef = useRef(null);
@@ -565,7 +579,15 @@ function DataTablePassagens() {
                     tableStyle={{ maxWidth: '98%', marginTop: '1rem' }}
                 >
                 <Column header="#" style={{ width: '3%', }} headerStyle={{ width: '3%', textAlign: 'center' }} expander={true} />
-                <Column body={plateBodyTemplate} field="plate" header="Placa" filter style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
+                <Column 
+                    body={plateBodyTemplate} 
+                    field="plate" 
+                    header="Placa" 
+                    filter 
+                    style={{ width: '12%',textAlign: 'center'}} 
+                    headerStyle={{ width: '12%', textAlign: 'center' }}
+                    showFilterMenu={false}
+                ></Column>
                 <Column body={plateCameraTemplate} field="camera" header="Câmera" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={dateBodyTemplate} header="Data/Hora" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
                 <Column body={containerBodyTemplate} field="container" header="Container" filter style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
@@ -582,7 +604,8 @@ function DataTablePassagens() {
                     showFilterMenu={false}
                     filterMenuStyle={{ width: '14rem' }} 
                     filter
-                    filterElement={statusRowFilterTemplate}></Column>
+                    filterElement={statusRowFilterTemplate}
+                ></Column>
             </DataTable>
             
             <Toast ref={toastConfirmarPassagem} />
