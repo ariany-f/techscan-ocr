@@ -108,7 +108,7 @@ FilterService.register("custom_itens", (value, filter) => {
     console.log(filter)
     console.log(value)
     return value.filter((item) => {
-        item.plate === filter
+       return item.plate === filter
     })
     return value === filter
 })
