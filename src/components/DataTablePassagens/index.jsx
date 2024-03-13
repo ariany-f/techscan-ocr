@@ -501,7 +501,7 @@ function DataTablePassagens() {
 
                 <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
                     <FaSearch />
-                    <InputText type="search" valor={globalFilterValue} setValor={onGlobalFilterChange} placeholder="Procurar" />
+                    <InputText type="search" value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Procurar" />
                 </span>
             </ContainerLadoALado>
         );
