@@ -124,7 +124,7 @@ function DataTablePassagens() {
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         status: { value: null, matchMode: FilterMatchMode.EQUALS }, 
-        plate: { value: null, matchMode: FilterMatchMode.STARTS_WITH }
+        itens: { value: null, matchMode: FilterMatchMode.STARTS_WITH }
     }); 
 
     const [loading, setLoading] = useState(false)
@@ -227,10 +227,7 @@ function DataTablePassagens() {
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;
         let _filters = { ...filters };
-        //console.log(_filters)
-       // console.log(value)
-      //  _filters['global'].value = value;
-        _filters['plate'].value = value;
+        _filters['itens'].value = value;
 
         setFilters(_filters);
         console.log(filters)
