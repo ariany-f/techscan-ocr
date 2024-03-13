@@ -98,7 +98,10 @@ const StatusLabel = styled.div`
     }
 `
 
-FilterService.register('custom_global', tagRowFilterFunction)
+FilterService.register('custom_global', (value, filterValue) => {
+    console.log(value)
+    console.log(filterValue)
+ })
 
 function DataTablePassagens() {
     
@@ -120,11 +123,6 @@ function DataTablePassagens() {
         global: { value: null, matchMode: FilterMatchMode.CUSTOM },
         status: { value: null, matchMode: FilterMatchMode.EQUALS }
     }); 
-
-    const tagRowFilterFunction = (plate, filterValue) => {
-        console.log(plate)
-        console.log(filterValue)
-     }
      
     const [loading, setLoading] = useState(false)
     const [changeFields, setChangeFields] = useState(false)
