@@ -332,41 +332,24 @@ function DataTablePassagens() {
     };
 
     const statusBodyTemplate = (rowData) => {
-        // let is_warned = false
-        // const is_not_ok = rowData.itens.filter((item) => {
 
-        //     if(item.updated_by)
-        //     {
-        //         is_warned = true
-        //     }
-
-        //     return item.is_ok === 0
-        // })
+        let status = rowData.itens.map((item) => {
+            return item.status ? `${item.status}` : null;
+        })
         
-        return <StatusLabel className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/>
+        status = status.filter(onlyUnique)
+        return status.length ? <StatusLabel className={status === 'Aprovada' ? 'active' : (status === 'Erro' ? 'warning' : '')}/> : '----------';
+        
+        // return <StatusLabel className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/>
     }
 
     const statusRowFilterTemplate = (options) => {
         return (
-            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusBodyTemplate} placeholder="Selecione um" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} placeholder="Selecione um" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
         );
     };
     
     const rowExpansionTemplate = (data) => {
-        const myArray = data.itens;
-        let is_warned = false
-        const is_not_ok = myArray.filter((item) => {
-            if(item.updated_by)
-            {
-                is_warned = true
-            }
-
-            return item.is_ok === 0
-        })
-
-        const is_ok = myArray.filter((item) => {
-            return item.is_ok === 1
-        })
 
         let containers = data.itens.map((item) => {
             return item.container ? `${item.container} ` : null;
