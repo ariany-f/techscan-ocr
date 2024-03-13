@@ -124,7 +124,8 @@ function DataTablePassagens() {
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         status: { value: null, matchMode: FilterMatchMode.EQUALS },
-        itens: { value: null, matchMode: FilterMatchMode.CUSTOM }
+        itens: { value: null, matchMode: FilterMatchMode.CUSTOM },
+        gate: { value: null, matchMode: FilterMatchMode.EQUALS }
     }); 
      
     const [loading, setLoading] = useState(false)
@@ -335,15 +336,15 @@ function DataTablePassagens() {
     };
     
     const GateBodyTemplate = (rowData) => {
-        
-        let gates = rowData.itens.map((item) => {
-            return item.gate ? `${item.gate} ` : null;
-        })
-        gates = gates.filter(function (el) {
-            return el != null;
-        });
-        return gates.length ? gates.filter(onlyUnique) : '----------';
+        return rowData.gate ? rowData.gate : '----------';
     };
+    
+
+    // const gateRowFilterTemplate = (options) => {
+    //     return (
+    //         <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Filtrar" className="p-column-filter" style={{ minWidth: '12rem' }} />
+    //     );
+    // };
 
     function onlyUnique(value, index, array) {
         return array.indexOf(value) === index;
@@ -539,11 +540,6 @@ function DataTablePassagens() {
                     <Texto weight={400}>Recarregar</Texto>
                     <Botao estilo="azul" size="medium" aoClicar={RefreshData}><MdOutlineRefresh className="icon" /></Botao>
                 </div>
-
-                {/* <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
-                    <FaSearch />
-                    <InputText type="search" value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Procurar" />
-                </span> */}
             </ContainerLadoALado>
         );
     };
@@ -628,7 +624,15 @@ function DataTablePassagens() {
                     filter
                     filterElement={containerRowFilterTemplate}
                 ></Column>
-                <Column body={GateBodyTemplate} sortable field="gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
+                <Column 
+                    body={GateBodyTemplate} 
+                    filter 
+                    showFilterMatchModes={false}
+                    field="gate" 
+                    header="Gate" 
+                    style={{ width: '10%',textAlign: 'center'}} 
+                    headerStyle={{ width: '10%', textAlign: 'center' }}
+                ></Column>
                 <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
                 <Column body={updatedByBodyTemplate} sortable field="updated_by" header="Aprovação" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}/>
