@@ -122,7 +122,7 @@ function DataTablePassagens() {
 
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        plate: { value: 'plateRowFilter' },
+        plate: { value: plateRowFilter },
         container: { value: null, matchMode: FilterMatchMode.CONTAINS }, 
         status: { value: null, matchMode: FilterMatchMode.EQUALS },     
     }); 
