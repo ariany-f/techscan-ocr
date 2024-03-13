@@ -103,11 +103,11 @@ FilterService.register("custom_itens", (value, filter) => {
     if (!value || !filter) return true
     if (value.length === 0) return true
     else if (value.length !== 0 && filter.length === 0) return false
-    const selectedItens = filter.map((item) => item.itens)
-    console.log(selectedItens)
+  //  const selectedItens = filter.map((item) => item.itens)
+   // console.log(selectedItens)
     console.log(filter)
     console.log(value)
-    return selectedItens.every((plate) => value.includes(plate))
+    //return selectedItens.every((plate) => value.includes(plate))
     return value === filter
 })
 
