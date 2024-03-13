@@ -356,7 +356,7 @@ function DataTablePassagens() {
         return <StatusLabel value={option} className={getSeverity(option)} />;
     };
 
-    const teste = (options, ee) => {
+    const teste = (options, e) => {
         console.log(e)
         console.log(options)
         options.filterApplyCallback(e.value)
