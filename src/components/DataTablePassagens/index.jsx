@@ -283,7 +283,7 @@ function DataTablePassagens() {
         console.log(options)
         console.log(e)
         let _filters = { ...filters };
-        _filters['plate'].value = e.target.value;
+        _filters['itens'].value = e.target.value;
         options.filterApplyCallback(e.target.value)
     }
 
