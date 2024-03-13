@@ -99,9 +99,11 @@ const StatusLabel = styled.div`
 `
 
 // The rule argument should be a string in the format "custom_[field]".
-FilterService.register('custom_plate', (value, filters) => {
+FilterService.register('custom_plate', (value, filters, another, options) => {
     console.log(value)
     console.log(filters)
+    console.log(another)
+    console.log(options)
     return filters === 'JCC';
 });
 
