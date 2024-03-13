@@ -357,6 +357,9 @@ function DataTablePassagens() {
     };
 
     const onStatusChange = (e, options) => {
+        console.log(options)
+        console.log(e)
+        console.log(event)
         options.filterCallback(event.value);
     }
 
