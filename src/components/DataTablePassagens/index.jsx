@@ -219,6 +219,7 @@ function DataTablePassagens() {
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;
         let _filters = { ...filters };
+        
         _filters['global'].value = value;
 
         setFilters(_filters);
@@ -547,7 +548,7 @@ function DataTablePassagens() {
             <Loading opened={loading} />
             <DataTable 
                     removableSort 
-                    globalFilterFields={['status', 'itens.plate']} 
+                    globalFilterFields={['status', 'itens']} 
                     showGridlines 
                     header={header} 
                     scrollable 
