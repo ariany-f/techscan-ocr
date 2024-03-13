@@ -618,7 +618,7 @@ function DataTablePassagens() {
                 ></Column>
                 <Column 
                     body={containerBodyTemplate} 
-                    field="container" 
+                    field="itens" 
                     header="Container" 
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }}
