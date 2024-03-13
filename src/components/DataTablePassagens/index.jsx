@@ -105,7 +105,7 @@ FilterService.register("custom_plate", (value, filter) => {
     if (filter == null) return true
     console.log(value)
     console.log(filter)
-    return value === filter
+    return value.itens.includes(filter)
 })
 
 function DataTablePassagens() {
