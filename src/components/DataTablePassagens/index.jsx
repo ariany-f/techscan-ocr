@@ -100,6 +100,8 @@ const StatusLabel = styled.div`
 
 
 FilterService.register("custom_plate", (value, filter) => {
+    console.log(value)
+    console.log(filter)
     if (filter == null) return true
     console.log(value)
     console.log(filter)
