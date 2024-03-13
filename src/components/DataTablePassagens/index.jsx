@@ -600,6 +600,7 @@ function DataTablePassagens() {
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }} 
                     filterMenuStyle={{ width: '14rem' }} 
+                    showFilterMatchModes={false}
                     filter
                     filterElement={plateRowFilterTemplate}
                 ></Column>
@@ -623,6 +624,7 @@ function DataTablePassagens() {
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }}
                     filterMenuStyle={{ width: '14rem' }} 
+                    showFilterMatchModes={false}
                     filter
                     filterElement={containerRowFilterTemplate}
                 ></Column>
