@@ -123,6 +123,7 @@ function DataTablePassagens() {
     const [changeFields, setChangeFields] = useState(false)
     const timerRef = useRef(null);
     const [statuses] = useState(['Aprovada', 'Erro', 'Pendente']);
+    const [globalFilterValue, setGlobalFilterValue] = useState('');
 
     const confirmarPassagem = (id) => {
 
@@ -215,13 +216,14 @@ function DataTablePassagens() {
 
     }, [changeFields, startDate, endDate, passagesDirection, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened, modalBindOpened])
  
-    const onGlobalFilterChange = (event) => {
-        const value = event.target.value;
+    const onGlobalFilterChange = (e) => {
+        const value = e.target.value;
         let _filters = { ...filters };
 
         _filters['global'].value = value;
 
         setFilters(_filters);
+        setGlobalFilterValue(value);
     };
 
     const formatDate = (value) => {
@@ -425,7 +427,7 @@ function DataTablePassagens() {
 
     const renderHeader = () => {
 
-        const valor = filters['global'] ? filters['global'].value : '';
+        //const valor = filters['global'] ? filters['global'].value : '';
         
         addLocale('pt', {
             closeText: 'Fechar',
@@ -498,7 +500,7 @@ function DataTablePassagens() {
 
                 <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
                     <FaSearch />
-                    <InputText type="search" value={valor || ''} onChange={(e) => onGlobalFilterChange(e)} placeholder="Procurar" />
+                    <InputText type="search" valor={globalFilterValue} setValor={onGlobalFilterChange} placeholder="Procurar" />
                 </span>
             </ContainerLadoALado>
         );
