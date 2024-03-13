@@ -370,15 +370,6 @@ function DataTablePassagens() {
         );
     };
 
-    
-    const plateRowFilterTemplate = (options) => {
-        return (
-            <div className="flex gap-1">
-                <InputText value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} className="w-full" placeholder="plate" />
-            </div>
-        );
-    };
-
     const rowExpansionTemplate = (data) => {
 
         let containers = data.itens.map((item) => {
@@ -591,7 +582,6 @@ function DataTablePassagens() {
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }} 
                     filterPlaceholder="Search by plate" 
-                    filterElement={plateRowFilterTemplate}
                 ></Column>
                 <Column 
                     body={plateCameraTemplate} 
