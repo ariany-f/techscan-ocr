@@ -343,7 +343,7 @@ function DataTablePassagens() {
         //     return item.is_ok === 0
         // })
         
-        return <StatusLabel className={is_not_ok.status === 'Aprovada' ? 'active' : (is_not_ok.status === 'Erro' ? 'warning' : '')}/>
+        return <StatusLabel className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/>
     }
 
     const statusRowFilterTemplate = (options) => {
