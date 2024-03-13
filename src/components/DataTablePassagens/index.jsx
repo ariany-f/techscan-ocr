@@ -107,7 +107,7 @@ FilterService.register("custom_itens", (value, filter) => {
    // console.log(selectedItens)
     console.log(filter)
     console.log(value)
-    //return selectedItens.every((plate) => value.includes(plate))
+    return value.every((plate) => value.includes(plate))
     return value === filter
 })
 
