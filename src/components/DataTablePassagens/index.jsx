@@ -372,7 +372,7 @@ function DataTablePassagens() {
 
     const plateRowFilterTemplate = (options) => {
         return (
-            <InputText placeholder="plate" value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} className="w-full"/>
+            <InputText placeholder="plate" value={options.value} onChange={(e) => options.filterApplyCallback(e)} className="w-full"/>
         );
     };
 
