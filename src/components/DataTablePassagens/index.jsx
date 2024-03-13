@@ -115,8 +115,8 @@ function DataTablePassagens() {
     const toastConfirmarPassagem = useRef(null)
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        plate: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-        container: { value: null, matchMode: FilterMatchMode.STARTS_WITH }, 
+        plate: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        container: { value: null, matchMode: FilterMatchMode.CONTAINS }, 
         status: { value: null, matchMode: FilterMatchMode.EQUALS },     
     }); 
     const [loading, setLoading] = useState(false)
@@ -554,7 +554,7 @@ function DataTablePassagens() {
                     style={{zIndex: 0}} 
                     scrollHeight="600px" 
                     filters={filters} 
-                    filterDisplay="menu" 
+                    filterDisplay="row" 
                     value={passagens} 
                     expandedRows={expandedRows} 
                     onRowToggle={(e) => expandedRowsChange(e)}
