@@ -5,6 +5,7 @@ import { InputText } from 'primereact/inputtext'
 import { useLocation } from 'react-router-dom'
 import { addLocale, FilterMatchMode, FilterOperator } from 'primereact/api'
 import DropdownItens from '@components/DropdownItens'
+import { Tag } from 'primereact/tag';
 import { JsonToExcel } from "react-json-to-excel"
 import { FaSearch } from 'react-icons/fa'
 import { MdOutlineFileDownload, MdOutlineClear, MdOutlineRefresh } from 'react-icons/md'
@@ -334,12 +335,26 @@ function DataTablePassagens() {
         return sumWithInitial;
     };
 
+    const getSeverity = (status) => {
+        switch (status) {
+            case 'Pendente':
+                return 'danger';
+
+            case 'Aprovada':
+                return 'success';
+
+            case 'Erro':
+                return 'warning';
+        }
+    };
+
     const statusBodyTemplate = (rowData) => {
-        return <StatusLabel value={rowData.status} className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/>
+        return <Tag value={rowData.status} severity={getSeverity(rowData.status)} />;
+        // return <StatusLabel value={rowData.status} className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/>
     }
 
     const statusItemTemplate = (option) => {
-        return <StatusLabel value={option} className={option === 'Aprovada' ? 'active' : (option === 'Erro' ? 'warning' : '')} />;
+        return <Tag value={option} severity={getSeverity(option)} />;
     };
 
     const statusRowFilterTemplate = (options) => {
