@@ -348,7 +348,7 @@ function DataTablePassagens() {
 
     const statusRowFilterTemplate = (options) => {
         return (
-            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Selecione um" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusBodyTemplate} placeholder="Selecione um" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
         );
     };
     
