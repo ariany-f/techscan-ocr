@@ -275,14 +275,12 @@ function DataTablePassagens() {
         });
         return plates.length ? plates.filter(onlyUnique) : '----------';
     };
-    
 
     const plateRowFilterTemplate = (options) => {
         return (
-            <InputText value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={plateItemTemplate} placeholder="Placa" className="p-column-filter" style={{ minWidth: '12rem' }} />
+            <InputText value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} placeholder="Placa" className="p-column-filter" style={{ minWidth: '12rem' }} />
         );
     };
-
     
     const plateCameraTemplate = (rowData) => {
         let cameras = rowData.itens.map((item) => {
