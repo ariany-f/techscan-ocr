@@ -368,9 +368,14 @@ function DataTablePassagens() {
         );
     };
 
+    const teste = (options, e) => {
+
+    }
+
     const plateRowFilterTemplate = (options) => {
+        console.log(options)
         return (
-            <InputText value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+            <InputText value={options.value} onChange={(e) => teste(options, e)} className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
         );
     };
 
