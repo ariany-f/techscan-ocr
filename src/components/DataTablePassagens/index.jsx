@@ -99,7 +99,7 @@ const StatusLabel = styled.div`
 `
 
 // The rule argument should be a string in the format "custom_[field]".
-FilterService.register('custom_plate', (value, filters, another, options) => {
+FilterService.register('custom_plate', (value, filters, options) => {
     console.log(value)
     console.log(filters)
     console.log(another)
@@ -372,6 +372,12 @@ function DataTablePassagens() {
         );
     };
 
+    const plateRowFilterTemplate = (options) => {
+        return (
+            <InputText value={options.value} onChange={(e) => options.filterApplyCallback(e.value, options)} className="p-column-filter" style={{ minWidth: '12rem' }} />
+        );
+    };
+
     const rowExpansionTemplate = (data) => {
 
         let containers = data.itens.map((item) => {
@@ -584,6 +590,7 @@ function DataTablePassagens() {
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }} 
                     filterPlaceholder="Search by plate" 
+                    filterElement={plateRowFilterTemplate}
                 ></Column>
                 <Column 
                     body={plateCameraTemplate} 
