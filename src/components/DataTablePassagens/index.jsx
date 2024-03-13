@@ -122,7 +122,7 @@ function DataTablePassagens() {
 
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        plate: { value: null, matchMode: FilterMatchMode.CUSTOM },
+        plate: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
         container: { value: null, matchMode: FilterMatchMode.CONTAINS },
         status: { value: null, matchMode: FilterMatchMode.EQUALS }, 
     }); 
@@ -365,13 +365,7 @@ function DataTablePassagens() {
 
     const statusRowFilterTemplate = (options) => {
         return (
-            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
-        );
-    };
-
-    const plateRowFilterTemplate = (options) => {
-        return (
-            <InputText placeholder="plate" value={options.value} optionLabel="plate" onChange={(e) => options.filterApplyCallback(e.target.value)} className="w-full"/>
+            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" style={{ minWidth: '12rem' }} />
         );
     };
 
@@ -561,6 +555,7 @@ function DataTablePassagens() {
             
             <Loading opened={loading} />
             <DataTable 
+                    removableSort 
                     globalFilterFields={['plate', 'container', 'status']} 
                     showGridlines 
                     header={header} 
@@ -617,7 +612,6 @@ function DataTablePassagens() {
                     showFilterMatchModes={false}
                     style={{ width: '10%',textAlign: 'center'}} 
                     headerStyle={{ width: '10%', textAlign: 'center' }} 
-                    
                     filterMenuStyle={{ width: '14rem' }} 
                     filter
                     filterElement={statusRowFilterTemplate}
