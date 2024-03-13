@@ -103,14 +103,7 @@ FilterService.register("custom_itens", (value, filter) => {
     if (!value || !filter) return true
     if (value.length === 0) return true
     else if (value.length !== 0 && filter.length === 0) return false
-  //  const selectedItens = filter.map((item) => item.itens)
-   // console.log(selectedItens)
-   // console.log(filter)
-    console.log(value)
-    return value.every((item) => {
-        item.plate === filter
-    })
-    return value === filter
+    return value.every((item) => item.plate === filter)
 })
 
 function DataTablePassagens() {
