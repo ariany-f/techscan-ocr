@@ -124,7 +124,7 @@ function DataTablePassagens() {
 
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        plate: { value: plateRowFilter },
+        plate: { value: null },
         container: { value: null, matchMode: FilterMatchMode.CONTAINS }, 
         status: { value: null, matchMode: FilterMatchMode.EQUALS },     
     }); 
@@ -584,6 +584,8 @@ function DataTablePassagens() {
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }}
                     showFilterMenu={false}
+                    filterMatchMode="custom" 
+                    filterFunction={plateRowFilter}
                 ></Column>
                 <Column body={plateCameraTemplate} field="camera" header="Câmera" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={dateBodyTemplate} header="Data/Hora" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
