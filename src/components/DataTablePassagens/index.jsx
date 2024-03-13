@@ -98,6 +98,13 @@ const StatusLabel = styled.div`
     }
 `
 
+// The rule argument should be a string in the format "custom_[field]".
+FilterService.register('custom_plate', (value, filters) => {
+    console.log(value)
+    console.log(filters)
+    return value === filters;
+});
+
 function DataTablePassagens() {
     
     const [passagens, setPassagens] = useState(null)
@@ -114,10 +121,9 @@ function DataTablePassagens() {
     const [passagesDirection, setPassagesDirection] = useState(null)
     const toastConfirmarPassagem = useRef(null)
 
-
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        plate: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        plate: { value: null, matchMode: FilterMatchMode.CUSTOM },
         container: { value: null, matchMode: FilterMatchMode.CONTAINS },
         status: { value: null, matchMode: FilterMatchMode.EQUALS }, 
     }); 
@@ -364,6 +370,15 @@ function DataTablePassagens() {
         );
     };
 
+    
+    const plateRowFilterTemplate = (options) => {
+        return (
+            <div className="flex gap-1">
+                <InputText value={options.value} onChange={(e) => options.filterApplyCallback([e.value])} className="w-full" placeholder="plate" />
+            </div>
+        );
+    };
+
     const rowExpansionTemplate = (data) => {
 
         let containers = data.itens.map((item) => {
@@ -576,6 +591,7 @@ function DataTablePassagens() {
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }} 
                     filterPlaceholder="Search by plate" 
+                    filterElement={plateRowFilterTemplate}
                 ></Column>
                 <Column 
                     body={plateCameraTemplate} 
