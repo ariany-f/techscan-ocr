@@ -100,11 +100,6 @@ const StatusLabel = styled.div`
 
 FilterService.register('custom_global', tagRowFilterFunction)
 
-const tagRowFilterFunction = (plate, filterValue) => {
-   console.log(plate)
-   console.log(filterValue)
-}
-
 function DataTablePassagens() {
     
     const [passagens, setPassagens] = useState(null)
@@ -126,6 +121,11 @@ function DataTablePassagens() {
         status: { value: null, matchMode: FilterMatchMode.EQUALS }
     }); 
 
+    const tagRowFilterFunction = (plate, filterValue) => {
+        console.log(plate)
+        console.log(filterValue)
+     }
+     
     const [loading, setLoading] = useState(false)
     const [changeFields, setChangeFields] = useState(false)
     const timerRef = useRef(null);
