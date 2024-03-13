@@ -5,7 +5,6 @@ import { InputText } from 'primereact/inputtext'
 import { useLocation } from 'react-router-dom'
 import { addLocale, FilterMatchMode, FilterOperator } from 'primereact/api'
 import DropdownItens from '@components/DropdownItens'
-import { Tag } from 'primereact/tag';
 import { JsonToExcel } from "react-json-to-excel"
 import { FaSearch } from 'react-icons/fa'
 import { MdOutlineFileDownload, MdOutlineClear, MdOutlineRefresh } from 'react-icons/md'
@@ -352,22 +351,22 @@ function DataTablePassagens() {
         return <StatusLabel value={rowData.status} className={getSeverity(rowData.status)} />;
     };
 
-    const statusItemTemplate = (option) => {
-        return <StatusLabel value={option} className={getSeverity(option)} />;
-    };
+    // const statusItemTemplate = (option) => {
+    //     return <StatusLabel value={option} className={getSeverity(option)} />;
+    // };
 
-    const onStatusChange = (e, options) => {
-        console.log(options)
-        console.log(e)
-        console.log(event)
-        options.filterCallback(e.value);
-    }
+    // const onStatusChange = (e, options) => {
+    //     console.log(options)
+    //     console.log(e)
+    //     console.log(event)
+    //     options.filterCallback(e.value);
+    // }
     
-    const statusRowFilterTemplate = (options) => {
-        return (
-            <Dropdown value={options.value} options={statuses} onChange={(e) => onStatusChange(e, options)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
-        );
-    };
+    // const statusRowFilterTemplate = (options) => {
+    //     return (
+    //         <Dropdown value={options.value} options={statuses} onChange={(e) => onStatusChange(e, options)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+    //     );
+    // };
 
     const rowExpansionTemplate = (data) => {
 
@@ -581,7 +580,7 @@ function DataTablePassagens() {
                 <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
                 <Column body={updatedByBodyTemplate} field="updated_by" header="Aprovação" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}/>
-                <Column body={statusBodyTemplate} header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }} filter></Column>
+                <Column body={statusBodyTemplate} field="status" header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }} filter></Column>
             </DataTable>
             
             <Toast ref={toastConfirmarPassagem} />
