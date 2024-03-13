@@ -285,6 +285,8 @@ function DataTablePassagens() {
     };
 
     const teste = (e, options) => {
+        console.log(options)
+        console.log(e)
         options.filterApplyCallback(e.value)
     }
 
