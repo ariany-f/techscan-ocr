@@ -98,12 +98,6 @@ const StatusLabel = styled.div`
     }
 `
 
-FilterService.register('custom_itens', (value, filterValue) => {
-    console.log(value)
-    console.log(filterValue)
-    return value
- })
-
 function DataTablePassagens() {
     
     const [passagens, setPassagens] = useState(null)
@@ -122,7 +116,8 @@ function DataTablePassagens() {
 
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        status: { value: null, matchMode: FilterMatchMode.EQUALS }
+        status: { value: null, matchMode: FilterMatchMode.EQUALS },
+        PLATE: { value: null, matchMode: FilterMatchMode.CONTAINS }
     }); 
      
     const [loading, setLoading] = useState(false)
@@ -271,6 +266,24 @@ function DataTablePassagens() {
         return plates.length ? plates.filter(onlyUnique) : '----------';
     };
     
+    const plateItemTemplate = (rowData) => {
+        let plates = rowData.itens.map((item) => {
+            return item.plate ? `${item.plate} ` : null;
+        })
+        plates = plates.filter(function (el) {
+            return el != null;
+        });
+        return plates.length ? plates.filter(onlyUnique) : '----------';
+    };
+    
+
+    const plateRowFilterTemplate = (options) => {
+        return (
+            <InputText value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={plateItemTemplate} placeholder="Placa" className="p-column-filter" style={{ minWidth: '12rem' }} />
+        );
+    };
+
+    
     const plateCameraTemplate = (rowData) => {
         let cameras = rowData.itens.map((item) => {
             return item.camera ? `${item.camera} ` : null;
@@ -363,7 +376,7 @@ function DataTablePassagens() {
 
     const statusRowFilterTemplate = (options) => {
         return (
-            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" style={{ minWidth: '12rem' }} />
+            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Filtrar" className="p-column-filter" style={{ minWidth: '12rem' }} />
         );
     };
 
@@ -585,6 +598,9 @@ function DataTablePassagens() {
                     header="Câmera" 
                     style={{ width: '10%',textAlign: 'center'}} 
                     headerStyle={{ width: '10%', textAlign: 'center' }}
+                    // showFilterMatchModes={false}
+                    filter
+                    filterElement={statusRowFilterTemplate}
                 ></Column>
                 <Column 
                     body={dateBodyTemplate} 
@@ -607,10 +623,10 @@ function DataTablePassagens() {
                     body={statusBodyTemplate} 
                     field="status" 
                     header="Status" 
-                    showFilterMatchModes={false}
                     style={{ width: '10%',textAlign: 'center'}} 
                     headerStyle={{ width: '10%', textAlign: 'center' }} 
                     filterMenuStyle={{ width: '14rem' }} 
+                    showFilterMatchModes={false}
                     filter
                     filterElement={statusRowFilterTemplate}
                 ></Column>
