@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom'
 import { addLocale, FilterMatchMode, FilterOperator, FilterService } from 'primereact/api'
 import DropdownItens from '@components/DropdownItens'
 import { JsonToExcel } from "react-json-to-excel"
-import { FaSearch } from 'react-icons/fa'
 import { MdOutlineFileDownload, MdOutlineClear, MdOutlineRefresh } from 'react-icons/md'
 import { useEffect, useRef, useState } from 'react'
 import Botao from '@components/Botao'
@@ -102,7 +101,7 @@ FilterService.register("custom_itens", (value, filter) => {
     if (!value || !filter) return true
     if (value.length === 0) return true
     else if (value.length !== 0 && filter.length === 0) return false
-    var newArr = value.filter(el => el.plate === filter)
+    var newArr = value.filter(el => el.plate === filter || el.container === filter)
     return newArr.length > 0
 })
 
@@ -275,8 +274,6 @@ function DataTablePassagens() {
     };
 
     const teste = (e, options) => {
-        console.log(options)
-        console.log(e)
         let _filters = { ...filters };
         _filters['itens'].value = e.target.value;
         options.filterApplyCallback(e.target.value)
@@ -307,6 +304,13 @@ function DataTablePassagens() {
             return el != null;
         });
         return containers.length ? containers.filter(onlyUnique) : '----------';
+    };
+
+    
+    const containerRowFilterTemplate = (options) => {
+        return (
+            <InputText value={options.value} onChange={(e) => teste(e, options)} placeholder="Container" className="p-column-filter" style={{ minWidth: '12rem' }} />
+        );
     };
     
     const updatedByBodyTemplate = (rowData) => {
@@ -522,7 +526,7 @@ function DataTablePassagens() {
                     <Calendar locale="pt" dateFormat="dd/mm/yy" value={endDate} onChange={(e) => {setEndDate(e.value);setChangeFields(true)}} showTime hourFormat="24" />
                 </div>
 
-                <div style={{ width: '10%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
+                <div style={{ width: '20%', flex: 1, display: 'flex', flexDirection: 'column', alignItens: 'center', flexWrap:'wrap' }}>
                     <DropdownItens setValor={(e) => {setPassagesDirection(e); setChangeFields(true);}} valor={passagesDirection} options={availableDirections} label="Selecionar Direção" name="direction" placeholder="" />
                 </div>
 
@@ -536,10 +540,10 @@ function DataTablePassagens() {
                     <Botao estilo="azul" size="medium" aoClicar={RefreshData}><MdOutlineRefresh className="icon" /></Botao>
                 </div>
 
-                <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
+                {/* <span className="p-input-icon-left" style={{paddingTop: '1rem'}}>
                     <FaSearch />
                     <InputText type="search" value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Procurar" />
-                </span>
+                </span> */}
             </ContainerLadoALado>
         );
     };
@@ -596,7 +600,6 @@ function DataTablePassagens() {
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }} 
                     filterMenuStyle={{ width: '14rem' }} 
-                    // showFilterMatchModes={false}
                     filter
                     filterElement={plateRowFilterTemplate}
                 ></Column>
@@ -619,6 +622,9 @@ function DataTablePassagens() {
                     header="Container" 
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }}
+                    filterMenuStyle={{ width: '14rem' }} 
+                    filter
+                    filterElement={containerRowFilterTemplate}
                 ></Column>
                 <Column body={GateBodyTemplate} sortable field="gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
