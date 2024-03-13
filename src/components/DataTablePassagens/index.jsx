@@ -108,6 +108,7 @@ FilterService.register("custom_itens", (value, filter) => {
 function DataTablePassagens() {
     
     const [passagens, setPassagens] = useState(null)
+    const [gates, setGates] = useState([])
     const [expandedRows, setExpandedRows] = useState(null);
     const [modalOpened, setModalOpened] = useState(false)
     const [csvData, setCsvData] = useState([])
@@ -210,6 +211,7 @@ function DataTablePassagens() {
         if((!passagens) || changeFields)
         {
             fetchPassages()
+            fetchGates()
             setChangeFields(false)
         }
 
@@ -340,11 +342,11 @@ function DataTablePassagens() {
     };
     
 
-    // const gateRowFilterTemplate = (options) => {
-    //     return (
-    //         <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Filtrar" className="p-column-filter" style={{ minWidth: '12rem' }} />
-    //     );
-    // };
+    const gateRowFilterTemplate = (options) => {
+        return (
+            <Dropdown value={options.value} options={gates} onChange={(e) => options.filterApplyCallback(e.value)} placeholder="Filtrar" className="p-column-filter" style={{ minWidth: '12rem' }} />
+        );
+    };
 
     function onlyUnique(value, index, array) {
         return array.indexOf(value) === index;
@@ -549,7 +551,26 @@ function DataTablePassagens() {
     const location = useLocation();
 
     const icone = <MdOutlineFileDownload className="icon" size={20} />
-
+    
+    function fetchGates()
+    {
+        http.get('api/web/public/portoes')
+        .then(response => {
+            response.map((item) => {
+                let obj = {
+                    name: item.name,
+                    code: item.id
+                }
+                if(!gates.includes(obj))
+                {
+                    setGates(estadoAnterior => [...estadoAnterior, obj]);
+                }
+            })
+        })
+        .catch(erro => {
+            console.error(erro)
+        })
+    }
 
     const expandedRowsChange = (e) => {
         setExpandedRows(null)
@@ -628,6 +649,8 @@ function DataTablePassagens() {
                     body={GateBodyTemplate} 
                     filter 
                     showFilterMatchModes={false}
+                    filterElement={gateRowFilterTemplate}
+                    filterMenuStyle={{ width: '14rem' }} 
                     field="gate" 
                     header="Gate" 
                     style={{ width: '10%',textAlign: 'center'}} 
