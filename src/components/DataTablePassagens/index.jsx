@@ -11,6 +11,7 @@ import { MdOutlineFileDownload, MdOutlineClear, MdOutlineRefresh } from 'react-i
 import { useEffect, useRef, useState } from 'react'
 import Botao from '@components/Botao'
 import Texto from '@components/Texto'
+import { Dropdown } from 'primereact/dropdown';
 import styled from 'styled-components'
 import ModalMotivo from '../ModalMotivo'
 import { Toast } from 'primereact/toast'
