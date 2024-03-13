@@ -99,11 +99,10 @@ const StatusLabel = styled.div`
 `
 
 // The rule argument should be a string in the format "custom_[field]".
-FilterService.register('custom_plate', (value, filters, options) => {
+FilterService.register('custom_plate', (value, filters) => {
     console.log(value)
     console.log(filters)
-    console.log(options)
-    return filters === 'JCC';
+    return filters === value;
 });
 
 function DataTablePassagens() {
@@ -373,7 +372,7 @@ function DataTablePassagens() {
 
     const plateRowFilterTemplate = (options) => {
         return (
-            <InputText value={options.value} onChange={(e) => options.filterApplyCallback(e.value, options)} className="p-column-filter" style={{ minWidth: '12rem' }} />
+            <InputText placeholder="plate" value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} className="w-full"/>
         );
     };
 
