@@ -362,9 +362,6 @@ function DataTablePassagens() {
         console.log(event)
         options.filterCallback(e.value);
     }
-
-    let statusFilter = (options) => <Dropdown style={{width: '100%'}} className="ui-column-filter"
-    value={options.value} options={inventoryStatuses} onChange={(e) => onStatusChange(e, options)}/>
     
     const statusRowFilterTemplate = (options) => {
         return (
@@ -565,7 +562,7 @@ function DataTablePassagens() {
                     style={{zIndex: 0}} 
                     scrollHeight="600px" 
                     filters={filters} 
-                    filterDisplay="row" 
+                    filterDisplay="menu" 
                     value={passagens} 
                     expandedRows={expandedRows} 
                     onRowToggle={(e) => expandedRowsChange(e)}
