@@ -338,7 +338,7 @@ function DataTablePassagens() {
         // })
         
         // status = status.filter(onlyUnique)
-        return status.length ? <StatusLabel className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/> : '----------';
+        return <StatusLabel className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/>
     }
 
     const statusRowFilterTemplate = (options) => {
