@@ -132,7 +132,7 @@ function DataTablePassagens() {
     const [loading, setLoading] = useState(false)
     const [changeFields, setChangeFields] = useState(false)
     const timerRef = useRef(null);
-    const [globalFilterValue, setGlobalFilterValue] = useState('');
+    // const [globalFilterValue, setGlobalFilterValue] = useState('');
     const [statuses] = useState(['Aprovada', 'Erro', 'Pendente']);
 
     const confirmarPassagem = (id) => {
@@ -205,6 +205,26 @@ function DataTablePassagens() {
             setLoading(false)
         })
     }
+    
+    function fetchGates()
+    {
+        http.get('api/web/public/portoes')
+        .then(response => {
+            response.map((item) => {
+                let obj = {
+                    name: item.name,
+                    code: item.id
+                }
+                if(!gates.includes(obj))
+                {
+                    setGates(estadoAnterior => [...estadoAnterior, obj]);
+                }
+            })
+        })
+        .catch(erro => {
+            console.error(erro)
+        })
+    }
 
     useEffect(() => {
 
@@ -225,17 +245,17 @@ function DataTablePassagens() {
             window.clearTimeout(timerRef.current);
         };
 
-    }, [changeFields, startDate, endDate, passagesDirection, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened, modalBindOpened])
+    }, [changeFields, startDate, endDate, passagesDirection, modalOpened, toastConfirmarPassagem, passagens, gates, modalPlateOpened, modalContainerOpened, modalBindOpened])
  
-    const onGlobalFilterChange = (e) => {
-        const value = e.target.value;
-        let _filters = { ...filters };
+    // const onGlobalFilterChange = (e) => {
+    //     const value = e.target.value;
+    //     let _filters = { ...filters };
 
-        _filters['global'].value = value;
+    //     _filters['global'].value = value;
 
-        setFilters(_filters);
-        setGlobalFilterValue(value);
-    };
+    //     setFilters(_filters);
+    //     setGlobalFilterValue(value);
+    // };
 
     const formatDate = (value) => {
         return value.toLocaleDateString('pt-BR', {
@@ -551,26 +571,6 @@ function DataTablePassagens() {
     const location = useLocation();
 
     const icone = <MdOutlineFileDownload className="icon" size={20} />
-    
-    function fetchGates()
-    {
-        http.get('api/web/public/portoes')
-        .then(response => {
-            response.map((item) => {
-                let obj = {
-                    name: item.name,
-                    code: item.id
-                }
-                if(!gates.includes(obj))
-                {
-                    setGates(estadoAnterior => [...estadoAnterior, obj]);
-                }
-            })
-        })
-        .catch(erro => {
-            console.error(erro)
-        })
-    }
 
     const expandedRowsChange = (e) => {
         setExpandedRows(null)
