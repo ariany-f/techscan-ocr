@@ -99,10 +99,10 @@ const StatusLabel = styled.div`
 `
 
 // The rule argument should be a string in the format "custom_[field]".
-FilterService.register('custom_plate', (value, filters) => {
+FilterService.register('custom_plate', (value) => {
     console.log(value)
-    console.log(filters)
-    return filters === value;
+    console.log(plate)
+    return value;
 });
 
 function DataTablePassagens() {
