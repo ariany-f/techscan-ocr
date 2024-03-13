@@ -99,8 +99,9 @@ const StatusLabel = styled.div`
 `
 
 // The rule argument should be a string in the format "custom_[field]".
-FilterService.register('custom_plate', (value) => {
-    console.log(value)
+FilterService.register('custom_plate', (value, filter) => {
+    console.log(value)  
+    console.log(filter)
     return value;
 });
 
@@ -123,7 +124,7 @@ function DataTablePassagens() {
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         status: { value: null, matchMode: FilterMatchMode.EQUALS }, 
-        plate: { value: null, matchMode: FilterMatchMode.CONTAINS }
+        plate: { value: null, matchMode: FilterMatchMode.CUSTOM }
     }); 
 
     const [loading, setLoading] = useState(false)
