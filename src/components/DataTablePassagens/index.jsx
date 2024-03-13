@@ -98,6 +98,13 @@ const StatusLabel = styled.div`
     }
 `
 
+FilterService.register('custom_global', tagRowFilterFunction)
+
+const tagRowFilterFunction = (plate, filterValue) => {
+   console.log(plate)
+   console.log(filterValue)
+}
+
 function DataTablePassagens() {
     
     const [passagens, setPassagens] = useState(null)
@@ -115,7 +122,7 @@ function DataTablePassagens() {
     const toastConfirmarPassagem = useRef(null)
 
     const [filters, setFilters] = useState({
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        global: { value: null, matchMode: FilterMatchMode.CUSTOM },
         status: { value: null, matchMode: FilterMatchMode.EQUALS }
     }); 
 
@@ -219,7 +226,7 @@ function DataTablePassagens() {
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;
         let _filters = { ...filters };
-        
+
         _filters['global'].value = value;
 
         setFilters(_filters);
