@@ -580,7 +580,6 @@ function DataTablePassagens() {
                     headerStyle={{ width: '10%', textAlign: 'center' }}
                 ></Column>
                 <Column 
-                    sortable 
                     body={dateBodyTemplate} 
                     header="Data/Hora" 
                     style={{ width: '10%',textAlign: 'center'}} 
@@ -594,8 +593,8 @@ function DataTablePassagens() {
                     headerStyle={{ width: '12%', textAlign: 'center' }}
                 ></Column>
                 <Column body={GateBodyTemplate} sortable field="gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
-                <Column body={DirectionBodyTemplate} sortable field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
-                <Column body={qtdImagensBodyTemplate} sortable header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
+                <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
+                <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
                 <Column body={updatedByBodyTemplate} sortable field="updated_by" header="Aprovação" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}/>
                 <Column 
                     body={statusBodyTemplate} 
