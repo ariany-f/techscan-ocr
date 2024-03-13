@@ -356,15 +356,16 @@ function DataTablePassagens() {
         return <StatusLabel value={option} className={getSeverity(option)} />;
     };
 
-    const teste = (options, e) => {
-        console.log(e)
-        console.log(options)
-        options.filterApplyCallback(e.value)
+    const onStatusChange = (e, options) => {
+        options.filterCallback(event.value);
     }
+
+    let statusFilter = (options) => <Dropdown style={{width: '100%'}} className="ui-column-filter"
+    value={options.value} options={inventoryStatuses} onChange={(e) => onStatusChange(e, options)}/>
     
     const statusRowFilterTemplate = (options) => {
         return (
-            <Dropdown value={options.value} options={statuses} onChange={(e) => teste(options, e)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+            <Dropdown value={options.value} options={statuses} onChange={(e) => onStatusChange(e, options)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
         );
     };
 
@@ -572,10 +573,10 @@ function DataTablePassagens() {
                     tableStyle={{ maxWidth: '98%', marginTop: '1rem' }}
                 >
                 <Column header="#" style={{ width: '3%', }} headerStyle={{ width: '3%', textAlign: 'center' }} expander={true} />
-                <Column body={plateBodyTemplate} field="plate" header="Placa" style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
+                <Column body={plateBodyTemplate} field="plate" header="Placa" filter style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
                 <Column body={plateCameraTemplate} field="camera" header="Câmera" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={dateBodyTemplate} header="Data/Hora" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
-                <Column body={containerBodyTemplate} field="container" header="Container" style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
+                <Column body={containerBodyTemplate} field="container" header="Container" filter style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
                 <Column body={GateBodyTemplate} field="gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
