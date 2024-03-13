@@ -584,8 +584,7 @@ function DataTablePassagens() {
                     header="Placa" 
                     filter 
                     style={{ width: '12%',textAlign: 'center'}} 
-                    headerStyle={{ width: '12%', textAlign: 'center' }}  
-                    filter 
+                    headerStyle={{ width: '12%', textAlign: 'center' }} 
                     filterPlaceholder="Search by plate" 
                 ></Column>
                 <Column 
@@ -600,10 +599,16 @@ function DataTablePassagens() {
                     header="Data/Hora" 
                     style={{ width: '10%',textAlign: 'center'}} 
                     headerStyle={{ width: '10%', textAlign: 'center'}}
+                ></Column>
+                <Column 
+                    body={containerBodyTemplate} 
+                    field="container" 
+                    header="Container" 
+                    style={{ width: '12%',textAlign: 'center'}} 
+                    headerStyle={{ width: '12%', textAlign: 'center' }}
                     filter 
                     filterPlaceholder="Search by container" 
                 ></Column>
-                <Column body={containerBodyTemplate} field="container" header="Container" style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
                 <Column body={GateBodyTemplate} field="gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
