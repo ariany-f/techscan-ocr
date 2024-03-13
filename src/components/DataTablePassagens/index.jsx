@@ -568,7 +568,7 @@ function DataTablePassagens() {
                     style={{zIndex: 0}} 
                     scrollHeight="600px" 
                     filters={filters} 
-                    filterDisplay="row" 
+                    filterDisplay="menu" 
                     value={passagens} 
                     expandedRows={expandedRows} 
                     onRowToggle={(e) => expandedRowsChange(e)}
@@ -583,11 +583,8 @@ function DataTablePassagens() {
                     body={plateBodyTemplate} 
                     field="plate" 
                     header="Placa" 
-                    filter 
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }} 
-                    filterPlaceholder="Search by plate" 
-                    filterElement={plateRowFilterTemplate}
                 ></Column>
                 <Column 
                     body={plateCameraTemplate} 
@@ -608,8 +605,6 @@ function DataTablePassagens() {
                     header="Container" 
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }}
-                    filter 
-                    filterPlaceholder="Search by container" 
                 ></Column>
                 <Column body={GateBodyTemplate} field="gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
@@ -619,6 +614,7 @@ function DataTablePassagens() {
                     body={statusBodyTemplate} 
                     field="status" 
                     header="Status" 
+                    showFilterMatchModes={false}
                     style={{ width: '10%',textAlign: 'center'}} 
                     headerStyle={{ width: '10%', textAlign: 'center' }} 
                     showFilterMenu={false}
