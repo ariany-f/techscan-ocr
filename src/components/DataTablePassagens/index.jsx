@@ -102,6 +102,7 @@ const StatusLabel = styled.div`
 FilterService.register('custom_plate', (value, filters) => {
     console.log(value)
     console.log(filters)
+    console.log(options)
     return filters === value;
 });
 
