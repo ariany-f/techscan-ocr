@@ -290,8 +290,8 @@ function DataTablePassagens() {
         console.log(options)
         console.log(e)
         let _filters = { ...filters };
-        _filters['plate'].value = value;
-        options.filterApplyCallback(e.value)
+        _filters['plate'].value = e.target.value;
+        options.filterApplyCallback(e.target.value)
     }
 
     const plateRowFilterTemplate = (options) => {
