@@ -351,22 +351,15 @@ function DataTablePassagens() {
         return <StatusLabel value={rowData.status} className={getSeverity(rowData.status)} />;
     };
 
-    // const statusItemTemplate = (option) => {
-    //     return <StatusLabel value={option} className={getSeverity(option)} />;
-    // };
+    const statusItemTemplate = (option) => {
+        return <StatusLabel value={option} className={getSeverity(option)} />;
+    };
 
-    // const onStatusChange = (e, options) => {
-    //     console.log(options)
-    //     console.log(e)
-    //     console.log(event)
-    //     options.filterCallback(e.value);
-    // }
-    
-    // const statusRowFilterTemplate = (options) => {
-    //     return (
-    //         <Dropdown value={options.value} options={statuses} onChange={(e) => onStatusChange(e, options)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
-    //     );
-    // };
+    const statusRowFilterTemplate = (options) => {
+        return (
+            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+        );
+    };
 
     const rowExpansionTemplate = (data) => {
 
@@ -580,7 +573,16 @@ function DataTablePassagens() {
                 <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
                 <Column body={updatedByBodyTemplate} field="updated_by" header="Aprovação" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}/>
-                <Column body={statusBodyTemplate} field="status" header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }} filter></Column>
+                <Column 
+                    body={statusBodyTemplate} 
+                    field="status" 
+                    header="Status" 
+                    style={{ width: '10%',textAlign: 'center'}} 
+                    headerStyle={{ width: '10%', textAlign: 'center' }} 
+                    showFilterMenu={false}
+                    filterMenuStyle={{ width: '14rem' }} 
+                    filter
+                    filterElement={statusRowFilterTemplate}></Column>
             </DataTable>
             
             <Toast ref={toastConfirmarPassagem} />
