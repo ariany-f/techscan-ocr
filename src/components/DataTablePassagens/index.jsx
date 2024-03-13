@@ -591,6 +591,9 @@ function DataTablePassagens() {
                     header="Placa" 
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }} 
+                    // showFilterMatchModes={false}
+                    filter
+                    filterElement={statusRowFilterTemplate}
                 ></Column>
                 <Column 
                     body={plateCameraTemplate} 
@@ -598,9 +601,6 @@ function DataTablePassagens() {
                     header="Câmera" 
                     style={{ width: '10%',textAlign: 'center'}} 
                     headerStyle={{ width: '10%', textAlign: 'center' }}
-                    // showFilterMatchModes={false}
-                    filter
-                    filterElement={statusRowFilterTemplate}
                 ></Column>
                 <Column 
                     body={dateBodyTemplate} 
