@@ -278,23 +278,13 @@ function DataTablePassagens() {
         });
         return plates.length ? plates.filter(onlyUnique) : '----------';
     };
-    
-    const plateItemTemplate = (rowData) => {
-        let plates = rowData.itens.map((item) => {
-            return item.plate ? `${item.plate} ` : null;
-        })
-        plates = plates.filter(function (el) {
-            return el != null;
-        });
-        return plates.length ? plates.filter(onlyUnique) : '----------';
-    };
 
     const teste = (e, options) => {
         console.log(options)
         console.log(e)
         let _filters = { ...filters };
         _filters['plate'].value = e.target.value;
-        options.filterApplyCallback(e.target.value, options.index)
+        options.filterApplyCallback(e.target.value)
     }
 
     const plateRowFilterTemplate = (options) => {
@@ -606,7 +596,7 @@ function DataTablePassagens() {
                 <Column header="#" style={{ width: '3%', }} headerStyle={{ width: '3%', textAlign: 'center' }} expander={true} />
                 <Column 
                     body={plateBodyTemplate} 
-                    field="plate" 
+                    field="itens" 
                     header="Placa" 
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }} 
