@@ -122,6 +122,7 @@ function DataTablePassagens() {
     const [loading, setLoading] = useState(false)
     const [changeFields, setChangeFields] = useState(false)
     const timerRef = useRef(null);
+    const [statuses] = useState(['Aprovada', 'Erro', 'Pendente']);
 
     const confirmarPassagem = (id) => {
 
@@ -331,18 +332,18 @@ function DataTablePassagens() {
     };
 
     const statusBodyTemplate = (rowData) => {
-        let is_warned = false
-        const is_not_ok = rowData.itens.filter((item) => {
+        // let is_warned = false
+        // const is_not_ok = rowData.itens.filter((item) => {
 
-            if(item.updated_by)
-            {
-                is_warned = true
-            }
+        //     if(item.updated_by)
+        //     {
+        //         is_warned = true
+        //     }
 
-            return item.is_ok === 0
-        })
+        //     return item.is_ok === 0
+        // })
         
-        return <StatusLabel className={is_not_ok.length === 0 ? 'active' : (is_warned ? 'warning' : '')}/>
+        return <StatusLabel className={is_not_ok.status === 'Aprovada' ? 'active' : (is_not_ok.status === 'Erro' ? 'warning' : '')}/>
     }
 
     const statusRowFilterTemplate = (options) => {
@@ -398,19 +399,19 @@ function DataTablePassagens() {
                 }
                 
                 <ContainerLadoALado>
-                    {(is_ok.length === 0) &&
+                    {(data.status !== 'Aprovada') &&
                         <Botao estilo="cinza" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalOpened(true)}>RELATAR ERRO</Botao>
                     }
-                    {(is_ok.length === 0) && plates.length !== 0 &&
+                    {(data.status !== 'Aprovada') && plates.length !== 0 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalPlateOpened(true)}>ALTERAR PLACA</Botao>
                     }
-                    {(is_ok.length === 0) && containers.length !== 0 &&
+                    {(data.status !== 'Aprovada') && containers.length !== 0 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalContainerOpened(true)}>ALTERAR CONTAINER</Botao>
                     }
-                    {(is_ok.length === 0) && data.itens.length > 1 &&
+                    {(data.status !== 'Aprovada') && data.itens.length > 1 &&
                         <Botao estilo="azul" weight="light" style={{width:"300px"}} size="small" aoClicar={() => setModalBindOpened(true)}>DESVINCULAR PASSAGENS</Botao>
                     }
-                    {(is_not_ok.length !== 0 && !is_warned) &&
+                    {(data.status === 'Pendente') &&
                         <Botao estilo="azul" style={{width:"300px"}} size="small" weight="light" aoClicar={() => confirmarPassagem(data.id)}>CONFIRMAR PASSAGEM</Botao>
                     }
                 </ContainerLadoALado>
