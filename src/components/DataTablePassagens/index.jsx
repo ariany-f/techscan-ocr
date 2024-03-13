@@ -617,7 +617,7 @@ function DataTablePassagens() {
                     showFilterMatchModes={false}
                     style={{ width: '10%',textAlign: 'center'}} 
                     headerStyle={{ width: '10%', textAlign: 'center' }} 
-                    showFilterMenu={false}
+                    
                     filterMenuStyle={{ width: '14rem' }} 
                     filter
                     filterElement={statusRowFilterTemplate}
