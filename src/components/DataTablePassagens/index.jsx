@@ -98,13 +98,6 @@ const StatusLabel = styled.div`
     }
 `
 
-// The rule argument should be a string in the format "custom_[field]".
-FilterService.register('custom_plate', (value, filter) => {
-    console.log(value)  
-    console.log(filter)
-    return value;
-});
-
 function DataTablePassagens() {
     
     const [passagens, setPassagens] = useState(null)
@@ -229,7 +222,6 @@ function DataTablePassagens() {
         _filters['global'].value = value;
 
         setFilters(_filters);
-        console.log(filters)
         setGlobalFilterValue(value);
     };
 
@@ -555,7 +547,7 @@ function DataTablePassagens() {
             <Loading opened={loading} />
             <DataTable 
                     removableSort 
-                    globalFilterFields={['plate', 'container', 'status', 'itens']} 
+                    globalFilterFields={['status', 'itens.plate']} 
                     showGridlines 
                     header={header} 
                     scrollable 
