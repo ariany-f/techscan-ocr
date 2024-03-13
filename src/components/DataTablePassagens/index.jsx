@@ -215,9 +215,9 @@ function DataTablePassagens() {
                     name: item.name,
                     code: item.id
                 }
-                if(!gates.includes(obj))
+                if(!gates.includes(obj.name))
                 {
-                    setGates(estadoAnterior => [...estadoAnterior, obj]);
+                    setGates(estadoAnterior => [...estadoAnterior, obj.name]);
                 }
             })
         })
