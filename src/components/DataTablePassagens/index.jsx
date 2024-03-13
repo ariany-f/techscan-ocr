@@ -114,8 +114,9 @@ function DataTablePassagens() {
     const toastConfirmarPassagem = useRef(null)
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        plate: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-        container: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },       
+        plate: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+        container: { value: null, matchMode: FilterMatchMode.STARTS_WITH }, 
+        status: { value: null, matchMode: FilterMatchMode.EQUALS },     
     }); 
     const [loading, setLoading] = useState(false)
     const [changeFields, setChangeFields] = useState(false)
@@ -343,6 +344,12 @@ function DataTablePassagens() {
         return <StatusLabel className={is_not_ok.length === 0 ? 'active' : (is_warned ? 'warning' : '')}/>
     }
 
+    const statusRowFilterTemplate = (options) => {
+        return (
+            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Selecione um" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+        );
+    };
+    
     const rowExpansionTemplate = (data) => {
         const myArray = data.itens;
         let is_warned = false
@@ -553,7 +560,7 @@ function DataTablePassagens() {
                 <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
                 <Column body={updatedByBodyTemplate} field="updated_by" header="Aprovação" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}/>
-                <Column body={statusBodyTemplate} header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
+                <Column body={statusBodyTemplate} header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}  showFilterMenu={false} filterMenuStyle={{ width: '14rem' }} filter filterElement={statusRowFilterTemplate}></Column>
             </DataTable>
             
             <Toast ref={toastConfirmarPassagem} />
