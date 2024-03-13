@@ -102,7 +102,7 @@ const StatusLabel = styled.div`
 FilterService.register('custom_plate', (value, filters) => {
     console.log(value)
     console.log(filters)
-    return value === 'JCC';
+    return filters === 'JCC';
 });
 
 function DataTablePassagens() {
