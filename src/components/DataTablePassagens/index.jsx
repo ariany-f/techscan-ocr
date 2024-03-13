@@ -98,6 +98,16 @@ const StatusLabel = styled.div`
     }
 `
 
+FilterService.register('custom_activity', (value, filters) => {
+    console.log(value)
+    console.log(filters)
+    // const [from, to] = filters ?? [null, null];
+    // if (from === null && to === null) return true;
+    // if (from !== null && to === null) return from <= value;
+    // if (from === null && to !== null) return value <= to;
+    // return from <= value && value <= to;
+  });
+
 function DataTablePassagens() {
     
     const [passagens, setPassagens] = useState(null)
@@ -114,16 +124,12 @@ function DataTablePassagens() {
     const [passagesDirection, setPassagesDirection] = useState(null)
     const toastConfirmarPassagem = useRef(null)
 
-    const plateRowFilter = (value, filter) => {
-        console.log(value)
-        console.log(filter)
-    }
-    
+
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        plate: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        container: { value: null, matchMode: FilterMatchMode.CONTAINS }, 
-        status: { value: null, matchMode: FilterMatchMode.EQUALS },     
+        plate: { value: null, matchMode: FilterMatchMode.CUSTOM },
+        container: { value: null, matchMode: FilterMatchMode.IN },
+        status: { value: null, matchMode: FilterMatchMode.EQUALS }, 
     }); 
 
     const [loading, setLoading] = useState(false)
@@ -368,17 +374,6 @@ function DataTablePassagens() {
         );
     };
 
-    const teste = (options, e) => {
-
-    }
-
-    const plateRowFilterTemplate = (options) => {
-        console.log(options)
-        return (
-            <InputText value={options.value} onChange={(e) => teste(options, e)} className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
-        );
-    };
-
     const rowExpansionTemplate = (data) => {
 
         let containers = data.itens.map((item) => {
@@ -565,7 +560,7 @@ function DataTablePassagens() {
             
             <Loading opened={loading} />
             <DataTable 
-                    globalFilterFields={['plate', 'container']} 
+                    globalFilterFields={['plate', 'container', 'status']} 
                     showGridlines 
                     header={header} 
                     scrollable 
@@ -589,15 +584,26 @@ function DataTablePassagens() {
                     header="Placa" 
                     filter 
                     style={{ width: '12%',textAlign: 'center'}} 
-                    headerStyle={{ width: '12%', textAlign: 'center' }}
-                    showFilterMenu={false}
-                    filterMenuStyle={{ width: '14rem' }} 
-                    filter
-                    filterElement={plateRowFilterTemplate}
+                    headerStyle={{ width: '12%', textAlign: 'center' }}  
+                    filter 
+                    filterPlaceholder="Search by plate" 
                 ></Column>
-                <Column body={plateCameraTemplate} field="camera" header="Câmera" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
-                <Column body={dateBodyTemplate} header="Data/Hora" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
-                <Column body={containerBodyTemplate} field="container" header="Container" filter style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
+                <Column 
+                    body={plateCameraTemplate} 
+                    field="camera" 
+                    header="Câmera" 
+                    style={{ width: '10%',textAlign: 'center'}} 
+                    headerStyle={{ width: '10%', textAlign: 'center' }}
+                ></Column>
+                <Column 
+                    body={dateBodyTemplate} 
+                    header="Data/Hora" 
+                    style={{ width: '10%',textAlign: 'center'}} 
+                    headerStyle={{ width: '10%', textAlign: 'center'}}
+                    filter 
+                    filterPlaceholder="Search by container" 
+                ></Column>
+                <Column body={containerBodyTemplate} field="container" header="Container" style={{ width: '12%',textAlign: 'center'}} headerStyle={{ width: '12%', textAlign: 'center' }}></Column>
                 <Column body={GateBodyTemplate} field="gate" header="Gate" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
