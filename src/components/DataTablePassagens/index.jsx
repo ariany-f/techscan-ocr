@@ -113,12 +113,14 @@ function DataTablePassagens() {
     const [endDate, setEndDate] = useState(null)
     const [passagesDirection, setPassagesDirection] = useState(null)
     const toastConfirmarPassagem = useRef(null)
-    
-    FilterService.register('plateRowFilter', (contactTagIds, filterValue) => {
+
+    const plateRowFilter = (contactTagIds, filterValue) => {
        
         console.log(filterValue)
         console.log(contactTagIds)
-    })
+    }
+    
+    FilterService.register('plateRowFilter', plateRowFilter)
 
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
