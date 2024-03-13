@@ -332,21 +332,18 @@ function DataTablePassagens() {
     };
 
     const statusBodyTemplate = (rowData) => {
-
-        // let status = rowData.itens.map((item) => {
-        //     return item.status ? `${item.status}` : null;
-        // })
-        
-        // status = status.filter(onlyUnique)
         return <StatusLabel value={rowData.status} className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/>
     }
 
+    const statusItemTemplate = (option) => {
+        return <StatusLabel value={option} className={option === 'Aprovada' ? 'active' : (option === 'Erro' ? 'warning' : '')} />;
+    };
+
     const statusRowFilterTemplate = (options) => {
         return (
-            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} placeholder="Selecione um" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+            <Dropdown itemTemplate={statusItemTemplate} value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} placeholder="Selecione um" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
         );
     };
-    
     const rowExpansionTemplate = (data) => {
 
         let containers = data.itens.map((item) => {
