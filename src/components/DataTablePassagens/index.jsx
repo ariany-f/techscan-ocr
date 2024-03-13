@@ -102,7 +102,6 @@ const StatusLabel = styled.div`
 FilterService.register('custom_plate', (value, filters) => {
     console.log(value)
     console.log(filters)
-    console.log(options)
     return filters === value;
 });
 
@@ -373,7 +372,7 @@ function DataTablePassagens() {
 
     const plateRowFilterTemplate = (options) => {
         return (
-            <InputText placeholder="plate" value={options.value} onChange={(e) => options.filterApplyCallback(e, options)} className="w-full"/>
+            <InputText placeholder="plate" value={options.value} onChange={(e) => options.filterCallback(e, options)} className="w-full"/>
         );
     };
 
