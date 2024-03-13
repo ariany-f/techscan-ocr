@@ -98,12 +98,12 @@ const StatusLabel = styled.div`
     }
 `
 
-
 FilterService.register("custom_itens", (value, filter) => {
     if (!value || !filter) return true
     if (value.length === 0) return true
     else if (value.length !== 0 && filter.length === 0) return false
-    return value.every((item) => item.plate === filter)
+    var newArr = value.filter(el => el.plate === filter)
+    return newArr.length > 0
 })
 
 function DataTablePassagens() {
