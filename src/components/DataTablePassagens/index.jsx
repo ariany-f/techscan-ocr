@@ -360,7 +360,7 @@ function DataTablePassagens() {
         console.log(options)
         console.log(e)
         console.log(event)
-        options.filterCallback(event.value);
+        options.filterCallback(e.value);
     }
 
     let statusFilter = (options) => <Dropdown style={{width: '100%'}} className="ui-column-filter"
