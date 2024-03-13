@@ -374,7 +374,7 @@ function DataTablePassagens() {
     const plateRowFilterTemplate = (options) => {
         return (
             <div className="flex gap-1">
-                <InputText value={options.value} onChange={(e) => options.filterApplyCallback([e.value])} className="w-full" placeholder="plate" />
+                <InputText value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} className="w-full" placeholder="plate" />
             </div>
         );
     };
