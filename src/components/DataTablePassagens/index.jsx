@@ -123,8 +123,8 @@ function DataTablePassagens() {
     const [loading, setLoading] = useState(false)
     const [changeFields, setChangeFields] = useState(false)
     const timerRef = useRef(null);
-    const [statuses] = useState(['Aprovada', 'Erro', 'Pendente']);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
+    const [statuses] = useState(['Aprovada', 'Erro', 'Pendente']);
 
     const confirmarPassagem = (id) => {
 
@@ -218,7 +218,6 @@ function DataTablePassagens() {
     }, [changeFields, startDate, endDate, passagesDirection, modalOpened, toastConfirmarPassagem, passagens, modalPlateOpened, modalContainerOpened, modalBindOpened])
  
     const onGlobalFilterChange = (e) => {
-        console.log(e)
         const value = e.target.value;
         let _filters = { ...filters };
 
@@ -338,30 +337,31 @@ function DataTablePassagens() {
     const getSeverity = (status) => {
         switch (status) {
             case 'Pendente':
-                return 'danger';
+                return null;
 
             case 'Aprovada':
-                return 'success';
+                return 'active';
 
             case 'Erro':
                 return 'warning';
         }
     };
 
+    
     const statusBodyTemplate = (rowData) => {
-        return <Tag value={rowData.status} severity={getSeverity(rowData.status)} />;
-        // return <StatusLabel value={rowData.status} className={rowData.status === 'Aprovada' ? 'active' : (rowData.status === 'Erro' ? 'warning' : '')}/>
-    }
+        return <StatusLabel value={rowData.status} className={getSeverity(rowData.status)} />;
+    };
 
     const statusItemTemplate = (option) => {
-        return <Tag value={option} severity={getSeverity(option)} />;
+        return <StatusLabel value={option} className={getSeverity(option)} />;
     };
-
+    
     const statusRowFilterTemplate = (options) => {
         return (
-            <Dropdown itemTemplate={statusItemTemplate} value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} placeholder="Selecione um" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+            <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
         );
     };
+
     const rowExpansionTemplate = (data) => {
 
         let containers = data.itens.map((item) => {
@@ -558,7 +558,7 @@ function DataTablePassagens() {
                 <Column body={DirectionBodyTemplate} field="direction" header="Direção" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={qtdImagensBodyTemplate} header="Qtd. Imagens" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
                 <Column body={updatedByBodyTemplate} field="updated_by" header="Aprovação" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}/>
-                <Column body={statusBodyTemplate} header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}  showFilterMenu={false} filterMenuStyle={{ width: '14rem' }} filter filterElement={statusRowFilterTemplate}></Column>
+                <Column body={statusBodyTemplate} header="Status" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }} showFilterMenu={false} filterMenuStyle={{ width: '14rem' }} body={statusBodyTemplate} filter filterElement={statusRowFilterTemplate}></Column>
             </DataTable>
             
             <Toast ref={toastConfirmarPassagem} />
