@@ -368,6 +368,12 @@ function DataTablePassagens() {
         );
     };
 
+    const plateRowFilterTemplate = (options) => {
+        return (
+            <InputText value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
+        );
+    };
+
     const rowExpansionTemplate = (data) => {
 
         let containers = data.itens.map((item) => {
@@ -580,8 +586,9 @@ function DataTablePassagens() {
                     style={{ width: '12%',textAlign: 'center'}} 
                     headerStyle={{ width: '12%', textAlign: 'center' }}
                     showFilterMenu={false}
-                    filterMatchMode="custom" 
-                    filterFunction={plateRowFilter}
+                    filterMenuStyle={{ width: '14rem' }} 
+                    filter
+                    filterElement={plateRowFilterTemplate}
                 ></Column>
                 <Column body={plateCameraTemplate} field="camera" header="Câmera" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center' }}></Column>
                 <Column body={dateBodyTemplate} header="Data/Hora" style={{ width: '10%',textAlign: 'center'}} headerStyle={{ width: '10%', textAlign: 'center'}}></Column>
