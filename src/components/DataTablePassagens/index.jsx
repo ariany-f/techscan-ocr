@@ -556,7 +556,7 @@ function DataTablePassagens() {
             <Loading opened={loading} />
             <DataTable 
                     removableSort 
-                    globalFilterFields={['plate', 'container', 'status']} 
+                    globalFilterFields={['plate', 'container', 'status', 'itens']} 
                     showGridlines 
                     header={header} 
                     scrollable 
