@@ -98,16 +98,6 @@ const StatusLabel = styled.div`
     }
 `
 
-FilterService.register('custom_activity', (value, filters) => {
-    console.log(value)
-    console.log(filters)
-    // const [from, to] = filters ?? [null, null];
-    // if (from === null && to === null) return true;
-    // if (from !== null && to === null) return from <= value;
-    // if (from === null && to !== null) return value <= to;
-    // return from <= value && value <= to;
-  });
-
 function DataTablePassagens() {
     
     const [passagens, setPassagens] = useState(null)
@@ -127,8 +117,8 @@ function DataTablePassagens() {
 
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        plate: { value: null, matchMode: FilterMatchMode.CUSTOM },
-        container: { value: null, matchMode: FilterMatchMode.IN },
+        plate: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        container: { value: null, matchMode: FilterMatchMode.CONTAINS },
         status: { value: null, matchMode: FilterMatchMode.EQUALS }, 
     }); 
 
