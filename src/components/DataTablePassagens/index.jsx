@@ -238,7 +238,7 @@ function DataTablePassagens() {
         // useRef value stored in .current property
         timerRef.current = window.setTimeout(() => {
             fetchPassages()
-        }, 60000);
+        }, 120000);
 
         // clear on component unmount
         return () => {
