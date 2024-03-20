@@ -90,24 +90,22 @@ function ModalMotivo({ opened = false, aoClicar, aoFechar, passagem }) {
     }
 
     function updateMotivo()
-    {   
-        console.log(passagem)   
-        // var sendData = {
-        //     id: parseInt(passagem[0].id),
-        //     is_ocr_error: selectedMotivo.is_ocr_error,
-        //     preset_reason: selectedMotivo.id !== 0 ? selectedMotivo.id : null,
-        //     description_reason: typedMotivo,
-        //     updated_by: ArmazenadorToken.UserId
-        // }
-        // http.put('api/web/public/passagens', sendData)
-        // .then(response => {
-        // })
-        // .catch(erro => {
-        //     console.error(erro)
-        // })
+    {
+        var sendData = {
+            id: parseInt(passagem[0].id),
+            is_ocr_error: selectedMotivo.is_ocr_error,
+            preset_reason: selectedMotivo.id !== 0 ? selectedMotivo.id : null,
+            description_reason: typedMotivo,
+            updated_by: ArmazenadorToken.UserId
+        }
+        http.put('api/web/public/passagens', sendData)
+        .then(response => {
+        })
+        .catch(erro => {
+            console.error(erro)
+        })
  
          aoFechar()
-        
     }
     
     useEffect(() => {
