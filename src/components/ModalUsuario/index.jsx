@@ -198,13 +198,15 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
                 .then((response) => {
                     setUsuario(response[0])
                     setName(response[0].name)
+                    setStatus(response[0].status)
+                    setEmail(response[0].email)
                     setNewPassword('')
                 })
                 .catch(erro => {
                     console.error(erro)
                 })
         }
-    }, [idUsuario])
+    }, [idUsuario, usuario])
 
     const fecharModal = () => {
         setUsuario({
