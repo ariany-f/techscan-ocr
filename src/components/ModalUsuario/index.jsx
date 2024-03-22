@@ -159,7 +159,10 @@ function ModalUsuario({ opened = false, aoClicar, aoFechar, idUsuario = null }) 
         {
             let obj = {}
             obj = usuario
-            obj['new_password'] = password
+            if(password.length > 0)
+            {
+                obj['new_password'] = password
+            }
 
             http.put(`api/web/public/users`, obj)
             .then((response) => {
