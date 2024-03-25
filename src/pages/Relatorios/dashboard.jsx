@@ -130,7 +130,7 @@ function RelatorioDashboard() {
         if(startDate || endDate)
         {
           pdf.setFontSize(12);
-          pdf.text(20, 50, startDate.toLocaleDateString('sv-SE', {
+          pdf.text(20, 50, 'Período do resultado: ' + startDate.toLocaleDateString('sv-SE', {
             day: '2-digit',
             month: '2-digit',
             year: 'numeric',
