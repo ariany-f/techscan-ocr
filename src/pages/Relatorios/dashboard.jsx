@@ -129,9 +129,9 @@ function RelatorioDashboard() {
         }
 
         
-        if(direction)
+        if(passagesDirection)
         {
-          pdf.text(20, 70, 'Filtrado por ' + direction)
+          pdf.text(20, 70, 'Filtrado por ' + passagesDirection)
         }
 
         pdf.setFontSize(20);
