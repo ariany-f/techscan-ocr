@@ -61,6 +61,23 @@ function RelatorioDashboard() {
   const [percentageTraseira, setPercentageTraseira] = useState(100);
   const [percentageContainer, setPercentageContainer] = useState(100);
 
+            
+  const availableDirections = [
+    {
+        name: 'Todos',
+        code: null
+    },
+    {
+        name: 'Entrada',
+        code: 1,
+    },
+    {
+        name: 'Saída',
+        code: 2
+    }
+  ]
+
+
   addLocale('pt', {
     closeText: 'Fechar',
     prevText: 'Anterior',
@@ -131,7 +148,10 @@ function RelatorioDashboard() {
         
         if(passagesDirection)
         {
-          pdf.text(20, 70, 'Filtrado por ' + passagesDirection)
+          let dir = availableDirections.filter(obj => {
+            return obj.code === passagesDirection
+          })
+          pdf.text(20, 70, 'Filtrado por ' + dir.name)
         }
 
         pdf.setFontSize(20);
@@ -408,21 +428,6 @@ function RelatorioDashboard() {
     }
     
 }, [changeFields, startDate, endDate, passagesDirection, dianteira, traseira, container, dataDianteira, dataTraseira, dataContainer, capturasOCRDianteira, capturasOCRTraseira, capturasOCRContainer])
-          
-      const availableDirections = [
-        {
-            name: 'Todos',
-            code: null
-        },
-        {
-            name: 'Entrada',
-            code: 1,
-        },
-        {
-            name: 'Saída',
-            code: 2
-        }
-      ]
 
       return (
         <>
