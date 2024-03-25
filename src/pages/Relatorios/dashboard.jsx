@@ -112,12 +112,12 @@ function RelatorioDashboard() {
         
         if(startDate || endDate)
         {
-          pdf.text(350, 5, startDate + ' a ' + endDate)
+          pdf.text(550, 15, startDate + ' a ' + endDate)
         }
 
-        pdf.text(50, 30, 'Placa Dianteira')
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + 50, 30, 'Placa Traseira')
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 50, 30, 'Container')
+        pdf.text(50, 50, 'Placa Dianteira')
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + 50, 50, 'Placa Traseira')
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 50, 50, 'Container')
 
         pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', 0, 70);
         pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', refDianteira.current.getCanvas().offsetWidth, 70);
