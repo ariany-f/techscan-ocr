@@ -151,8 +151,7 @@ function RelatorioDashboard() {
           let dir = availableDirections.filter(obj => {
             return parseInt(obj.code) === parseInt(passagesDirection)
           })
-          console.log(dir)
-          pdf.text(20, 70, 'Filtrado por ' + dir.name)
+          pdf.text(20, 70, 'Filtrado por ' + dir[0].name)
         }
 
         pdf.setFontSize(20);
