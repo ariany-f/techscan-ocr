@@ -112,8 +112,8 @@ function RelatorioDashboard() {
         
         if(startDate || endDate)
         {
-          pdf.text(150, 30, ' - ' + startDate + ' a ');
-          pdf.text(150, 50, endDate);
+          pdf.text(150, 30, ' - ' + startDate + ' a ')
+          // pdf.text(150, 50, endDate)
         }
 
         pdf.text(40, 100, 'Placa Dianteira')
