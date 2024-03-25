@@ -113,8 +113,20 @@ function RelatorioDashboard() {
         if(startDate || endDate)
         {
           pdf.setFontSize(12);
-          pdf.text(20, 50, startDate + ' a')
-          pdf.text(20, 70, ' ' + endDate)
+          pdf.text(20, 50, startDate.toLocaleDateString('sv-SE', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        }) + ' a')
+          pdf.text(20, 70, ' ' + endDate.toLocaleDateString('sv-SE', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        }))
         }
 
         pdf.setFontSize(20);
