@@ -108,16 +108,16 @@ function RelatorioDashboard() {
         pdf.setTextColor(0,0,0);
         pdf.setFontSize(20);
         
-        pdf.text(50, 20, 'Lachman Taubaté')
+        pdf.text(20, 20, 'Lachman Taubaté')
         
         if(startDate || endDate)
         {
           pdf.text(550, 20, startDate + ' a ' + endDate)
         }
 
-        pdf.text(50, 50, 'Placa Dianteira')
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + 50, 50, 'Placa Traseira')
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 50, 50, 'Container')
+        pdf.text(50, 60, 'Placa Dianteira')
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + 50, 60, 'Placa Traseira')
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 50, 60, 'Container')
 
         pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', 0, 70);
         pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', refDianteira.current.getCanvas().offsetWidth, 70);
