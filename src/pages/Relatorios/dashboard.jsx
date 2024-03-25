@@ -136,7 +136,7 @@ function RelatorioDashboard() {
             year: 'numeric',
             hour: 'numeric',
             minute: 'numeric'
-          }) + ' a' + endDate.toLocaleDateString('sv-SE', {
+          }) + ' a ' + endDate.toLocaleDateString('sv-SE', {
             day: '2-digit',
             month: '2-digit',
             year: 'numeric',
