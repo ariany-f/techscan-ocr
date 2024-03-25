@@ -125,7 +125,7 @@ function RelatorioDashboard() {
         pdf.setTextColor(0,0,0);
         pdf.setFontSize(20);
         
-        pdf.text(20, 30, 'Lachman Taubaté')
+        pdf.text(20, 30, 'Lachman São Bernardo')
         
         if(startDate || endDate)
         {
