@@ -119,14 +119,19 @@ function RelatorioDashboard() {
             year: 'numeric',
             hour: 'numeric',
             minute: 'numeric'
-        }) + ' a')
-          pdf.text(20, 70, ' ' + endDate.toLocaleDateString('sv-SE', {
+          }) + ' a' + endDate.toLocaleDateString('sv-SE', {
             day: '2-digit',
             month: '2-digit',
             year: 'numeric',
             hour: 'numeric',
             minute: 'numeric'
-        }))
+          }))
+        }
+
+        
+        if(direction)
+        {
+          pdf.text(20, 70, 'Filtrado por ' + direction)
         }
 
         pdf.setFontSize(20);
