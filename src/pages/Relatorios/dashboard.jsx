@@ -108,11 +108,11 @@ function RelatorioDashboard() {
         pdf.setTextColor(0,0,0);
         pdf.setFontSize(20);
         
-        pdf.text(50, 5, 'Lachman Taubaté')
+        pdf.text(50, 20, 'Lachman Taubaté')
         
         if(startDate || endDate)
         {
-          pdf.text(550, 15, startDate + ' a ' + endDate)
+          pdf.text(550, 20, startDate + ' a ' + endDate)
         }
 
         pdf.text(50, 50, 'Placa Dianteira')
