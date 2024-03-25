@@ -107,6 +107,14 @@ function RelatorioDashboard() {
 
         pdf.setTextColor(0,0,0);
         pdf.setFontSize(20);
+        
+        pdf.text(50, 5, 'Lachman Taubaté')
+        
+        if(startDate || endDate)
+        {
+          pdf.text(350, 5, startDate + ' a ' + endDate)
+        }
+
         pdf.text(50, 30, 'Placa Dianteira')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + 50, 30, 'Placa Traseira')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 50, 30, 'Container')
