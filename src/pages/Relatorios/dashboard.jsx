@@ -151,6 +151,7 @@ function RelatorioDashboard() {
           let dir = availableDirections.filter(obj => {
             return obj.code === passagesDirection
           })
+          console.log(dir)
           pdf.text(20, 70, 'Filtrado por ' + dir.name)
         }
 
