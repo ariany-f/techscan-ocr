@@ -112,10 +112,12 @@ function RelatorioDashboard() {
         
         if(startDate || endDate)
         {
-          pdf.text(200, 30, ' - ' + startDate + ' a')
-          pdf.text(200, 55, ' ' + endDate)
+          pdf.setFontSize(15);
+          pdf.text(20, 55, ' - ' + startDate + ' a')
+          pdf.text(20, 75, ' ' + endDate)
         }
 
+        pdf.setFontSize(20);
         pdf.text(40, 100, 'Placa Dianteira')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + 40, 100, 'Placa Traseira')
         pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 40, 100, 'Container')
