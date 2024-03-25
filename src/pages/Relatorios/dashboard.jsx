@@ -112,16 +112,17 @@ function RelatorioDashboard() {
         
         if(startDate || endDate)
         {
-          pdf.text(250, 30, ' - ' + startDate + ' a ' + endDate)
+          pdf.text(150, 30, ' - ' + startDate + ' a ')
+          pdf.text(150, 50, endDate)
         }
 
-        pdf.text(40, 60, 'Placa Dianteira')
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + 40, 60, 'Placa Traseira')
-        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 40, 60, 'Container')
+        pdf.text(40, 100, 'Placa Dianteira')
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + 40, 100, 'Placa Traseira')
+        pdf.text(refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth + 40, 100, 'Container')
 
-        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', 0, 70);
-        pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', refDianteira.current.getCanvas().offsetWidth, 70);
-        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 70);
+        pdf.addImage(refDianteira.current.getBase64Image(), 'PNG', 0, 130);
+        pdf.addImage(refTraseira.current.getBase64Image(), 'PNG', refDianteira.current.getCanvas().offsetWidth, 130);
+        pdf.addImage(refContainer.current.getBase64Image(), 'PNG', refTraseira.current.getCanvas().offsetWidth + refDianteira.current.getCanvas().offsetWidth, 130);
          
         pdf.setFontSize(10);
 
