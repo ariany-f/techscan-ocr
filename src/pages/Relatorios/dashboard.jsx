@@ -112,9 +112,9 @@ function RelatorioDashboard() {
         
         if(startDate || endDate)
         {
-          pdf.setFontSize(15);
-          pdf.text(20, 55, ' - ' + startDate + ' a')
-          pdf.text(20, 75, ' ' + endDate)
+          pdf.setFontSize(12);
+          pdf.text(20, 50, ' - ' + startDate + ' a')
+          pdf.text(20, 70, ' ' + endDate)
         }
 
         pdf.setFontSize(20);
